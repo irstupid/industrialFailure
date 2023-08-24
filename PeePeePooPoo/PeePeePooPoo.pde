@@ -3,6 +3,7 @@ float yPos;
 float xVelo;
 float yVelo;
 float gravity;
+float BounceDecay;
 
 void setup() {
   size(800,600);
@@ -10,6 +11,7 @@ void setup() {
   yPos = 180;
   xVelo = 2;
   yVelo = 0;
+  BounceDecay = 1;
   gravity = 0.4;
 }
 
@@ -23,7 +25,11 @@ void draw() {
     xPos = 0;
   }
   if (yPos > height - 50) {
-    yVelo = -yVelo;
+    if(yVelo < 2)
+    {
+      yVelo = 2;
+    }
+    yVelo = -yVelo + BounceDecay;
   }
 }
 
