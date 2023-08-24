@@ -31,7 +31,7 @@ void displayThing(float x, float y) {
   push();
   translate(x, y);
   rectMode(CENTER);
-  fill(#006600);
+  fill(#00ff00);
   strokeWeight(4);
   stroke(255);
   rect(0, 0, 50, 100);
