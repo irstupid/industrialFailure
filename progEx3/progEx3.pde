@@ -2,9 +2,9 @@ float xPos;
 float yPos;
 
 void setup() {
-  size(800,600);
-  xPos = 800;
-  yPos = 40;
+  size(1200,900);
+  xPos = 1200;
+  yPos = 0;
 }
 
 void draw() {
