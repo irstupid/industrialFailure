@@ -11,8 +11,8 @@ void setup() {
   yPos = 180;
   xVelo = 2;
   yVelo = 0;
-  BounceDecay = 1;
-  gravity = 0.4;
+  BounceDecay = 0.2;
+  gravity = 0.2;
 }
 
 void draw() {
