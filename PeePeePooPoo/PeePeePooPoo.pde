@@ -41,6 +41,9 @@ void displayThing(float x, float y) {
   strokeWeight(4);
   stroke(255);
   rect(0, 0, 50, 100);
-  ellipse(0, 0, 60, 60);
+  fill(#ffffff);
+  ellipse(0, -25, 40, 40);
+  fill(#000000);
+  ellipse(0, -25, 15, 15);
   pop();
 }
