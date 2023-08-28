@@ -2,16 +2,16 @@ float xPos;
 float yPos;
 
 void setup() {
-  size(1200,900);
-  xPos = 1200;
-  yPos = 0;
+  size(2000,900);
+  xPos = 0;
+  yPos = 450;
 }
 
 void draw() {
   background(0);
   displayThing(xPos, yPos);
-  xPos += -2;
-  yPos += 1;
+  xPos += 2;
+  yPos += 0;
 }
 
 void displayThing(float x, float y) {
