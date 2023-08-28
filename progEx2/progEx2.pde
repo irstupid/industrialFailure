@@ -15,6 +15,6 @@ void displayThing(float x, float y) {
   strokeWeight(20);
   stroke(0);
   rect(0, 0, 50, 100);
-  ellipse(0, 0, 60, 60);
+  ellipse(0, 0, 200, 60);
   pop();
 }
