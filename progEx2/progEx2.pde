@@ -12,9 +12,11 @@ void displayThing(float x, float y) {
   translate(x, y);
   rectMode(CENTER);
   fill(#00ff00);
-  strokeWeight(20);
-  stroke(0);
+  strokeWeight(0);
   rect(0, 0, 50, 100);
-  ellipse(0, 0, 200, 60);
+  fill(#ffffff);
+  ellipse(0, -25, 40, 40);
+  fill(#000000);
+  ellipse(0, -25, 15, 15);
   pop();
 }
