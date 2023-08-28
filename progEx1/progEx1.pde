@@ -3,7 +3,7 @@ void setup() {
 }
 
 void draw() {
-  background(90);
+  background(255);
   fill(#00ff00);
   rect(200, 320, 300, 400);
 }
