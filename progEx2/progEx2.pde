@@ -13,7 +13,7 @@ void displayThing(float x, float y) {
   rectMode(CENTER);
   fill(#00ff00);
   strokeWeight(20);
-  stroke(255);
+  stroke(0);
   rect(0, 0, 50, 100);
   ellipse(0, 0, 60, 60);
   pop();
