@@ -10,8 +10,8 @@ void setup() {
 void draw() {
   background(90);
   displayThing(xPos, yPos);
-  xPos += 8;
-  yPos += 4;
+  xPos += -2;
+  yPos += 1;
 }
 
 void displayThing(float x, float y) {
