@@ -19,8 +19,7 @@ void displayThing(float x, float y) {
   translate(x, y);
   rectMode(CENTER);
   fill(#00ff00);
-  strokeWeight(4);
-  stroke(255);
+  strokeWeight(0);
   rect(0, 0, 50, 100);
   ellipse(0, 0, 60, 60);
   pop();
