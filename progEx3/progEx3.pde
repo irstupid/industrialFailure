@@ -3,8 +3,8 @@ float yPos;
 
 void setup() {
   size(800,600);
-  xPos = 20;
-  yPos = 80;
+  xPos = 800;
+  yPos = 40;
 }
 
 void draw() {
