@@ -8,7 +8,7 @@ void setup() {
 }
 
 void draw() {
-  background(90);
+  background(0);
   displayThing(xPos, yPos);
   xPos += -2;
   yPos += 1;
@@ -18,9 +18,16 @@ void displayThing(float x, float y) {
   push();
   translate(x, y);
   rectMode(CENTER);
-  fill(#00ff00);
   strokeWeight(0);
-  rect(0, 0, 50, 100);
-  ellipse(0, 0, 60, 60);
+  fill(#0099ff);
+  ellipse(0, -40, 100, 100);
+  fill(#555555);
+  ellipse(0, 0, 250, 80);
+  fill(#bb0000);
+  ellipse(-100, 0, 20, 20);
+  ellipse(-50, 0, 20, 20);
+  ellipse(0, 0, 20, 20);
+  ellipse(50, 0, 20, 20);
+  ellipse(100, 0, 20, 20);
   pop();
 }
