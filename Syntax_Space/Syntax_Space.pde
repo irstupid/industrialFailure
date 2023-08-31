@@ -7,6 +7,10 @@ float UFOY;
 float UFOXVelo;
 float UFOYVelo;
 
+color[] Colors = {#ff0000, #ffff00, #0000ff, #ff0000, #ffff00, #0000ff};
+int ColorIndex;
+int ColorTimer;
+
 void setup() {
   size(800,600);
   AlienX = 300;
@@ -41,11 +45,21 @@ void Draw()
   ellipse(UFOX, UFOY - 50, 75, 75);
   fill(#666666);
   ellipse(UFOX, UFOY, 225, 75);
-    fill(#ff0000);
+  
+  if(ColorTimer == 5)
+  {
+    ColorIndex = int(random(Colors.length / 2));
+    ColorTimer = 0;
+  }
+  else
+  {
+    ColorTimer++;
+  }
+    fill(Colors[ColorIndex]);
   ellipse(UFOX, UFOY, 25, 25);
-    fill(#0000ff);
+    fill(Colors[ColorIndex + 1]);
   ellipse(UFOX + 50, UFOY, 25, 25);
-    fill(#ffff00);
+    fill(Colors[ColorIndex + 2]);
   ellipse(UFOX - 50, UFOY, 25, 25);
 }
 
@@ -83,4 +97,21 @@ void UFO()
   
   UFOX += UFOXVelo;
   UFOY += UFOYVelo;
+  
+  if(UFOX > 800)
+  {
+    UFOX = 0;
+  }
+  if(UFOX < 0)
+  {
+    UFOX = 800;
+  }
+  if(UFOY > 600)
+  {
+    UFOY = 0;
+  }
+  if(UFOY < 0)
+  {
+    UFOY = 600;
+  }
 }
