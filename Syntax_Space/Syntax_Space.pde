@@ -11,12 +11,27 @@ color[] Colors = {#ff0000, #ffff00, #0000ff, #ff0000, #ffff00, #0000ff};
 int ColorIndex;
 int ColorTimer;
 
+float[] StarsX;
+float[] StarsY;
+
+PVector LazerDirection;
+float LazerSpeed;
+
 void setup() {
   size(800,600);
   AlienX = 300;
   AlienSpeed = 5;
   UFOX = 400;
   UFOY = 300;
+  StarsX = new float[50];
+  StarsY = new float[50];
+    int i = 0;
+    while(i < 50)
+  {
+    StarsX[i] = random(0, 800);
+    StarsY[i] = random(0, 450);
+    i++;
+  }
 }
 
 void draw() {
@@ -28,6 +43,15 @@ void draw() {
 
 void Draw()
 {
+  //Draw Star
+  int i = 0;
+  while(i < 50)
+  {
+    strokeWeight(0);
+    fill(#ffffff);
+    ellipse(StarsX[i], StarsY[i], 5, 5);
+    i++;
+  }
   //Draw Ground
   strokeWeight(0);
   fill(#999999);
@@ -63,6 +87,11 @@ void Draw()
   ellipse(UFOX - 50, UFOY, 25, 25);
 }
 
+void Lazer()
+{
+  LazerDirection = new PVector(UFOX - AlienX, UFOY - 400);
+}
+
 void Alien()
 {
   //Move Alien
@@ -89,7 +118,7 @@ void Alien()
 void UFO()
 {
   //Draw UFO
-  if(random(0, 10) <= 1)
+  if(random(0, 20) <= 1)
   {
   UFOXVelo = random(-8, 8);
   UFOYVelo = random(-8, 8);
