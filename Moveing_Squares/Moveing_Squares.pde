@@ -15,7 +15,8 @@ void draw()
   fill(#ffffff);
   ellipse(275, 450, 50, 50);
   fill(#000000);
-  text("starzk circle", 275, 450);
+  text("starzk", 260, 445);
+  text("circle", 260, 460);
   fill(#ffffff);
   rect(200, 300, 50, y);
   fill(#000000);
@@ -29,6 +30,16 @@ void draw()
   }
   fill(#884400);
   rect(550, 500, x, 50);
+  fill(#666666);
+  if(y < width + 300)
+  {
+    rect(375, 250, width + 300 - y, 50);
+  }
+  else
+  {
+    rect(375, 250, 0, 50);
+  }
+  
   fill(#ff0000);
   rect(x, 275, 50, 50);
   fill(#0000ff);
@@ -43,6 +54,10 @@ void draw()
   rect((width/2) + x, height - (2 * x), 50, 50);
   fill(#ff00ff);
   rect(600 - x, y/2, 50, 50);
+  
+  //fill(alpha());
+  //rect(425, 350, 50, 50);
+  
   x++;
   y++;
 }
