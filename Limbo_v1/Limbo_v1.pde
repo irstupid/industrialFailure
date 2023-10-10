@@ -1,15 +1,16 @@
 float barY;
 float barYV;
 int bckColor;
-float opened;
-
+float open;
+float eY;
 
 void setup() {
   size(800, 600);
   rectMode(CENTER);
   barY = height/2;
   bckColor = #3F36CE;
-  opened = 0;
+  open = 0;
+  eY = height/2;
 }
 
 void draw() {
@@ -29,7 +30,7 @@ void draw() {
   }
   barY += barYV;
 
-  if (mouseX < 40)
+  if (mouseX < 400)
   {
     bckColor = #861212;
   } else
@@ -57,13 +58,54 @@ void cannon()
 
 void elavator()
 {
-  //float y;
-  //float yVelo;
-  //float openGoal;
-  //float open;
-  //fill(#8E8E8E);
-  //rect(width/2 - 30 - open, y, 60, 160);
-  //rect(width/2 + 30 + open, y, 60, 160);
-  //fill(#000000);
-  //rect(width/2, y, 3 + open * 2, 160);
+  float yGoal;
+  float openGoal;
+
+  if (mouseY < 100)
+  {
+    yGoal = 100;
+  } else if (mouseY > 500)
+  {
+    yGoal = 500;
+  } else
+  {
+    yGoal = mouseY;
+  }
+
+  if (open == 0)
+  {
+    if (eY < yGoal)
+    {
+      eY = eY + 4;
+    } else
+    {
+      eY = eY - 4;
+    }
+  }
+
+  if ((eY == 500 || eY == 100) && (yGoal == 500 || yGoal == 100))
+  {
+    openGoal = abs(400 - mouseX)/10;
+    if (openGoal > 30)
+    {
+      openGoal = 30;
+    }
+  } else
+  {
+    openGoal = 0;
+  }
+
+  if (open < openGoal)
+  {
+    open = open + 1;
+  } else
+  {
+    open = open - 1;
+  }
+
+  fill(#8E8E8E);
+  rect(width/2 - 30 - open, eY, 60, 160);
+  rect(width/2 + 30 + open, eY, 60, 160);
+  fill(#000000);
+  rect(width/2, eY, 3 + open * 2, 160);
 }
