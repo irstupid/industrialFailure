@@ -2,6 +2,7 @@ float x;
 float y;
 float xVelo;
 float yVelo;
+float wVelo;
 int frames;
 int waterTimer;
 
@@ -43,8 +44,8 @@ void draw() {
   waterTimer++;
   fill(#0AB8FA);
   ellipse(width/2, 30, 40, 40);
-  ellipse(width/2, 30 + waterTimer * 10, 20, 20);
-  if(waterTimer == 60)
+  ellipse(width/2, 30 + (waterTimer * 1) * (0.001 * waterTimer * waterTimer), 20, 20);
+  if(waterTimer == 120)
   {
     waterTimer = 0;
   }
