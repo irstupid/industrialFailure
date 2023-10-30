@@ -6,6 +6,7 @@ int colorTimer;
 int bckColor;
 int lifeTimer;
 boolean alive;
+int birthFrame;
 
 void setup() {
   size(800, 600);
@@ -15,7 +16,7 @@ void setup() {
   yVelo = 0;
   colorTimer = 0;
   bckColor = 0;
-  lifeTimer = 0;
+  lifeTimer = 4;
   alive = false;
   strokeWeight(10);
   colorMode(HSB, 255, 100, 100);
@@ -72,32 +73,31 @@ void draw() {
   //life timer
   if (alive)
   {
-    lifeTimer++;
+    lifeTimer = 3 - int((frameCount - birthFrame)/frameRate);
   }
-  if (lifeTimer >= 200)
+  if (lifeTimer < 0)
   {
- x = width/2;
-  xVelo = 5;
-  y = 300;
-  yVelo = 0;
-  colorTimer = 0;
-  lifeTimer = 0;
-  alive = false;
+    x = width/2;
+    xVelo = 5;
+    y = 300;
+    yVelo = 0;
+    lifeTimer = 4;
+    alive = false;
   }
 
   //draw
+  fill(0, 0, 0);
+  if (alive)
+  {
+    text(lifeTimer, width/2, height/2);
+  } else
+  {
+    text("press space", width/2, height/2);
+  }
   fill(colorTimer, 100, 100);
-  if (lifeTimer > 20)
+  if (alive)
   {
     ellipse(x, y, 80, 80);
-  }
-  if(alive)
-  {
-    
-  }
-  else
-  {
-  text("press space", width/2, height/2);
   }
 }
 
@@ -106,5 +106,6 @@ void keyPressed()
   if (key == ' ')
   {
     alive = true;
+    birthFrame = frameCount;
   }
 }
