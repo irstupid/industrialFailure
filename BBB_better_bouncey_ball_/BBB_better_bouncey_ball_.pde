@@ -103,7 +103,7 @@ void draw() {
 
 void keyPressed()
 {
-  if (key == ' ')
+  if (key == ' ' && !alive)
   {
     alive = true;
     birthFrame = frameCount;
