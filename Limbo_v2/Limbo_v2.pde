@@ -78,7 +78,7 @@ void draw() {
   }
   
   strokeWeight(10);
-  fill(#ffccdd);
+  fill(#00ffff);
   ellipse(mX, mY, 150, 150);
   line(mX - 50, mY - 25, mX + 50, mY + 25);
   
