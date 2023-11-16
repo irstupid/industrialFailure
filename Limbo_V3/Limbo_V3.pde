@@ -1,10 +1,15 @@
 float s;
 float wG;
+float bpX;
+float bpY;
+float bpS;
 
 void setup() {
   size(600, 600);
   rectMode(CENTER);
   s = width/4;
+  bpX = 100;
+  bpY = height - 40;
 }
 
 void draw() {
@@ -42,4 +47,46 @@ void draw() {
     s = 0;
   }
   
+  if(bpS == 0)
+  {
+    bpX -= 2;
+  }
+  else if(bpS == 1)
+  {
+    bpY -= 2;
+  }
+  else if(bpS == 2)
+  {
+    bpX += 2;
+  }
+  else
+  {
+    bpY += 2;
+  }
+  
+  if(bpX < 40)
+  {
+    bpX = 40;
+    bpS = 1;
+  }
+  if(bpY < 40)
+  {
+    bpY = 40;
+    bpS = 2;
+  }
+  if(bpX > width - 40)
+  {
+    bpX = width - 40;
+    bpS = 3;
+  }
+  if(bpY > height - 40)
+  {
+    bpY = height - 40;
+    bpS = 0;
+  }
+  
+  stroke(0);
+  strokeWeight(0);
+  fill(#B27B32);
+  ellipse(bpX, bpY, 80, 80);
 }
