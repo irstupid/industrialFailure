@@ -89,6 +89,11 @@ void draw() {
   fill(#00ffff);
   ellipse(mX, mY, 150, 150);
   line(mX - 50, mY - 25, mX + 50, mY + 25);
+    
+  stroke(0);
+  strokeWeight(0);
+  fill(#B27B32);
+  ellipse(bpX, bpY, 80, 80);
   
   strokeWeight(0);
   if(mouseX > x - 25 && mouseX < x + 25 && mouseY > y - 25 && mouseY < y + 25)
@@ -188,9 +193,4 @@ void draw() {
     bpY = height - 40;
     bpS = 0;
   }
-  
-  stroke(0);
-  strokeWeight(0);
-  fill(#B27B32);
-  ellipse(bpX, bpY, 80, 80);
 }
