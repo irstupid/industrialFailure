@@ -76,13 +76,13 @@ void draw() {
   
   mX += 5;
   mY += -5;
-  if (mX > 600)
+  if (mX > width)
   {
     mX = 0;
   }
   if (mY < 0)
   {
-    mY = 600;
+    mY = height;
   }
   
   strokeWeight(10);
@@ -115,7 +115,7 @@ void draw() {
   fill(#ff00ff, 150);
   rect(width/2, height/2, g, g);
   g += 2;
-  if(g > 600)
+  if(g > width)
   {
     g = 0;
   }
