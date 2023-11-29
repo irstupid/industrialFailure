@@ -18,7 +18,7 @@ float bpY;
 float bpS;
 
 void setup() {
-  size(300, 300);
+  size(600, 600);
   //fullScreen();
   strokeWeight(10);
   rectMode(CENTER);
