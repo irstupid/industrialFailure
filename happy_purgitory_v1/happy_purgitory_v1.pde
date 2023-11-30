@@ -17,7 +17,7 @@ float noiseY;
 
 void setup()
 {
-  size(800, 800);
+  size(800, 800, P2D);
 
   flowersX = new float[50];
   flowersY = new float[50];
@@ -36,26 +36,32 @@ void setup()
     flowersIC[i] = color(random(0, 255), random(0, 255), random(0, 255));
   }
 
-  for (int i = 0; i < 10; i++)
+  for (int i = 0; i < 25; i++)
   {
     newCookie();
   }
+  
+  noiseX = random(0, 1000);
+  noiseY = random(0, 1000);
+  
+  rectMode(CENTER);
 }
 
 void draw()
 {
   background(90);
   
-  noiseX = random(0, 1000);
-  noiseY = random(0, 1000);
+  noiseX += 0.05 * (mouseX - 400)/100;
+  noiseY += 0.05 * (mouseY - 400)/100;
+
   
-  for(int x = 0; x < 800; x++)
+  for(int x = 0; x < 100; x++)
   {
-    for(float y = 0; y < 800; y++)
+    for(float y = 0; y < 100; y++)
     {
-      strokeWeight(1);
-      stroke(noise(x * 0.015 + noiseX, y * 0.015 + noiseY) * 255);
-      point(x, y);
+      noStroke();
+      fill(noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255);
+      rect(x * 8, y * 8, 8, 8);
     }
   }
 
@@ -63,6 +69,10 @@ void draw()
   for (int i = 0; i < 50; i++)
   {
     flower(flowersX[i], flowersY[i], flowersS[i], flowersR[i], flowersPC[i], flowersIC[i]);
+    flowersX[i] += -1 * (mouseX - 400)/100;
+    flowersY[i] += -1 * (mouseY - 400)/100;
+    flowersS[i] += random(-10, 10);
+    flowersR[i] += random(-10, 10);
   }
 
   for (int i = 0; i < cookiesX.size(); i++)
@@ -70,8 +80,11 @@ void draw()
     cookie(cookiesX.get(i), cookiesY.get(i), cookiesS.get(i), cookiesR.get(i), cookiesType.get(i));
     cookiesX.set(i, cookiesX.get(i) + cookiesSP.get(i));
     cookiesR.set(i, cookiesR.get(i) + 2);
+    
+    cookiesX.set(i, cookiesX.get(i) + -0.5 * (mouseX - 400)/100);
+    cookiesY.set(i, cookiesY.get(i) + -0.5 * (mouseY - 400)/100);
 
-    if (cookiesX.get(i) > 800 + cookiesS.get(i))
+    if (cookiesX.get(i) > 800 + cookiesS.get(i) || cookiesY.get(i) > 800 + cookiesS.get(i) || cookiesX.get(i) < 0 - cookiesS.get(i) || cookiesY.get(i) < 0 - cookiesS.get(i))
     {
       deleteCookie(i);
     }
@@ -90,7 +103,7 @@ void draw()
     }
   }
 
-  cookie(width/2, width/2, 100, 0, 3);
+  //cookie(width/2, width/2, 100, 0, 3);
 }
 
 void shitFlower(float x, float y, int c)
