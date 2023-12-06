@@ -103,7 +103,7 @@ void draw()
     }
   }
 
-  //cookie(width/2, width/2, 100, 0, 3);
+  cookie(width/2, width/2, 100, 0, 3);
 }
 
 void shitFlower(float x, float y, int c)
@@ -207,6 +207,20 @@ void cookie(float x, float y, float s, float r, int type)
   {
     fill(#AD6E3B);
     ellipse(0, 0, 100, 100);
+    fill(#ff0000);
+    ellipse(15, 5, 10, 10);
+    fill(#00ff00);
+    ellipse(0, 30, 10, 10);
+    fill(#0000ff);
+    ellipse(-20, 0, 10, 10);
+    fill(#ffff00);
+    ellipse(10, -25, 10, 10);
+    fill(#E3C867);
+    push();
+    ellipse(0, 0, 15, 10);
+    stroke(#B9A042);
+    line(7, 0, -7, 0);
+    pop();
   }
   pop();
 }
