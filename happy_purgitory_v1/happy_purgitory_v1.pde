@@ -102,8 +102,6 @@ void draw()
       flowersIC[i] = color(random(0, 255), random(0, 255), random(0, 255));
     }
   }
-
-  cookie(width/2, width/2, 100, 0, 3);
 }
 
 void shitFlower(float x, float y, int c)
