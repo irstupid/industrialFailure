@@ -10,13 +10,14 @@ FloatList applesR = new FloatList();
 int appleAnimation;
 
 int appleCounter;
+int totalTime;
 
-int APPLES = 100;
+int APPLES = 10;
 float SPEED = 3;
 
 void setup()
 {
-  size(800, 800);
+  fullScreen();
   rectMode(CENTER);
   textMode(CENTER);
   player = new PVector(width/2, height/2);
@@ -62,6 +63,10 @@ void draw()
       applesS.remove(i);
       applesR.remove(i);
       appleCounter--;
+      if(appleCounter == 0)
+      {
+        totalTime = millis()/100;
+      }
     }
   }
   appleAnimation++;
@@ -77,6 +82,50 @@ void draw()
     translate(width/2 - 200, height/2);
     scale(10);
     text("you win", 0, 0);
+    pop();
+    fill(#000000);
+    push();
+    translate(width/2 - 200, height/2 + 100);
+    scale(10);
+    text(totalTime, 0, 0);
+    pop();
+  }
+  else
+  {
+    fill(#000000);
+    push();
+    translate(0, 100);
+    scale(10);
+    text("you have", 0, 0);
+    pop();
+    fill(#000000);
+    push();
+    translate(500, 100);
+    scale(10);
+    text(APPLES - appleCounter, 0, 0);
+    pop();
+    fill(#000000);
+    push();
+    if(APPLES - appleCounter < 10)
+    {
+    translate(600, 100);
+    scale(10);
+    text("apples", 0, 0);
+    pop();
+    }
+    else
+    {
+    translate(650, 100);
+    scale(10);
+    text("apples", 0, 0);
+    pop();
+    }
+    
+    fill(#000000);
+    push();
+    translate(width - 400, 100);
+    scale(10);
+    text(millis()/100, 0, 0);
     pop();
   }
 }
