@@ -10,7 +10,7 @@ FloatList applesR = new FloatList();
 int appleAnimation;
 
 int appleCounter;
-int totalTime;
+float totalTime;
 
 int APPLES = 10;
 float SPEED = 3;
@@ -65,7 +65,7 @@ void draw()
       appleCounter--;
       if(appleCounter == 0)
       {
-        totalTime = millis()/100;
+        totalTime = (millis()/100)/10f;
       }
     }
   }
@@ -85,9 +85,19 @@ void draw()
     pop();
     fill(#000000);
     push();
-    translate(width/2 - 200, height/2 + 100);
-    scale(10);
+    translate(width/2 - 100, height/2 + 175);
+    scale(5);
     text(totalTime, 0, 0);
+    pop();
+    push();
+    translate(width/2 - 100, height/2 + 100);
+    scale(5);
+    text("it took you", 0, 0);
+    pop();
+    push();
+    translate(width/2 - 100, height/2 + 250);
+    scale(5);
+    text("seconds", 0, 0);
     pop();
   }
   else
