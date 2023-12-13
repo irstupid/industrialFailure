@@ -12,7 +12,7 @@ int appleAnimation;
 int appleCounter;
 float totalTime;
 
-int APPLES = 10;
+int APPLES = 50;
 float SPEED = 3;
 
 void setup()
