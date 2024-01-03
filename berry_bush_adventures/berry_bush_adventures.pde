@@ -9,8 +9,8 @@ float rVelo;
 float speed;
 
 float SPEED = 2;
-float ROTATE_SPEED = 6;
-float DASH_SPEED = 4;
+float ROTATE_SPEED = 9;
+float DASH_SPEED = 5;
 
 float scale = 0.5;
 int scaleTimer = 0;
@@ -182,7 +182,7 @@ void keyPressed()
   }
   if(key == ' ' && canDash)
   {
-    dashTimer = 60;
+    dashTimer = 40;
     
     if(wPressed)
     {
