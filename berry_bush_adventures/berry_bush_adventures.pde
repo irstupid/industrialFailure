@@ -6,12 +6,28 @@ float yVelo;
 int berryType = 1;
 float r;
 float rVelo;
+float speed;
 
 float SPEED = 2;
-float ROTATE_SPEED = 3;
+float ROTATE_SPEED = 6;
+float DASH_SPEED = 4;
 
 float scale = 0.5;
-float scaleTimer = 0;
+int scaleTimer = 0;
+int dashTimer = 0;
+int dashCooldown = 0;
+boolean dashing = false;
+boolean canDash = true;
+
+boolean wPDD = false;
+boolean sPDD = false;
+boolean aPDD = false;
+boolean dPDD = false;
+
+boolean wPressed = false;
+boolean aPressed = false;
+boolean sPressed = false;
+boolean dPressed = false;
 
 void setup()
 {
@@ -22,8 +38,8 @@ void setup()
 
 void draw()
 {
-  x += xVelo * SPEED;
-  y += yVelo * SPEED;
+  x += xVelo * speed;
+  y += yVelo * speed;
   r += rVelo * ROTATE_SPEED;
   
   if(scaleTimer > 1)
@@ -40,6 +56,58 @@ void draw()
     scale -= 0.1;
   }
   
+  if(dashTimer + 1 > 1)
+  {
+    rVelo = 1;
+    dashTimer -= 1;
+    speed = DASH_SPEED;
+    dashing = true;
+    canDash = false;
+    
+    if(dashTimer + 1 <= 1)
+    {
+      dashCooldown = 30;
+      xVelo = 0;
+      yVelo = 0;
+      
+      if(wPressed)
+      {
+        yVelo += -1;
+        wPDD = false;
+      }
+      if(sPressed)
+      {
+        yVelo += 1;
+        sPDD = false;
+      }
+      if(aPressed)
+      {
+        xVelo += -1;
+        aPDD = false;
+      }
+      if(dPressed)
+      {
+        xVelo += 1;
+        dPDD = false;
+      }
+    }
+  }
+  else
+  {
+    rVelo = 0;
+    speed = SPEED;
+    dashing = false;
+  }
+  
+  if(dashCooldown > 1)
+  {
+    dashCooldown -= 1;
+  }
+  else if(!dashing)
+  {
+    canDash = true;
+  }
+  
   background(90);
   bush(x, y, r, scale, berryType);
 }
@@ -47,20 +115,58 @@ void draw()
 void keyPressed()
 {
   if(key == 'w')
+    {
+      wPressed = true;
+    }
+    if(key == 's')
+    {
+      sPressed = true;
+    }
+    if(key == 'a')
+    {
+      aPressed = true;
+    }
+    if(key == 'd')
+    {
+      dPressed = true;
+    }
+  if(!dashing)
   {
-    yVelo += -1;
+    if(key == 'w')
+    {
+      yVelo += -1;
+    }
+    if(key == 's')
+    {
+      yVelo += 1;
+    }
+    if(key == 'a')
+    {
+      xVelo += -1;
+    }
+    if(key == 'd')
+    {
+      xVelo += 1;
+    }
   }
-  if(key == 's')
+  else
   {
-    yVelo += 1;
-  }
-  if(key == 'a')
-  {
-    xVelo += -1;
-  }
-  if(key == 'd')
-  {
-    xVelo += 1;
+    if(key == 'w')
+    {
+      wPDD = true;
+    }
+    if(key == 's')
+    {
+      sPDD = true;
+    }
+    if(key == 'a')
+    {
+      aPDD = true;
+    }
+    if(key == 'd')
+    {
+      dPDD = true;
+    }
   }
   if(key == '1')
   {
@@ -74,46 +180,114 @@ void keyPressed()
   {
     berryType = 3;
   }
-  if(key == 'q')
+  if(key == ' ' && canDash)
   {
-    rVelo += 1;
-  }
-  if(key == 'e')
-  {
-    rVelo += -1;
-  }
-  if(key == ' ' && scaleTimer < 2)
-  {
-    scaleTimer = 240;
+    dashTimer = 60;
+    
+    if(wPressed)
+    {
+      wPDD = true;
+    }
+    if(sPressed)
+    {
+      sPDD = true;
+    }
+    if(aPressed)
+    {
+      aPDD = true;
+    }
+    if(dPressed)
+    {
+      dPDD = true;
+    }
   }
 }
 
 void keyReleased()
 {
-  if(key == 'w')
+  if(!dashing)
   {
-    yVelo += 1;
+    if(key == 'w')
+    {
+      if(!wPDD)
+      {
+        yVelo += 1;
+      }
+      else
+      {
+        wPDD = false;
+      }
+    }
+    if(key == 's')
+    {
+      if(!sPDD)
+      {
+        yVelo += -1;
+      }
+      else
+      {
+        sPDD = false;
+      }
+    }
+    if(key == 'a')
+    {
+      if(!aPDD)
+      {
+        xVelo += 1;
+      }
+      else
+      {
+        aPDD = false;
+      }
+    }
+    if(key == 'd')
+    {
+      if(!dPDD)
+      {
+        xVelo += -1;
+      }
+      else
+      {
+        dPDD = false;
+      }
+    }
   }
-  if(key == 's')
+  else
   {
-    yVelo += -1;
+    if(key == 'w')
+    {
+      wPDD = false;
+    }
+    if(key == 's')
+    {
+      sPDD = false;
+    }
+    if(key == 'a')
+    {
+      aPDD = false;
+    }
+    if(key == 'd')
+    {
+      dPDD = false;
+    }
   }
-  if(key == 'a')
-  {
-    xVelo += 1;
-  }
-  if(key == 'd')
-  {
-    xVelo += -1;
-  }
-  if(key == 'q')
-  {
-    rVelo += -1;
-  }
-  if(key == 'e')
-  {
-    rVelo += 1;
-  }
+  
+    if(key == 'w')
+    {
+      wPressed = false;
+    }
+    if(key == 's')
+    {
+      sPressed = false;
+    }
+    if(key == 'a')
+    {
+      aPressed = false;
+    }
+    if(key == 'd')
+    {
+      dPressed = false;
+    }
 }
 
 void bush(float x, float y, float r, float s, int type)
