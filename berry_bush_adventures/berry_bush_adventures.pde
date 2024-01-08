@@ -37,7 +37,7 @@ void setup()
 }
 
 void draw()
-{
+{ 
   x += xVelo * speed;
   y += yVelo * speed;
   r += rVelo * ROTATE_SPEED;
@@ -109,7 +109,13 @@ void draw()
   }
   
   background(90);
+  
   bush(x, y, r, scale, berryType);
+}
+
+void mousePressed()
+{
+  
 }
 
 void keyPressed()
