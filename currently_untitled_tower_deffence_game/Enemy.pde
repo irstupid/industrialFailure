@@ -1,13 +1,14 @@
-class Enemy0
+class Enemy
 {
   PVector position = new PVector(0, 0);
   PVector direction = new PVector(0, 0);
   int nextPoint = 1;
   int ID;
+  float distance = 0;
   
   float SPEED = 4;
   
-  Enemy0(PVector positionOld, int IDOld)
+  Enemy(PVector positionOld, int IDOld)
   {
     position = positionOld;
     ID = IDOld;
@@ -51,5 +52,11 @@ class Enemy0
       fill(#ff0000);
       ellipse(position.x, position.y, 40, 40);
     pop();
+    distance += SPEED;
+  }
+  
+  void cry()
+  {
+    print("ow");
   }
 }
