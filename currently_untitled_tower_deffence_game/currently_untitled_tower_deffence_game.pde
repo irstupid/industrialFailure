@@ -3,10 +3,11 @@ float[][] path = {{0, 100}, {600, 100}, {600, 700}, {100, 700}, {100, 800}};
 Enemy0[] enemys = new Enemy0[1];
 int enemysAlive = enemys.length;
 
-int round = 0;
+int round = -1;
 boolean roundDone = true;
+int roundT;
 
-int[] enemySequence = {1, 2};
+int[][] enemySequence = {{0}, {0, 15}};
 
 void setup()
 {
@@ -39,20 +40,32 @@ void draw()
     roundDone = true;
   }
   
+  if(round != -1 && !roundDone)
+  {
+    for(int i = 0; i < enemys.length; i++)
+    {
+      if(roundT == enemySequence[round][i])
+      {
+        enemys[i] = new Enemy0(new PVector(path[0][0], path[0][1]), i);
+      }
+    }
+  }
+  
+  if(!roundDone)
+  {
+    roundT++;
+  }
 }
 
 void keyPressed()
 {
   if(key == '1' && roundDone)
   {
-    roundDone = false;
-    enemysAlive = enemySequence[round];
-    enemys = new Enemy0[enemySequence[round]];
-    for(int i = 0; i < enemys.length; i++)
-    {
-      enemys[i] = new Enemy0(new PVector(path[0][0], path[0][1]), i);
-    }
     round++;
+    roundDone = false;
+    enemysAlive = enemySequence[round].length;
+    enemys = new Enemy0[enemySequence[round].length];
+    roundT = 0;
   }
 }
 
