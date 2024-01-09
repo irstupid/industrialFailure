@@ -42,7 +42,7 @@ class Enemy0
       nextPoint += 1;
       if(nextPoint == path.length)
       {
-        cry(ID);
+        enemyWin(ID);
       }
     }
       

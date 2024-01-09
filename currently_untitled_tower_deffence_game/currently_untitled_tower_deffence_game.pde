@@ -4,14 +4,13 @@ Enemy0[] enemys = new Enemy0[1];
 int enemysAlive = enemys.length;
 
 int round = 0;
+boolean roundDone = true;
+
+int[] enemySequence = {1, 2};
 
 void setup()
 {
   size(800, 800);
-  for(int i = 0; i < enemys.length; i++)
-  {
-    enemys[i] = new Enemy0(new PVector(path[0][0], path[0][1]), i);
-  }
 }
 
 void draw()
@@ -34,14 +33,30 @@ void draw()
     }
   }
   
-  if(enemysAlive < enemys.length)
+  if(enemysAlive < enemys.length && !roundDone)
   {
     print("die");
+    roundDone = true;
   }
   
 }
 
-void cry(int enemy)
+void keyPressed()
+{
+  if(key == '1' && roundDone)
+  {
+    roundDone = false;
+    enemysAlive = enemySequence[round];
+    enemys = new Enemy0[enemySequence[round]];
+    for(int i = 0; i < enemys.length; i++)
+    {
+      enemys[i] = new Enemy0(new PVector(path[0][0], path[0][1]), i);
+    }
+    round++;
+  }
+}
+
+void enemyWin(int enemy)
 {
   enemys[enemy] = null;
   enemysAlive -= 1;
