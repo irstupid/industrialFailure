@@ -12,6 +12,8 @@ int[][] enemySequence = {{0}, {0, 15}};
 Tower[] towers = new Tower[100];
 int towersAmount = 0;
 
+Projectile[] projectiles = new Projectile[500];
+
 void setup()
 {
   size(800, 800);
