@@ -13,6 +13,7 @@ Tower[] towers = new Tower[100];
 int towersAmount = 0;
 
 Projectile[] projectiles = new Projectile[500];
+IntList freeProjectiles = new IntList();
 
 void setup()
 {
@@ -66,6 +67,20 @@ void draw()
     if(towers[i] != null)
     {
       towers[i].draw();
+    }
+  }
+  
+  
+  
+  for(int i = 0; i < projectiles.length; i++)
+  {
+    if(projectiles[i] != null)
+    {
+      projectiles[i].draw();
+    }
+    else
+    {
+      freeProjectiles.append(i);
     }
   }
 }
