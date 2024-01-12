@@ -43,7 +43,7 @@ func _process(delta):
 		$Menu/highScoreDissplay/Label3/Label.text = str(Score.highScore[2])
 		$Menu/highScoreDissplay/Label4/Label.text = str(Score.highScore[3])
 		$Menu/highScoreDissplay/Label5/Label.text = str(Score.highScore[4])
-		if($Menu/Button.down || Input.is_action_just_pressed("1")):
+		if($Menu/Button.down || Input.is_action_just_pressed("start")):
 			inGame = true
 			remove_child($Menu)
 			self.add_child(game.instantiate())

@@ -8,7 +8,7 @@ var angleOffset = 0;
 
 func _process(delta):
 	rotation = atan2(position.y - get_viewport().get_mouse_position().y, position.x - get_viewport().get_mouse_position().x) + deg_to_rad(180) + angleOffset
-	if(Input.is_action_just_pressed("Click") || Input.is_action_just_pressed("1") && !activeBolt):
+	if((Input.is_action_just_pressed("Click") || Input.is_action_just_pressed("1")) && !activeBolt):
 		var newBolt = bolt.instantiate()
 		newBolt.rotation = rotation
 		newBolt.position = position

@@ -62,12 +62,12 @@ offset_bottom = 140.0
 label_settings = SubResource("LabelSettings_kb2b0")
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(1024, 1052, 1024, 1052)
+points = PackedVector2Array(1024, 1000, 1024, 1000)
 width = 7.0
 default_color = Color(0.529412, 0.341176, 0.196078, 1)
 
 [node name="Harrpoon" type="Node2D" parent="."]
-position = Vector2(1024, 1052)
+position = Vector2(1024, 1000)
 script = ExtResource("1_8l88l")
 bolt = ExtResource("2_wjiae")
 

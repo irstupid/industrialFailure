@@ -1,37 +1,37 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1704679734
-Main.tscn::PackedScene::7637863008401222952::1704679976::0::1::::<><>::res://Scripts/Main.gd<>uid://c18wi6lts1ytv::::res://Prefabs/Game.tscn<>uid://c0c1ilwr68sc8::::res://Prefabs/Menu.tscn<>uid://db2vwu8wng8hh::::res://Art/background.png
-::res://Art/::1704679738
-background.png::CompressedTexture2D::7286504540853727481::1704390692::1704417540::1::::<><>::
-Blue Fish.png::CompressedTexture2D::2932000332472433096::1697385944::1698186682::1::::<><>::
-Green Fish.png::CompressedTexture2D::8989052110866189121::1697385954::1698186682::1::::<><>::
-Harrpoon Bolt.png::CompressedTexture2D::2902109836306815289::1696886888::1698186682::1::::<><>::
-Harrpoon.png::CompressedTexture2D::5516020768640137473::1696886886::1698186682::1::::<><>::
-icon.svg::CompressedTexture2D::9027400448510236523::1696886744::1698186682::1::::<><>::
-Orange Fish.png::CompressedTexture2D::3435700368618109750::1697385940::1698186682::1::::<><>::
-Purple Fish.png::CompressedTexture2D::3104167743896766543::1697385948::1698186682::1::::<><>::
-Red Fish.png::CompressedTexture2D::6705436717062374627::1697385934::1698186682::1::::<><>::
-::res://Prefabs/::1704679738
-Blue_Fish.tscn::PackedScene::2572403035556989844::1704388432::0::1::::<><>::res://Scripts/Fish.gd<>uid://bh1ju8mx56u3i
-Blue_Fish_Art.tscn::PackedScene::6992549253477232122::1704388432::0::1::::<><>::uid://bh1ju8mx56u3i
-Bolt.tscn::PackedScene::4952317284225391332::1704388432::0::1::::<><>::res://Scripts/Bolt.gd<>uid://bhl2lbx204v3v
-Game.tscn::PackedScene::6667227474156198539::1704679976::0::1::::<><>::res://Scripts/Harrpoon.gd<>uid://ccs67bdoltwf1::::res://Prefabs/Bolt.tscn<>uid://ckuab56jad3xl::::res://Art/Harrpoon.png<>res://Scripts/Moveing Fish Spawner.gd<>uid://b4rj4gr17pmiy::::res://Prefabs/Red_Fish.tscn<>uid://d5sbtpeihqcs::::res://Prefabs/Green_fish.tscn<>uid://bcwddqdn42dlk::::res://Prefabs/Blue_Fish.tscn<>uid://c6n1bi8y2yfnp::::res://Prefabs/Orange_Fish.tscn<>uid://brimcv5sbbft::::res://Prefabs/Purple_Fish.tscn
-Green_fish.tscn::PackedScene::273593576508036750::1704388432::0::1::::<><>::res://Scripts/Fish.gd<>uid://d1cmm0o84sto0
-Green_Fish_Art.tscn::PackedScene::4533079537214249080::1704388432::0::1::::<><>::uid://d1cmm0o84sto0
-Menu.tscn::PackedScene::6533284754565993797::1704679976::0::1::::<><>::res://Scripts/Start_Button.gd
-Orange_Fish.tscn::PackedScene::6977113330866643725::1704388432::0::1::::<><>::res://Scripts/Fish.gd<>uid://dj3gt16fub380
-Orange_Fish_Art.tscn::PackedScene::7849163866726077459::1704388434::0::1::::<><>::uid://bo7jqoqd82xek
-Purple_Fish.tscn::PackedScene::105790569800789481::1704388434::0::1::::<><>::res://Scripts/Fish.gd<>uid://bnen1llm75262
-Purple_Fish_Art.tscn::PackedScene::3307969508890151893::1704388434::0::1::::<><>::uid://bkhxgo0aavxw6
-Red_Fish.tscn::PackedScene::4457590154599659984::1704388432::0::1::::<><>::uid://c2sfte5iulspf
-Red_Fish_Art.tscn::PackedScene::5250604530128057239::1704388432::0::1::::<><>::uid://c2sfte5iulspf
-::res://Scripts/::1704679740
-Bolt.gd::GDScript::-1::1704381886::0::1::::<>Area2D<>::
-Fish Art.gd::GDScript::-1::1702226834::0::1::::<>Sprite2D<>::
-Fish Spawner.gd::GDScript::-1::1704381820::0::1::::<>Node2D<>::
-Fish.gd::GDScript::-1::1704326096::0::1::::<>Area2D<>::
-Harrpoon.gd::GDScript::-1::1704389560::0::1::::<>Node2D<>::
-Main.gd::GDScript::-1::1704418400::0::1::::<>Node2D<>::
-Moveing Fish Spawner.gd::GDScript::-1::1704389134::0::1::::<>PathFollow2D<>::
-Score.gd::GDScript::-1::1704390802::0::1::::<>Node<>::
-Start_Button.gd::GDScript::-1::1704387484::0::1::::<>Button<>::
+::res://::1705078780
+Main.tscn::PackedScene::7637863008401222952::1705078665::0::1::::<><>::res://Scripts/Main.gd<>uid://c18wi6lts1ytv::::res://Prefabs/Game.tscn<>uid://c0c1ilwr68sc8::::res://Prefabs/Menu.tscn<>uid://db2vwu8wng8hh::::res://Art/background.png
+::res://Art/::1705078665
+background.png::CompressedTexture2D::7286504540853727481::1705078665::1705078665::1::::<><>::
+Blue Fish.png::CompressedTexture2D::2932000332472433096::1705078665::1705078665::1::::<><>::
+Green Fish.png::CompressedTexture2D::8989052110866189121::1705078665::1705078665::1::::<><>::
+Harrpoon Bolt.png::CompressedTexture2D::2902109836306815289::1705078665::1705078665::1::::<><>::
+Harrpoon.png::CompressedTexture2D::5516020768640137473::1705078665::1705078665::1::::<><>::
+icon.svg::CompressedTexture2D::9027400448510236523::1705078665::1705078781::1::::<><>::
+Orange Fish.png::CompressedTexture2D::3435700368618109750::1705078665::1705078665::1::::<><>::
+Purple Fish.png::CompressedTexture2D::3104167743896766543::1705078665::1705078665::1::::<><>::
+Red Fish.png::CompressedTexture2D::6705436717062374627::1705078665::1705078665::1::::<><>::
+::res://Prefabs/::1705078665
+Blue_Fish.tscn::PackedScene::2572403035556989844::1705078665::0::1::::<><>::res://Scripts/Fish.gd<>uid://bh1ju8mx56u3i::::res://Art/Blue Fish.png<>uid://c6vii84cq7ggw::::res://Prefabs/Blue_Fish_Art.tscn
+Blue_Fish_Art.tscn::PackedScene::6992549253477232122::1705078665::0::1::::<><>::uid://bh1ju8mx56u3i::::res://Art/Blue Fish.png<>res://Scripts/Fish Art.gd
+Bolt.tscn::PackedScene::4952317284225391332::1705078665::0::1::::<><>::res://Scripts/Bolt.gd<>uid://bhl2lbx204v3v::::res://Art/Harrpoon Bolt.png
+Game.tscn::PackedScene::6667227474156198539::1705078665::0::1::::<><>::res://Scripts/Harrpoon.gd<>uid://ccs67bdoltwf1::::res://Prefabs/Bolt.tscn<>uid://ckuab56jad3xl::::res://Art/Harrpoon.png<>res://Scripts/Moveing Fish Spawner.gd<>uid://b4rj4gr17pmiy::::res://Prefabs/Red_Fish.tscn<>uid://d5sbtpeihqcs::::res://Prefabs/Green_fish.tscn<>uid://bcwddqdn42dlk::::res://Prefabs/Blue_Fish.tscn<>uid://c6n1bi8y2yfnp::::res://Prefabs/Orange_Fish.tscn<>uid://brimcv5sbbft::::res://Prefabs/Purple_Fish.tscn
+Green_fish.tscn::PackedScene::273593576508036750::1705078665::0::1::::<><>::res://Scripts/Fish.gd<>uid://d1cmm0o84sto0::::res://Art/Green Fish.png<>uid://b5t4fmjyorrtg::::res://Prefabs/Green_Fish_Art.tscn
+Green_Fish_Art.tscn::PackedScene::4533079537214249080::1705078665::0::1::::<><>::uid://d1cmm0o84sto0::::res://Art/Green Fish.png<>res://Scripts/Fish Art.gd
+Menu.tscn::PackedScene::6533284754565993797::1705078665::0::1::::<><>::res://Scripts/Start_Button.gd
+Orange_Fish.tscn::PackedScene::6977113330866643725::1705078665::0::1::::<><>::res://Scripts/Fish.gd<>uid://dj3gt16fub380::::res://Prefabs/Orange_Fish_Art.tscn<>uid://bo7jqoqd82xek::::res://Art/Orange Fish.png
+Orange_Fish_Art.tscn::PackedScene::7849163866726077459::1705078665::0::1::::<><>::uid://bo7jqoqd82xek::::res://Art/Orange Fish.png<>res://Scripts/Fish Art.gd
+Purple_Fish.tscn::PackedScene::105790569800789481::1705078665::0::1::::<><>::res://Scripts/Fish.gd<>uid://bnen1llm75262::::res://Prefabs/Purple_Fish_Art.tscn<>uid://bkhxgo0aavxw6::::res://Art/Purple Fish.png
+Purple_Fish_Art.tscn::PackedScene::3307969508890151893::1705078665::0::1::::<><>::uid://bkhxgo0aavxw6::::res://Art/Purple Fish.png<>res://Scripts/Fish Art.gd
+Red_Fish.tscn::PackedScene::4457590154599659984::1705078665::0::1::::<><>::uid://c2sfte5iulspf::::res://Art/Red Fish.png<>res://Scripts/Fish.gd<>uid://cg2oxpbwawc0n::::res://Prefabs/Red_Fish_Art.tscn
+Red_Fish_Art.tscn::PackedScene::5250604530128057239::1705078665::0::1::::<><>::uid://c2sfte5iulspf::::res://Art/Red Fish.png<>res://Scripts/Fish Art.gd
+::res://Scripts/::1705078665
+Bolt.gd::GDScript::-1::1705078665::0::1::::<>Area2D<>::
+Fish Art.gd::GDScript::-1::1705078665::0::1::::<>Sprite2D<>::
+Fish Spawner.gd::GDScript::-1::1705078665::0::1::::<>Node2D<>::
+Fish.gd::GDScript::-1::1705078665::0::1::::<>Area2D<>::
+Harrpoon.gd::GDScript::-1::1705078665::0::1::::<>Node2D<>::
+Main.gd::GDScript::-1::1705078665::0::1::::<>Node2D<>::
+Moveing Fish Spawner.gd::GDScript::-1::1705078665::0::1::::<>PathFollow2D<>::
+Score.gd::GDScript::-1::1705078665::0::1::::<>Node<>::
+Start_Button.gd::GDScript::-1::1705078665::0::1::::<>Button<>::
