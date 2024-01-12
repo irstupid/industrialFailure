@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://brimcv5sbbft"]
+
+[ext_resource type="Script" path="res://Scripts/Fish.gd" id="1_2iwe7"]
+[ext_resource type="PackedScene" uid="uid://bnen1llm75262" path="res://Prefabs/Purple_Fish_Art.tscn" id="2_skota"]
+[ext_resource type="Texture2D" uid="uid://bkhxgo0aavxw6" path="res://Art/Purple Fish.png" id="3_q2h71"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qv6cd"]
+radius = 19.0
+height = 70.0
+
+[node name="purple Fish" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_2iwe7")
+speed = 10.0
+me = ExtResource("2_skota")
+funnyPath = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_q2h71")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qv6cd")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered" flags=18]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited" flags=18]

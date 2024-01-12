@@ -1,0 +1,161 @@
+[gd_scene load_steps=15 format=3 uid="uid://c18wi6lts1ytv"]
+
+[ext_resource type="Script" path="res://Scripts/Harrpoon.gd" id="1_8l88l"]
+[ext_resource type="PackedScene" uid="uid://ccs67bdoltwf1" path="res://Prefabs/Bolt.tscn" id="2_wjiae"]
+[ext_resource type="Texture2D" uid="uid://ckuab56jad3xl" path="res://Art/Harrpoon.png" id="3_02hlo"]
+[ext_resource type="Script" path="res://Scripts/Moveing Fish Spawner.gd" id="4_oxbs7"]
+[ext_resource type="PackedScene" uid="uid://b4rj4gr17pmiy" path="res://Prefabs/Red_Fish.tscn" id="5_obq4e"]
+[ext_resource type="PackedScene" uid="uid://d5sbtpeihqcs" path="res://Prefabs/Green_fish.tscn" id="6_yauei"]
+[ext_resource type="PackedScene" uid="uid://bcwddqdn42dlk" path="res://Prefabs/Blue_Fish.tscn" id="7_5crqu"]
+[ext_resource type="PackedScene" uid="uid://c6n1bi8y2yfnp" path="res://Prefabs/Orange_Fish.tscn" id="8_68fpb"]
+[ext_resource type="PackedScene" uid="uid://brimcv5sbbft" path="res://Prefabs/Purple_Fish.tscn" id="9_4vhgh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p6hgd"]
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_q8l1p"]
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_muafw"]
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_kb2b0"]
+font_size = 100
+
+[sub_resource type="Curve2D" id="Curve2D_4w631"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -100, 1252, 0, 0, 0, 0, -100, -100, 0, 0, 0, 0, 2148, -100, 0, 0, 0, 0, 2148, 1252, 0, 0, 0, 0, -100, 1252)
+}
+point_count = 5
+
+[node name="Game" type="Node"]
+
+[node name="Score" type="Label" parent="."]
+offset_left = 189.0
+offset_right = 477.0
+offset_bottom = 140.0
+text = "score:"
+label_settings = SubResource("LabelSettings_p6hgd")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 496.0
+offset_right = 1065.0
+offset_bottom = 179.0
+label_settings = SubResource("LabelSettings_q8l1p")
+
+[node name="Time" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -538.0
+offset_top = -1.0
+offset_right = -290.0
+offset_bottom = 139.0
+grow_horizontal = 0
+text = "time:"
+label_settings = SubResource("LabelSettings_muafw")
+
+[node name="TimeLable" type="Label" parent="."]
+offset_left = 1776.0
+offset_right = 1890.0
+offset_bottom = 140.0
+label_settings = SubResource("LabelSettings_kb2b0")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(1024, 1052, 1024, 1052)
+width = 7.0
+default_color = Color(0.529412, 0.341176, 0.196078, 1)
+
+[node name="Harrpoon" type="Node2D" parent="."]
+position = Vector2(1024, 1052)
+script = ExtResource("1_8l88l")
+bolt = ExtResource("2_wjiae")
+
+[node name="Sprite2D" type="Sprite2D" parent="Harrpoon"]
+rotation = 0.785398
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_02hlo")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_4w631")
+
+[node name="Fish Spawner" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-100, 1152.01)
+rotation = -1.5708
+progress = 100.0
+script = ExtResource("4_oxbs7")
+fish = ExtResource("5_obq4e")
+
+[node name="Timer" type="Timer" parent="Path2D/Fish Spawner"]
+wait_time = 0.5
+
+[node name="_Timer_29447" type="Timer" parent="Path2D/Fish Spawner"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Fish Spawner2" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-100, 1152.01)
+rotation = -1.5708
+progress = 100.0
+script = ExtResource("4_oxbs7")
+fish = ExtResource("6_yauei")
+
+[node name="Timer" type="Timer" parent="Path2D/Fish Spawner2"]
+wait_time = 0.5
+
+[node name="_Timer_29448" type="Timer" parent="Path2D/Fish Spawner2"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Fish Spawner3" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-100, 1152.01)
+rotation = -1.5708
+progress = 100.0
+script = ExtResource("4_oxbs7")
+fish = ExtResource("7_5crqu")
+
+[node name="Timer" type="Timer" parent="Path2D/Fish Spawner3"]
+wait_time = 0.5
+
+[node name="_Timer_29449" type="Timer" parent="Path2D/Fish Spawner3"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Fish Spawner4" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-100, 1152.01)
+rotation = -1.5708
+progress = 100.0
+script = ExtResource("4_oxbs7")
+fish = ExtResource("8_68fpb")
+
+[node name="Timer" type="Timer" parent="Path2D/Fish Spawner4"]
+wait_time = 0.75
+
+[node name="_Timer_29450" type="Timer" parent="Path2D/Fish Spawner4"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Fish Spawner5" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-100, 1152.01)
+rotation = -1.5708
+progress = 100.0
+script = ExtResource("4_oxbs7")
+fish = ExtResource("9_4vhgh")
+
+[node name="Timer" type="Timer" parent="Path2D/Fish Spawner5"]
+wait_time = 0.75
+
+[node name="_Timer_29451" type="Timer" parent="Path2D/Fish Spawner5"]
+wait_time = 0.2
+one_shot = true
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 32.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Path2D/Fish Spawner/Timer" to="Path2D/Fish Spawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="Path2D/Fish Spawner2/Timer" to="Path2D/Fish Spawner2" method="_on_timer_timeout"]
+[connection signal="timeout" from="Path2D/Fish Spawner3/Timer" to="Path2D/Fish Spawner3" method="_on_timer_timeout"]
+[connection signal="timeout" from="Path2D/Fish Spawner4/Timer" to="Path2D/Fish Spawner4" method="_on_timer_timeout"]
+[connection signal="timeout" from="Path2D/Fish Spawner5/Timer" to="Path2D/Fish Spawner5" method="_on_timer_timeout"]

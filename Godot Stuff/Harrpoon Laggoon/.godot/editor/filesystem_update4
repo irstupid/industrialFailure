@@ -1,0 +1,5 @@
+res://Main.tscn
+res://Prefabs/Menu.tscn
+res://Prefabs/Game.tscn
+res://Scripts/Harrpoon.gd
+res://Scripts/Main.gd

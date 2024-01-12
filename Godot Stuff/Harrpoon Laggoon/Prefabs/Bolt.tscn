@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccs67bdoltwf1"]
+
+[ext_resource type="Script" path="res://Scripts/Bolt.gd" id="1_kqdxc"]
+[ext_resource type="Texture2D" uid="uid://bhl2lbx204v3v" path="res://Art/Harrpoon Bolt.png" id="2_dcsgd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2yjod"]
+height = 116.0
+
+[node name="Bolt" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_kqdxc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dcsgd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2yjod")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

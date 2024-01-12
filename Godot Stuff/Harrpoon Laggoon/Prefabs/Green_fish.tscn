@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://d5sbtpeihqcs"]
+
+[ext_resource type="Script" path="res://Scripts/Fish.gd" id="1_17mqm"]
+[ext_resource type="Texture2D" uid="uid://d1cmm0o84sto0" path="res://Art/Green Fish.png" id="2_6bo1b"]
+[ext_resource type="PackedScene" uid="uid://b5t4fmjyorrtg" path="res://Prefabs/Green_Fish_Art.tscn" id="2_6rcku"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p2eig"]
+radius = 35.0
+height = 104.0
+
+[node name="Green Fish" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_17mqm")
+speed = 7.0
+me = ExtResource("2_6rcku")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6bo1b")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 7)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_p2eig")
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg2oxpbwawc0n"]
+
+[ext_resource type="Texture2D" uid="uid://c2sfte5iulspf" path="res://Art/Red Fish.png" id="1_63crw"]
+[ext_resource type="Script" path="res://Scripts/Fish Art.gd" id="2_prtp6"]
+
+[node name="Fish" type="Sprite2D"]
+texture = ExtResource("1_63crw")
+script = ExtResource("2_prtp6")
+weight = 0.4
+value = 10
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]

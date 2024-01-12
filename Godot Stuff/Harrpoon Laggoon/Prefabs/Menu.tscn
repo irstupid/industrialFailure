@@ -1,0 +1,135 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0c1ilwr68sc8"]
+
+[ext_resource type="Script" path="res://Scripts/Start_Button.gd" id="1_dbtud"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p26k6"]
+font_size = 150
+
+[sub_resource type="LabelSettings" id="LabelSettings_xgt3e"]
+font_size = 75
+
+[sub_resource type="LabelSettings" id="LabelSettings_vq1ca"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_npjei"]
+font_size = 50
+
+[node name="Menu" type="Node"]
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(2048, 0)
+offset_right = 40.0
+offset_bottom = 23.0
+text = "harrpoon
+lagoon"
+label_settings = SubResource("LabelSettings_p26k6")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(400, 200)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 50.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "start"
+script = ExtResource("1_dbtud")
+
+[node name="highScoreDissplay" type="Node2D" parent="."]
+position = Vector2(150, 300)
+
+[node name="Label" type="Label" parent="highScoreDissplay"]
+offset_top = -15.0
+offset_right = 410.0
+offset_bottom = 91.0
+text = "high scores"
+label_settings = SubResource("LabelSettings_xgt3e")
+
+[node name="Label1" type="Label" parent="highScoreDissplay"]
+offset_left = 20.0
+offset_top = 100.0
+offset_right = 63.0
+offset_bottom = 172.0
+text = "1."
+label_settings = SubResource("LabelSettings_vq1ca")
+
+[node name="Label" type="Label" parent="highScoreDissplay/Label1"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 137.0
+offset_bottom = 72.0
+text = "0"
+label_settings = SubResource("LabelSettings_npjei")
+
+[node name="Label2" type="Label" parent="highScoreDissplay"]
+offset_left = 20.0
+offset_top = 175.0
+offset_right = 63.0
+offset_bottom = 247.0
+text = "2."
+label_settings = SubResource("LabelSettings_vq1ca")
+
+[node name="Label" type="Label" parent="highScoreDissplay/Label2"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 137.0
+offset_bottom = 72.0
+text = "0"
+label_settings = SubResource("LabelSettings_npjei")
+
+[node name="Label3" type="Label" parent="highScoreDissplay"]
+offset_left = 20.0
+offset_top = 250.0
+offset_right = 63.0
+offset_bottom = 322.0
+text = "3."
+label_settings = SubResource("LabelSettings_vq1ca")
+
+[node name="Label" type="Label" parent="highScoreDissplay/Label3"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 137.0
+offset_bottom = 72.0
+text = "0"
+label_settings = SubResource("LabelSettings_npjei")
+
+[node name="Label4" type="Label" parent="highScoreDissplay"]
+offset_left = 20.0
+offset_top = 325.0
+offset_right = 63.0
+offset_bottom = 397.0
+text = "4."
+label_settings = SubResource("LabelSettings_vq1ca")
+
+[node name="Label" type="Label" parent="highScoreDissplay/Label4"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 137.0
+offset_bottom = 72.0
+text = "0"
+label_settings = SubResource("LabelSettings_npjei")
+
+[node name="Label5" type="Label" parent="highScoreDissplay"]
+offset_left = 20.0
+offset_top = 400.0
+offset_right = 63.0
+offset_bottom = 472.0
+text = "5."
+label_settings = SubResource("LabelSettings_vq1ca")
+
+[node name="Label" type="Label" parent="highScoreDissplay/Label5"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 137.0
+offset_bottom = 72.0
+text = "0"
+label_settings = SubResource("LabelSettings_npjei")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

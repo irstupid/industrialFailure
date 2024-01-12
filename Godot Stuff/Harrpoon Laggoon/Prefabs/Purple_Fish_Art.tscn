@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnen1llm75262"]
+
+[ext_resource type="Texture2D" uid="uid://bkhxgo0aavxw6" path="res://Art/Purple Fish.png" id="1_7hxou"]
+[ext_resource type="Script" path="res://Scripts/Fish Art.gd" id="2_ulysw"]
+
+[node name="Purple Fish Art" type="Sprite2D"]
+texture = ExtResource("1_7hxou")
+script = ExtResource("2_ulysw")
+weight = 0.15
+value = 30
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited" flags=18]

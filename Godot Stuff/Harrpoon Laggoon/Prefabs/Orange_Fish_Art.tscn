@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj3gt16fub380"]
+
+[ext_resource type="Texture2D" uid="uid://bo7jqoqd82xek" path="res://Art/Orange Fish.png" id="1_o28p1"]
+[ext_resource type="Script" path="res://Scripts/Fish Art.gd" id="2_jqjko"]
+
+[node name="Orange Fish Art" type="Sprite2D"]
+texture = ExtResource("1_o28p1")
+script = ExtResource("2_jqjko")
+weight = 0.35
+value = 20
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited" flags=18]

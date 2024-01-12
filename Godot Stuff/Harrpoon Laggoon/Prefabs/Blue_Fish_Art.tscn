@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6vii84cq7ggw"]
+
+[ext_resource type="Texture2D" uid="uid://bh1ju8mx56u3i" path="res://Art/Blue Fish.png" id="1_7tj82"]
+[ext_resource type="Script" path="res://Scripts/Fish Art.gd" id="2_dvnr6"]
+
+[node name="Blue Fish Art" type="Sprite2D"]
+texture = ExtResource("1_7tj82")
+script = ExtResource("2_dvnr6")
+weight = 0.35
+value = 20
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited" flags=18]

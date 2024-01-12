@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg23qt7fwfeou"]
+
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2alha"]
+[ext_resource type="PackedScene" uid="uid://c18wi6lts1ytv" path="res://Prefabs/Game.tscn" id="2_lrt22"]
+[ext_resource type="PackedScene" uid="uid://c0c1ilwr68sc8" path="res://Prefabs/Menu.tscn" id="3_r0xpe"]
+[ext_resource type="Texture2D" uid="uid://db2vwu8wng8hh" path="res://Art/background.png" id="4_ex75q"]
+
+[node name="Root" type="Node2D"]
+editor_description = "123456789098765432123456789098765432123456789098765432345678987654323456789876543234567898765432345678987654323456789"
+script = ExtResource("1_2alha")
+game = ExtResource("2_lrt22")
+menu = ExtResource("3_r0xpe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1024, 576)
+texture = ExtResource("4_ex75q")
