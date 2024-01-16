@@ -1,10 +1,15 @@
 class Tower
 {
+  Projectile[] bullets = new Projectile[10];
+  int activeBullets = 0;
+  
   PVector position = new PVector(0, 0);
   float angle = 0;
   PVector target = null;
+  int fireTimer;
   
   float RANGE = 200;
+  float FIRE_RATE = 30;
   
   Tower(PVector positionOld, float angleOld)
   {
@@ -29,13 +34,26 @@ class Tower
           }
         }
       }
-      if(target != null)
+    }    
+    if(target != null)
+    {
+      angle = -degrees(atan2(target.x - position.x, target.y - position.y)) + 180;
+      if(fireTimer >= FIRE_RATE)
       {
-        angle = -degrees(atan2(target.x - position.x, target.y - position.y)) + 180;
+        fireTimer = 0;
+        bullets[activeBullets] = new Projectile(new PVector(position.x, position.y), angle - 80);
+        activeBullets++;
       }
     }
+    fireTimer++;
     
-    push();
+    println(angle);
+    
+    for(int i = 0; i < activeBullets; i++)
+    {
+      bullets[i].draw();
+    }
+     push();
       noStroke();
       rectMode(CENTER);
       translate(position.x, position.y);
