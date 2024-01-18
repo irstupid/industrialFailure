@@ -29,6 +29,8 @@ boolean aPressed = false;
 boolean sPressed = false;
 boolean dPressed = false;
 
+Berry berry = new Berry(new PVector(400, 400), 0, 1, 0, 0.5);
+
 void setup()
 {
   size(800, 800, P2D);
@@ -111,11 +113,13 @@ void draw()
   background(90);
   
   bush(x, y, r, scale, berryType);
+  
+  berry.draw();
 }
 
 void mousePressed()
 {
-  
+  berry = new Berry(new PVector(x, y), atan2(mouseY - y, mouseX - x), berryType, 0, 0.5);
 }
 
 void keyPressed()
