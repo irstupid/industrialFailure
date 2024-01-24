@@ -1,7 +1,5 @@
 class Tower
 {
-  Projectile[] bullets = new Projectile[10];
-  int activeBullets = 0;
   
   PVector position = new PVector(0, 0);
   float angle = 0;
@@ -41,18 +39,12 @@ class Tower
       if(fireTimer >= FIRE_RATE)
       {
         fireTimer = 0;
-        bullets[activeBullets] = new Projectile(new PVector(position.x, position.y), angle - 80);
-        activeBullets++;
+        projectiles[freeProjectiles.get(1)] = new Projectile(new PVector(position.x, position.y), angle - 90, freeProjectiles.get(1));
+        freeProjectiles.remove(1);
       }
     }
     fireTimer++;
     
-    println(angle);
-    
-    for(int i = 0; i < activeBullets; i++)
-    {
-      bullets[i].draw();
-    }
      push();
       noStroke();
       rectMode(CENTER);
