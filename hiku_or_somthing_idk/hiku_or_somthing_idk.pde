@@ -51,7 +51,7 @@ void line1()
   line(342.5, 197.5, 458.5, 197.5);
   
   folder(20, 175); textSize(25); text("v", 40, 180); textSize(15); text("internalSystems", 60, 180);
-  folder(40, 205); textSize(25); text("v", 60, 210); textSize(15); text("esternalSamples", 80, 210);
+  folder(40, 205); textSize(25); text("v", 60, 210); textSize(15); text("externalSamples", 80, 210);
   javaClass(60, 235); textSize(15); text("aprilTagOmni", 80, 240);
   javaClass(60, 265); textSize(15); text("tenserFlowCV", 80, 270);
   javaClass(60, 295); textSize(15); text("basicDriveOmni", 80, 300);
@@ -71,6 +71,9 @@ void line1()
   javaClass(60, 715); textSize(15); text("driveOld", 80, 720);
   javaClass(60, 745); textSize(15); text("ianDriveArm", 80, 750);
   javaClass(60, 775); textSize(15); text("tfodHell", 80, 780);
+  
+  fill(#ffffff);
+  text("move()", 200, 200);
 }
 
 void line2()
