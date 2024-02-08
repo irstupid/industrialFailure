@@ -24,6 +24,7 @@ int [][] room = {
 };
 
 int selectedType = -1;
+boolean pmousePressed = false;
 
 void setup()
 {
@@ -76,14 +77,23 @@ void draw()
   
   if(mousePressed)
   {
-    if(mouseButton == LEFT)
+    if((round(mouseX/48) != round(pmouseX/48) || round(mouseY/48) != round(pmouseY/48)) || pmousePressed)
     {
-      placeBlock(round(mouseX/48), round(mouseY/48), selectedType);
+      if(mouseButton == LEFT)
+      {
+        placeBlock(round(mouseX/48), round(mouseY/48), selectedType);
+      }
+      if(mouseButton == RIGHT)
+      {
+        placeBlock(round(mouseX/48), round(mouseY/48), 0);
+      }
     }
-    if(mouseButton == RIGHT)
-    {
-      placeBlock(round(mouseX/48), round(mouseY/48), 0);
-    }
+    
+    pmousePressed = false;
+  }
+  else
+  {
+    pmousePressed = true;
   }
   
   println(selectedType);
@@ -102,5 +112,19 @@ void placeBlock(int x,int y, int type)
   if(x < 20 && y < 20 && x > -1 && y > -1 && type != -1)
   {
     room[y][x] = type;
+    
+    if(type == 1)
+    {
+      selectedType = 2;
+    }
+    else if(type == 2)
+    {
+      selectedType = 1;
+    }
+    
+    if(y == 19 && type == 0)
+    {
+      room[y][x] = 8;
+    }
   }
 }
