@@ -73,7 +73,7 @@ void line1()
   javaClass(60, 775); textSize(15); text("tfodHell", 80, 780);
   
   fill(#ffffff);
-  text("move()", 200, 200);
+  text("move(0,       27,      100,       1000,          1)", 210, 220);
 }
 
 void line2()
