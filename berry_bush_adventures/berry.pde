@@ -7,12 +7,14 @@ class Berry
   float scale;
   int type;
   
-  float gravity = 0.075;
+  float gravity = 0.15;
+  float terminalVelocity = 15;
   
   Berry(PVector sPosition, float sDirection, int sType, float sRotation, float sScale)
   {
     position = sPosition;
     direction = sDirection;
+    velocity = new PVector(cos(direction), sin(direction)).mult(7);
     rotation = sRotation;
     type = sType;
     scale = sScale;
@@ -20,9 +22,14 @@ class Berry
   
   void draw()
   {
-    velocity.y += gravity;
+    rotation += 10;
+    
+    if(velocity.y < terminalVelocity)
+    {
+      velocity.y += gravity;
+    }
     position.add(velocity);
     
-    berry(position.x, position.y, 0, scale, type);
+    berry(position.x, position.y, rotation, scale, type);
   }
 }

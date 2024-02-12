@@ -7,13 +7,15 @@ int round = -1;
 boolean roundDone = true;
 int roundT;
 
-int[][] enemySequence = {{0}, {0, 15}};
+int[][] enemySequence = {{0}, {0, 15}, {0, 10, 20, 30}};
 
 Tower[] towers = new Tower[100];
 int towersAmount = 0;
 
 Projectile[] projectiles = new Projectile[500];
 IntList freeProjectiles = new IntList();
+
+int lives = 3;
 
 void setup()
 {
@@ -62,16 +64,6 @@ void draw()
     roundT++;
   }
   
-  for(int i = 0; i < towersAmount; i++)
-  {
-    if(towers[i] != null)
-    {
-      towers[i].draw();
-    }
-  }
-  
-  
-  
   for(int i = 0; i < projectiles.length; i++)
   {
     if(projectiles[i] != null)
@@ -81,6 +73,14 @@ void draw()
     else
     {
       freeProjectiles.append(i);
+    }
+  }
+  
+  for(int i = 0; i < towersAmount; i++)
+  {
+    if(towers[i] != null)
+    {
+      towers[i].draw();
     }
   }
 }

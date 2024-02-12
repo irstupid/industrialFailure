@@ -60,7 +60,7 @@ void draw()
     for(float y = 0; y < 100; y++)
     {
       noStroke();
-      fill(noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255);
+      fill(random(0, 255) - noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255, random(0, 255) - noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255, random(0, 255) - noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255, noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255);
       rect(x * 8, y * 8, 8, 8);
     }
   }
@@ -102,6 +102,8 @@ void draw()
       flowersIC[i] = color(random(0, 255), random(0, 255), random(0, 255));
     }
   }
+  
+  //shitFlower(width/2, height/2, #ff0000);
 }
 
 void shitFlower(float x, float y, int c)
