@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmilaswbiau84"]
+
+[ext_resource type="Texture2D" uid="uid://carcr8u71nv75" path="res://icon.svg" id="1_1ri7w"]
+[ext_resource type="Script" path="res://flomp.gd" id="2_iej2h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4y6gg"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wckvk"]
+size = Vector2(50, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7bef8"]
+radius = 50.0
+
+[node name="Main" type="Node2D"]
+
+[node name="ground" type="StaticBody2D" parent="."]
+position = Vector2(960, 810)
+scale = Vector2(30, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground"]
+shape = SubResource("RectangleShape2D_4y6gg")
+
+[node name="Icon" type="Sprite2D" parent="ground"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_1ri7w")
+
+[node name="flomp" type="Node2D" parent="."]
+position = Vector2(977, 0)
+
+[node name="flomp body" type="CharacterBody2D" parent="flomp"]
+script = ExtResource("2_iej2h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flomp/flomp body"]
+shape = SubResource("RectangleShape2D_wckvk")
+
+[node name="Sprite2D" type="Sprite2D" parent="flomp/flomp body"]
+scale = Vector2(0.4, 0.8)
+texture = ExtResource("1_1ri7w")
+
+[node name="flomp head" type="RigidBody2D" parent="flomp/flomp body"]
+position = Vector2(0, -100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flomp/flomp body/flomp head"]
+shape = SubResource("CircleShape2D_7bef8")
+
+[node name="Sprite2D" type="Sprite2D" parent="flomp/flomp body/flomp head"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_1ri7w")
+
+[node name="flomp neck" type="DampedSpringJoint2D" parent="flomp/flomp body"]
+node_a = NodePath("..")
+node_b = NodePath("../flomp head")
+length = 1.0
+stiffness = 64.0
+damping = 10.0

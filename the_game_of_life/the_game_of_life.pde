@@ -64,7 +64,68 @@ void paint()
 
 void step()
 {
+  int[][] nCells = cells;
+  int closeCells = 0;
+  int a;
+  int b;
   
+  for(int y = 0; y <= 19; y++)
+  {
+    for(int x = 0; x <= 19; x++)
+    {
+      closeCells = 0;
+      
+      a = y + 1;
+      b = x;
+      closeCells += cells[(a < 0 ? 20 + a : (a > 19 ? 20  -  a : a))][(b < 0 ? 20 + b : (b > 19 ? 20  -  b : b))];
+      a = y - 1;
+      b = x;
+      closeCells += cells[(a < 0 ? 20 + a : (a > 19 ? 20  -  a : a))][(b < 0 ? 20 + b : (b > 19 ? 20  -  b : b))];
+      a = y + 1;
+      b = x + 1;
+      closeCells += cells[(a < 0 ? 20 + a : (a > 19 ? 20  -  a : a))][(b < 0 ? 20 + b : (b > 19 ? 20  -  b : b))];
+      a = y - 1;
+      b = x + 1;
+      closeCells += cells[(a < 0 ? 20 + a : (a > 19 ? 20  -  a : a))][(b < 0 ? 20 + b : (b > 19 ? 20  -  b : b))];
+      a = y + 1;
+      b = x - 1;
+      closeCells += cells[(a < 0 ? 20 + a : (a > 19 ? 20  -  a : a))][(b < 0 ? 20 + b : (b > 19 ? 20  -  b : b))];
+      a = y - 1;
+      b = x - 1;
+      closeCells += cells[(a < 0 ? 20 + a : (a > 19 ? 20  -  a : a))][(b < 0 ? 20 + b : (b > 19 ? 20  -  b : b))];
+      a = y;
+      b = x + 1;
+      closeCells += cells[(a < 0 ? 20 + a : (a > 19 ? 20  -  a : a))][(b < 0 ? 20 + b : (b > 19 ? 20  -  b : b))];
+      a = y;
+      b = x - 1;
+      closeCells += cells[(a < 0 ? 20 + a : (a > 19 ? 20  -  a : a))][(b < 0 ? 20 + b : (b > 19 ? 20  -  b : b))];
+      
+      if(cells[y][x] == 1)
+      {
+        if(closeCells == 1)
+        {
+          nCells[y][x] = 1;
+        }
+        else
+        {
+          nCells[y][x] = 0;
+        }
+      }
+      else
+      {
+        if(closeCells == 3)
+        {
+          nCells[y][x] = 1;
+        }
+        else
+        {
+          nCells[y][x] = 0;
+        }
+      }
+    }
+  }
+  
+  cells = nCells;
 }
 
 void dissplay()
