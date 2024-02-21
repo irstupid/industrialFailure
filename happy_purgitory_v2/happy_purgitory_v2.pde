@@ -10,6 +10,9 @@ float noiseXV = 0;
 ArrayList<Flower> flowers = new ArrayList<Flower>();
 int flowerSpawn = (int) random(2, 15);
 
+ArrayList<Cookie> cookies = new ArrayList<Cookie>();
+int cookieSpawn = (int) random(2, 15);
+
 void setup()
 {
   size(800, 800, P2D);
@@ -46,6 +49,21 @@ void draw()
     if(flowers.get(i).done)
     {
       flowers.remove(i);
+    }
+  }
+  
+  cookieSpawn--;
+  if(cookieSpawn <= 0)
+  {
+    cookies.add(new Cookie(random(0, height), random(1.5, 6), random(25, 100)));
+    cookieSpawn = (int) random(2, 15);
+  }
+  for(int i = cookies.size()-1; i >= 0; i--)
+  {
+    cookies.get(i).draw();
+    if(cookies.get(i).done)
+    {
+      cookies.remove(i);
     }
   }
   
