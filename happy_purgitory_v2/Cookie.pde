@@ -16,11 +16,12 @@ class Cookie
     this.speed = speed;
     this.s = s;
     r = 0;
-    type = int(random(1, 3));
+    type = int(random(1, 4));
   }
   
   void draw()
   {
+    
     x += speed;
     r += 2;
     
@@ -28,6 +29,11 @@ class Cookie
     
     if(x > width + (s/2))
     {
+      done = true;
+    }
+    if(dist(x, y, player.x, player.y) <= s/2 + 25)
+    {
+      player.health--;
       done = true;
     }
   }

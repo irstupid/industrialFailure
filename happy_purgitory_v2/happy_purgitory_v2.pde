@@ -16,7 +16,7 @@ int cookieSpawn = (int) random(2, 15);
 void setup()
 {
   size(800, 800, P2D);
-  player = new Player(100, 100, 5);
+  player = new Player(width/2, height/2, 5);
   testFlower = new Flower(width/2, height/2, random(25, 110), random(0, 90), color(random(0, 255), random(0, 255), random(0, 255)), color(random(0, 255), random(0, 255), random(0, 255)));
 }
 
@@ -27,20 +27,20 @@ void draw()
   noiseY += 0.05 * (noiseYV)/200;
   noiseXV = random(-1000, +1000);
   noiseYV = random(-1000, +1000);
-  for(int x = 0; x < 100; x++)
+  for(int x = 0; x < width/(width/100); x++)
   {
-    for(float y = 0; y < 100; y++)
+    for(float y = 0; y < height/(height/100); y++)
     {
       noStroke();
       fill(random(0, 255) - noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255, random(0, 255) - noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255, random(0, 255) - noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255, noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255);
-      rect(x * 8, y * 8, 8, 8);
+      rect(x * width/100, y * height/100, width/100, height/100);
     }
   }
   
   flowerSpawn--;
   if(flowerSpawn <= 0)
   {
-    flowers.add(new Flower(random(0, 800), random(0, 800), random(25, 110), random(0, 90), color(random(0, 255), random(0, 255), random(0, 255)), color(random(0, 255), random(0, 255), random(0, 255))));
+    flowers.add(new Flower(random(0, width), random(0, height), random(25, 110), random(0, 90), color(random(0, 255), random(0, 255), random(0, 255)), color(random(0, 255), random(0, 255), random(0, 255))));
     flowerSpawn = (int) random(2, 15);
   }
   for(int i = flowers.size()-1; i >= 0; i--)
@@ -56,7 +56,7 @@ void draw()
   if(cookieSpawn <= 0)
   {
     cookies.add(new Cookie(random(0, height), random(1.5, 6), random(25, 100)));
-    cookieSpawn = (int) random(2, 15);
+    cookieSpawn = (int) random(2, 30);
   }
   for(int i = cookies.size()-1; i >= 0; i--)
   {

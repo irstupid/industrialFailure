@@ -29,7 +29,7 @@ class Flower
       s += random(-10, 10);
       r += random(-10, 10);
       
-      if(dist(x, y, player.x, player.y) <= s + 25)
+      if(dist(x, y, player.x, player.y) <= (s/2) + (s/10) + 25)
       {
         player.health--;
         done = true;
