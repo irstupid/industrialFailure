@@ -15,6 +15,8 @@ FloatList cookiesSP = new FloatList();
 float noiseX;
 float noiseY;
 
+boolean sezure = false;
+
 void setup()
 {
   size(800, 800, P2D);
@@ -60,7 +62,14 @@ void draw()
     for(float y = 0; y < 100; y++)
     {
       noStroke();
-      fill(random(0, 255) - noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255, random(0, 255) - noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255, random(0, 255) - noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255, noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255);
+      if(sezure)
+      {
+        fill(random(0, 255) - noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255, random(0, 255) - noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255, random(0, 255) - noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255, noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255);
+      }
+      else
+      {
+        fill(noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255);
+      }
       rect(x * 8, y * 8, 8, 8);
     }
   }
