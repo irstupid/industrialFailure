@@ -36,7 +36,9 @@ class Player
     }
     if(health < 1)
     {
-      print("die");
+      println("die");
+      t = 0;
+      state++;
     }
     ellipse(x, y, 50, 50);
   }
