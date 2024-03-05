@@ -1,5 +1,7 @@
 boolean pmousePressed;
 
+boolean active = false;
+
 int[][] cells = 
 {
   {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -33,9 +35,15 @@ void draw()
 {
   background(0);
   
-  if(!(keyPressed && key == ' '))
+  if(!active)
   {
+    frameRate(60);
     paint();
+  }
+  else
+  {
+    frameRate(2);
+    step();
   }
   
   dissplay();
@@ -145,6 +153,6 @@ void keyPressed()
 {
   if(key == ' ')
   {
-    step();
+    active = !active;
   }
 }

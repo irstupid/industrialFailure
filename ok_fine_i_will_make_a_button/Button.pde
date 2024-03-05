@@ -2,7 +2,12 @@ class Button
 {
   float x;
   float y;
-  int state;
+  int c;
+  
+  int timesClicked;
+  
+  int clickTimer;
+  boolean clickRequest;
   
   Button(float x, float y)
   {
@@ -12,22 +17,36 @@ class Button
   
   void draw()
   { 
-    if(state == 0) { fill(#ff0000); }
-    if(state == 1) { fill(#ffff00); }
-    if(state == 2) { fill(#00ff00); }
-    if(state == 3) { fill(#0000ff); }
+    if(state == 3)
+    {
+      if(clickTimer <= 0 && !clickRequest)
+      {
+        
+      }
+    }
+    
+    if(c == -1) { fill(#000000); }
+    if(c == 0) { fill(#ff0000); }
+    if(c == 1) { fill(#ffff00); }
+    if(c == 2) { fill(#00ff00); }
+    if(c == 3) { fill(#0000ff); }
     noStroke();
     ellipse(x, y, 300, 300);
+    if(clickReset <= 0)
+    {
+      timesClicked = 0;
+    }
   }
   
   void click()
   {
     if(dist(x, y, mouseX, mouseY) < 300/2)
     {
-      state++;
-      if(state > 3)
+      timesClicked++;
+      c++;
+      if(c > 3)
       {
-        state = 0;
+        c = 0;
       }
     }
   }
