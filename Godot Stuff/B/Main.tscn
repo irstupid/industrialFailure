@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://odjli5hr5e04"]
+
+[ext_resource type="Texture2D" uid="uid://d3c860bptxls7" path="res://square.png" id="1_almlq"]
+[ext_resource type="Script" path="res://UI.gd" id="1_eqqxt"]
+[ext_resource type="PackedScene" uid="uid://iaie511av6te" path="res://Plate.tscn" id="3_7tfvb"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Box" type="Node2D" parent="."]
+
+[node name="Break" type="Node2D" parent="."]
+position = Vector2(3000, 0)
+
+[node name="Square2" type="Sprite2D" parent="Break"]
+position = Vector2(333, 10)
+texture = ExtResource("1_almlq")
+
+[node name="Bake" type="Node2D" parent="."]
+position = Vector2(6000, 0)
+
+[node name="Square3" type="Sprite2D" parent="Bake"]
+position = Vector2(-29, 359)
+texture = ExtResource("1_almlq")
+
+[node name="Build" type="Node2D" parent="."]
+position = Vector2(9000, 0)
+
+[node name="Square4" type="Sprite2D" parent="Build"]
+position = Vector2(-507, 18)
+texture = ExtResource("1_almlq")
+
+[node name="Viewport" type="Node2D" parent="."]
+script = ExtResource("1_eqqxt")
+
+[node name="Camera" type="Camera2D" parent="Viewport"]
+
+[node name="UI" type="Control" parent="Viewport/Camera"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="background" type="ColorRect" parent="Viewport/Camera/UI"]
+layout_mode = 0
+offset_left = -1250.0
+offset_top = 624.0
+offset_right = 1250.0
+offset_bottom = 750.0
+color = Color(0.298039, 0.298039, 0.298039, 1)
+
+[node name="box button" type="TextureButton" parent="Viewport/Camera/UI"]
+layout_mode = 0
+offset_left = -1238.0
+offset_top = 637.0
+offset_right = -638.0
+offset_bottom = 737.0
+action_mode = 0
+texture_normal = ExtResource("1_almlq")
+stretch_mode = 0
+
+[node name="break button" type="TextureButton" parent="Viewport/Camera/UI"]
+layout_mode = 0
+offset_left = -613.0
+offset_top = 637.0
+offset_right = -13.0
+offset_bottom = 737.0
+action_mode = 0
+texture_normal = ExtResource("1_almlq")
+stretch_mode = 0
+
+[node name="bake button" type="TextureButton" parent="Viewport/Camera/UI"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 637.0
+offset_right = 612.0
+offset_bottom = 737.0
+action_mode = 0
+texture_normal = ExtResource("1_almlq")
+stretch_mode = 0
+
+[node name="build button" type="TextureButton" parent="Viewport/Camera/UI"]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 637.0
+offset_right = 1237.0
+offset_bottom = 737.0
+action_mode = 0
+texture_normal = ExtResource("1_almlq")
+stretch_mode = 0
+
+[node name="Plate" parent="." instance=ExtResource("3_7tfvb")]
+
+[connection signal="button_down" from="Viewport/Camera/UI/box button" to="Viewport" method="boxButton"]
+[connection signal="button_down" from="Viewport/Camera/UI/break button" to="Viewport" method="breakButton"]
+[connection signal="button_down" from="Viewport/Camera/UI/bake button" to="Viewport" method="bakeButton"]
+[connection signal="button_down" from="Viewport/Camera/UI/build button" to="Viewport" method="buildButton"]
