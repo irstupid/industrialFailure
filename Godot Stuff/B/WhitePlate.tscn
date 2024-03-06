@@ -1,23 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://iaie511av6te"]
 
-[ext_resource type="Texture2D" uid="uid://d3c860bptxls7" path="res://square.png" id="1_atk2n"]
-[ext_resource type="Script" path="res://plate.gd" id="2_hcp8f"]
-
-[sub_resource type="Animation" id="Animation_1lpbe"]
-resource_name = "moveUp"
-length = 2.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1.5, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -300)]
-}
+[ext_resource type="Texture2D" uid="uid://d3c860bptxls7" path="res://square.png" id="1_4vdbn"]
+[ext_resource type="Script" path="res://whitePlate.gd" id="2_5ram7"]
 
 [sub_resource type="Animation" id="Animation_8tdw4"]
 length = 0.001
@@ -46,6 +30,22 @@ tracks/1/keys = {
 "values": [Vector2(2.9, 2.9)]
 }
 
+[sub_resource type="Animation" id="Animation_1lpbe"]
+resource_name = "moveUp"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-150, 950), Vector2(-150, 650)]
+}
+
 [sub_resource type="Animation" id="Animation_yh0aq"]
 resource_name = "select"
 length = 1.5
@@ -59,7 +59,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(0, -300), Vector2(150, -950)]
+"values": [Vector2(-150, 650), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -81,10 +81,10 @@ _data = {
 "select": SubResource("Animation_yh0aq")
 }
 
-[node name="Plate" type="Sprite2D"]
+[node name="WhitePlate" type="Sprite2D"]
 scale = Vector2(2.9, 2.9)
-texture = ExtResource("1_atk2n")
-script = ExtResource("2_hcp8f")
+texture = ExtResource("1_4vdbn")
+script = ExtResource("2_5ram7")
 
 [node name="animation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -96,6 +96,13 @@ offset_left = -50.0
 offset_top = -50.0
 offset_right = 50.0
 offset_bottom = 50.0
-texture_normal = ExtResource("1_atk2n")
+texture_normal = ExtResource("1_4vdbn")
 
+[node name="heatTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="tree_exited" from="." to="." method="die"]
+[connection signal="animation_finished" from="animation" to="." method="animationFinshed"]
 [connection signal="button_down" from="TextureButton" to="." method="click"]
+[connection signal="timeout" from="heatTimer" to="." method="timeout"]

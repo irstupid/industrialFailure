@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://odjli5hr5e04"]
+[gd_scene load_steps=5 format=3 uid="uid://odjli5hr5e04"]
 
 [ext_resource type="Texture2D" uid="uid://d3c860bptxls7" path="res://square.png" id="1_almlq"]
+[ext_resource type="Script" path="res://break.gd" id="1_dhegj"]
 [ext_resource type="Script" path="res://UI.gd" id="1_eqqxt"]
-[ext_resource type="PackedScene" uid="uid://iaie511av6te" path="res://Plate.tscn" id="3_7tfvb"]
+[ext_resource type="PackedScene" uid="uid://iaie511av6te" path="res://WhitePlate.tscn" id="1_sfmqg"]
 
 [node name="Main" type="Node2D"]
 
@@ -10,10 +11,10 @@
 
 [node name="Break" type="Node2D" parent="."]
 position = Vector2(3000, 0)
+script = ExtResource("1_dhegj")
+whitePlate = ExtResource("1_sfmqg")
 
-[node name="Square2" type="Sprite2D" parent="Break"]
-position = Vector2(333, 10)
-texture = ExtResource("1_almlq")
+[node name="WhitePlate" parent="Break" instance=ExtResource("1_sfmqg")]
 
 [node name="Bake" type="Node2D" parent="."]
 position = Vector2(6000, 0)
@@ -88,8 +89,6 @@ offset_bottom = 737.0
 action_mode = 0
 texture_normal = ExtResource("1_almlq")
 stretch_mode = 0
-
-[node name="Plate" parent="." instance=ExtResource("3_7tfvb")]
 
 [connection signal="button_down" from="Viewport/Camera/UI/box button" to="Viewport" method="boxButton"]
 [connection signal="button_down" from="Viewport/Camera/UI/break button" to="Viewport" method="breakButton"]
