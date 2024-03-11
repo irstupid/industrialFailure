@@ -7,6 +7,7 @@ class Gun
   int type;
   
   ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+  ArrayList<Laser> lasers = new ArrayList<Laser>();
   
   Gun(float x, float y, int type)
   {
@@ -22,6 +23,11 @@ class Gun
     for(int i = 0; i < bullets.size(); i++)
     {
       bullets.get(i).draw();
+    }
+    
+    for(int i = 0; i < lasers.size(); i++)
+    {
+      lasers.get(i).draw();
     }
     
     if(type == 1)
@@ -47,12 +53,12 @@ class Gun
         stroke(200);
         strokeWeight(20);
         line(0, 0, 0, -105);
-        stroke(#ff0000);
+        stroke(#cd0000);
         strokeWeight(15);
         line(30, -50, -30, -50);
         line(20, -75, -20, -75);
         noStroke();
-        fill(#ff0000);
+        fill(#cd0000);
         ellipse(0, -105, 30, 30);
       pop();
     }
@@ -60,6 +66,13 @@ class Gun
   
   void shoot()
   {
-    bullets.add(new Bullet(x + cos(r) * 60, y + sin(r) * 60, r, bullets.size()));
+    if(type == 1)
+    {
+      bullets.add(new Bullet(x + cos(r) * 60, y + sin(r) * 60, r));
+    }
+    else
+    {
+      lasers.add(new Laser(x + cos(r) * 60, y + sin(r) * 60, r));
+    }
   }
 }

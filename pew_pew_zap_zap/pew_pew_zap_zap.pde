@@ -16,3 +16,12 @@ void mousePressed()
 {
   gun.shoot();
 }
+
+void keyPressed()
+{
+  gun.type++;
+  if(gun.type > 1)
+  {
+    gun.type = 0;
+  }
+}
