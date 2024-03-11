@@ -19,7 +19,7 @@ class Bullet
     y += sin(direction) * speed;
     
     fill(#ffff00);
-    ellipse(x, y, 10, 10);
+    ellipse(x, y, 20, 20);
     
     if(x > width + 5 || x < 0 - 5 || y > height + 5 || x < 0 - 5)
     {

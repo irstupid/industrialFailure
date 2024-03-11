@@ -72,7 +72,7 @@ class Gun
     }
     else
     {
-      lasers.add(new Laser(x + cos(r) * 60, y + sin(r) * 60, r));
+      lasers.add(new Laser(x + cos(r) * 100, y + sin(r) * 100, r));
     }
   }
 }

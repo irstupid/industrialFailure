@@ -3,7 +3,7 @@ Gun gun = null;
 void setup()
 {
   size(800, 800);
-  gun = new Gun(width/2, height/2, 2);
+  gun = new Gun(width/2, height/2, 1);
 }
 
 void draw()
