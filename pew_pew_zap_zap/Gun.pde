@@ -38,11 +38,22 @@ class Gun
     else
     {
       push();
+        noStroke();
         translate(x, y);
         rotate(r + radians(90));
         rectMode(CENTER);
         fill(200);
         rect(0, 0, 65, 65);
+        stroke(200);
+        strokeWeight(20);
+        line(0, 0, 0, -105);
+        stroke(#ff0000);
+        strokeWeight(15);
+        line(30, -50, -30, -50);
+        line(20, -75, -20, -75);
+        noStroke();
+        fill(#ff0000);
+        ellipse(0, -105, 30, 30);
       pop();
     }
   }
