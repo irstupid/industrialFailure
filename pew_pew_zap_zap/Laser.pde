@@ -67,7 +67,8 @@ class Laser
     
     if(bounces > 5)
     {
-        gun.lasers.remove(this);
+      particles.add(new Particle(x[0], y[0], 2));
+      gun.lasers.remove(this);
     }
   }
 }

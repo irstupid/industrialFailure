@@ -20,6 +20,13 @@ class Particle
         points[i] = new float[]{random(-30, 30) + x, random(-30, 30) + y, 10};
       }
     }
+    else if(type == 2)
+    {
+      for(int i = 0; i < points.length; i++)
+      {
+        points[i] = new float[]{random(-10, 10) + x, random(-10, 10) + y, 0};
+      }
+    }
   }
   
   Particle(float x, float y, int type, float[][] positions)
@@ -60,7 +67,28 @@ class Particle
     }
     else if(type == 2)
     {
+      //float totalSize = 0;
       
+      //for(int i = 0; i < points.length; i++)
+      //{
+      //  points[i][2] += random(20, 10) * (t <= 7 ? 2 : -0.5);
+      //  if(points[i][2] < 0)
+      //  {
+      //    points[i][2] = 0;
+      //  }
+      //  totalSize += points[i][2];
+        
+      //  push();
+      //    stroke(#ff0000);
+      //    strokeWeight(3);
+      //    line(x, y, points[i][1] + cos(atan2(points[i][2] + x, points[i][1] + y)), points[i][2] + sin(atan2(points[i][2] + x, points[i][1] + y)));
+      //  pop();
+      //}
+      
+      //if(totalSize == 0)
+      //{
+        particles.remove(this);
+      //}
     }
   }
 }
