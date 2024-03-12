@@ -1,4 +1,5 @@
 Gun gun = null;
+ArrayList<Particle> particles = new ArrayList<Particle>();
 
 void setup()
 {
@@ -10,6 +11,10 @@ void draw()
 {
   background(150);
   gun.draw();
+  for(int i = 0; i < particles.size(); i++)
+  {
+    particles.get(i).draw();
+  }
 }
 
 void mousePressed()
