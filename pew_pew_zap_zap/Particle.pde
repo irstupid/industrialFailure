@@ -17,7 +17,7 @@ class Particle
     {
       for(int i = 0; i < points.length; i++)
       {
-        points[i] = new float[]{random(-30, 30) + x, random(-30, 30) + y, 10};
+        points[i] = new float[]{0, 0, 0};
       }
     }
     else if(type == 2)
@@ -25,6 +25,20 @@ class Particle
       for(int i = 0; i < points.length; i++)
       {
         points[i] = new float[]{random(0, 359), random(2, 10), 0};
+      }
+    }
+    else if(type == 3)
+    {
+      for(int i = 0; i < points.length; i++)
+      {
+        points[i] = new float[]{x, y, (i + 1) * 2.5};
+      }
+    }
+    else if(type == 4)
+    {
+      for(int i = 0; i < points.length; i++)
+      {
+        points[i] = new float[]{random(-30, 30) + x, random(-30, 30) + y, 10};
       }
     }
   }
@@ -40,8 +54,20 @@ class Particle
   void draw()
   {
     t++;
-    
-    if(type == 1)
+    if (type == 1)
+    {
+      points[0][2] += random(10, 5) * (t <= 7 ? 1 : -1);
+      if(points[0][2] < 0)
+      {
+        particles.remove(this);
+      }
+        
+      fill(#FA3F00);
+      ellipse(x, y, points[0][2], points[0][2]);
+      fill(#FAD500);
+      ellipse(x, y, points[0][2]/2, points[0][2]/2);
+    }
+    else if(type == 4)
     {
       float totalSize = 0;
       
@@ -91,6 +117,26 @@ class Particle
       if(totalMagnitude == 0)
       {
         particles.remove(this);
+      }
+    }
+    else
+    {
+      for(int i = 0; i < points.length; i++)
+      {
+        points[i][2] -= 1.2;
+        
+        if(points[i][2] <= 0)
+        {
+          points[i][0] = x;
+          points[i][1] = y;
+          points[i][2] = 25;
+        }
+        
+        push();
+          noStroke();
+          fill(#FA3F00, points[i][2] * 10);
+          ellipse(points[i][0], points[i][1], points[i][2], points[i][2]);
+        pop();
       }
     }
   }

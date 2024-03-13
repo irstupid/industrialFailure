@@ -5,6 +5,8 @@ SoundFile explosion;
 SoundFile zap;
 SoundFile laserBounce;
 SoundFile boop;
+SoundFile hiss;
+SoundFile bigBoom;
 Sound s = new Sound(this);
 
 Gun gun = null;
@@ -13,7 +15,7 @@ ArrayList<Particle> particles = new ArrayList<Particle>();
 void setup()
 {
   size(800, 800);
-  gun = new Gun(width/2, height/2, 1);
+  gun = new Gun(width/2, height/2, 2);
   
   s.volume(1);
   pew = new SoundFile(this, "pew.wav");
@@ -26,6 +28,9 @@ void setup()
   laserBounce.amp(0.5);
   boop = new SoundFile(this, "boop.wav");
   boop.amp(0.5);
+  hiss = new SoundFile(this, "hiss.wav");
+  hiss.rate(2);
+  bigBoom = new SoundFile(this, "bigBoom.wav");
 }
 
 void draw()
@@ -46,7 +51,7 @@ void mousePressed()
 void keyPressed()
 {
   gun.type++;
-  if(gun.type > 1)
+  if(gun.type > 2)
   {
     gun.type = 0;
   }
