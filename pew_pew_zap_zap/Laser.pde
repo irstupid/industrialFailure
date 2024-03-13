@@ -36,24 +36,28 @@ class Laser
       x[0] = 5;
       r += radians(random(90, 135) * -(r/abs(r))); 
       bounces++;
+      laserBounce.play();
     }
     if(x[0] > width - 5)
     {
       x[0] = width - 5;
       r += radians(random(90, 135) * (r/abs(r)));   
       bounces++;
+      laserBounce.play();
     }
     if(y[0] < 5)
     {
       y[0] = 5;
       r += radians(random(90, 135) * (r/abs(r)));  
       bounces++;
+      laserBounce.play();
     }
     if(y[0] > width - 5)
     {
       y[0] = width - 5;
       r += radians(random(90, 135) * -(r/abs(r)));   
       bounces++;
+      laserBounce.play();
     }
     
     push();
@@ -67,7 +71,7 @@ class Laser
     
     if(bounces > 5)
     {
-      //println(x[0], y[0]);
+      boop.play();
       particles.add(new Particle(constrain(x[0], 0, width), constrain(y[0], 0, height), 2));
       gun.lasers.remove(this);
     }

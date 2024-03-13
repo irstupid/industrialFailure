@@ -23,6 +23,7 @@ class Bullet
     
     if(x > width + 5 || x < 0 - 5 || y > height + 5 || y < 0 - 5)
     {
+      explosion.play();
       particles.add(new Particle(constrain(x, 0, width), constrain(y, 0, height), 1));
       gun.bullets.remove(this);
     }

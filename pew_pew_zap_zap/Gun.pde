@@ -1,5 +1,5 @@
 class Gun
-{
+{ 
   float x;
   float y;
   float r;
@@ -69,10 +69,12 @@ class Gun
     if(type == 1)
     {
       bullets.add(new Bullet(x + cos(r) * 60, y + sin(r) * 60, r));
+      pew.play();
     }
     else
     {
       lasers.add(new Laser(x + cos(r) * 100, y + sin(r) * 100, r));
+      zap.play();
     }
   }
 }
