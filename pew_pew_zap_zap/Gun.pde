@@ -9,6 +9,9 @@ class Gun
   ArrayList<Bullet> bullets = new ArrayList<Bullet>();
   ArrayList<Laser> lasers = new ArrayList<Laser>();
   ArrayList<Missile> missiles = new ArrayList<Missile>();
+  ArrayList<FastBullet> fastBullets = new ArrayList<FastBullet>();
+  
+  float reloadTime;
   
   Gun(float x, float y, int type)
   {
@@ -34,6 +37,11 @@ class Gun
     for(int i = 0; i < missiles.size(); i++)
     {
       missiles.get(i).draw();
+    }
+    
+    for(int i = 0; i < fastBullets.size(); i++)
+    {
+      fastBullets.get(i).draw();
     }
     
     if(type == 0)
@@ -68,7 +76,7 @@ class Gun
         ellipse(0, -105, 30, 30);
       pop();
     }
-    else
+    else if(type == 2)
     {
       push();
         noStroke();
@@ -87,6 +95,34 @@ class Gun
         rect(0, -45, 100, 80);
       pop();
     }
+    else
+    {
+      push();
+        noStroke();
+        translate(x, y);
+        rotate(r + radians(90));
+        scale(0.8, 0.8);
+        rectMode(CENTER);
+        fill(100);
+        rect(0, -105, 20, 120);
+        rect(25, -105, 20, 120);
+        rect(-25, -105, 20, 120);
+        fill(125);
+        rect(0, 0, 90, 90);
+        rect(0, -130, 90, 20);
+      pop();
+      
+      if(mousePressed)
+      {
+        reloadTime--;
+        
+        if(reloadTime == 0)
+        {
+          fastBullets.add(new FastBullet(x + cos(r) * 132, y + sin(r) * 132, r));
+          reloadTime = 2;
+        }
+      }
+    }
   }
   
   void shoot()
@@ -101,9 +137,13 @@ class Gun
       lasers.add(new Laser(x + cos(r) * 100, y + sin(r) * 100, r));
       zap.play();
     }
-    else
+    else if(type == 2)
     {
       missiles.add(new Missile(x + cos(r) * 110, y + sin(r) * 110, r));
+    }
+    else
+    {
+      reloadTime = 2;
     }
   }
 }

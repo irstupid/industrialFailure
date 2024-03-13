@@ -15,7 +15,7 @@ ArrayList<Particle> particles = new ArrayList<Particle>();
 void setup()
 {
   size(1200, 1200);
-  gun = new Gun(width/2, height/2, 0);
+  gun = new Gun(width/2, height/2, 1);
   
   s.volume(1);
   pew = new SoundFile(this, "pew.wav");
