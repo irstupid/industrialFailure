@@ -24,7 +24,7 @@ class Particle
     {
       for(int i = 0; i < points.length; i++)
       {
-        points[i] = new float[]{random(-10, 10) + x, random(-10, 10) + y, 0};
+        points[i] = new float[]{random(0, 359), random(2, 10), 0};
       }
     }
   }
@@ -67,28 +67,31 @@ class Particle
     }
     else if(type == 2)
     {
-      //float totalSize = 0;
+      float totalMagnitude = 0;
       
-      //for(int i = 0; i < points.length; i++)
-      //{
-      //  points[i][2] += random(20, 10) * (t <= 7 ? 2 : -0.5);
-      //  if(points[i][2] < 0)
-      //  {
-      //    points[i][2] = 0;
-      //  }
-      //  totalSize += points[i][2];
-        
-      //  push();
-      //    stroke(#ff0000);
-      //    strokeWeight(3);
-      //    line(x, y, points[i][1] + cos(atan2(points[i][2] + x, points[i][1] + y)), points[i][2] + sin(atan2(points[i][2] + x, points[i][1] + y)));
-      //  pop();
-      //}
+      push();
+        stroke(#ff0000);
+        strokeWeight(3);
+        for(int i = 0; i < points.length; i++)
+        {
+          points[i][1] += random(10, 5) * (t <= 3 ? 2 : -0.5);
+          if(points[i][1] < 0)
+          {
+            points[i][1] = 0;
+          }
+          totalMagnitude += points[i][1];
+          
+          if(i < points.length - 1)
+          {
+            line(points[i][1] * cos(radians(points[i][0])) + x, points[i][1] * sin(radians(points[i][0])) + y, x, y);
+          }
+        }
+      pop();
       
-      //if(totalSize == 0)
-      //{
+      if(totalMagnitude == 0)
+      {
         particles.remove(this);
-      //}
+      }
     }
   }
 }
