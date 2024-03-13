@@ -19,7 +19,7 @@ class Gun
   
   void draw()
   {
-    r = atan2(mouseY - x, mouseX - y);
+    r = -atan2(mouseX - x, mouseY - y) + radians(90);
     
     for(int i = 0; i < bullets.size(); i++)
     {

@@ -14,7 +14,7 @@ ArrayList<Particle> particles = new ArrayList<Particle>();
 
 void setup()
 {
-  size(800, 800);
+  size(1200, 1200);
   gun = new Gun(width/2, height/2, 2);
   
   s.volume(1);
@@ -50,9 +50,24 @@ void mousePressed()
 
 void keyPressed()
 {
-  gun.type++;
-  if(gun.type > 2)
+  if(key == ' ')
+  {
+    gun.type++;
+    if(gun.type > 2)
+    {
+      gun.type = 0;
+    }
+  }
+  if(key == '1')
   {
     gun.type = 0;
+  }
+  if(key == '2')
+  {
+    gun.type = 1;
+  }
+  if(key == '3')
+  {
+    gun.type = 2;
   }
 }

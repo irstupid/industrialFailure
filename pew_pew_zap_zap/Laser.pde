@@ -52,9 +52,9 @@ class Laser
       bounces++;
       laserBounce.play();
     }
-    if(y[0] > width - 5)
+    if(y[0] > height - 5)
     {
-      y[0] = width - 5;
+      y[0] = height - 5;
       r += radians(random(90, 135) * -(r/abs(r)));   
       bounces++;
       laserBounce.play();
