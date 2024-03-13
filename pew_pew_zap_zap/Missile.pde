@@ -73,7 +73,7 @@ class Missile
     
     for(int i = 0; i < gun.lasers.size(); i++)
     {
-      if(dist(gun.lasers.get(i).x[0], gun.lasers.get(i).y[0], x, y) < 35)
+      if(dist(gun.lasers.get(i).x[0], gun.lasers.get(i).y[0], x, y) < 25)
       {
         particles.add(new Particle(constrain(x, 0, width), constrain(y, 0, height), 4));
         hiss.stop();
