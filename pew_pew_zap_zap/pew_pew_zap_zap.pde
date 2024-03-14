@@ -7,6 +7,8 @@ SoundFile laserBounce;
 SoundFile boop;
 SoundFile hiss;
 SoundFile bigBoom;
+SoundFile shot;
+SoundFile pop;
 Sound s = new Sound(this);
 
 Gun gun = null;
@@ -31,6 +33,9 @@ void setup()
   hiss = new SoundFile(this, "hiss.wav");
   hiss.rate(2);
   bigBoom = new SoundFile(this, "bigBoom.wav");
+  shot = new SoundFile(this, "shot.wav");
+  pop = new SoundFile(this, "pop.mp3");
+  pop.amp(0.1);
 }
 
 void draw()
@@ -53,7 +58,7 @@ void keyPressed()
   if(key == ' ')
   {
     gun.type++;
-    if(gun.type > 2)
+    if(gun.type > 3)
     {
       gun.type = 0;
     }
@@ -69,5 +74,9 @@ void keyPressed()
   if(key == '3')
   {
     gun.type = 2;
+  }
+  if(key == '4')
+  {
+    gun.type = 3;
   }
 }

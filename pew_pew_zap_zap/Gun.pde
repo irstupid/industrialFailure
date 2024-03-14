@@ -11,7 +11,7 @@ class Gun
   ArrayList<Missile> missiles = new ArrayList<Missile>();
   ArrayList<FastBullet> fastBullets = new ArrayList<FastBullet>();
   
-  float reloadTime;
+  int reloadTime;
   
   Gun(float x, float y, int type)
   {
@@ -97,6 +97,21 @@ class Gun
     }
     else
     {
+      if(mousePressed)
+      {
+        reloadTime--;
+        if(reloadTime <= 0)
+        {
+          shot.play();
+          for(int i = reloadTime; i < 1; i++)
+          {
+            fastBullets.add(new FastBullet(x + (cos(r) * 132) + (cos(r + radians(90)) * random(-30, 30)), y + (sin(r) * 132) + (sin(r + radians(90)) * random(-30, 30)), r));
+            r += random(-0.05, 0.05);
+          }
+          reloadTime = 0;
+        }
+      }
+      
       push();
         noStroke();
         translate(x, y);
@@ -111,17 +126,6 @@ class Gun
         rect(0, 0, 90, 90);
         rect(0, -130, 90, 20);
       pop();
-      
-      if(mousePressed)
-      {
-        reloadTime--;
-        
-        if(reloadTime == 0)
-        {
-          fastBullets.add(new FastBullet(x + cos(r) * 132, y + sin(r) * 132, r));
-          reloadTime = 2;
-        }
-      }
     }
   }
   

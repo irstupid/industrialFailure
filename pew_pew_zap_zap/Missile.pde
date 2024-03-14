@@ -81,5 +81,16 @@ class Missile
         gun.missiles.remove(this);
       }
     }
+    
+    for(int i = 0; i < gun.fastBullets.size(); i++)
+    {
+      if(dist(gun.fastBullets.get(i).x, gun.fastBullets.get(i).y, x, y) < 35)
+      {
+        particles.add(new Particle(constrain(x, 0, width), constrain(y, 0, height), 4));
+        hiss.stop();
+        bigBoom.play();
+        gun.missiles.remove(this);
+      }
+    }
   }
 }

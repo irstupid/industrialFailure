@@ -20,12 +20,14 @@ class FastBullet
     
     push();
       stroke(#ffffff);
-      strokeWeight(2);
-      line(x, y, x - cos(r) * 10, y - sin(r) * 10);
+      strokeWeight(3.5);
+      line(x, y, x - cos(r) * 20, y - sin(r) * 20);
     pop();
     
     if(x > width + 5 || x < 0 - 5 || y > height + 5 || y < 0 - 5)
     {
+      pop.play();
+      particles.add(new Particle(constrain(x, 0, width), constrain(y, 0, height), 5));
       gun.fastBullets.remove(this);
     }
     
