@@ -13,11 +13,14 @@ Sound s = new Sound(this);
 
 Gun gun = null;
 ArrayList<Particle> particles = new ArrayList<Particle>();
+ArrayList<SnowMan> snowMen = new ArrayList<SnowMan>();
+ArrayList<HitBox> hitBoxes = new ArrayList<HitBox>();
 
 void setup()
 {
   size(1200, 1200);
   gun = new Gun(width/2, height/2, 1);
+  snowMen.add(new SnowMan(1, 200, 200));
   
   s.volume(1);
   pew = new SoundFile(this, "pew.wav");
@@ -42,6 +45,10 @@ void draw()
 {
   background(150);
   gun.draw();
+  for(int i = 0; i < snowMen.size(); i++)
+  {
+    snowMen.get(i).draw();
+  }
   for(int i = 0; i < particles.size(); i++)
   {
     particles.get(i).draw();

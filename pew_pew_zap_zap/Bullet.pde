@@ -6,6 +6,8 @@ class Bullet
   float y;
   float direction;
   
+  int damage = 10;
+  
   Bullet(float x, float y, float direction)
   {
     this.x = x;
