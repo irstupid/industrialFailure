@@ -10,6 +10,8 @@ class Missile
   
   Particle trail;
   
+  float damage = 25;
+  
   Missile(float x, float y, float r)
   {
     this.x = x;
@@ -54,20 +56,14 @@ class Missile
     
     if(x > width + 5 || x < 0 - 5 || y > height + 5 || y < 0 - 5)
     {
-      particles.add(new Particle(constrain(x, 0, width), constrain(y, 0, height), 4));
-      hiss.stop();
-      bigBoom.play();
-      gun.missiles.remove(this);
+      die();
     }
     
     for(int i = 0; i < gun.bullets.size(); i++)
     {
       if(dist(gun.bullets.get(i).x, gun.bullets.get(i).y, x, y) < 35)
       {
-        particles.add(new Particle(constrain(x, 0, width), constrain(y, 0, height), 4));
-        hiss.stop();
-        bigBoom.play();
-        gun.missiles.remove(this);
+        die();
       }
     }
     
@@ -75,10 +71,7 @@ class Missile
     {
       if(dist(gun.lasers.get(i).x[0], gun.lasers.get(i).y[0], x, y) < 25)
       {
-        particles.add(new Particle(constrain(x, 0, width), constrain(y, 0, height), 4));
-        hiss.stop();
-        bigBoom.play();
-        gun.missiles.remove(this);
+        die();
       }
     }
     
@@ -86,11 +79,16 @@ class Missile
     {
       if(dist(gun.fastBullets.get(i).x, gun.fastBullets.get(i).y, x, y) < 35)
       {
-        particles.add(new Particle(constrain(x, 0, width), constrain(y, 0, height), 4));
-        hiss.stop();
-        bigBoom.play();
-        gun.missiles.remove(this);
+        die();
       }
     }
+  }
+  
+  void die()
+  {
+    particles.add(new Particle(constrain(x, 0, width), constrain(y, 0, height), 4));
+    hiss.stop();
+    bigBoom.play();
+    gun.missiles.remove(this);
   }
 }

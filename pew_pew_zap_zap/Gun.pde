@@ -11,6 +11,8 @@ class Gun
   ArrayList<Missile> missiles = new ArrayList<Missile>();
   ArrayList<FastBullet> fastBullets = new ArrayList<FastBullet>();
   
+  
+  
   int reloadTime;
   
   Gun(float x, float y, int type)

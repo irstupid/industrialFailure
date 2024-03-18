@@ -7,6 +7,8 @@ class Laser
   float[] y = new float[6];
   float r;
   
+  int damage = 5;
+  
   Laser(float x, float y, float r)
   {
     for(int i = 0; i < this.x.length; i++)
@@ -71,9 +73,14 @@ class Laser
     
     if(bounces > 5)
     {
-      boop.play();
-      particles.add(new Particle(constrain(x[0], 0, width), constrain(y[0], 0, height), 2));
-      gun.lasers.remove(this);
+      die();
     }
+  }
+  
+  void die()
+  {
+    boop.play();
+    particles.add(new Particle(constrain(x[0], 0, width), constrain(y[0], 0, height), 2));
+    gun.lasers.remove(this);
   }
 }

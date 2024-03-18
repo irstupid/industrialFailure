@@ -5,6 +5,7 @@ class FastBullet
   float r;
   
   float speed = 20;
+  float damage = 1;
   
   FastBullet(float x, float y, float r)
   {
@@ -26,10 +27,14 @@ class FastBullet
     
     if(x > width + 5 || x < 0 - 5 || y > height + 5 || y < 0 - 5)
     {
-      pop.play();
-      particles.add(new Particle(constrain(x, 0, width), constrain(y, 0, height), 5));
-      gun.fastBullets.remove(this);
+      die();
     }
-    
+  }
+  
+  void die()
+  {
+    pop.play();
+    particles.add(new Particle(constrain(x, 0, width), constrain(y, 0, height), 5));
+    gun.fastBullets.remove(this);
   }
 }
