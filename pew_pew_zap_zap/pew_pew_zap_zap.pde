@@ -14,7 +14,6 @@ Sound s = new Sound(this);
 Gun gun = null;
 ArrayList<Particle> particles = new ArrayList<Particle>();
 ArrayList<SnowMan> snowMen = new ArrayList<SnowMan>();
-ArrayList<HitBox> hitBoxes = new ArrayList<HitBox>();
 
 void setup()
 {
