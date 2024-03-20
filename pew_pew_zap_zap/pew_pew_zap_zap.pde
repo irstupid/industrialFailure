@@ -15,9 +15,23 @@ Gun gun = null;
 ArrayList<Particle> particles = new ArrayList<Particle>();
 ArrayList<SnowMan> snowMen = new ArrayList<SnowMan>();
 
+int spawnTime;
+int difficulty;
+
+float[] circles = new float[10];
+float noiseX = random(0, 1000);
+float noiseY = random(0, 1000);
+
 void setup()
 {
-  size(1200, 1200);
+  size(1200, 1200, P2D);
+  
+  for(int i = 0; i < circles.length; i++)
+  {
+    circles[i] = (float) i/circles.length;
+    print(circles[i]);
+  }
+  
   gun = new Gun(width/2, height/2, 1);
   snowMen.add(new SnowMan(1, 200, 200));
   
@@ -42,7 +56,60 @@ void setup()
 
 void draw()
 {
-  background(150);
+  spawnTime--;
+  if(spawnTime <= 0)
+  {
+    spawnTime = (int) random(50 - difficulty, 100 - difficulty);
+    if(random(0, 1) < 0.5)
+    {
+      if(random(0, 1) < 0.5)
+      {
+        snowMen.add(new SnowMan(1, -50, random(0, height)));
+      }
+      else
+      {
+        snowMen.add(new SnowMan(1, height + 50, random(0, height)));
+      }
+    }
+    else
+    {
+      if(random(0, 1) < 0.5)
+      {
+        snowMen.add(new SnowMan(1, random(0, width), -50));
+      }
+      else
+      {
+        snowMen.add(new SnowMan(1, random(0, width), width + 50));
+      }
+    }
+  }
+  
+  background(0);
+  push();
+    noStroke();
+    for(int i = circles.length - 1; i >= 0; i--)
+    {
+      circles[i] -= 0.005;
+      fill(#ffffff, constrain(((1 - circles[i])) * 200, 0, 50));
+      ellipse(width/2, height/2, circles[i] * width * (1 + PI/5), circles[i] * height * (1 + PI/5)); 
+      if(circles[i] < 0)
+      {
+        circles[i] = 1;
+      }
+    }
+    
+  noiseX += 0.01 * (mouseX - width/2)/100;
+  noiseY += 0.01 * (mouseY - height/2)/100;
+  for(int x = 0; x < 100; x++)
+  {
+    for(float y = 0; y < 100; y++)
+    {
+      fill(noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255, 150);
+      rect(x * width/100, y * width/100, width/100, width/100);
+    }
+  }
+  pop();
+  
   gun.draw();
   for(int i = 0; i < snowMen.size(); i++)
   {

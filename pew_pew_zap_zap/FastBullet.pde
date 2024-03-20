@@ -5,7 +5,7 @@ class FastBullet
   float r;
   
   float speed = 20;
-  float damage = 1;
+  float damage = 2;
   
   FastBullet(float x, float y, float r)
   {

@@ -96,6 +96,8 @@ class Gun
         fill(175);
         rect(0, -45, 100, 80);
       pop();
+      
+      reloadTime--;
     }
     else
     {
@@ -143,8 +145,9 @@ class Gun
       lasers.add(new Laser(x + cos(r) * 100, y + sin(r) * 100, r));
       zap.play();
     }
-    else if(type == 2)
+    else if(type == 2 && reloadTime <= 0)
     {
+      reloadTime = 20;
       missiles.add(new Missile(x + cos(r) * 110, y + sin(r) * 110, r));
     }
     else
