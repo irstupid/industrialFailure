@@ -7,7 +7,7 @@ class Laser
   float[] y = new float[6];
   float r;
   
-  int damage = 5;
+  int damage = 10;
   
   Laser(float x, float y, float r)
   {

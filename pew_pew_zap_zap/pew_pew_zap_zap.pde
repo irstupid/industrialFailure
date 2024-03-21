@@ -29,11 +29,10 @@ void setup()
   for(int i = 0; i < circles.length; i++)
   {
     circles[i] = (float) i/circles.length;
-    print(circles[i]);
   }
   
   gun = new Gun(width/2, height/2, 1);
-  snowMen.add(new SnowMan(1, 200, 200));
+  //snowMen.add(new SnowMan(3, 200, 200));
   
   s.volume(1);
   pew = new SoundFile(this, "pew.wav");
@@ -64,22 +63,22 @@ void draw()
     {
       if(random(0, 1) < 0.5)
       {
-        snowMen.add(new SnowMan(1, -50, random(0, height)));
+        snowMen.add(new SnowMan(((int)random(1, 4)), -50, random(0, height)));
       }
       else
       {
-        snowMen.add(new SnowMan(1, height + 50, random(0, height)));
+        snowMen.add(new SnowMan(((int)random(1, 4)), height + 50, random(0, height)));
       }
     }
     else
     {
       if(random(0, 1) < 0.5)
       {
-        snowMen.add(new SnowMan(1, random(0, width), -50));
+        snowMen.add(new SnowMan(((int)random(1, 4)), random(0, width), -50));
       }
       else
       {
-        snowMen.add(new SnowMan(1, random(0, width), width + 50));
+        snowMen.add(new SnowMan(((int)random(1, 4)), random(0, width), width + 50));
       }
     }
   }

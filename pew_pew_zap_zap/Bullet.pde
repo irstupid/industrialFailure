@@ -6,7 +6,7 @@ class Bullet
   float y;
   float direction;
   
-  int damage = 10;
+  int damage = 15;
   
   Bullet(float x, float y, float direction)
   {

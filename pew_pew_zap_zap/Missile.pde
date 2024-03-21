@@ -10,7 +10,7 @@ class Missile
   
   Particle trail;
   
-  float damage = 25;
+  float damage = 40;
   
   Missile(float x, float y, float r)
   {
