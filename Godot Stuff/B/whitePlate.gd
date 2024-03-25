@@ -13,7 +13,12 @@ func _process(_delta):
 	if(!selected):
 		clicked = 0
 	elif(clicked >= 30):
-		print("good")
+		for i in parent.get_parent().get_node("Bake").shards.size():
+			if(parent.get_parent().get_node("Bake").shards[i] == null):
+				parent.get_parent().get_node("Bake").shards[i] = Color(1, 0.5, 0)
+				break
+			elif(i == parent.get_parent().get_node("Bake").shards.size()):
+				print("ERROR: shard storage full")
 		queue_free()
 
 func click():

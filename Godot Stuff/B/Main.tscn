@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://odjli5hr5e04"]
+[gd_scene load_steps=6 format=3 uid="uid://odjli5hr5e04"]
 
 [ext_resource type="Texture2D" uid="uid://d3c860bptxls7" path="res://square.png" id="1_almlq"]
 [ext_resource type="Script" path="res://break.gd" id="1_dhegj"]
 [ext_resource type="Script" path="res://UI.gd" id="1_eqqxt"]
 [ext_resource type="PackedScene" uid="uid://iaie511av6te" path="res://WhitePlate.tscn" id="1_sfmqg"]
+[ext_resource type="Script" path="res://bake.gd" id="3_iiusl"]
 
 [node name="Main" type="Node2D"]
 
@@ -18,8 +19,10 @@ whitePlate = ExtResource("1_sfmqg")
 
 [node name="Bake" type="Node2D" parent="."]
 position = Vector2(6000, 0)
+script = ExtResource("3_iiusl")
 
 [node name="Square3" type="Sprite2D" parent="Bake"]
+modulate = Color(1, 0, 1, 1)
 position = Vector2(-29, 359)
 texture = ExtResource("1_almlq")
 
