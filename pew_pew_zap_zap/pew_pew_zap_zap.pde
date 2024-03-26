@@ -22,6 +22,12 @@ float[] circles = new float[10];
 float noiseX = random(0, 1000);
 float noiseY = random(0, 1000);
 
+int newExplodeTime;
+int newSoundTime;
+
+int state = 0;
+int t;
+
 void setup()
 {
   size(1200, 1200, P2D);
@@ -55,34 +61,6 @@ void setup()
 
 void draw()
 {
-  spawnTime--;
-  if(spawnTime <= 0)
-  {
-    spawnTime = (int) random(50 - difficulty, 100 - difficulty);
-    if(random(0, 1) < 0.5)
-    {
-      if(random(0, 1) < 0.5)
-      {
-        snowMen.add(new SnowMan(((int)random(1, 4)), -50, random(0, height)));
-      }
-      else
-      {
-        snowMen.add(new SnowMan(((int)random(1, 4)), height + 50, random(0, height)));
-      }
-    }
-    else
-    {
-      if(random(0, 1) < 0.5)
-      {
-        snowMen.add(new SnowMan(((int)random(1, 4)), random(0, width), -50));
-      }
-      else
-      {
-        snowMen.add(new SnowMan(((int)random(1, 4)), random(0, width), width + 50));
-      }
-    }
-  }
-  
   background(0);
   push();
     noStroke();
@@ -109,46 +87,139 @@ void draw()
   }
   pop();
   
-  gun.draw();
-  for(int i = 0; i < snowMen.size(); i++)
+  if(state == 0)
   {
-    snowMen.get(i).draw();
+    spawnTime--;
+    if(spawnTime <= 0)
+    {
+      spawnTime = (int) random(50 - difficulty, 100 - difficulty);
+      if(random(0, 1) < 0.5)
+      {
+        if(random(0, 1) < 0.5)
+        {
+          snowMen.add(new SnowMan(((int)random(1, 4)), -50, random(0, height)));
+        }
+        else
+        {
+          snowMen.add(new SnowMan(((int)random(1, 4)), height + 50, random(0, height)));
+        }
+      }
+      else
+      {
+        if(random(0, 1) < 0.5)
+        {
+          snowMen.add(new SnowMan(((int)random(1, 4)), random(0, width), -50));
+        }
+        else
+        {
+          snowMen.add(new SnowMan(((int)random(1, 4)), random(0, width), width + 50));
+        }
+      }
+    }
+    
+    gun.draw();
+    for(int i = 0; i < snowMen.size(); i++)
+    {
+      snowMen.get(i).draw();
+    }
+    for(int i = 0; i < particles.size(); i++)
+    {
+      particles.get(i).draw();
+    }
   }
-  for(int i = 0; i < particles.size(); i++)
+  else if(state == 1)
   {
-    particles.get(i).draw();
+    t++;
+    if(t >= 120)
+    {
+      t = 0;
+      
+      gun.bullets = new ArrayList<Bullet>();
+      gun.lasers = new ArrayList<Laser>();
+      gun.missiles = new ArrayList<Missile>();
+      gun.fastBullets = new ArrayList<FastBullet>();
+      
+      pew.stop();
+      explosion.stop();
+      zap.stop();
+      laserBounce.stop();
+      boop.stop();
+      hiss.stop();
+      bigBoom.stop();
+      shot.stop();
+      pop.stop();
+      
+      newExplodeTime = 0;
+      newSoundTime = 0;
+      
+      state = 2;
+    }
+    
+    newExplodeTime--;
+    if(newExplodeTime <= 0)
+    {
+      newExplodeTime = (int) random(4, 10);
+      particles.add(new Particle(width/2 + random(-50, 50), height/2 + random(-50, 50), 1 + 3 * ((int) random(1, 0))));
+    }
+    newSoundTime--;
+    if(newSoundTime <= 0)
+    {
+      newSoundTime = (int) random(5, 15);
+      if(random(0, 1) <= 0.5)
+      {
+        explosion.play();
+      }
+      else
+      {
+        bigBoom.play();
+      }
+    }
+    
+    for(int i = 0; i < snowMen.size(); i++)
+    {
+      snowMen.get(i).draw();
+    }
+    for(int i = 0; i < particles.size(); i++)
+    {
+      particles.get(i).draw();
+    }
   }
 }
-
 void mousePressed()
 {
-  gun.shoot();
+  if(state == 0)
+  {
+    gun.shoot();
+  }
 }
 
 void keyPressed()
 {
-  if(key == ' ')
+  if(state == 0)
   {
-    gun.type++;
-    if(gun.type > 3)
+    if(key == ' ')
+    {
+      gun.type++;
+      if(gun.type > 3)
+      {
+        gun.type = 0;
+      }
+    }
+    if(key == '1')
     {
       gun.type = 0;
     }
-  }
-  if(key == '1')
-  {
-    gun.type = 0;
-  }
-  if(key == '2')
-  {
-    gun.type = 1;
-  }
-  if(key == '3')
-  {
-    gun.type = 2;
-  }
-  if(key == '4')
-  {
-    gun.type = 3;
+    if(key == '2')
+    {
+      gun.type = 1;
+    }
+    if(key == '3')
+    {
+      gun.type = 2;
+    }
+    if(key == '4')
+    {
+      gun.type = 3;
+    }
   }
 }

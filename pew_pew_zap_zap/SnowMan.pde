@@ -42,9 +42,12 @@ class SnowMan
     pPHealth = pHealth;
     pHealth = health;
     
-    r = atan2(gun.x - y, gun.y - x);
-    x += cos(r) * speed;
-    y += sin(r) * speed;
+    if(state == 0)
+    {
+      r = atan2(gun.x - y, gun.y - x);
+      x += cos(r) * speed;
+      y += sin(r) * speed;
+    }
     
     if(type == 1)
     {
@@ -336,6 +339,31 @@ class SnowMan
         snowMen.add(new SnowMan(2, x + random(-50, 50), y + random(-50, 50)));
         snowMen.add(new SnowMan(1, x + random(-50, 50), y + random(-50, 50)));
       }
+    }
+    
+    if(dist(x, y, gun.x, gun.y) < 50 && state == 0)
+    {
+      t = 0;
+      
+      gun.bullets = new ArrayList<Bullet>();
+      gun.lasers = new ArrayList<Laser>();
+      gun.missiles = new ArrayList<Missile>();
+      gun.fastBullets = new ArrayList<FastBullet>();
+      
+      pew.stop();
+      explosion.stop();
+      zap.stop();
+      laserBounce.stop();
+      boop.stop();
+      hiss.stop();
+      bigBoom.stop();
+      shot.stop();
+      pop.stop();
+      
+      newExplodeTime = 0;
+      newSoundTime = 0;
+      
+      state = 1;
     }
   }
 }
