@@ -16,7 +16,8 @@ ArrayList<Particle> particles = new ArrayList<Particle>();
 ArrayList<SnowMan> snowMen = new ArrayList<SnowMan>();
 
 int spawnTime;
-int difficulty;
+int difficulty = 0;
+int difficultyUpTime = 30;
 
 float[] circles = new float[10];
 float noiseX = random(0, 1000);
@@ -27,6 +28,9 @@ int newSoundTime;
 
 int state = 0;
 int t;
+
+int score = 0;
+int scoreTime = 30;
 
 void setup()
 {
@@ -89,10 +93,24 @@ void draw()
   
   if(state == 0)
   {
+    difficultyUpTime--;
+    if(difficultyUpTime <= 0 && difficulty < 75)
+  {
+    difficultyUpTime = 30;
+    difficulty++;
+  }
+  
+  scoreTime--;
+  if(scoreTime <= 0)
+  {
+    scoreTime = 30;
+    score++;
+  }
+    
     spawnTime--;
     if(spawnTime <= 0)
     {
-      spawnTime = (int) random(50 - difficulty, 100 - difficulty);
+      spawnTime = (int) random(100 - difficulty, 150 - difficulty);
       if(random(0, 1) < 0.5)
       {
         if(random(0, 1) < 0.5)
@@ -126,6 +144,9 @@ void draw()
     {
       particles.get(i).draw();
     }
+       
+    textSize(100);
+    text(score, width/2, 100);
   }
   else if(state == 1)
   {

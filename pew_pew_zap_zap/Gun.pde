@@ -147,7 +147,7 @@ class Gun
     }
     else if(type == 2 && reloadTime <= 0)
     {
-      reloadTime = 20;
+      reloadTime = 10;
       missiles.add(new Missile(x + cos(r) * 110, y + sin(r) * 110, r));
     }
     else
