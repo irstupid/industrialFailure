@@ -32,6 +32,8 @@ int t;
 int score = 0;
 int scoreTime = 30;
 
+JSONObject scores = null;
+  
 void setup()
 {
   size(1200, 1200, P2D);
@@ -61,6 +63,8 @@ void setup()
   shot = new SoundFile(this, "shot.wav");
   pop = new SoundFile(this, "pop.mp3");
   pop.amp(0.1);
+  
+  scores = loadJSONObject("scores.json");
 }
 
 void draw()
@@ -242,5 +246,11 @@ void keyPressed()
     {
       gun.type = 3;
     }
+  }
+  
+  if(key == 'v')
+  {
+    scores.setInt("IAN", 200);
+    saveJSONObject(scores, "data/scores.json");
   }
 }
