@@ -44,7 +44,7 @@ class SnowMan
     
     if(state == 0)
     {
-      r = atan2(gun.x - y, gun.y - x);
+      r = atan2(gun.y - y, gun.x - x);
       x += cos(r) * speed;
       y += sin(r) * speed;
     }
@@ -364,6 +364,7 @@ class SnowMan
       newSoundTime = 0;
       
       state = 1;
+      saveScore("null");
     }
   }
 }

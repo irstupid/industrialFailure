@@ -16,7 +16,7 @@ ArrayList<Particle> particles = new ArrayList<Particle>();
 ArrayList<SnowMan> snowMen = new ArrayList<SnowMan>();
 
 int spawnTime;
-int difficulty = 0;
+int difficulty = 20;
 int difficultyUpTime = 30;
 
 float[] circles = new float[10];
@@ -36,7 +36,8 @@ JSONObject scores = null;
   
 void setup()
 {
-  size(1200, 1200, P2D);
+  size(800, 800, P2D);
+  fullScreen(P2D);
   
   for(int i = 0; i < circles.length; i++)
   {
@@ -247,10 +248,10 @@ void keyPressed()
       gun.type = 3;
     }
   }
-  
-  if(key == 'v')
-  {
-    scores.setInt("IAN", 200);
-    saveJSONObject(scores, "data/scores.json");
-  }
+}
+
+void saveScore(String name)
+{
+  scores.setInt(name, score);
+  saveJSONObject(scores, "data/scores.json");
 }
