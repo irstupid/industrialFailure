@@ -6,9 +6,11 @@ class Ball
   float v;
   float s;
   
+  int t;
   
   int c;
   float[] waves;
+  int[] colors;
   
   Ball()
   {
@@ -16,17 +18,30 @@ class Ball
     y = height/2;
     s = 10;
     c = 0;
+    v = 10;
+    d = radians(90);
+    
     waves = new float[10];
     for(int i = 0; i < waves.length; i++)
     {
       waves[i] = ((float) (i + 1)/waves.length) * s;
-      println(waves[i]);
+      //println(waves[i]);
+    }
+    colors = new int[waves.length];
+    for(int i = 0; i < colors.length; i++)
+    {
+      colors[i] = round(((float) (i + 1)/colors.length) * 255);
+      println(colors[i]);
     }
     
   }
   
   void draw()
   {
+    t++;
+    x += sin(d) * v;
+    y += cos(d) * v;
+    
     ball(x, y, s, c);
     c++;
     if(c >= 255)
@@ -39,13 +54,15 @@ class Ball
   {
     push();
       translate(x, y);
-      //scale(s, s);
+      noStroke();
+      fill(color(c, (c >= 150 && c <= 200 ? 75 : 100), 75 + (((float) c/225) * 25)));
+      circle(0, 0, s * 10);
       for(int i = waves.length - 1; i > -1; i--)
       {
-        stroke(color((waves[i]/s * 255)/2 + c/2, 100, 100));
-        strokeWeight(5);
+        stroke(color(colors[i], 100, 100));
+        strokeWeight(3);
         noFill();
-        circle(0, 0, waves[i] * 10);
+        circle(noise(waves[i] + t) * 3, noise(waves[i] - t) * 3, waves[i] * 10);
         waves[i] += 0.1;
         if(waves[i] > s)
         {
