@@ -20,8 +20,10 @@ class Bullet
     x += cos(direction) * speed;
     y += sin(direction) * speed;
     
-    fill(#ffff00);
-    ellipse(x, y, 20, 20);
+    push();
+      fill(#ffff00);
+      ellipse(x, y, 20, 20);
+    pop();
     
     if(x > width + 5 || x < 0 - 5 || y > height + 5 || y < 0 - 5)
     {

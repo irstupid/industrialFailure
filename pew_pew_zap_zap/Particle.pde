@@ -61,10 +61,12 @@ class Particle
         particles.remove(this);
       }
         
-      fill(#FA3F00);
-      ellipse(x, y, points[0][2], points[0][2]);
-      fill(#FAD500);
-      ellipse(x, y, points[0][2]/2, points[0][2]/2);
+      push();
+        fill(#FA3F00);
+        ellipse(x, y, points[0][2], points[0][2]);
+        fill(#FAD500);
+        ellipse(x, y, points[0][2]/2, points[0][2]/2);
+      pop();
     }
     else if(type == 4)
     {
@@ -79,10 +81,12 @@ class Particle
         }
         totalSize += points[i][2];
         
-        fill(#FA3F00);
-        ellipse(points[i][0], points[i][1], points[i][2], points[i][2]);
-        fill(#FAD500);
-        ellipse(points[i][0], points[i][1], points[i][2]/2, points[i][2]/2);
+        push();
+          fill(#FA3F00);
+          ellipse(points[i][0], points[i][1], points[i][2], points[i][2]);
+          fill(#FAD500);
+          ellipse(points[i][0], points[i][1], points[i][2]/2, points[i][2]/2);
+        pop();
       }
       
       if(totalSize == 0)

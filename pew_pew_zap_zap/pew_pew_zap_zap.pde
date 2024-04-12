@@ -36,7 +36,7 @@ JSONObject scores = null;
   
 void setup()
 {
-  size(800, 800, P2D);
+  //size(800, 800, P2D);
   fullScreen(P2D);
   
   for(int i = 0; i < circles.length; i++)
@@ -66,6 +66,7 @@ void setup()
   pop.amp(0.1);
   
   scores = loadJSONObject("scores.json");
+  print(width);
 }
 
 void draw()
@@ -116,26 +117,26 @@ void draw()
     if(spawnTime <= 0)
     {
       spawnTime = (int) random(100 - difficulty, 150 - difficulty);
-      if(random(0, 1) < 0.5)
+      if(random(0, 2) > 1)
       {
-        if(random(0, 1) < 0.5)
+        if(random(0, 2) > 1)
         {
-          snowMen.add(new SnowMan(((int)random(1, 4)), -50, random(0, height)));
+          snowMen.add(new SnowMan((int) random(1, 3.5), 0, random(0, height)));
         }
         else
         {
-          snowMen.add(new SnowMan(((int)random(1, 4)), height + 50, random(0, height)));
+          snowMen.add(new SnowMan((int) random(1, 3.5), width, random(0, height)));
         }
       }
       else
       {
-        if(random(0, 1) < 0.5)
+        if(random(0, 2) > 1)
         {
-          snowMen.add(new SnowMan(((int)random(1, 4)), random(0, width), -50));
+          snowMen.add(new SnowMan((int) random(1, 3.5), random(0, width), 0));
         }
         else
         {
-          snowMen.add(new SnowMan(((int)random(1, 4)), random(0, width), width + 50));
+          snowMen.add(new SnowMan((int) random(1, 3.5), random(0, width), height));
         }
       }
     }
