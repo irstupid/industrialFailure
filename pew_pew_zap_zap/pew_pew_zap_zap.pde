@@ -26,13 +26,15 @@ float noiseY = random(0, 1000);
 int newExplodeTime;
 int newSoundTime;
 
-int state = 0;
+int state = 2;
 int t;
 
 int score = 0;
 int scoreTime = 30;
 
 JSONObject scores = null;
+int selectedKey = 1;
+String name = new String();
   
 void setup()
 {
@@ -66,7 +68,6 @@ void setup()
   pop.amp(0.1);
   
   scores = loadJSONObject("scores.json");
-  print(width);
 }
 
 void draw()
@@ -211,6 +212,70 @@ void draw()
       particles.get(i).draw();
     }
   }
+  else if(state == 2)
+  {
+    push();
+      textSize(50);
+      fill((selectedKey == 1 ? #aaaaff : #aaaaaa));
+      rect(width/2 - 120, height/2, 100, 100, 20);
+      fill(#ffffff);
+      text("A", width/2 + 5 - 120, height/2 + 65);
+      text("B", width/2 + 35 - 120, height/2 + 65);
+      text("C", width/2 + 65 - 120, height/2 + 65);
+      fill((selectedKey == 2 ? #aaaaff : #aaaaaa));
+      rect(width/2, height/2, 100, 100, 20);
+      fill(#ffffff);
+      text("D", width/2 + 5, height/2 + 65);
+      text("E", width/2 + 35, height/2 + 65);
+      text("F", width/2 + 65, height/2 + 65);
+      fill((selectedKey == 3 ? #aaaaff : #aaaaaa));
+      rect(width/2 + 120, height/2, 100, 100, 20);
+      fill(#ffffff);
+      text("G", width/2 + 5 + 120, height/2 + 65);
+      text("H", width/2 + 37 + 120, height/2 + 65);
+      text("I", width/2 + 72 + 120, height/2 + 65);
+      fill((selectedKey == 4 ? #aaaaff : #aaaaaa));
+      rect(width/2 - 120, height/2 + 120, 100, 100, 20);
+      fill(#ffffff);
+      text("J", width/2 + 5 - 120, height/2 + 65 + 120);
+      text("K", width/2 + 35 - 120, height/2 + 65 + 120);
+      text("L", width/2 + 65 - 120, height/2 + 65 + 120);
+      fill((selectedKey == 5 ? #aaaaff : #aaaaaa));
+      rect(width/2, height/2 + 120, 100, 100, 20);
+      fill(#ffffff);
+      text("M", width/2 + 3, height/2 + 65 + 120);
+      text("N", width/2 + 35, height/2 + 65 + 120);
+      text("O", width/2 + 65, height/2 + 65 + 120);
+      fill((selectedKey == 6 ? #aaaaff : #aaaaaa));
+      rect(width/2 + 120, height/2 + 120, 100, 100, 20);
+      fill(#ffffff);
+      text("P", width/2 + 5 + 120, height/2 + 65 + 120);
+      text("Q", width/2 + 32 + 120, height/2 + 65 + 120);
+      text("R", width/2 + 65 + 120, height/2 + 65 + 120);
+      fill((selectedKey == 7 ? #aaaaff : #aaaaaa));
+      rect(width/2 - 120, height/2 + 240, 100, 100, 20);
+      fill(#ffffff);
+      text("S", width/2 + 5 - 120, height/2 + 65 + 240);
+      text("T", width/2 + 35 - 120, height/2 + 65 + 240);
+      text("U", width/2 + 65 - 120, height/2 + 65 + 240);
+      fill((selectedKey == 8 ? #aaaaff : #aaaaaa));
+      rect(width/2, height/2 + 240, 100, 100, 20);
+      fill(#ffffff);
+      text("V", width/2 + 3, height/2 + 65 + 240);
+      text("W", width/2 + 30, height/2 + 65 + 240);
+      text("X", width/2 + 69, height/2 + 65 + 240);
+      fill((selectedKey == 9 ? #aaaaff : #aaaaaa));
+      rect(width/2 + 120, height/2 + 240, 100, 100, 20);
+      fill(#ffffff);
+      text("Y", width/2 + 5 + 120, height/2 + 65 + 240);
+      text("Z", width/2 + 30 + 120, height/2 + 65 + 240);
+      textSize(25);
+      text("dlt", width/2 + 60 + 120, height/2 + 65 + 240);
+      textSize(100);
+      fill(#ffffff);
+      text(name, width/2 - ((name.length() - 1) * 25) + 25, height/2 - 50);
+    pop();
+  }
 }
 void mousePressed()
 {
@@ -247,6 +312,151 @@ void keyPressed()
     if(key == '4')
     {
       gun.type = 3;
+    }
+  }
+  if(state == 2)
+  {
+    if(key == 'w')
+    {
+      selectedKey -= 3;
+    }
+    if(key == 's')
+    {
+      selectedKey += 3;
+    }
+    if(key == 'a')
+    {
+      selectedKey -= 1;
+    }
+    if(key == 'd')
+    {
+      selectedKey += 1;
+    }
+    if(selectedKey > 9)
+    {
+      selectedKey -= 9;
+    }
+    if(selectedKey < 1)
+    {
+      selectedKey += 9;
+    }
+    
+    if(key == '1')
+    {
+      if(selectedKey == 1)
+      {
+        name += "A";
+      }
+      else if(selectedKey == 2)
+      {
+        name += "D";
+      }
+      else if(selectedKey == 3)
+      {
+        name += "G";
+      }
+      else if(selectedKey == 4)
+      {
+        name += "J";
+      }
+      else if(selectedKey == 5)
+      {
+        name += "M";
+      }
+      else if(selectedKey == 6)
+      {
+        name += "P";
+      }
+      else if(selectedKey == 7)
+      {
+        name += "S";
+      }
+      else if(selectedKey == 8)
+      {
+        name += "V";
+      }
+      else if(selectedKey == 9)
+      {
+        name += "Y";
+      }
+    }
+    if(key == '2')
+    {
+      if(selectedKey == 1)
+      {
+        name += "B";
+      }
+      else if(selectedKey == 2)
+      {
+        name += "E";
+      }
+      else if(selectedKey == 3)
+      {
+        name += "H";
+      }
+      else if(selectedKey == 4)
+      {
+        name += "K";
+      }
+      else if(selectedKey == 5)
+      {
+        name += "N";
+      }
+      else if(selectedKey == 6)
+      {
+        name += "Q";
+      }
+      else if(selectedKey == 7)
+      {
+        name += "T";
+      }
+      else if(selectedKey == 8)
+      {
+        name += "W";
+      }
+      else if(selectedKey == 9)
+      {
+        name += "Z";
+      }
+    }
+    if(key == '3')
+    {
+      if(selectedKey == 1)
+      {
+        name += "C";
+      }
+      else if(selectedKey == 2)
+      {
+        name += "F";
+      }
+      else if(selectedKey == 3)
+      {
+        name += "I";
+      }
+      else if(selectedKey == 4)
+      {
+        name += "L";
+      }
+      else if(selectedKey == 5)
+      {
+        name += "O";
+      }
+      else if(selectedKey == 6)
+      {
+        name += "R";
+      }
+      else if(selectedKey == 7)
+      {
+        name += "U";
+      }
+      else if(selectedKey == 8)
+      {
+        name += "X";
+      }
+      else if(selectedKey == 9)
+      {
+        name = name.replace(name.length(), "");
+      }
     }
   }
 }
