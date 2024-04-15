@@ -26,13 +26,13 @@ float noiseY = random(0, 1000);
 int newExplodeTime;
 int newSoundTime;
 
-int state = 2;
+int state = 0;
 int t;
 
 int score = 0;
 int scoreTime = 30;
 
-JSONObject scores = null;
+JSONArray scores = null;
 int selectedKey = 1;
 String name = new String();
   
@@ -66,8 +66,6 @@ void setup()
   shot = new SoundFile(this, "shot.wav");
   pop = new SoundFile(this, "pop.mp3");
   pop.amp(0.1);
-  
-  scores = loadJSONObject("scores.json");
 }
 
 void draw()
@@ -180,7 +178,21 @@ void draw()
       newExplodeTime = 0;
       newSoundTime = 0;
       
-      state = 2;
+      JSONArray scores = loadJSONArray("data/scores.json");
+      int[] sortScores = new int[scores.size()];
+      for(int i = 0; i < scores.size(); i++)
+      {
+        sortScores[i] = scores.getJSONObject(i).getInt("score");
+      }
+      sortScores = sort(sortScores);
+      if(sortScores[constrain(sortScores.length - 10, 0, scores.size())] < score || sortScores.length < 10)
+      {
+        state = 2;
+      }
+      else
+      {
+        state = 3;
+      }
     }
     
     newExplodeTime--;
@@ -453,16 +465,27 @@ void keyPressed()
       {
         name += "X";
       }
-      else if(selectedKey == 9)
+      else if(selectedKey == 9 && name.length() > 0)
       {
-        name = name.replace(name.length(), "");
+        name = name.replaceFirst(String.valueOf(name.charAt(name.length() - 1)), "");
       }
+    }
+    
+    if(key == 'z')
+    {
+      saveScore(name);
+      state = 3;
+      
     }
   }
 }
 
 void saveScore(String name)
 {
-  scores.setInt(name, score);
-  saveJSONObject(scores, "data/scores.json");
+  scores = loadJSONArray("scores.json");
+  JSONObject value = new JSONObject();
+  value.setString("name", name);
+  value.setInt("score", score);
+  scores.setJSONObject(scores.size(), value);
+  saveJSONArray(scores, "data/scores.json");
 }

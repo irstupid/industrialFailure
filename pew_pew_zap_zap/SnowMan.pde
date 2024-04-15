@@ -364,7 +364,6 @@ class SnowMan
       newSoundTime = 0;
       
       state = 1;
-      saveScore("null");
     }
   }
 }
