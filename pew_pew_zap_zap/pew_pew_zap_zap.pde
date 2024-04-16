@@ -26,7 +26,7 @@ float noiseY = random(0, 1000);
 int newExplodeTime;
 int newSoundTime;
 
-int state = 0;
+int state = 2;
 int t;
 
 int score = 0;
@@ -185,7 +185,11 @@ void draw()
         sortScores[i] = scores.getJSONObject(i).getInt("score");
       }
       sortScores = sort(sortScores);
-      if(sortScores[constrain(sortScores.length - 10, 0, scores.size())] < score || sortScores.length < 10)
+      if(sortScores.length < 10)
+      {
+        state = 2;
+      }
+      else if(sortScores[constrain(sortScores.length - 10, 0, scores.size())] < score)
       {
         state = 2;
       }
@@ -286,6 +290,10 @@ void draw()
       textSize(100);
       fill(#ffffff);
       text(name, width/2 - ((name.length() - 1) * 25) + 25, height/2 - 50);
+      
+      textSize(100);
+      text("please enter name", width/2 - 333, height/2 - 275);
+      text("press start to play again", width/2 - 450, height/2 - 175);
     pop();
   }
 }
