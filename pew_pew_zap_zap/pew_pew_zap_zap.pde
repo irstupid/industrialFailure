@@ -26,7 +26,7 @@ float noiseY = random(0, 1000);
 int newExplodeTime;
 int newSoundTime;
 
-int state = 2;
+int state = 3;
 int t;
 
 int score = 0;
@@ -35,7 +35,11 @@ int scoreTime = 30;
 JSONArray scores = null;
 int selectedKey = 1;
 String name = new String();
-  
+
+float[] textPosX = new float[6];
+float[] textPosY = new float[6];
+int textBlinkTime = 10;
+
 void setup()
 {
   //size(800, 800, P2D);
@@ -46,7 +50,7 @@ void setup()
     circles[i] = (float) i/circles.length;
   }
   
-  gun = new Gun(width/2, height/2, 1);
+  gun = new Gun(width/2, height/2, 0);
   //snowMen.add(new SnowMan(3, 200, 200));
   
   s.volume(1);
@@ -66,6 +70,26 @@ void setup()
   shot = new SoundFile(this, "shot.wav");
   pop = new SoundFile(this, "pop.mp3");
   pop.amp(0.1);
+  
+  /*
+  JSONArray scores = loadJSONArray("data/scores.json");
+  PVector[] scoreBord = new PVector[scores.size()];
+  for(int i = 0; i < scores.size(); i++)
+  {
+    scoreBord[i].x = scores.getJSONObject(i).getInt("score");
+    scoreBord[i].y = scores.getJSONObject(i).getInt("name");
+  }
+  for(int i = 0; i < scoreBord.length - 1; i++)
+  {
+    if(scoreBord[i + 1].x > scoreBord[i].x)
+      {
+        PVector temp = new PVector(scoreBord[i].x, scoreBord[i].y);
+        scoreBord[i] = scoreBord[i + 1];
+        scoreBord[i + 1] = temp;
+      }
+    }
+    println(scoreBord);
+    */
 }
 
 void draw()
@@ -296,6 +320,42 @@ void draw()
       text("press start to play again", width/2 - 450, height/2 - 175);
     pop();
   }
+  else if(state == 3)
+  {
+    textPosX[0] = random(730, 770);
+    textPosY[0] = random(280, 320);
+    textSize(200);
+    fill(#cccccc, 200);
+    text("strange", textPosX[0], textPosY[0]);
+    textPosX[1] = random(1280, 1320);
+    textPosY[1] = random(530, 570);
+    text("place", textPosX[1], textPosY[1]);
+    textPosX[2] = random(740, 760);
+    textPosY[2] = random(290, 310);
+    textSize(200);
+    fill(#ffffff);
+    text("strange", textPosX[2], textPosY[2]);
+    textPosX[3] = random(1290, 1310);
+    textPosY[3] = random(540, 560);
+    text("place", textPosX[3], textPosY[3]);
+    
+    textSize(100);
+    textBlinkTime--;
+    if(textBlinkTime < 0)
+    {
+      textPosX[4] = random(990, 1010);
+      textPosY[4] = random(1040, 1060);
+      textBlinkTime = 40;
+    }
+    fill(#cccccc, (((float) 20 - Math.abs(textBlinkTime - 20))/20) * 255);
+    text("press start", textPosX[5], textPosY[5]);
+    fill(#ffffff, (((float) 20 - Math.abs(textBlinkTime - 20))/20) * 255);
+    text("press start", textPosX[4], textPosY[4]);
+    textPosX[5] = random(990, 1010);
+    textPosY[5] = random(1040, 1060);
+    
+    gun.draw();
+  }
 }
 void mousePressed()
 {
@@ -483,7 +543,7 @@ void keyPressed()
     {
       saveScore(name);
       state = 3;
-      
+      gun = new Gun(width/2, height/2, 0);
     }
   }
 }
