@@ -26,7 +26,7 @@ float noiseY = random(0, 1000);
 int newExplodeTime;
 int newSoundTime;
 
-int state = 3;
+int state = 0;
 int t;
 
 int score = 0;
