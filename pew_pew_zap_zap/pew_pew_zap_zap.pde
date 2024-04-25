@@ -26,7 +26,7 @@ float noiseY = random(0, 1000);
 int newExplodeTime;
 int newSoundTime;
 
-int state = 0;
+int state = 3;
 int t;
 
 int score = 0;
@@ -36,9 +36,11 @@ JSONArray scores = null;
 int selectedKey = 1;
 String name = new String();
 
-float[] textPosX = new float[6];
-float[] textPosY = new float[6];
+float[] textPosX = new float[66];
+float[] textPosY = new float[66];
 int textBlinkTime = 10;
+int[] scoreBordScores;
+String[] scoreBordNames;
 
 void setup()
 {
@@ -69,27 +71,9 @@ void setup()
   bigBoom = new SoundFile(this, "bigBoom.wav");
   shot = new SoundFile(this, "shot.wav");
   pop = new SoundFile(this, "pop.mp3");
-  pop.amp(0.1);
+  pop.amp(0.1);  
   
-  /*
-  JSONArray scores = loadJSONArray("data/scores.json");
-  PVector[] scoreBord = new PVector[scores.size()];
-  for(int i = 0; i < scores.size(); i++)
-  {
-    scoreBord[i].x = scores.getJSONObject(i).getInt("score");
-    scoreBord[i].y = scores.getJSONObject(i).getInt("name");
-  }
-  for(int i = 0; i < scoreBord.length - 1; i++)
-  {
-    if(scoreBord[i + 1].x > scoreBord[i].x)
-      {
-        PVector temp = new PVector(scoreBord[i].x, scoreBord[i].y);
-        scoreBord[i] = scoreBord[i + 1];
-        scoreBord[i + 1] = temp;
-      }
-    }
-    println(scoreBord);
-    */
+  calculateScoreBord();
 }
 
 void draw()
@@ -355,6 +339,38 @@ void draw()
     textPosY[5] = random(1040, 1060);
     
     gun.draw();
+    
+    
+    textSize(50);
+    for(int i = 0; i < 10; i++)
+    {
+      if(i >= scoreBordNames.length)
+      {
+        break;
+      }
+      
+      fill(#cccccc, 200);
+      textPosX[(i * 3) + 36] = random(-10, 10);
+      textPosY[(i * 3) + 36] = random(-10, 10);
+      textPosX[(i * 3) + 37] = random(-10, 10);
+      textPosY[(i * 3) + 37] = random(-10, 10);
+      textPosX[(i * 3) + 38] = random(-10, 10);
+      textPosY[(i * 3) + 38] = random(-10, 10);
+      text(i + 1, 800 - (i == 9 ? 25 : 0) + textPosX[i * 3 + 36], 450 + textPosY[i * 3 + 36] + i * 50);
+      text(scoreBordScores[i], 850 + textPosX[i * 3 + 37], 450 + textPosY[i * 3 + 37] + i * 50);
+      text(scoreBordNames[i], 875  + textPosX[i * 3 + 38] + String.valueOf(scoreBordScores[i]).length() * 25, 450 + textPosY[i * 3 + 38] + i * 50);
+      
+      fill(#ffffff);
+      textPosX[(i * 3) + 6] = random(-5, 5);
+      textPosY[(i * 3) + 6] = random(-5, 5);
+      textPosX[(i * 3) + 7] = random(-5, 5);
+      textPosY[(i * 3) + 7] = random(-5, 5);
+      textPosX[(i * 3) + 8] = random(-5, 5);
+      textPosY[(i * 3) + 8] = random(-5, 5);
+      text(i + 1, 800 - (i == 9 ? 25 : 0) + textPosX[i * 3 + 6], 450 + textPosY[i * 3 + 6] + i * 50);
+      text(scoreBordScores[i], 850 + textPosX[i * 3 + 7], 450 + textPosY[i * 3 + 7] + i * 50);
+      text(scoreBordNames[i], 875  + textPosX[i * 3 + 8] + String.valueOf(scoreBordScores[i]).length() * 25, 450 + textPosY[i * 3 + 8] + i * 50);
+    }
   }
 }
 void mousePressed()
@@ -367,6 +383,15 @@ void mousePressed()
 
 void keyPressed()
 {
+  if(state == 3)
+  {
+    if(key == 'z')
+    {
+      state = 0;
+      particles = new ArrayList<Particle>();
+      snowMen = new ArrayList<SnowMan>();
+    }
+  }
   if(state == 0)
   {
     if(key == ' ')
@@ -544,6 +569,7 @@ void keyPressed()
       saveScore(name);
       state = 3;
       gun = new Gun(width/2, height/2, 0);
+      calculateScoreBord();
     }
   }
 }
@@ -554,6 +580,41 @@ void saveScore(String name)
   JSONObject value = new JSONObject();
   value.setString("name", name);
   value.setInt("score", score);
+  value.setInt("ID", scores.size());
   scores.setJSONObject(scores.size(), value);
   saveJSONArray(scores, "data/scores.json");
+}
+
+void calculateScoreBord()
+{
+  JSONArray scores = loadJSONArray("data/scores.json");
+  PVector[] scoreBord = new PVector[scores.size()];
+  for(int i = 0; i < scores.size(); i++)
+  {
+    scoreBord[i] = new PVector();
+    scoreBord[i].x = scores.getJSONObject(i).getInt("score");
+    scoreBord[i].y = scores.getJSONObject(i).getInt("ID");
+  }
+  for(int i = 0; i < scoreBord.length - 1; i++)
+  {
+    if(!(scoreBord[i + 1].x > scoreBord[i].x))
+    {
+      PVector temp = new PVector(scoreBord[i].x, scoreBord[i].y);
+      scoreBord[i] = scoreBord[i + 1];
+      scoreBord[i + 1] = temp;
+    }
+  }
+  //PVector[] temp = new PVector[scoreBord.length];
+  //for(int i = 0; i < scoreBord.length - 1; i++)
+  //{
+  //  temp[i] = scoreBord[scoreBord.length - i - 1];
+  //}
+  //scoreBord = temp;
+  scoreBordScores = new int[scoreBord.length];
+  scoreBordNames = new String[scoreBord.length];
+  for(int i = 0; i < scoreBordNames.length; i++)
+  {
+    scoreBordScores[i] = (int) scoreBord[i].x;
+    scoreBordNames[i] = scores.getJSONObject((int) scoreBord[i].y).getString("name");
+  }
 }
