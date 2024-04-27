@@ -36,8 +36,8 @@ JSONArray scores = null;
 int selectedKey = 1;
 String name = new String();
 
-float[] textPosX = new float[66];
-float[] textPosY = new float[66];
+float[] textPosX = new float[108];
+float[] textPosY = new float[108];
 int textBlinkTime = 10;
 int[] scoreBordScores;
 String[] scoreBordNames;
@@ -159,7 +159,18 @@ void draw()
     }
        
     textSize(100);
-    text(score, width/2, 100);
+    textPosX[99] = random(-20, 20);
+    textPosY[99] = random(-20, 20);
+    fill(#0000cc, 100);
+    text(score, width/2 + textPosX[99], 100 + textPosY[99]);
+    textPosX[100] = random(-20, 20);
+    textPosY[100] = random(-20, 20);
+    fill(#00cc00, 100);
+    text(score, width/2 + textPosX[100], 100 + textPosY[100]);
+    textPosX[101] = random(-10, 10);
+    textPosY[101] = random(-10, 10);
+    fill(#ff0000);
+    text(score, width/2 + textPosX[101], 100 + textPosY[101]);
   }
   else if(state == 1)
   {
@@ -300,6 +311,7 @@ void draw()
       text(name, width/2 - ((name.length() - 1) * 25) + 25, height/2 - 50);
       
       textSize(100);
+      
       text("please enter name", width/2 - 333, height/2 - 275);
       text("press start to play again", width/2 - 450, height/2 - 175);
     pop();
@@ -309,15 +321,23 @@ void draw()
     textPosX[0] = random(730, 770);
     textPosY[0] = random(280, 320);
     textSize(200);
-    fill(#cccccc, 200);
+    fill(#0000cc, 100);
     text("strange", textPosX[0], textPosY[0]);
     textPosX[1] = random(1280, 1320);
     textPosY[1] = random(530, 570);
     text("place", textPosX[1], textPosY[1]);
+    textPosX[66] = random(740, 760);
+    textPosY[66] = random(290, 310);
+    textSize(200);
+    fill(#00cc00, 100);
+    text("strange", textPosX[2], textPosY[2]);
+    textPosX[67] = random(1290, 1310);
+    textPosY[67] = random(540, 560);
+    text("place", textPosX[3], textPosY[3]);
     textPosX[2] = random(740, 760);
     textPosY[2] = random(290, 310);
     textSize(200);
-    fill(#ffffff);
+    fill(#ff0000);
     text("strange", textPosX[2], textPosY[2]);
     textPosX[3] = random(1290, 1310);
     textPosY[3] = random(540, 560);
@@ -331,12 +351,16 @@ void draw()
       textPosY[4] = random(1040, 1060);
       textBlinkTime = 40;
     }
-    fill(#cccccc, (((float) 20 - Math.abs(textBlinkTime - 20))/20) * 255);
+    fill(#0000cc, (((float) 20 - Math.abs(textBlinkTime - 20))/20) * 100);
     text("press start", textPosX[5], textPosY[5]);
-    fill(#ffffff, (((float) 20 - Math.abs(textBlinkTime - 20))/20) * 255);
+    fill(#00cc00, (((float) 20 - Math.abs(textBlinkTime - 20))/20) * 100);
+    text("press start", textPosX[68], textPosY[68]);
+    fill(#ff0000, (((float) 20 - Math.abs(textBlinkTime - 20))/20) * 255);
     text("press start", textPosX[4], textPosY[4]);
     textPosX[5] = random(990, 1010);
     textPosY[5] = random(1040, 1060);
+    textPosX[68] = random(990, 1010);
+    textPosY[68] = random(1040, 1060);
     
     gun.draw();
     
@@ -349,7 +373,7 @@ void draw()
         break;
       }
       
-      fill(#cccccc, 200);
+      fill(#0000cc, 100);
       textPosX[(i * 3) + 36] = random(-10, 10);
       textPosY[(i * 3) + 36] = random(-10, 10);
       textPosX[(i * 3) + 37] = random(-10, 10);
@@ -360,7 +384,18 @@ void draw()
       text(scoreBordScores[i], 850 + textPosX[i * 3 + 37], 450 + textPosY[i * 3 + 37] + i * 50);
       text(scoreBordNames[i], 875  + textPosX[i * 3 + 38] + String.valueOf(scoreBordScores[i]).length() * 25, 450 + textPosY[i * 3 + 38] + i * 50);
       
-      fill(#ffffff);
+      fill(#00cc00, 100);
+      textPosX[(i * 3) + 69] = random(-10, 10);
+      textPosY[(i * 3) + 69] = random(-10, 10);
+      textPosX[(i * 3) + 70] = random(-10, 10);
+      textPosY[(i * 3) + 70] = random(-10, 10);
+      textPosX[(i * 3) + 71] = random(-10, 10);
+      textPosY[(i * 3) + 71] = random(-10, 10);
+      text(i + 1, 800 - (i == 9 ? 25 : 0) + textPosX[i * 3 + 69], 450 + textPosY[i * 3 + 69] + i * 50);
+      text(scoreBordScores[i], 850 + textPosX[i * 3 + 70], 450 + textPosY[i * 3 + 70] + i * 50);
+      text(scoreBordNames[i], 875  + textPosX[i * 3 + 71] + String.valueOf(scoreBordScores[i]).length() * 25, 450 + textPosY[i * 3 + 71] + i * 50);
+      
+      fill(#ff0000);
       textPosX[(i * 3) + 6] = random(-5, 5);
       textPosY[(i * 3) + 6] = random(-5, 5);
       textPosX[(i * 3) + 7] = random(-5, 5);
