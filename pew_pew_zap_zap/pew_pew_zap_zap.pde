@@ -26,7 +26,7 @@ float noiseY = random(0, 1000);
 int newExplodeTime;
 int newSoundTime;
 
-int state = 3;
+int state = 2;
 int t;
 
 int score = 0;
@@ -312,8 +312,27 @@ void draw()
       
       textSize(100);
       
-      text("please enter name", width/2 - 333, height/2 - 275);
-      text("press start to play again", width/2 - 450, height/2 - 175);
+      fill(#0000cc, 100);
+      textPosX[102] = random(-20, 20);
+      textPosY[102] = random(-20, 20);
+      text("please enter name", width/2 - 333 + textPosX[102], height/2 - 275 + textPosY[102]);
+      textPosX[103] = random(-20, 20);
+      textPosY[103] = random(-20, 20);
+      text("press start to play again", width/2 - 450 + textPosX[103], height/2 - 175 + textPosY[103]);
+      fill(#00cc00, 100);
+      textPosX[104] = random(-20, 20);
+      textPosY[104] = random(-20, 20);
+      text("please enter name", width/2 - 333 + textPosX[104], height/2 - 275 + textPosY[104]);
+      textPosX[105] = random(-20, 20);
+      textPosY[105] = random(-20, 20);
+      text("press start to play again", width/2 - 450 + textPosX[105], height/2 - 175 + textPosY[105]);
+      fill(#ff0000);
+      textPosX[106] = random(-5, 5);
+      textPosY[106] = random(-5, 5);
+      text("please enter name", width/2 - 333 + textPosX[106], height/2 - 275 + textPosY[106]);
+      textPosX[107] = random(-5, 5);
+      textPosY[107] = random(-5, 5);
+      text("press start to play again", width/2 - 450 + textPosX[107], height/2 - 175 + textPosY[107]);
     pop();
   }
   else if(state == 3)
