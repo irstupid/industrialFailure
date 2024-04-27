@@ -595,21 +595,26 @@ void calculateScoreBord()
     scoreBord[i].x = scores.getJSONObject(i).getInt("score");
     scoreBord[i].y = scores.getJSONObject(i).getInt("ID");
   }
-  for(int i = 0; i < scoreBord.length - 1; i++)
+  for(int j = 0; j < scoreBord.length - 1; j++)
   {
-    if(!(scoreBord[i + 1].x > scoreBord[i].x))
+    for(int i = 0; i < scoreBord.length - 1; i++)
     {
-      PVector temp = new PVector(scoreBord[i].x, scoreBord[i].y);
-      scoreBord[i] = scoreBord[i + 1];
-      scoreBord[i + 1] = temp;
+      if(!(scoreBord[i + 1].x > scoreBord[i].x))
+      {
+        PVector temp = new PVector(scoreBord[i].x, scoreBord[i].y);
+        scoreBord[i] = scoreBord[i + 1];
+        scoreBord[i + 1] = temp;
+      }
     }
   }
-  //PVector[] temp = new PVector[scoreBord.length];
-  //for(int i = 0; i < scoreBord.length - 1; i++)
-  //{
-  //  temp[i] = scoreBord[scoreBord.length - i - 1];
-  //}
-  //scoreBord = temp;
+  
+  PVector[] temp = new PVector[scoreBord.length];
+  for(int i = 0; i < temp.length; i++)
+  {
+    temp[temp.length - i - 1] = scoreBord[i];
+  }
+  scoreBord = temp;
+  
   scoreBordScores = new int[scoreBord.length];
   scoreBordNames = new String[scoreBord.length];
   for(int i = 0; i < scoreBordNames.length; i++)
