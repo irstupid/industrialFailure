@@ -27,7 +27,7 @@ class Ball
   
   void update()
   {
-    velocity.add(acceleration);
+    velocity.add(acceleration.mult(mass));
     position.add(velocity);
     
     if(position.x < 0 + size/2 || position.x > width - size/2)
@@ -38,6 +38,26 @@ class Ball
     {
       velocity.y = velocity.y * -1;
     }
+    
+    position.x = constrain(position.x, size/2, width - size/2);
+    position.y = constrain(position.y, size/2, height - size/2);
+    
+    //if(position.x > width/2)
+    //{
+    //  acceleration.x = 0.02;
+    //}
+    //if(position.x < width/2)
+    //{
+    //  acceleration.x = -0.02;
+    //}
+    //if(position.y > height/2)
+    //{
+    //  acceleration.y = 0.02;
+    //}
+    //if(position.y < height/2)
+    //{
+    //  acceleration.y = -0.02;
+    //}
   }
   
   void paint()

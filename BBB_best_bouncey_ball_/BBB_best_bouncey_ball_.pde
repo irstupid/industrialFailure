@@ -3,8 +3,8 @@ ArrayList<Ball> balls /* haha */ = new ArrayList<Ball>();
 void setup()
 {
   size(800, 800);
-  balls.add(new Ball(width/2, height/2, 5, 3, 100, 10));
-  balls.add(new Ball(100, 100, 3, -5, 50, 20));
+  balls.add(new Ball(width/2, height/2, 5, 3, 100, 20));
+  balls.add(new Ball(100, 100, 3, -5, 50, 10));
 }
 
 void draw()
