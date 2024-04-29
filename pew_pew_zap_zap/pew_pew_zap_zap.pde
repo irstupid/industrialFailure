@@ -111,7 +111,7 @@ void draw()
     difficultyUpTime--;
     if(difficultyUpTime <= 0)
   {
-    difficultyUpTime = 30 + floor(difficulty/2 - 30);
+    difficultyUpTime = 60 + floor(difficulty/2 - 30);
     difficulty++;
   }
   
