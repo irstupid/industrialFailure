@@ -26,7 +26,7 @@ float noiseY = random(0, 1000);
 int newExplodeTime;
 int newSoundTime;
 
-int state = 2;
+int state = 3;
 int t;
 
 int score = 0;
@@ -41,6 +41,8 @@ float[] textPosY = new float[108];
 int textBlinkTime = 10;
 int[] scoreBordScores;
 String[] scoreBordNames;
+
+boolean arcade = true;
 
 void setup()
 {
@@ -107,9 +109,9 @@ void draw()
   if(state == 0)
   {
     difficultyUpTime--;
-    if(difficultyUpTime <= 0 && difficulty < 75)
+    if(difficultyUpTime <= 0)
   {
-    difficultyUpTime = 30;
+    difficultyUpTime = 30 + floor(difficulty/2 - 30);
     difficulty++;
   }
   
@@ -448,7 +450,11 @@ void keyPressed()
   }
   if(state == 0)
   {
-    if(key == ' ')
+    if(key == '1')
+    {
+      gun.shoot();
+    }
+    if(key == '4')
     {
       gun.type++;
       if(gun.type > 3)
@@ -456,19 +462,19 @@ void keyPressed()
         gun.type = 0;
       }
     }
-    if(key == '1')
+    if(key == '2')
     {
       gun.type = 0;
     }
-    if(key == '2')
+    if(key == '3')
     {
       gun.type = 1;
     }
-    if(key == '3')
+    if(key == '5')
     {
       gun.type = 2;
     }
-    if(key == '4')
+    if(key == '6')
     {
       gun.type = 3;
     }
@@ -625,6 +631,27 @@ void keyPressed()
       gun = new Gun(width/2, height/2, 0);
       calculateScoreBord();
     }
+  }
+  
+  if(key == 'a')
+  {
+    gun.rotateDirection -= 1;
+  }
+  if(key == 'd')
+  {
+    gun.rotateDirection += 1;
+  }
+}
+
+void keyReleased()
+{
+  if(key == 'a')
+  {
+    gun.rotateDirection += 1;
+  }
+  if(key == 'd')
+  {
+    gun.rotateDirection -= 1;
   }
 }
 

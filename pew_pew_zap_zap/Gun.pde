@@ -11,9 +11,10 @@ class Gun
   ArrayList<Missile> missiles = new ArrayList<Missile>();
   ArrayList<FastBullet> fastBullets = new ArrayList<FastBullet>();
   
-  
-  
   int reloadTime;
+  
+  float rotateSpeed = 5;
+  float rotateDirection;
   
   Gun(float x, float y, int type)
   {
@@ -24,7 +25,14 @@ class Gun
   
   void draw()
   {
-    r = -atan2(mouseX - x, mouseY - y) + radians(90);
+    if(!arcade)
+    {
+      r = -atan2(mouseX - x, mouseY - y) + radians(90);
+    }
+    else
+    {
+      r += rotateDirection * radians(rotateSpeed);
+    }
     
     for(int i = 0; i < bullets.size(); i++)
     {
