@@ -446,6 +446,7 @@ void keyPressed()
       state = 0;
       particles = new ArrayList<Particle>();
       snowMen = new ArrayList<SnowMan>();
+      score = 0;
     }
   }
   if(state == 0)
