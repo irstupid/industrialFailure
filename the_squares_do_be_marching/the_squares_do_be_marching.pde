@@ -1,9 +1,11 @@
-float res = 8;
+float res = 50;
 float[][] points;
+float offsetX;
+float offsetY;
 
 void setup()
 {
-  size(1000, 800, P2D);
+  size(1000, 1000, P2D);
   points = new float[floor(width/res) + 1][floor(height/res) + 1];
   
   for(int i = 0; i < points.length; i++)
@@ -19,12 +21,32 @@ void setup()
 
 void draw()
 {
+  background(#000000);
   for(int i = 0; i < points.length; i++)
   {
     for(int j = 0; j < points[i].length; j++)
     {
-      stroke(points[i][j] * 255);
-      point(i * res, j * res);
+      points[i][j] = noise((i + offsetX)/2, (j + offsetY)/2);
+    }
+  }
+  
+  if(keyPressed)
+  {
+    if(key == 'w')
+    {
+      offsetY -= 1;
+    }
+    if(key == 's')
+    {
+      offsetY += 1;
+    }
+    if(key == 'a')
+    {
+      offsetX -= 1;
+    }
+    if(key == 'd')
+    {
+      offsetX += 1;
     }
   }
   
@@ -66,8 +88,35 @@ void theSquaresBeMarching(float threshold)
           line(i * res + (res * 3)/4, j * res + res, i * res + res, j * res + (res * 3)/4);
           line(i * res, j * res + res/4, i * res + res/4, j * res);
           break;
+        case 6: 
+          line(i * res + (res * 3)/4, j * res, i * res + (res * 3)/4, j * res + res);
+          break;
+        case 7: 
+          line(i * res, j * res + res/4, i * res + (res * 3)/4, j * res + res);
+          break;
         case 8:  
           line(i * res, j * res + (res * 3)/4, i * res + res/4, j * res + res);
+          break;
+        case 9: 
+          line(i * res + res/4, j * res, i * res + res/4, j * res + res);
+          break;
+        case 10: 
+          line(i * res + (res * 3)/4, j * res, i * res + res, j * res + res/4);
+          line(i * res, j * res + (res * 3)/4, i * res + res/4, j * res + res);
+          break;
+        case 11: 
+          line(i * res + res/4, j * res + res, i * res + res, j * res + res/4);
+          break;
+        case 12: 
+          line(i * res, j * res + (res * 3)/4, i * res + res, j * res + (res * 3)/4);
+          break;
+        case 13: 
+          line(i * res + res/4, j * res, i * res + res, j * res + (res * 3)/4);
+          break;
+        case 14: 
+          line(i * res, j * res + (res * 3)/4, i * res + (res * 3)/4, j * res);
+          break;
+        case 15:
           break;
       }
     }
