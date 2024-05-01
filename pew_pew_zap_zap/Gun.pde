@@ -109,7 +109,7 @@ class Gun
     }
     else
     {
-      if(mousePressed)
+      if(shooting)
       {
         reloadTime--;
         if(reloadTime <= 0)

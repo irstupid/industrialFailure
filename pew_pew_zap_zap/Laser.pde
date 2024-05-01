@@ -71,7 +71,7 @@ class Laser
       }
     pop();
     
-    if(bounces > 5)
+    if(bounces > 3)
     {
       die();
     }

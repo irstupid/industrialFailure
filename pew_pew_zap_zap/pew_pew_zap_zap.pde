@@ -43,6 +43,7 @@ int[] scoreBordScores;
 String[] scoreBordNames;
 
 boolean arcade = true;
+boolean shooting = false;
 
 void setup()
 {
@@ -447,12 +448,14 @@ void keyPressed()
       particles = new ArrayList<Particle>();
       snowMen = new ArrayList<SnowMan>();
       score = 0;
+      difficulty = 0;
     }
   }
   if(state == 0)
   {
     if(key == '1')
     {
+      shooting = true;
       gun.shoot();
     }
     if(key == '4')
@@ -653,6 +656,10 @@ void keyReleased()
   if(key == 'd')
   {
     gun.rotateDirection -= 1;
+  }
+  if(key == '1')
+  {
+    shooting = false;
   }
 }
 
