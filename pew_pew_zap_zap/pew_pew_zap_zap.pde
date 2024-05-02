@@ -340,49 +340,49 @@ void draw()
   }
   else if(state == 3)
   {
-    textPosX[0] = random(730, 770);
-    textPosY[0] = random(280, 320);
+    textPosX[0] = random(-20, 20);
+    textPosY[0] = random(-20, 20);
     textSize(200);
     fill(#0000cc, 100);
-    text("strange", textPosX[0], textPosY[0]);
-    textPosX[1] = random(1280, 1320);
-    textPosY[1] = random(530, 570);
-    text("place", textPosX[1], textPosY[1]);
-    textPosX[66] = random(740, 760);
-    textPosY[66] = random(290, 310);
+    text("strange", (width * 8)/27 + textPosX[0], height/5 + textPosY[0]);
+    textPosX[1] = random(-20, 20);
+    textPosY[1] = random(-20, 20);
+    text("place", width/2 + textPosX[1], (height * 11)/30 + textPosY[1]);
+    textPosX[66] = random(-20, 20);
+    textPosY[66] = random(-20, 20);
     textSize(200);
     fill(#00cc00, 100);
-    text("strange", textPosX[2], textPosY[2]);
-    textPosX[67] = random(1290, 1310);
-    textPosY[67] = random(540, 560);
-    text("place", textPosX[3], textPosY[3]);
-    textPosX[2] = random(740, 760);
-    textPosY[2] = random(290, 310);
+    text("strange", (width * 8)/27 + textPosX[66], height/5 + textPosY[66]);
+    textPosX[67] = random(-20, 20);
+    textPosY[67] = random(-20, 20);
+    text("place", width/2 + textPosX[67], (height * 11)/30 + textPosY[67]);
+    textPosX[2] = random(-10, 10);
+    textPosY[2] = random(-10, 10);
     textSize(200);
     fill(#ff0000);
-    text("strange", textPosX[2], textPosY[2]);
-    textPosX[3] = random(1290, 1310);
-    textPosY[3] = random(540, 560);
-    text("place", textPosX[3], textPosY[3]);
+    text("strange", (width * 8)/27 + textPosX[2], height/5 + textPosY[2]);
+    textPosX[3] = random(-10, 10);
+    textPosY[3] = random(-10, 10);
+    text("place", width/2 + textPosX[3], (height * 11)/30 + textPosY[3]);
     
     textSize(100);
     textBlinkTime--;
     if(textBlinkTime < 0)
     {
-      textPosX[4] = random(990, 1010);
-      textPosY[4] = random(1040, 1060);
+      textPosX[4] = random(-10, 10);
+      textPosY[4] = random(-10, 10);
       textBlinkTime = 40;
     }
     fill(#0000cc, (((float) 20 - Math.abs(textBlinkTime - 20))/20) * 100);
-    text("press start", textPosX[5], textPosY[5]);
+    text("press start", (width * 19)/48 + textPosX[5], (height * 23)/32 + textPosY[5]);
     fill(#00cc00, (((float) 20 - Math.abs(textBlinkTime - 20))/20) * 100);
-    text("press start", textPosX[68], textPosY[68]);
+    text("press start", (width * 19)/48 + textPosX[68], (height * 23)/32 + textPosY[68]);
     fill(#ff0000, (((float) 20 - Math.abs(textBlinkTime - 20))/20) * 255);
-    text("press start", textPosX[4], textPosY[4]);
-    textPosX[5] = random(990, 1010);
-    textPosY[5] = random(1040, 1060);
-    textPosX[68] = random(990, 1010);
-    textPosY[68] = random(1040, 1060);
+    text("press start", (width * 19)/48 + textPosX[4], (height * 23)/32 + textPosY[4]);
+    textPosX[5] = random(-20, 20);
+    textPosY[5] = random(-20, 20);
+    textPosX[68] = random(-20, 20);
+    textPosY[68] = random(-20, 20);
     
     gun.draw();
     
@@ -402,9 +402,9 @@ void draw()
       textPosY[(i * 3) + 37] = random(-10, 10);
       textPosX[(i * 3) + 38] = random(-10, 10);
       textPosY[(i * 3) + 38] = random(-10, 10);
-      text(i + 1, 800 - (i == 9 ? 25 : 0) + textPosX[i * 3 + 36], 450 + textPosY[i * 3 + 36] + i * 50);
-      text(scoreBordScores[i], 850 + textPosX[i * 3 + 37], 450 + textPosY[i * 3 + 37] + i * 50);
-      text(scoreBordNames[i], 875  + textPosX[i * 3 + 38] + String.valueOf(scoreBordScores[i]).length() * 25, 450 + textPosY[i * 3 + 38] + i * 50);
+      text(i + 1, (width * 5)/16 - (i == 9 ? 25 : 0) + textPosX[i * 3 + 36], (height * 3)/10 + textPosY[i * 3 + 36] + i * 50);
+      text(scoreBordScores[i], (width * 5)/16 + 50 + textPosX[i * 3 + 37], (height * 3)/10 + textPosY[i * 3 + 37] + i * 50);
+      text(scoreBordNames[i], (width * 5)/16 + 75 + textPosX[i * 3 + 38] + String.valueOf(scoreBordScores[i]).length() * 25, (height * 3)/10 + textPosY[i * 3 + 38] + i * 50);
       
       fill(#00cc00, 100);
       textPosX[(i * 3) + 69] = random(-10, 10);
@@ -413,9 +413,9 @@ void draw()
       textPosY[(i * 3) + 70] = random(-10, 10);
       textPosX[(i * 3) + 71] = random(-10, 10);
       textPosY[(i * 3) + 71] = random(-10, 10);
-      text(i + 1, 800 - (i == 9 ? 25 : 0) + textPosX[i * 3 + 69], 450 + textPosY[i * 3 + 69] + i * 50);
-      text(scoreBordScores[i], 850 + textPosX[i * 3 + 70], 450 + textPosY[i * 3 + 70] + i * 50);
-      text(scoreBordNames[i], 875  + textPosX[i * 3 + 71] + String.valueOf(scoreBordScores[i]).length() * 25, 450 + textPosY[i * 3 + 71] + i * 50);
+      text(i + 1, (width * 5)/16 - (i == 9 ? 25 : 0) + textPosX[i * 3 + 69], (height * 3)/10 + textPosY[i * 3 + 69] + i * 50);
+      text(scoreBordScores[i], (width * 5)/16 + 50 + textPosX[i * 3 + 70], (height * 3)/10 + textPosY[i * 3 + 70] + i * 50);
+      text(scoreBordNames[i], (width * 5)/16 + 75 + textPosX[i * 3 + 71] + String.valueOf(scoreBordScores[i]).length() * 25, (height * 3)/10 + textPosY[i * 3 + 71] + i * 50);
       
       fill(#ff0000);
       textPosX[(i * 3) + 6] = random(-5, 5);
@@ -424,9 +424,9 @@ void draw()
       textPosY[(i * 3) + 7] = random(-5, 5);
       textPosX[(i * 3) + 8] = random(-5, 5);
       textPosY[(i * 3) + 8] = random(-5, 5);
-      text(i + 1, 800 - (i == 9 ? 25 : 0) + textPosX[i * 3 + 6], 450 + textPosY[i * 3 + 6] + i * 50);
-      text(scoreBordScores[i], 850 + textPosX[i * 3 + 7], 450 + textPosY[i * 3 + 7] + i * 50);
-      text(scoreBordNames[i], 875  + textPosX[i * 3 + 8] + String.valueOf(scoreBordScores[i]).length() * 25, 450 + textPosY[i * 3 + 8] + i * 50);
+      text(i + 1, (width * 5)/16 - (i == 9 ? 25 : 0) + textPosX[i * 3 + 6], (height * 3)/10 + textPosY[i * 3 + 6] + i * 50);
+      text(scoreBordScores[i], (width * 5)/16 + 50 + textPosX[i * 3 + 7], (height * 3)/10 + textPosY[i * 3 + 7] + i * 50);
+      text(scoreBordNames[i], (width * 5)/16 + 75 + textPosX[i * 3 + 8] + String.valueOf(scoreBordScores[i]).length() * 25, (height * 3)/10 + textPosY[i * 3 + 8] + i * 50);
     }
   }
 }
