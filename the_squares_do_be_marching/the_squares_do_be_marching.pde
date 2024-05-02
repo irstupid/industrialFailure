@@ -1,11 +1,14 @@
-float res = 50;
+float res = 5;
 float[][] points;
 float offsetX;
 float offsetY;
 
+int c;
+
 void setup()
 {
   size(1000, 1000, P2D);
+  colorMode(HSB);
   points = new float[floor(width/res) + 1][floor(height/res) + 1];
   
   for(int i = 0; i < points.length; i++)
@@ -26,29 +29,13 @@ void draw()
   {
     for(int j = 0; j < points[i].length; j++)
     {
-      points[i][j] = noise((i + offsetX)/2, (j + offsetY)/2);
+      //points[i][j] = noise((i + offsetX)/2, (j + offsetY)/2);
+      points[i][j] = noise((i + random(-100, 100))/2, (j + random(-100, 100))/2);
     }
   }
   
-  if(keyPressed)
-  {
-    if(key == 'w')
-    {
-      offsetY -= 1;
-    }
-    if(key == 's')
-    {
-      offsetY += 1;
-    }
-    if(key == 'a')
-    {
-      offsetX -= 1;
-    }
-    if(key == 'd')
-    {
-      offsetX += 1;
-    }
-  }
+  offsetX += (float) (mouseX - width/2)/200;
+  offsetY += (float) (mouseY - height/2)/200;
   
   theSquaresBeMarching(0.5);
 }
@@ -66,8 +53,13 @@ void theSquaresBeMarching(float threshold)
       (4 * (points[i + 1][j + 1] > threshold ? 1 : 0)) +
       (8 * (points[i][j + 1] > threshold ? 1 : 0));
       
-      //point(i * res + res/2, j * res + res/2);
-      stroke(#ff0000);
+      //c++;
+      //if(c > 255)
+      //{
+      //  c = 0;
+      //}
+      c = (int) random(0, 255);
+      stroke(color(c, 255, 255));
       switch(squares[i][j]) 
       {
         case 0:
