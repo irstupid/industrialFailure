@@ -58,7 +58,8 @@ void theSquaresBeMarching(float threshold)
       //{
       //  c = 0;
       //}
-      c = (int) random(0, 255);
+      c = round(random(0, 4)) * 50;
+      
       stroke(color(c, 255, 255));
       switch(squares[i][j]) 
       {
