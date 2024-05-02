@@ -21,17 +21,17 @@ class SnowMan
     if(type == 1)
     {
       maxHealth = 50;
-      speed = 1;
+      speed = 0.75;
     }
     if(type == 2)
     {
       maxHealth = 75;
-      speed = 1.25;
+      speed = 1;
     }
     if(type == 3)
     {
       maxHealth = 100;
-      speed = 1.5;
+      speed = 1;
     }
     
     health = maxHealth;
