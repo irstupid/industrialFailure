@@ -374,11 +374,11 @@ void draw()
       textBlinkTime = 40;
     }
     fill(#0000cc, (((float) 20 - Math.abs(textBlinkTime - 20))/20) * 100);
-    text("press start", (width * 19)/48 + textPosX[5], (height * 23)/32 + textPosY[5]);
+    text("press start", (width * 19)/48 + textPosX[5], (height * 26)/32 + textPosY[5]);
     fill(#00cc00, (((float) 20 - Math.abs(textBlinkTime - 20))/20) * 100);
-    text("press start", (width * 19)/48 + textPosX[68], (height * 23)/32 + textPosY[68]);
+    text("press start", (width * 19)/48 + textPosX[68], (height * 26)/32 + textPosY[68]);
     fill(#ff0000, (((float) 20 - Math.abs(textBlinkTime - 20))/20) * 255);
-    text("press start", (width * 19)/48 + textPosX[4], (height * 23)/32 + textPosY[4]);
+    text("press start", (width * 19)/48 + textPosX[4], (height * 26)/32 + textPosY[4]);
     textPosX[5] = random(-20, 20);
     textPosY[5] = random(-20, 20);
     textPosX[68] = random(-20, 20);
@@ -402,9 +402,9 @@ void draw()
       textPosY[(i * 3) + 37] = random(-10, 10);
       textPosX[(i * 3) + 38] = random(-10, 10);
       textPosY[(i * 3) + 38] = random(-10, 10);
-      text(i + 1, (width * 5)/16 - (i == 9 ? 25 : 0) + textPosX[i * 3 + 36], (height * 3)/10 + textPosY[i * 3 + 36] + i * 50);
-      text(scoreBordScores[i], (width * 5)/16 + 50 + textPosX[i * 3 + 37], (height * 3)/10 + textPosY[i * 3 + 37] + i * 50);
-      text(scoreBordNames[i], (width * 5)/16 + 75 + textPosX[i * 3 + 38] + String.valueOf(scoreBordScores[i]).length() * 25, (height * 3)/10 + textPosY[i * 3 + 38] + i * 50);
+      text(i + 1, width/4 - (i == 9 ? 25 : 0) + textPosX[i * 3 + 36], (height * 3)/10 + textPosY[i * 3 + 36] + i * 50);
+      text(scoreBordScores[i], width/4 + 50 + textPosX[i * 3 + 37], (height * 3)/10 + textPosY[i * 3 + 37] + i * 50);
+      text(scoreBordNames[i], width/4 + 75 + textPosX[i * 3 + 38] + String.valueOf(scoreBordScores[i]).length() * 25, (height * 3)/10 + textPosY[i * 3 + 38] + i * 50);
       
       fill(#00cc00, 100);
       textPosX[(i * 3) + 69] = random(-10, 10);
@@ -413,10 +413,10 @@ void draw()
       textPosY[(i * 3) + 70] = random(-10, 10);
       textPosX[(i * 3) + 71] = random(-10, 10);
       textPosY[(i * 3) + 71] = random(-10, 10);
-      text(i + 1, (width * 5)/16 - (i == 9 ? 25 : 0) + textPosX[i * 3 + 69], (height * 3)/10 + textPosY[i * 3 + 69] + i * 50);
-      text(scoreBordScores[i], (width * 5)/16 + 50 + textPosX[i * 3 + 70], (height * 3)/10 + textPosY[i * 3 + 70] + i * 50);
-      text(scoreBordNames[i], (width * 5)/16 + 75 + textPosX[i * 3 + 71] + String.valueOf(scoreBordScores[i]).length() * 25, (height * 3)/10 + textPosY[i * 3 + 71] + i * 50);
-      
+      text(i + 1, width/4 - (i == 9 ? 25 : 0) + textPosX[i * 3 + 69], (height * 3)/10 + textPosY[i * 3 + 69] + i * 50);
+      text(scoreBordScores[i], width/4 + 50 + textPosX[i * 3 + 70], (height * 3)/10 + textPosY[i * 3 + 70] + i * 50);
+      text(scoreBordNames[i], width/4 + 75 + textPosX[i * 3 + 71] + String.valueOf(scoreBordScores[i]).length() * 25, (height * 3)/10 + textPosY[i * 3 + 71] + i * 50);
+    
       fill(#ff0000);
       textPosX[(i * 3) + 6] = random(-5, 5);
       textPosY[(i * 3) + 6] = random(-5, 5);
@@ -424,9 +424,9 @@ void draw()
       textPosY[(i * 3) + 7] = random(-5, 5);
       textPosX[(i * 3) + 8] = random(-5, 5);
       textPosY[(i * 3) + 8] = random(-5, 5);
-      text(i + 1, (width * 5)/16 - (i == 9 ? 25 : 0) + textPosX[i * 3 + 6], (height * 3)/10 + textPosY[i * 3 + 6] + i * 50);
-      text(scoreBordScores[i], (width * 5)/16 + 50 + textPosX[i * 3 + 7], (height * 3)/10 + textPosY[i * 3 + 7] + i * 50);
-      text(scoreBordNames[i], (width * 5)/16 + 75 + textPosX[i * 3 + 8] + String.valueOf(scoreBordScores[i]).length() * 25, (height * 3)/10 + textPosY[i * 3 + 8] + i * 50);
+      text(i + 1, width/4 - (i == 9 ? 25 : 0) + textPosX[i * 3 + 6], (height * 3)/10 + textPosY[i * 3 + 6] + i * 50);
+      text(scoreBordScores[i], width/4 + 50 + textPosX[i * 3 + 7], (height * 3)/10 + textPosY[i * 3 + 7] + i * 50);
+      text(scoreBordNames[i], width/4 + 75 + textPosX[i * 3 + 8] + String.valueOf(scoreBordScores[i]).length() * 25, (height * 3)/10 + textPosY[i * 3 + 8] + i * 50);
     }
   }
 }
@@ -457,29 +457,24 @@ void keyPressed()
     {
       shooting = true;
       gun.shoot();
-    }
-    if(key == '4')
-    {
-      gun.type++;
-      if(gun.type > 3)
-      {
-        gun.type = 0;
-      }
+      gun.type = 0;
     }
     if(key == '2')
     {
-      gun.type = 0;
+      shooting = true;
+      gun.shoot();
+      gun.type = 1;
     }
     if(key == '3')
     {
-      gun.type = 1;
-    }
-    if(key == '5')
-    {
+      shooting = true;
+      gun.shoot();
       gun.type = 2;
     }
-    if(key == '6')
+    if(key == '4')
     {
+      shooting = true;
+      gun.shoot();
       gun.type = 3;
     }
   }
