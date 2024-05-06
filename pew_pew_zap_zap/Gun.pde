@@ -31,6 +31,29 @@ class Gun
     }
     else
     {
+      if(aDown)
+      {
+        rotateDirection -= 0.07;
+      }
+      else if(dDown)
+      {
+        rotateDirection += 0.07;
+      }
+      else
+      {
+        if(rotateDirection != 0)
+        {
+          rotateDirection = 0;
+        }
+      }
+      if(rotateDirection > 2)
+      {
+        rotateDirection = 2;
+      }
+      if(rotateDirection < -2)
+      {
+        rotateDirection = -2;
+      }
       r += rotateDirection * radians(rotateSpeed);
     }
     

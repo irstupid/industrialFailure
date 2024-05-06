@@ -44,6 +44,8 @@ String[] scoreBordNames;
 
 boolean arcade = true;
 boolean shooting = false;
+boolean aDown;
+boolean dDown;
 
 void setup()
 {
@@ -634,11 +636,11 @@ void keyPressed()
   
   if(key == 'a')
   {
-    gun.rotateDirection -= 1;
+    aDown = true;
   }
   if(key == 'd')
   {
-    gun.rotateDirection += 1;
+    dDown = true;
   }
 }
 
@@ -646,13 +648,25 @@ void keyReleased()
 {
   if(key == 'a')
   {
-    gun.rotateDirection += 1;
+    aDown = false;
   }
   if(key == 'd')
   {
-    gun.rotateDirection -= 1;
+    dDown = false;
   }
   if(key == '1')
+  {
+    shooting = false;
+  }
+  if(key == '2')
+  {
+    shooting = false;
+  }
+  if(key == '3')
+  {
+    shooting = false;
+  }
+  if(key == '4')
   {
     shooting = false;
   }
