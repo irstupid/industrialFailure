@@ -12,29 +12,92 @@ void setup()
 
 void draw()
 {
-  background(90);
-  funnySpinnyThing();
-  
   if(state == 0)
   {
-    centerR++;
-    edgeR++;
+    centerR += 1;
+    edgeR += 1;
+    orbitR += 0;
+    ballOrbit = true;
+    ballR += 4;
     
-    if(centerR >= 90)
+    if(ballR >= 360)
     {
       state = 1;
     }
   }
   if(state == 1)
   {
-    centerR--;
-    edgeR--;
+    centerR += 0;
+    edgeR -= 1;
+    orbitR += 1;
+    ballOrbit = false;
+    ballR -= 4;
     
-    if(centerR <= 0)
+    if(orbitR >= 90)
     {
-      state = 0;
+      ballR = 90;
+      state = 2;
     }
   }
+  if(state == 2)
+  {
+    centerR += 1.33333;
+    edgeR += 1.333333;
+    orbitR += 0;
+    ballOrbit = true;
+    ballR += 5;
+    
+    if(ballR >= 450)
+    {
+      ballR = 0;
+      state = 3;
+    }
+  }
+  if(state == 3)
+  {
+    centerR += 0;
+    edgeR -= 1;
+    orbitR += 1;
+    ballOrbit = false;
+    ballR -= 4;
+    
+    if(orbitR >= 180)
+    {
+      ballR = 180;
+      state = 4;
+    }
+  }
+  if(state == 4)
+  {
+    centerR += 1.33333;
+    edgeR += 1.33333;
+    orbitR += 0;
+    ballOrbit = true;
+    ballR += 5;
+    
+    if(ballR >= 540)
+    {
+      ballR = 0;
+      state = 5;
+    }
+  }
+  if(state == 5)
+  {
+    centerR += 0;
+    edgeR -= 1;
+    orbitR += 1;
+    ballOrbit = false;
+    ballR -= 4;
+    
+    if(orbitR >= 270)
+    {
+      ballR = 180;
+      state = 6;
+    }
+  }
+  
+  background(90);
+  funnySpinnyThing();
 }
 
 void funnySpinnyThing()
@@ -62,14 +125,15 @@ void funnySpinnyThing()
   pop();
   
   push();
+    noStroke();
     translate(width/2, height/2);
     if(!ballOrbit)
     {
       rotate(radians(orbitR));
       translate((width * 5)/24, 0);
     }
-    rotate(radians(ballR));
-    translate(width/4 + width/48, 0);
+    rotate(radians(ballR) + radians(ballOrbit ? 0 : 180));
+    translate(width/8 - width/48, 0);
     fill(#cccccc);
     ellipse(0, 0, width/24, height/24);
   pop();
