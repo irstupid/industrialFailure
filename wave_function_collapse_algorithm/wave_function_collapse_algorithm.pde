@@ -17,7 +17,7 @@ void draw()
   
 }
 
-void makeTiles(int size)
+void makeTiles(int size) //generate the array of images corosponding to tiles
 {
   tiles = new PImage[tileSet.width + (tileSet.height * floor(tileSet.width/size))];
   
@@ -33,7 +33,12 @@ void makeTiles(int size)
   }
 }
 
-void TheAlmightyWaveFunctionCollapseAllogorithm()
+void loadTileDependencys(String name) //load tile data from a JSON
+{
+  
+}
+
+void TheAlmightyWaveFunctionCollapseAllogorithm() //ALL PRAISE THE ALMIGHTY WAVE FUNCTION COLLAPSE ALGORITHM
 {
   
 }
