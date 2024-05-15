@@ -35,7 +35,12 @@ void makeTiles(int size) //generate the array of images corosponding to tiles
 
 void loadTileDependencys(String name) //load tile data from a JSON
 {
-  
+  JSONArray rawData = loadJSONArray("tiles[data].json");
+  tileDependencys = new int[tiles.length][4][];
+  for(int i = 0; i < tileDependencys.length; i++)
+  {
+    rawData.getJSONObject(i).getInt("up" + i);
+  }
 }
 
 void TheAlmightyWaveFunctionCollapseAllogorithm() //ALL PRAISE THE ALMIGHTY WAVE FUNCTION COLLAPSE ALGORITHM
