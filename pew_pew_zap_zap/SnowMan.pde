@@ -65,7 +65,7 @@ class SnowMan
         if(dist(gun.lasers.get(i).x[0], gun.lasers.get(i).y[0], x, y) < 25 && pHealth == health && pPHealth == pHealth)
         {
           health -= gun.lasers.get(i).damage;
-          gun.lasers.get(i).bounces--;          
+          gun.lasers.get(i).bounces++;          
         }
       }
       
@@ -130,7 +130,7 @@ class SnowMan
         if((dist(gun.lasers.get(i).x[0], gun.lasers.get(i).y[0], x, y -25) < 25 || dist(gun.lasers.get(i).x[0], gun.lasers.get(i).y[0], x, y + 30) < 30) && pHealth == health && pPHealth == pHealth)
         {
           health -= gun.lasers.get(i).damage;
-          gun.lasers.get(i).bounces--;          
+          gun.lasers.get(i).bounces++;          
         }
       }
       
@@ -197,7 +197,7 @@ class SnowMan
         if((dist(gun.lasers.get(i).x[0], gun.lasers.get(i).y[0], x, y -25) < 25 || dist(gun.lasers.get(i).x[0], gun.lasers.get(i).y[0], x, y + 30) < 30) && pHealth == health && pPHealth == pHealth)
         {
           health -= gun.lasers.get(i).damage;
-          gun.lasers.get(i).bounces--;          
+          gun.lasers.get(i).bounces++;          
         }
       }
       

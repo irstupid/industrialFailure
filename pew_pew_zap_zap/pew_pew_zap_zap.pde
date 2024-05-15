@@ -128,29 +128,32 @@ void draw()
     spawnTime--;
     if(spawnTime <= 0)
     {
+      for(int i = spawnTime; i < 0; i++)
+      {
+        if(random(0, 2) > 1)
+        {
+          if(random(0, 2) > 1)
+          {
+            snowMen.add(new SnowMan((int) random(1, 3.5), 0, random(0, height)));
+          }
+          else
+          {
+            snowMen.add(new SnowMan((int) random(1, 3.5), width, random(0, height)));
+          }
+        }
+        else
+        {
+          if(random(0, 2) > 1)
+          {
+            snowMen.add(new SnowMan((int) random(1, 3.5), random(0, width), 0));
+          }
+          else
+          {
+            snowMen.add(new SnowMan((int) random(1, 3.5), random(0, width), height));
+          }
+        }
+      }
       spawnTime = (int) random(100 - difficulty, 150 - difficulty);
-      if(random(0, 2) > 1)
-      {
-        if(random(0, 2) > 1)
-        {
-          snowMen.add(new SnowMan((int) random(1, 3.5), 0, random(0, height)));
-        }
-        else
-        {
-          snowMen.add(new SnowMan((int) random(1, 3.5), width, random(0, height)));
-        }
-      }
-      else
-      {
-        if(random(0, 2) > 1)
-        {
-          snowMen.add(new SnowMan((int) random(1, 3.5), random(0, width), 0));
-        }
-        else
-        {
-          snowMen.add(new SnowMan((int) random(1, 3.5), random(0, width), height));
-        }
-      }
     }
     
     gun.draw();
