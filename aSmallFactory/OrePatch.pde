@@ -42,19 +42,28 @@ class OrePatch
     points.add(new PVector(x, y));
     for(int i = 1; i < 10;)
     {
+      //println("new point");
       PVector point;
       point = points.get(floor(random(0, points.size())));
       
       switch(floor(random(0, 4)))
       {
         case(0):
+          //println("x + 1");
           point = new PVector(point.x + 1, point.y);
+          break;
         case(1):
+          //println("x - 1");
           point = new PVector(point.x - 1, point.y);
+          break;
         case(2):
+          //println("y + 1");
           point = new PVector(point.x, point.y + 1);
+          break;
         case(3):
+          //println("y - 1");
           point = new PVector(point.x, point.y - 1);
+          break;
       }
       
       point.x = constrain(point.x, 0, 17);
@@ -62,10 +71,14 @@ class OrePatch
       
       if(!(includes(points, point)))
       {
-        print("y");
+        //println("succses");
         points.add(point);
         i++;
       }
+      //else
+      //{
+      //  println("failure");
+      //}
     }
     
     for(int i = 0; i < points.size(); i++)
@@ -76,15 +89,16 @@ class OrePatch
   
   boolean includes(ArrayList<PVector> points, PVector point)
   {
-    //print("wa");
+    //println("includes test");
     for(int i = 0; i < points.size(); i++)
     {
       if(points.get(i).x == point.x && points.get(i).y == point.y)
       {
+        //println("test succsess");
         return true;
       }
     }
-    
+    //println("test failure");
     return false;
   }
 }

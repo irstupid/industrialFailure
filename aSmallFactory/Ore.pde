@@ -16,7 +16,8 @@ class Ore
     push();
       rectMode(CORNER);
       noStroke();
-      fill(#ffffff);
+      colorMode(HSB);
+      fill(color(type * (255/3), 255, 255));
       rect(x * scale, y * scale, scale, scale);
     pop();
   }
