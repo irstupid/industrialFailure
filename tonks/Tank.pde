@@ -26,23 +26,23 @@ class Tank
   
   void draw()
   {
-    println((up ? 1 : 0) + (right ? 2 : 0) + (down ? 4 : 0) + (left ? 8 : 0));
+    
     switch((up ? 1 : 0) + (right ? 2 : 0) + (down ? 4 : 0) + (left ? 8 : 0))
     {
       case(1):
           targetR = 90;
           break;
       case(2):
-          targetR = 0;
+          targetR = 0; 
           break;
       case(3):
-          targetR = 45;
+          targetR = 45; 
           break;
       case(4):
           targetR = 270;
           break;
       case(6):
-          targetR = 315;
+          targetR = 315; 
           break;
       case(8):
           targetR = 180;
@@ -55,25 +55,17 @@ class Tank
           break;
     }
     
-    if(up || down || left || right)
+    if(turretR >= 360)
     {
-      if(turretR < targetR)
-      {
-        turretRV = 1;
-      }
-      else if(turretR > targetR)
-      {
-        turretRV = -1;
-      }
-      else 
-      {
-        turretRV = 0;
-      }
+      turretR = 0;
     }
-    else
+    if(turretR < 0)
     {
-      turretRV = 0;
+      turretR = 360;
     }
+    println(turretR);
+    
+    turn();
     
     turretR += turretRV;
     
@@ -88,12 +80,16 @@ class Tank
       {
         case('w'):
           up = true;
+          break;
         case('s'):
           down = true;
+          break;
         case('a'):
           left = true;
+          break;
         case('d'):
           right = true;
+          break;
       }
     }
   }
@@ -113,6 +109,32 @@ class Tank
         case('d'):
           right = false;
       }
+    }
+  }
+  
+  void turn()
+  {
+    if((up || down || left || right) && turretR != targetR)
+    {
+      if(turretR - targetR >= 180)
+      {
+        turretRV = (turretR - targetR)/abs(turretR - targetR);
+      }
+      else
+      {
+        if(turretR - targetR >= -180)
+        {
+          turretRV = -1 * (turretR - targetR)/abs(turretR - targetR);
+        }
+        else
+        {
+          turretRV = (turretR - targetR)/abs(turretR - targetR);
+        }
+      }
+    }
+    else
+    {
+      turretRV = 0;
     }
   }
   
