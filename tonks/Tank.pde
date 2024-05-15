@@ -116,12 +116,16 @@ class Tank
       {
         case('w'):
           up = false;
+          break;
         case('s'):
           down = false;
+          break;
         case('a'):
           left = false;
+          break;
         case('d'):
           right = false;
+          break;
         case('1'):
           drive = false;
           break;
@@ -131,6 +135,7 @@ class Tank
   
   void drive()
   {
+    print(drive);
     if(drive)
     {
       if((up || down || left || right) && turretR != r)
