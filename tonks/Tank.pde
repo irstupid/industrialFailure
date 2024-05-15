@@ -4,6 +4,7 @@ class Tank
   boolean down;
   boolean left;
   boolean right;
+  boolean drive;
   
   float x;
   float y;
@@ -16,6 +17,10 @@ class Tank
   float targetR;
   
   int team;
+  
+  float turretTurnSpeed = 2.5;
+  float turnSpeed = 1;
+  float speed = 3;
   
   Tank(float x, float y, int team)
   {
@@ -63,11 +68,17 @@ class Tank
     {
       turretR = 360;
     }
-    println(turretR);
+    if(r >= 360)
+    {
+      r = 0;
+    }
+    if(r < 0)
+    {
+      r = 360;
+    }
     
-    turn();
-    
-    turretR += turretRV;
+    turnTurret();
+    drive();
     
     tank();
   }
@@ -90,6 +101,9 @@ class Tank
         case('d'):
           right = true;
           break;
+        case('1'):
+          drive = true;
+          break;
       }
     }
   }
@@ -108,27 +122,72 @@ class Tank
           left = false;
         case('d'):
           right = false;
+        case('1'):
+          drive = false;
+          break;
       }
     }
   }
   
-  void turn()
+  void drive()
+  {
+    if(drive)
+    {
+      if((up || down || left || right) && turretR != r)
+      {
+        float d = r - turretR;
+        if(d >= 180)
+        {
+          rV = (d)/abs(d) * turretTurnSpeed;
+        }
+        else
+        {
+          if(d >= -180)
+          {
+            rV = -1 * (d)/abs(d) * turretTurnSpeed;
+          }
+          else
+          {
+            rV = (d)/abs(d) * turretTurnSpeed;
+          }
+        }
+        
+        v = 0;
+      }
+      else
+      {
+        rV = 0;
+        v = speed;
+      }
+    }
+    else
+    {
+      rV = 0;
+      v = 0;
+    }
+    
+    r += rV;
+    x += cos(radians(-r)) * v;
+    y += sin(radians(-r)) * v;
+  }
+  
+  void turnTurret()
   {
     if((up || down || left || right) && turretR != targetR)
     {
       if(turretR - targetR >= 180)
       {
-        turretRV = (turretR - targetR)/abs(turretR - targetR);
+        turretRV = (turretR - targetR)/abs(turretR - targetR) * turnSpeed;
       }
       else
       {
         if(turretR - targetR >= -180)
         {
-          turretRV = -1 * (turretR - targetR)/abs(turretR - targetR);
+          turretRV = -1 * (turretR - targetR)/abs(turretR - targetR) * turnSpeed;
         }
         else
         {
-          turretRV = (turretR - targetR)/abs(turretR - targetR);
+          turretRV = (turretR - targetR)/abs(turretR - targetR) * turnSpeed;
         }
       }
     }
@@ -136,6 +195,7 @@ class Tank
     {
       turretRV = 0;
     }
+    turretR += turretRV;
   }
   
   void tank()
