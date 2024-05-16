@@ -31,5 +31,10 @@ class Berry
     position.add(velocity);
     
     berry(position.x, position.y, rotation, scale, type);
+    
+    if(position.x > width || position.x < 0 || position.y > height || position.y < 0)
+    {
+      berrys.remove(this);
+    }
   }
 }

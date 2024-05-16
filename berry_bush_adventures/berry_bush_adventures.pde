@@ -29,7 +29,7 @@ boolean aPressed = false;
 boolean sPressed = false;
 boolean dPressed = false;
 
-Berry berry = new Berry(new PVector(400, 400), 0, 1, 0, 0.5);
+ArrayList<Berry> berrys = new ArrayList<Berry>();
 
 void setup()
 {
@@ -114,12 +114,15 @@ void draw()
   
   bush(x, y, r, scale, berryType);
   
-  berry.draw();
+  for(int i = 0; i < berrys.size(); i++)
+  {
+    berrys.get(i).draw();
+  }
 }
 
 void mousePressed()
 {
-  berry = new Berry(new PVector(x, y), atan2(mouseY - y, mouseX - x), berryType, 0, 0.5);
+  berrys.add(new Berry(new PVector(x, y), atan2(mouseY - y, mouseX - x), berryType, 0, 0.5));
 }
 
 void keyPressed()
