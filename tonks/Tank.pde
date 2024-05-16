@@ -22,6 +22,9 @@ class Tank
   float turnSpeed = 1;
   float speed = 3;
   
+  ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+  int reloadTime;
+  
   Tank(float x, float y, int team)
   {
     this.x = x;
@@ -77,6 +80,8 @@ class Tank
       r = 360;
     }
     
+    reloadTime--;
+    
     turnTurret();
     drive();
     
@@ -103,6 +108,9 @@ class Tank
           break;
         case('1'):
           drive = true;
+          break;
+        case('2'):
+          shoot();
           break;
       }
     }
@@ -135,7 +143,6 @@ class Tank
   
   void drive()
   {
-    print(drive);
     if(drive)
     {
       if((up || down || left || right) && turretR != r)
@@ -221,11 +228,37 @@ class Tank
         rotate(radians(-r));  
         rect(0, 0, width/20, width/40);
       pop();
+    pop();
+    for(int i = 0; i < bullets.size(); i++)
+    {
+      bullets.get(i).draw();
+    }
+    push();
+      switch(team)
+      {
+        case(0):
+          fill(#ff0000);
+          break;
+        case(1):
+          fill(#0000ff);
+          break;
+      }
+      rectMode(CENTER);
+      translate(x, y);
       push();
         rotate(radians(-turretR));
         translate(width/160, 0);
         rect(0, 0, width/40, width/80);
       pop();
     pop();
+  }
+  
+  void shoot()
+  {
+    if(reloadTime < 0)
+    {
+      reloadTime = 60;
+      bullets.add(new Bullet(x + (cos(radians(-turretR)) * width/40), y + (sin(radians(-turretR)) * width/40), cos(radians(-turretR)) * 4, sin(radians(-turretR)) * 4));
+    }
   }
 }
