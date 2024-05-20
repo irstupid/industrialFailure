@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "upAmount": 1,
+    "up1": 10,
+    "up2": 8,
+    "up3": 9,
+
+    "rightAmount": 1,
+    "right1": 11,
+    "right2": 8,
+    "right3": 1,
+
+    "downAmount": 1,
+    "down1": 4,
+    "down3": 1,
+    "down2": 2,
+
+    "leftAmount": 1,
+    "left1": 3,
+    "left2": 3,
+    "left3": 3,
+   },
+]
