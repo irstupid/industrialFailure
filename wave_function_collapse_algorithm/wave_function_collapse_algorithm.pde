@@ -57,14 +57,14 @@ void fullWaveFunctionCollapseAlgorithmBecauseFuckMe() //do you every just wonder
       int[] tempEdges = new int[4];
       
       tempTile.loadPixels();
-      tempEdges[0] = tile.pixels[0];
-      tempEdges[1] = tile.pixels[tile.width];
-      tempEdges[2] = tile.pixels[(tile.width * tile.height) - tile.width - 1];
-      tempEdges[3] = tile.pixels[(tile.width * tile.height) - 1];
+      tempEdges[0] = tempTile.pixels[0];
+      tempEdges[1] = tempTile.pixels[tempTile.width];
+      tempEdges[2] = tempTile.pixels[(tempTile.width * tempTile.height) - tempTile.width - 1];
+      tempEdges[3] = tempTile.pixels[(tempTile.width * tempTile.height) - 1];
       
-      println(tempEdges);
+      //println(tempEdges);
       
-      if((edges[0] == tempEdges[0]) && (edges[1] == tempEdges[1]))
+      if((edges[0] == tempEdges[2]) && (edges[1] == tempEdges[3]))
       {
         temp.append(j);
       }
