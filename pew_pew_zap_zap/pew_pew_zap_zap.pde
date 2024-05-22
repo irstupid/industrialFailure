@@ -47,6 +47,8 @@ boolean shooting = false;
 boolean aDown;
 boolean dDown;
 
+int blackOut = 1200;
+
 void setup()
 {
   //size(800, 800, P2D);
@@ -84,30 +86,33 @@ void setup()
 void draw()
 {
   background(0);
-  push();
-    noStroke();
-    for(int i = circles.length - 1; i >= 0; i--)
-    {
-      circles[i] -= 0.005;
-      fill(#ffffff, constrain(((1 - circles[i])) * 200, 0, 50));
-      ellipse(width/2, height/2, circles[i] * width * (1 + PI/5), circles[i] * height * (1 + PI/5)); 
-      if(circles[i] < 0)
+  if(state != 4)
+  {
+    push();
+      noStroke();
+      for(int i = circles.length - 1; i >= 0; i--)
       {
-        circles[i] = 1;
+        circles[i] -= 0.005;
+        fill(#ffffff, constrain(((1 - circles[i])) * 200, 0, 50));
+        ellipse(width/2, height/2, circles[i] * width * (1 + PI/5), circles[i] * height * (1 + PI/5)); 
+        if(circles[i] < 0)
+        {
+          circles[i] = 1;
+        }
+      }
+      
+    noiseX += 0.01 * (mouseX - width/2)/100;
+    noiseY += 0.01 * (mouseY - height/2)/100;
+    for(int x = 0; x < 100; x++)
+    {
+      for(float y = 0; y < 100; y++)
+      {
+        fill(noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255, 150);
+        rect(x * width/100, y * width/100, width/100, width/100);
       }
     }
-    
-  noiseX += 0.01 * (mouseX - width/2)/100;
-  noiseY += 0.01 * (mouseY - height/2)/100;
-  for(int x = 0; x < 100; x++)
-  {
-    for(float y = 0; y < 100; y++)
-    {
-      fill(noise(x * 0.03 + noiseX, y * 0.03 + noiseY) * 255, 150);
-      rect(x * width/100, y * width/100, width/100, width/100);
-    }
+    pop();
   }
-  pop();
   
   if(state == 0)
   {
@@ -211,14 +216,17 @@ void draw()
       sortScores = sort(sortScores);
       if(sortScores.length < 10)
       {
+        blackOut = 1200;
         state = 2;
       }
       else if(sortScores[constrain(sortScores.length - 10, 0, scores.size())] < score)
       {
+        blackOut = 1200;
         state = 2;
       }
       else
       {
+        blackOut = 1200;
         state = 3;
       }
     }
@@ -339,6 +347,12 @@ void draw()
       textPosY[107] = random(-5, 5);
       text("press start to play again", width/2 - 450 + textPosX[107], height/2 - 175 + textPosY[107]);
     pop();
+    
+    blackOut--;
+    if(blackOut < 0)
+    {
+      state = 4;
+    }
   }
   else if(state == 3)
   {
@@ -430,6 +444,12 @@ void draw()
       text(scoreBordScores[i], width/4 + 50 + textPosX[i * 3 + 7], (height * 3)/10 + textPosY[i * 3 + 7] + i * 50);
       text(scoreBordNames[i], width/4 + 75 + textPosX[i * 3 + 8] + String.valueOf(scoreBordScores[i]).length() * 25, (height * 3)/10 + textPosY[i * 3 + 8] + i * 50);
     }
+    
+    blackOut--;
+    if(blackOut < 0)
+    {
+      state = 4;
+    }
   }
 }
 void mousePressed()
@@ -442,6 +462,11 @@ void mousePressed()
 
 void keyPressed()
 {
+  if(state == 4)
+  {
+    state = 3;
+    blackOut = 1200;
+  }
   if(state == 3)
   {
     if(key == 'z')
@@ -627,6 +652,7 @@ void keyPressed()
     
     if(key == 'z')
     {
+      blackOut = 1200;
       saveScore(name);
       state = 3;
       gun = new Gun(width/2, height/2, 0);
