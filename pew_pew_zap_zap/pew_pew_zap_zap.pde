@@ -47,7 +47,7 @@ boolean shooting = false;
 boolean aDown;
 boolean dDown;
 
-int blackOut = 1200;
+long blackOut = 6480000;
 
 void setup()
 {
@@ -216,17 +216,17 @@ void draw()
       sortScores = sort(sortScores);
       if(sortScores.length < 10)
       {
-        blackOut = 1200;
+        blackOut = 6480000;
         state = 2;
       }
       else if(sortScores[constrain(sortScores.length - 10, 0, scores.size())] < score)
       {
-        blackOut = 1200;
+        blackOut = 6480000;
         state = 2;
       }
       else
       {
-        blackOut = 1200;
+        blackOut = 6480000;
         state = 3;
       }
     }
@@ -465,7 +465,7 @@ void keyPressed()
   if(state == 4)
   {
     state = 3;
-    blackOut = 1200;
+    blackOut = 6480000;
   }
   if(state == 3)
   {
