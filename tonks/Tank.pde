@@ -6,6 +6,8 @@ class Tank
   boolean right;
   boolean drive;
   
+  float pX;
+  float pY;
   float x;
   float y;
   float r = 90;
@@ -84,8 +86,12 @@ class Tank
     
     turnTurret();
     drive();
+    collide();
     
     tank();
+    
+    pX = x;
+    pY = y;
   }
   
   void keyPressed()
@@ -260,5 +266,57 @@ class Tank
       reloadTime = 60;
       bullets.add(new Bullet(x + (cos(radians(-turretR)) * width/40), y + (sin(radians(-turretR)) * width/40), cos(radians(-turretR)) * 4, sin(radians(-turretR)) * 4));
     }
+  }
+  
+  void collide()
+  {
+    r++;
+    float w = width/20;
+    float h = width/40;
+    float dig = dist(x, y, x + width/40, y + width/80);
+    
+    float LMP;
+    float RMP;
+    float TMP;
+    float BMP;
+    
+    float[] p = new float[4];
+    
+    p[0] = ((dig * cos(radians(r))) + ((w/4) * sin(radians(r)))) + x;
+    p[1] = ((dig * cos(radians(180 - r))) + ((w/4) * sin(radians(180 - r)))) + x;
+    p[2] = ((dig * cos(radians(225 - r))) + ((w/4) * sin(radians(225 - r)))) + x;
+    p[3] = ((dig * cos(radians(r + 45))) + ((w/4) * sin(radians(r + 45)))) + x;
+    LMP = p[0];
+    for(int i = 1; i <  4; i++)
+    {
+      if(LMP < p[i])
+      {
+        LMP = p[i];
+      }
+    }
+    RMP = p[0];
+    for(int i = 1; i <  4; i++)
+    {
+      if(RMP > p[i])
+      {
+        RMP = p[i];
+      }
+    }
+    
+    p[0] = (dig/cos(radians(r))) + y;
+    p[1] = ((dig * cos(radians(180 - r))) + ((h/4) * sin(radians(180 - r)))) + y;
+    p[2] = ((dig * cos(radians(225 - r))) + ((h/4) * sin(radians(225 - r)))) + y;
+    p[3] = ((dig * cos(radians(r + 45))) + ((h/4) * sin(radians(r + 45)))) + y;
+    
+    push();
+      stroke(#00ff00);
+      line(0, p[0], width, p[0]);
+      //stroke(#ff0000);
+      //line(0, p[1], width, p[1]);
+      //stroke(#0000ff);
+      //line(0, p[2], width, p[2]);
+      //stroke(#ffff00);
+      //line(0, p[3], width, p[3]);
+    pop();
   }
 }
