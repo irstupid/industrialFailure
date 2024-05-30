@@ -334,9 +334,8 @@ class Tank
     for(int i = 0; i < walls.length; i++)
     {
       Wall wall = walls[i];
-      if(LMP < wall.x + wall.w)
+      if(LMP < wall.x + wall.w && !(BMP < wall.y) && !(TMP > wall.y + wall.h))
       {
-        print("collide");
         x = max(x, wall.x + wall.w + (x - LMP));
       }
     }
