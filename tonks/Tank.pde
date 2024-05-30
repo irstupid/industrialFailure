@@ -282,10 +282,10 @@ class Tank
     
     float[] p = new float[4];
     
-    p[0] = ((dig * cos(radians(r))) + ((w/4) * sin(radians(r)))) + x;
-    p[1] = ((dig * cos(radians(180 - r))) + ((w/4) * sin(radians(180 - r)))) + x;
-    p[2] = ((dig * cos(radians(225 - r))) + ((w/4) * sin(radians(225 - r)))) + x;
-    p[3] = ((dig * cos(radians(r + 45))) + ((w/4) * sin(radians(r + 45)))) + x;
+    p[0] = cos(radians(r)) * (w/2) - sin(radians(r)) * (h/2) + y;
+    p[1] = cos(radians(r)) * (w/2) - sin(radians(r)) * (-h/2) + y;
+    p[2] = cos(radians(r)) * (-w/2) - sin(radians(r)) * (-h/2) + y;
+    p[3] = cos(radians(r)) * (-w/2) - sin(radians(r)) * (h/2) + y;
     LMP = p[0];
     for(int i = 1; i <  4; i++)
     {
@@ -303,20 +303,32 @@ class Tank
       }
     }
     
-    p[0] = (dig/cos(radians(r))) + y;
-    p[1] = ((dig * cos(radians(180 - r))) + ((h/4) * sin(radians(180 - r)))) + y;
-    p[2] = ((dig * cos(radians(225 - r))) + ((h/4) * sin(radians(225 - r)))) + y;
-    p[3] = ((dig * cos(radians(r + 45))) + ((h/4) * sin(radians(r + 45)))) + y;
+    p[0] = cos(radians(r)) * (h/2) - sin(radians(r)) * (w/2) + y;
+    p[1] = cos(radians(r)) * (h/2) - sin(radians(r)) * (-w/2) + y;
+    p[2] = cos(radians(r)) * (-h/2) - sin(radians(r)) * (-w/2) + y;
+    p[3] = cos(radians(r)) * (-h/2) - sin(radians(r)) * (w/2) + y;
+    TMP = p[0];
+    for(int i = 1; i <  4; i++)
+    {
+      if(TMP < p[i])
+      {
+        TMP = p[i];
+      }
+    }
+    BMP = p[0];
+    for(int i = 1; i <  4; i++)
+    {
+      if(BMP > p[i])
+      {
+        BMP = p[i];
+      }
+    }
     
     push();
-      stroke(#00ff00);
-      line(0, p[0], width, p[0]);
-      //stroke(#ff0000);
-      //line(0, p[1], width, p[1]);
-      //stroke(#0000ff);
-      //line(0, p[2], width, p[2]);
-      //stroke(#ffff00);
-      //line(0, p[3], width, p[3]);
+      line(0, TMP, width, TMP);
+      line(0, BMP, width, BMP);
+      line(LMP, 0, LMP, height);
+      line(RMP, 0, RMP, height);
     pop();
   }
 }
