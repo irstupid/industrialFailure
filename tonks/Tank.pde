@@ -270,7 +270,7 @@ class Tank
   
   void collide()
   {
-    r++;
+    //r++;
     float w = width/20;
     float h = width/40;
     float dig = dist(x, y, x + width/40, y + width/80);
@@ -282,14 +282,14 @@ class Tank
     
     float[] p = new float[4];
     
-    p[0] = cos(radians(r)) * (w/2) - sin(radians(r)) * (h/2) + y;
-    p[1] = cos(radians(r)) * (w/2) - sin(radians(r)) * (-h/2) + y;
-    p[2] = cos(radians(r)) * (-w/2) - sin(radians(r)) * (-h/2) + y;
-    p[3] = cos(radians(r)) * (-w/2) - sin(radians(r)) * (h/2) + y;
+    p[0] = cos(radians(r)) * (w/2) - sin(radians(r)) * (h/2) + x;
+    p[1] = cos(radians(r)) * (w/2) - sin(radians(r)) * (-h/2) + x;
+    p[2] = cos(radians(r)) * (-w/2) - sin(radians(r)) * (-h/2) + x;
+    p[3] = cos(radians(r)) * (-w/2) - sin(radians(r)) * (h/2) + x;
     LMP = p[0];
     for(int i = 1; i <  4; i++)
     {
-      if(LMP < p[i])
+      if(LMP > p[i])
       {
         LMP = p[i];
       }
@@ -297,7 +297,7 @@ class Tank
     RMP = p[0];
     for(int i = 1; i <  4; i++)
     {
-      if(RMP > p[i])
+      if(RMP < p[i])
       {
         RMP = p[i];
       }
@@ -310,7 +310,7 @@ class Tank
     TMP = p[0];
     for(int i = 1; i <  4; i++)
     {
-      if(TMP < p[i])
+      if(TMP > p[i])
       {
         TMP = p[i];
       }
@@ -318,7 +318,7 @@ class Tank
     BMP = p[0];
     for(int i = 1; i <  4; i++)
     {
-      if(BMP > p[i])
+      if(BMP < p[i])
       {
         BMP = p[i];
       }
@@ -328,7 +328,17 @@ class Tank
       line(0, TMP, width, TMP);
       line(0, BMP, width, BMP);
       line(LMP, 0, LMP, height);
-      line(RMP, 0, RMP, height);
+      //line(RMP, 0, RMP, height);
     pop();
+    
+    for(int i = 0; i < walls.length; i++)
+    {
+      Wall wall = walls[i];
+      if(LMP < wall.x + wall.w)
+      {
+        print("collide");
+        x = max(x, wall.x + wall.w + (x - LMP));
+      }
+    }
   }
 }
