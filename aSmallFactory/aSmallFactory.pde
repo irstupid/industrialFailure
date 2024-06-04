@@ -16,7 +16,7 @@ void setup()
   ore[1].additive();
   ore[2].additive();
   
-  belt = new Belt(5, 5, new PVector(3, 1));
+  belt = new Belt(5, 5, new PVector(2, 0));
 }
 
 void draw()
