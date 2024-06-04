@@ -8,7 +8,7 @@ void setup()
   {
     balls.add(new Ball(random(0, 700), random(0, 700), random(20, 70), random(0, 10), random(0, 10)));
   }
-  //boxes.add(new Box(random(0, 800), random(0, 800)));
+  //boxes.add(new Box(random(0, 800), random(0, 800), random(10, 80), random(10, 80)));
 }
 
 void draw()
@@ -39,7 +39,7 @@ void draw()
         value -= 255;
       }
       colorMode(HSB);
-      pixels[x + y * width] = color(value, 255, value * 255);
+      pixels[x + y * width] = color(value, 150, value * 255);
     }
   }
   updatePixels();
