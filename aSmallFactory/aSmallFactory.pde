@@ -1,5 +1,6 @@
 float scale;
 
+Belt belt;
 OrePatch[] ore;
 
 void setup()
@@ -14,11 +15,24 @@ void setup()
   ore[0].additive();
   ore[1].additive();
   ore[2].additive();
+  
+  belt = new Belt(5, 5, new PVector(3, 1));
 }
 
 void draw()
 {
+  for(int i = 0; i <= 18; i++)
+  {
+    line(i * scale, 0, i * scale, height);
+  }
+  for(int i = 0; i <= 13; i++)
+  {
+    line(0, i * scale, width, i * scale);
+  }
+  
   ore[0].draw();
   ore[1].draw();
   ore[2].draw();
+  
+  belt.draw();
 }
