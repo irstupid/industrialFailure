@@ -5,8 +5,8 @@ OrePatch[] ore;
 
 void setup()
 {
-  fullScreen();
-  scale = height/13;
+  size(80 * 18, 80 * 13);
+  scale = 80;
   ore = new OrePatch[3];
   ore[0] = new OrePatch(0);
   ore[1] = new OrePatch(1);
@@ -16,7 +16,7 @@ void setup()
   ore[1].additive();
   ore[2].additive();
   
-  belt = new Belt(5, 5, new PVector(2, 0));
+  belt = new Belt(5, 5, new PVector(2, 1));
 }
 
 void draw()
