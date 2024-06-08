@@ -37,10 +37,10 @@ class Belt
         switch((int) connect.x)
         {
           case(0):
-            image(sheet, x * scale, y * scale, scale, scale, 80 * 5, 0, 80 * 4, 80);
+            image(sheet, x * scale, y * scale, scale, scale, 80 * 3, 80, 80 * 2, 0);
           break;
           case(2):
-            image(sheet, x * scale, y * scale, scale, scale, 80 * 7, 0, 80 * 6, 80);
+            image(sheet, x * scale, y * scale, scale, scale, 80 * 7, 0, 80 * 8, 80);
           break;
           case(3):
             image(sheet, x * scale, y * scale, scale, scale, 80, 0, 80 * 2, 80);
