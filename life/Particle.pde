@@ -6,12 +6,22 @@ class Particle
   float yV;
   
   int c;
+  int type;
   
-  Particle(float x, float y, int c)
+  Particle(float x, float y, int type)
   {
     this.x = x;
     this.y = y;
-    this.c = c;
+    this.type = type;
+    switch(type)
+    {
+      case 1:
+        c = #ff0000;
+      break;
+      case 2:
+        c = #0000ff;
+      break;
+    }
   }
   
   void draw()
@@ -23,23 +33,6 @@ class Particle
   
   void update()
   {
-    if(x > width)
-    {
-      x = 0;
-    }
-    if(x < 0)
-    {
-      x = width;
-    }
-    if(y > height)
-    {
-      y = 0;
-    }
-    if(y < 0)
-    {
-      y = height;
-    }
-    
     if(xV > 0)
     {
       xV -= 0.1;
@@ -56,10 +49,39 @@ class Particle
     {
       yV += 0.1;
     }
+    
+    x += xV;
+    y += yV;
+    
+    if(x > width)
+    {
+      x = 0;
+    }
+    if(x < 0)
+    {
+      x = width;
+    }
+    if(y > height)
+    {
+      y = 0;
+    }
+    if(y < 0)
+    {
+      y = height;
+    }
   }
   
-  void selfReport()
+  void act(ArrayList<Particle> particles)
   {
-    boxes[(int)(floor(x/range) + floor(y/range) * (width/range))].add(this);
+    for(int i = 0; i < particles.size(); i++)
+    {
+      Particle particle = particles.get(i);
+      if(particle != this)
+      {
+        float d = 0.01/dist(x, y, particle.x, particle.y);
+        xV += aversion[type - 1][particle.type - 1] * d * abs(x - particle.x);
+        yV += aversion[type - 1][particle.type - 1] * d * abs(y - particle.y);
+      }
+    }
   }
 }

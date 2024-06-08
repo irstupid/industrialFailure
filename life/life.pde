@@ -1,7 +1,9 @@
 ArrayList<Particle> particles;
-ArrayList<Particle>[] boxes;
 
 float range = 80;
+int types = 2;
+
+float[][] aversion;
 
 void setup()
 {
@@ -11,33 +13,26 @@ void setup()
   particles = new ArrayList<Particle>();
   for(int i = 0; i < 200; i++)
   {
-    particles.add(new Particle(random(0, width), random(0, height), #ff0000));
+    particles.add(new Particle(random(0, width), random(0, height), floor(random(1, types + 1))));
   }
   
-  boxes = new ArrayList[(int) ((width/range) * (height/range))];
-  for(int i = 0; i < boxes.length; i++)
+  aversion = new float[types][types];
+  for(int i = 0; i < types; i++)
   {
-    boxes[i] = new ArrayList<Particle>();
+    for(int j = 0; j < types; j++)
+    {
+      aversion[i][j] = random(-1, 1);
+    }
   }
 }
 
 void draw()
 {
-  for(int i = 0; i < boxes.length; i++)
-  {
-    boxes[i] = new ArrayList<Particle>();
-  }
+  background(90);
   for(int i = 0; i < particles.size(); i++)
   {
-    particles.get(i).selfReport();
+    particles.get(i).act(particles);
+    particles.get(i).update();
     particles.get(i).draw();
-  }
-}
-
-void mouseClicked()
-{
-  for(int i = 0; i < boxes[2].size(); i++)
-  {
-    boxes[2].get(i).c = #00ff00;
   }
 }
