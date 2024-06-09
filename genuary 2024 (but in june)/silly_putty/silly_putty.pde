@@ -45,6 +45,7 @@ void draw()
     }
   }
   updatePixels();
+  weirdShadder();
 }
 
 void checkCollisions()
@@ -69,4 +70,25 @@ void checkCollisions()
 PVector collide(PVector v1, PVector v2, float m1, float m2)
 {
   return new PVector(((v1.x * (m1 - m2)) + (2 * m2 * v2.x))/(m1 + m2), ((v1.y * (m1 - m2)) + (2 * m2 * v2.y))/(m1 + m2));
+}
+
+void weirdShadder()
+{
+  loadPixels();
+  for(int i = 0; i < pixels.length; i++)
+  {
+    int amt = 0;
+    int value = 0;
+    if(i - width - 1 >= 0){value += pixels[i - width - 1]; amt++;}
+    if(i - width >= 0){value += pixels[i - width]; amt++;}
+    if(i - width + 1 >= 0){value += pixels[i - width + 1]; amt++;}
+    if(i - 1 >= 0){value += pixels[i - 1]; amt++;}
+    value += pixels[i]; amt++;
+    if(i + 1 < width * height){value += pixels[i + 1]; amt++;}
+    if(i + width - 1 < width * height){value += pixels[i + width - 1]; amt++;}
+    if(i + width < width * height){value += pixels[i + width]; amt++;}
+    if(i + width + 1 < width * height){value += pixels[i + width + 1]; amt++;}
+    pixels[i] = value/amt;
+  }
+  updatePixels();
 }
