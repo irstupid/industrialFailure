@@ -27,7 +27,7 @@ class Ball
   
   void update()
   {
-    velocity.add(acceleration.mult(mass));
+    velocity.add(acceleration);
     position.add(velocity);
     
     if(position.x < 0 + size/2 || position.x > width - size/2)
