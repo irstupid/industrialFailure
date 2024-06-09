@@ -4,7 +4,7 @@ void setup()
 {
   size(800, 800);
   balls.add(new Ball(width/2, height/2, 5, 3, 100, 20));
-  balls.add(new Ball(100, 100, 2, -5, 50, 10));
+  balls.add(new Ball(100, 100, 3, -5, 50, 10));
 }
 
 void draw()
@@ -23,20 +23,14 @@ void draw()
 
 void checkCollisions()
 {
-  for(int i = 0; i < balls.size(); i++)
+  if(dist(balls.get(0).position.x, balls.get(0).position.y, balls.get(1).position.x, balls.get(1).position.y) < (balls.get(0).size + balls.get(1).size)/2)
   {
-    for(int j = 0; j < i; j++)
-    {
-      Ball ball1 = balls.get(i);
-      Ball ball2 = balls.get(j);
-      if(dist(ball1.position.x, ball1.position.y, ball2.position.x, ball2.position.y) < (ball1.size + ball2.size)/2 && ball1 != ball2)
-      {
-        print("bonk");
-        Ball temp = ball1;
-        ball1.velocity = collide(ball1.velocity, ball2.velocity, ball1.mass, ball2.mass);
-        ball2.velocity = collide(temp.velocity, ball2.velocity, temp.mass, ball2.mass);
-      }
-    }
+    print("bonk");
+    Ball ball1 = balls.get(0);
+    Ball ball2 = balls.get(1);
+    PVector temp = ball1.velocity;
+    balls.get(0).velocity = collide(ball1.velocity, ball2.velocity, ball1.mass, ball2.mass);
+    balls.get(1).velocity = collide(ball2.velocity, temp, ball2.mass, ball1.mass);
   }
 }
 
