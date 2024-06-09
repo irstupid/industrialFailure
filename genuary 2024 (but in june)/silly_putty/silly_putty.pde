@@ -1,4 +1,5 @@
 ArrayList<Ball> balls /* haha */ = new ArrayList<Ball>();
+PImage mask;
 
 void setup()
 {
@@ -10,6 +11,8 @@ void setup()
   {
     balls.add(new Ball(random(50, width - 50), random(50, height - 50), random(-7, 7), random(-7, 7), 50, 10));
   }
+  mask = loadImage("shoe.jpg");
+  mask.loadPixels();
 }
 
 void draw()
@@ -31,14 +34,14 @@ void draw()
         value += balls.get(i).f(x, y);
       }
       
-      value = (value > 500 && value < 510 ? x + y : 0);
+      value = (value > 500 && value < 510 ? mask.pixels[x + y * 800]/* x + y */ : 0);
       
-      while(value > 255)
-      {
-        value -= 255;
-      }
+      //while(value > 255)
+      //{
+      //  value -= 255;
+      //}
       colorMode(HSB);
-      pixels[x + y * width] = color(value, 150, value * 255);
+      pixels[x + y * width] = value; //color(value, 150, value * 255);
     }
   }
   updatePixels();
