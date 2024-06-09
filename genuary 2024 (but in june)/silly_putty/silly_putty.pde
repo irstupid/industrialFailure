@@ -45,7 +45,11 @@ void draw()
     }
   }
   updatePixels();
-  weirdShadder();
+  //weirdShadder();
+  antiAllies();
+  antiAllies();
+  //antiAllies();
+  //antiAllies();
 }
 
 void checkCollisions()
@@ -89,6 +93,30 @@ void weirdShadder()
     if(i + width < width * height){value += pixels[i + width]; amt++;}
     if(i + width + 1 < width * height){value += pixels[i + width + 1]; amt++;}
     pixels[i] = value/amt;
+  }
+  updatePixels();
+}
+
+void antiAllies()
+{
+  loadPixels();
+  for(int i = 0; i < pixels.length; i++)
+  {
+    int amt = 0;
+    int red = 0;
+    int green = 0;
+    int blue = 0;
+    if(i - width - 1 >= 0){red += red(pixels[i - width - 1]); green += green(pixels[i - width - 1]); blue += blue(pixels[i - width - 1]); amt++;}
+    if(i - width >= 0){red += red(pixels[i - width]); green += green(pixels[i - width]); blue += blue(pixels[i - width]); amt++;}
+    if(i - width + 1 >= 0){red += red(pixels[i - width + 1]); green += green(pixels[i - width + 1]); blue += blue(pixels[i - width + 1]); amt++;}
+    if(i - 1 >= 0){red += red(pixels[i - 1]); green += green(pixels[i - 1]); blue += blue(pixels[i - 1]); amt++;}
+    red += red(pixels[i]); green += green(pixels[i]); blue += blue(pixels[i]); amt++;
+    if(i + 1 < width * height){red += red(pixels[i + 1]); green += green(pixels[i + 1]); blue += blue(pixels[i + 1]); amt++;}
+    if(i + width - 1 < width * height){red += red(pixels[i + width - 1]); green += green(pixels[i + width - 1]); blue += blue(pixels[i + width - 1]); amt++;}
+    if(i + width < width * height){red += red(pixels[i + width]); green += green(pixels[i + width]); blue += blue(pixels[i + width]); amt++;}
+    if(i + width + 1 < width * height){red += red(pixels[i + width + 1]); green += green(pixels[i + width + 1]); blue += blue(pixels[i + width + 1]); amt++;}
+    colorMode(RGB);
+    pixels[i] = color(red/amt, green/amt, blue/amt);
   }
   updatePixels();
 }
