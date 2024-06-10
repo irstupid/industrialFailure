@@ -34,7 +34,7 @@ void draw()
         value += balls.get(i).f(x, y);
       }
       
-      value = (value > 500 /* && value < 510 */ ? mask.pixels[x + y * 800]/* x + y */ : 0);
+      value = (value > 500  /*&& value < 510*/  ? mask.pixels[x + y * 800]/* x + y */ : 0);
       
       //while(value > 255)
       //{
