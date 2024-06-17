@@ -1,14 +1,15 @@
 ArrayList<Particle> particles;
 ArrayList<Rule> rules;
 
-int types = 9;
+int types = 6;
 float friction = 50;
 float pushForce = 20;
 float pushRange = 20;
 float sight = 300;
 float speedLimit = 50;
 float volatility = 0.3;
-float anger = 1;
+float maxAnger = 0.75;
+float minAnger = 0;
 int particleAmount = 200;
 
 void setup()
@@ -26,21 +27,21 @@ void setup()
   }
   
   rules = new ArrayList<Rule>();
-  //rules.add(new Rule(1, 1, 0.1));
-  //rules.add(new Rule(2, 1, -0.1));
-  //rules.add(new Rule(1, 2, 0.1));
+  //rules.add(new Rule(1, 1, 0.75));
   //rules.add(new Rule(2, 2, 0.1));
-  //rules.add(new Rule(3, 1, 0.1));
-  //rules.add(new Rule(1, 3, -0.1));
-  //rules.add(new Rule(3, 2, 0.1));
+  //rules.add(new Rule(3, 3, 0.1));
+  //rules.add(new Rule(1, 2, -0.75));
+  //rules.add(new Rule(2, 3, -0.75));
+  //rules.add(new Rule(2, 1, 0.25));
+  //rules.add(new Rule(3, 1, 0.25));
   //rules.add(new Rule(2, 3, -0.1));
-  //rules.add(new Rule(3, 3, -0.1));
+  //rules.add(new Rule(3, 2, -0.1));
   
   for(int i = 0; i <= types; i++)
   {
     for(int j = 0; j <= types; j++)
     {
-      rules.add(new Rule(i, j, random(-anger, anger)));
+      rules.add(new Rule(i, j, random(minAnger, maxAnger) * (random(0, 2) > 1 ? 1 : -1)));
     }
   }
 }
