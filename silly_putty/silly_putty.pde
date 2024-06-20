@@ -1,5 +1,6 @@
 ArrayList<Ball> balls /* haha */ = new ArrayList<Ball>();
 PImage mask;
+int t = 0;
 
 void setup()
 {
@@ -7,9 +8,9 @@ void setup()
   //balls.add(new Ball(width/2, height/2, 5, 3, 100, 20));
   //balls.add(new Ball(100, 100, 3, -5, 50, 10));
   //balls.add(new Ball(400, 500, 6,0, 75, 15));
-  for(int i = 0; i < 25; i++)
+  for(int i = 0; i < 10; i++)
   {
-    balls.add(new Ball(random(50, width - 50), random(50, height - 50), random(-7, 7), random(-7, 7), 50, 10));
+    balls.add(new Ball(random(50, width - 50), random(50, height - 50), random(-7, 7), random(-7, 7), 100, 10));
   }
   mask = loadImage("putty.jpeg");
   mask.loadPixels();
@@ -17,6 +18,7 @@ void setup()
 
 void draw()
 {
+  t++;
   background(90);
   checkCollisions();
   for(int i = 0; i < balls.size(); i++)
@@ -34,20 +36,20 @@ void draw()
         value += balls.get(i).f(x, y);
       }
       
-      value = (value > 500  /*&& value < 510*/  ? mask.pixels[x + y * 800]/* x + y */ : 0);
+      value = (value > 510  && value < 530  ? /*mask.pixels[x + y * 800]*/ x + y + (t * 5): 0);
       
-      //while(value > 255)
-      //{
-      //  value -= 255;
-      //}
+      while(value > 255)
+      {
+        value -= 255;
+      }
       colorMode(HSB);
-      pixels[x + y * width] = value; //color(value, 150, value * 255);
+      pixels[x + y * width] = /* value; */ color(value, 150, value * 255);
     }
   }
   updatePixels();
   //weirdShadder();
-  antiAllies();
-  antiAllies();
+  //antiAllies();
+  //antiAllies();
   //antiAllies();
   //antiAllies();
 }

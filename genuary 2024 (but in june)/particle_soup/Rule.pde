@@ -12,7 +12,7 @@ class Rule
   }
   
   void draw()
-  {
+  { 
     for(int i = 0; i < particles.size(); i++)
     {
       Particle a = particles.get(i);
@@ -36,7 +36,7 @@ class Rule
               }
               else
               {
-                float f = pushForce * 1/d;
+                float f = pushForce * 10/d;
                 a.xV += f * dx * 0.05;
                 a.yV += f * dy * 0.05;
               }
