@@ -3,9 +3,9 @@ ArrayList<Rule> rules;
 
 int types = 6;
 float friction = 50;
-float pushForce = 5;
-float pushRange = 40;
-float sight = 300;
+float pushForce = 20;
+float pushRange = 20;
+float sight = 200;
 float speedLimit = 50;
 float volatility = 0.3;
 float maxAnger = 0.75;
@@ -27,6 +27,16 @@ void setup()
   }
   
   rules = new ArrayList<Rule>();
+  //rules.add(new Rule(1, 1, 0.75));
+  //rules.add(new Rule(2, 2, 0.1));
+  //rules.add(new Rule(3, 3, 0.1));
+  //rules.add(new Rule(1, 2, -0.75));
+  //rules.add(new Rule(2, 3, -0.75));
+  //rules.add(new Rule(2, 1, 0.25));
+  //rules.add(new Rule(3, 1, 0.25));
+  //rules.add(new Rule(2, 3, -0.1));
+  //rules.add(new Rule(3, 2, -0.1));
+  
   for(int i = 0; i <= types; i++)
   {
     for(int j = 0; j <= types; j++)
@@ -46,20 +56,5 @@ void draw()
   for(int i = 0; i < particles.size(); i++)
   {
     particles.get(i).draw();
-  }
-}
-
-void keyPressed()
-{
-  if(key == ' ')
-  { 
-    rules = new ArrayList<Rule>();
-    for(int i = 0; i <= types; i++)
-    {
-      for(int j = 0; j <= types; j++)
-      {
-        rules.add(new Rule(i, j, random(minAnger, maxAnger) * (random(0, 2) > 1 ? 1 : -1)));
-      }
-    }
   }
 }
