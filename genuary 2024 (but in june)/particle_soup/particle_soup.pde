@@ -3,8 +3,8 @@ ArrayList<Rule> rules;
 
 int types = 6;
 float friction = 50;
-float pushForce = 5;
-float pushRange = 40;
+float pushForce = 1;
+float pushRange = 15;
 float sight = 300;
 float speedLimit = 50;
 float volatility = 0.3;
