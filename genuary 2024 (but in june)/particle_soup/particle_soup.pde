@@ -53,6 +53,11 @@ void keyPressed()
 {
   if(key == ' ')
   { 
+    for(int i = 0; i < particles.size(); i++)
+  {
+    particles.get(i).xV = random(-speedLimit/2, speedLimit/2);
+    particles.get(i).yV = random(-speedLimit/2, speedLimit/2);
+  }
     rules = new ArrayList<Rule>();
     for(int i = 0; i <= types; i++)
     {
