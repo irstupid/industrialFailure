@@ -1,19 +1,25 @@
 PImage tomato;
 Tomato enemy;
+Roomba roomba;
 
 void setup()
 {
   size(800, 800);
   tomato = loadImage("tomato.png");
-  tomato.resize(0, 100);
+  //tomato.resize(0, 100);
   colorMode(HSB);
-  enemy = new Tomato(color(random(0, 255), 255, 255), color(random(0, 255), 255, 255));
+  enemy = new Tomato(color(random(0, 255), 255, 255), color(random(0, 255), 255, 255), width/2, height/2);
+  roomba = new Roomba(width/2, height/2);
 }
 
 void draw()
 {
+  background(150);
   enemy.draw();
+  enemy.targetX = mouseX;
+  enemy.targetY = mouseY;
   //tomato(width/2, height/2, 0, #ff0000, #00ff00);
+  roomba.draw();
 }
 
 void tomato(float x, float y, float r, int tc, int lc)
