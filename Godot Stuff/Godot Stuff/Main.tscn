@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dybgt6qko7rrn"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_0woef"]
+
+[sub_resource type="Environment" id="Environment_huq86"]
+ambient_light_color = Color(1, 1, 0.772549, 1)
+glow_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_b1l43"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v7om2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5mxki"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6seiq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_smiqx"]
+size = Vector3(20, 1, 20)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_huq86")
+camera_attributes = SubResource("CameraAttributesPractical_b1l43")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("1_0woef")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_v7om2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_5mxki")
+skeleton = NodePath("")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.513762, 0)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("BoxMesh_6seiq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_smiqx")
