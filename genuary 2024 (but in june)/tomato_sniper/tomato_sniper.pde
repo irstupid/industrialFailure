@@ -16,8 +16,8 @@ void draw()
 {
   background(150);
   enemy.draw();
-  enemy.targetX = mouseX;
-  enemy.targetY = mouseY;
+  enemy.targetX = roomba.x;
+  enemy.targetY = roomba.y;
   roomba.draw();
 }
 
