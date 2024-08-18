@@ -23,6 +23,7 @@ SoundFile hurt;
 SoundFile lose;
 SoundFile ponk;
 SoundFile poof;
+SoundFile music;
 
 void setup()
 {
@@ -49,8 +50,10 @@ void setup()
   dash = new SoundFile(this, "dash");
   hurt = new SoundFile(this, "hurt");
   lose = new SoundFile(this, "lose");
+  lose.amp(10);
   ponk = new SoundFile(this, "ponk");
   poof = new SoundFile(this, "poof");
+  music = new SoundFile(this, "garden banger.wav");
   
   player = new Player(width/2, height/2);
   enemys = new ArrayList<Enemy>();
@@ -64,13 +67,18 @@ void setup()
 
 void draw()
 {
+  if(!music.isPlaying())
+  {
+    music.play();
+  }
+  
   if(gameState == 0)
   {
     spawnTime--;
     if(spawnTime <= 0)
     {
       enemySpawn();
-      difficulty -= 3;
+      difficulty = round(difficulty/1.05);
       spawnTime = difficulty;
     }
   }
