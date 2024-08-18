@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 Player player;
 PImage background;
 PImage[] enemyTypes;
@@ -8,6 +10,19 @@ PImage carrot;
 PImage puff;
 Flower flower;
 ArrayList<Explosion> explosions;
+int spawnTime;
+int difficulty;
+int gameState = 2;
+PImage instructions;
+PImage title;
+
+SoundFile pew;
+SoundFile boom;
+SoundFile dash;
+SoundFile hurt;
+SoundFile lose;
+SoundFile ponk;
+SoundFile poof;
 
 void setup()
 {
@@ -26,36 +41,127 @@ void setup()
   carrot = loadImage("carrot.png");
   puff = loadImage("puff.png");
   puff.resize(200, 200);
+  instructions = loadImage("instructions.png");
+  title = loadImage("title.png");
+  
+  pew = new SoundFile(this, "pew");
+  boom = new SoundFile(this, "boom");
+  dash = new SoundFile(this, "dash");
+  hurt = new SoundFile(this, "hurt");
+  lose = new SoundFile(this, "lose");
+  ponk = new SoundFile(this, "ponk");
+  poof = new SoundFile(this, "poof");
   
   player = new Player(width/2, height/2);
   enemys = new ArrayList<Enemy>();
-  enemys.add(new Enemy(0, 0, 4));
+  //enemys.add(new Enemy(width, height, 4));
   carrots = new ArrayList<Carrot>();
   flower = new Flower();
   explosions = new ArrayList<Explosion>();
+  difficulty = 240;
+  spawnTime = 0;
 }
 
 void draw()
 {
-  image(background, 0, 0);
-  flower.draw();
-  player.draw();
-  for(int i = 0; i < enemys.size(); i++)
+  if(gameState == 0)
   {
-    enemys.get(i).draw();
+    spawnTime--;
+    if(spawnTime <= 0)
+    {
+      enemySpawn();
+      difficulty -= 3;
+      spawnTime = difficulty;
+    }
   }
-  for(int i = 0; i < carrots.size(); i++)
+  push();
+    tint(#ffffff, 100);
+    image(background, 0, 0);
+  pop();
+  if(gameState == 0 || gameState == 1)
   {
-    carrots.get(i).draw();
+    flower.draw();
+    player.draw();
+    for(int i = 0; i < enemys.size(); i++)
+    {
+      enemys.get(i).draw();
+    }
+    for(int i = 0; i < carrots.size(); i++)
+    {
+      carrots.get(i).draw();
+    }
+    for(int i = 0; i < explosions.size(); i++)
+    {
+      explosions.get(i).draw();
+    }
+    if(player.health > 0){image(heart, 410, -10);}
+    if(player.health > 1){image(heart, 350, -10);}
+    if(player.health > 2){image(heart, 290, -10);}
   }
-  for(int i = 0; i < explosions.size(); i++)
+  else if(gameState == 2)
   {
-    explosions.get(i).draw();
+    image(title, 0, 0);
   }
-  if(player.health > 0){image(heart, 410, -10);}
-  if(player.health > 1){image(heart, 350, -10);}
-  if(player.health > 2){image(heart, 290, -10);}
+  else
+  {
+    image(instructions, 0, 0);
+  }
 }
 
-void keyPressed(){player.keyPressed(); flower.keyPressed();}
-void keyReleased(){player.keyReleased();}
+void enemySpawn()
+{
+  if(random(0, 2) > 1)
+  {
+    if(random(0, 2) > 1)
+    {
+      enemys.add(new Enemy(-250, random(0, width), floor(random(0, 6))));
+    }
+    else
+    {
+      enemys.add(new Enemy(width + 250, random(0, width), floor(random(0, 6))));
+    }
+  }
+  else
+  {
+    if(random(0, 2) > 1)
+    {
+      enemys.add(new Enemy(random(0, width), -250, floor(random(0, 6))));
+    }
+    else
+    {
+      enemys.add(new Enemy(random(0, width), width + 250, floor(random(0, 6))));
+    }
+  }
+}
+
+void keyPressed()
+{
+  if(gameState == 0)
+  {
+    player.keyPressed(); 
+    flower.keyPressed();
+  }
+  else if((gameState == 2 || gameState == 3) && key == 'z')
+  {
+    gameState = 0;
+    player = new Player(width/2, height/2);
+    enemys = new ArrayList<Enemy>();
+    //enemys.add(new Enemy(width, height, 4));
+    carrots = new ArrayList<Carrot>();
+    flower = new Flower();
+    explosions = new ArrayList<Explosion>();
+    difficulty = 240;
+    spawnTime = difficulty;
+  }
+  else if(gameState == 2 && key == 'i')
+  {
+    gameState = 3;
+  }
+}
+void keyReleased()
+{
+  if(gameState == 0)
+  {
+    player.keyReleased();
+  }
+}

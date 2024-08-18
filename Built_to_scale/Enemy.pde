@@ -16,8 +16,8 @@ class Enemy
   
   Enemy(float x, float y, int type)
   {
-    this.x = x;
-    this.y = y;
+    this.Rx = x;
+    this.Ry = y;
     this.type = type;
     
     me = enemyTypes[type];
@@ -25,41 +25,50 @@ class Enemy
   
   void draw()
   {
-    Rx += constrain(-cos(atan2(y - player.x, x - player.x)), -1, 1) * 0.8;
-    Ry += constrain(-sin(atan2(y - player.y, x - player.y)), -1, 1) * 0.8;
-    shrinkTime--;
-    
-    
-    for(int i = 0; i < carrots.size(); i++)
+    if(gameState == 0)
     {
-      if(distance(carrots.get(i).x, carrots.get(i).y) < 15)
+      Rx += constrain(-cos(atan2(y - player.x, x - player.x)), -1, 1) * 0.8;
+      Ry += constrain(-sin(atan2(y - player.y, x - player.y)), -1, 1) * 0.8;
+      shrinkTime--;
+      
+      for(int i = 0; i < carrots.size(); i++)
       {
-        if(scale < 1)
+        if(distance(carrots.get(i).x, carrots.get(i).y) < 15)
         {
-          health--;
+          if(scale < 1)
+          {
+            health--;
+          }
+          carrots.get(i).die();
+          boom.play();
         }
-        carrots.get(i).die();
       }
-    }
-    for(int i = 0; i < explosions.size(); i++)
-    {
-      if(distance(explosions.get(i).x, explosions.get(i).y) < 100)
+      for(int i = 0; i < explosions.size(); i++)
       {
-        shrinkTime = 300;
+        if(distance(explosions.get(i).x, explosions.get(i).y) < 100)
+        {
+          shrinkTime = 300;
+        }
+      }
+      
+      if(shrinkTime > 0 && scale > 0.5)
+      {
+        scale -= 0.05;
+      }
+      else if(shrinkTime <= 0 && scale < 1)
+      {
+        scale += 0.05;
+      }
+      
+      x = Rx;
+      y = Ry;
+      x += 800 * abs(1 - scale);
+      y += 800 * abs(1 - scale);
+      if(health <= 0)
+      {
+        enemys.remove(this);
       }
     }
-    
-    if(shrinkTime > 0 && scale > 0.5)
-    {
-      scale -= 0.05;
-    }
-    else if(shrinkTime <= 0 && scale < 1)
-    {
-      scale += 0.05;
-    }
-    
-    x = Rx + 400 * abs(1 - scale);
-    y = Ry + 400 * abs(1 - scale);
     
     push();
       scale(scale);
@@ -86,12 +95,6 @@ class Enemy
       }
       image(me, x - me.width/2, y - me.height/2);
     pop();
-    //rect(x, y, 100, 100);
-    
-    if(health <= 0)
-    {
-      enemys.remove(this);
-    }
   }
   
   float distance(float pX, float pY)

@@ -40,52 +40,67 @@ class Player
   
   void draw()
   {
-    strong--;
-    x += xV * speed + kbx;
-    y += yV * speed + kby;
-    x = constrain(x, 25, width - 25);
-    y = constrain(y, 25, height - 25);
-    kbx = kbx/1.3;
-    kby = kby/1.3;
-    coolDown--;
-    iv--;
-    flash++;
-    if(flash > 20)
+    if(gameState == 0)
     {
-      flash = 0;
-    }
-    if(state != 2)
-    {
-      if(xV != 0 || yV != 0)
+      strong--;
+      x += xV * speed + kbx;
+      y += yV * speed + kby;
+      x = constrain(x, 25, width - 25);
+      y = constrain(y, 25, height - 25);
+      kbx = kbx/1.3;
+      kby = kby/1.3;
+      coolDown--;
+      iv--;
+      flash++;
+      if(flash > 20)
       {
-        direction = atan2(yV, xV);
-        state = 1;
+        flash = 0;
+      }
+      if(state != 2)
+      {
+        if(xV != 0 || yV != 0)
+        {
+          direction = atan2(yV, xV);
+          state = 1;
+        }
+        else
+        {
+          state = 0;
+        }
+        cycle++;
+        if(cycle > 30)
+        {
+          cycle = 0;
+        }
+        speed = SPEED;
+        
+        collisonDetection();
       }
       else
       {
-        state = 0;
+        cycle--;
+        speed = SPEED * 3;
+        if(cycle <= 0)
+        {
+          state = 0;
+        }
       }
-      cycle++;
-      if(cycle > 30)
-      {
-        cycle = 0;
-      }
-      speed = SPEED;
-      
-      collisonDetection();
+      speed = speed * (strong > 0 ? 3 : 1);
     }
     else
     {
+      state = 0;
       cycle--;
-      speed = SPEED * 3;
-      if(cycle <= 0)
+      if(round(400 * cycle/60) < 1)
       {
-        state = 0;
+        gameState = 2;
+        return;
       }
+      idle.resize(round(400 * cycle/60), round(400 * cycle/60));
     }
-    speed = speed * (strong > 0 ? 3 : 1);
+    
     push();
-    if(flash < 10 && iv > 0)
+    if(flash < 10 && iv > 0 && gameState == 0)
     {
       tint(#ff0000);
     }
@@ -130,9 +145,11 @@ class Player
     fill(#ffffff, 100);
     //ellipse(x, y, 50, 50);
     
-    if(health <= 0)
+    if(health <= 0 && gameState == 0)
     {
-      println("die");
+      lose.play();
+      cycle = 60;
+      gameState = 1;
     }
   }
   
@@ -155,6 +172,7 @@ class Player
       case ' ':
         if(coolDown <= 0)
         {
+          dash.play();
           state = 2;
           cycle = 30;
           coolDown = 90;
@@ -163,6 +181,7 @@ class Player
       case 'i':
         if(state != 2)
         {
+          pew.play();
           carrots.add(new Carrot(x, y, direction));
         }
         break;
@@ -204,6 +223,7 @@ class Player
         pushPoint.normalize();
         kbx = pushPoint.x * 30;
         kby = pushPoint.y * 30;
+        hurt.play();
       }
     }
     if(iv < 0)
@@ -214,6 +234,7 @@ class Player
         {
           health--;
           iv = 60;
+          hurt.play();
         }
       }
     }

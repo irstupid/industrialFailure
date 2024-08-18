@@ -16,16 +16,19 @@ class Carrot
   
   void draw()
   {
-    unHit--;
-    x += cos(r) * 5;
-    y += sin(r) * 5;
-    push();
-        translate(x, y);
-        rotate(r + radians(90));
-        translate(-408, -365);
-        image(carrot, 0, 0);
-    pop();
-    //circle(x, y, 30);
+    if(gameState == 0)
+    {
+      unHit--;
+      x += cos(r) * 5;
+      y += sin(r) * 5;
+      push();
+          translate(x, y);
+          rotate(r + radians(90));
+          translate(-408, -365);
+          image(carrot, 0, 0);
+      pop();
+      //circle(x, y, 30);
+    }
   }
   
   void die()

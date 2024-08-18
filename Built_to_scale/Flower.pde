@@ -15,14 +15,6 @@ class Flower
   {
     if(state == 1)
     {
-      for(int i = 0; i < enemys.size(); i++)
-      {
-        if(enemys.get(i).distance(x, y) < 25)
-        {
-          state = 0;
-          explosions.add(new Explosion(x, y));
-        }
-      }
       for(int i = 0; i < carrots.size(); i++)
       {
         if(dist(carrots.get(i).x, carrots.get(i).y, x, y) < 40)
@@ -52,11 +44,13 @@ class Flower
       {
         state = 0;
         explosions.add(new Explosion(x, y));
+        poof.play();
       }
       else
       {
         x = player.x;
         y = player.y;
+        ponk.play();
         state = 1;
       }
     }
