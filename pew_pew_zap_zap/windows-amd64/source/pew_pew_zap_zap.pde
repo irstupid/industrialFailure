@@ -705,7 +705,6 @@ void saveScore(String name)
   value.setString("name", name);
   value.setInt("score", score);
   value.setInt("ID", scores.size());
-  value.setFloat("encryption", ((float)(scores.size() + 1) * ((float)name.length() + max((float)name.indexOf('e'), (float)name.indexOf('t'))) * 4360f * (float)score)/14356f);
   scores.setJSONObject(scores.size(), value);
   saveJSONArray(scores, "data/scores.json");
 }
@@ -713,18 +712,6 @@ void saveScore(String name)
 void calculateScoreBord()
 {
   JSONArray scores = loadJSONArray("data/scores.json");
-  for(int i = 0; i < scores.size(); i++)
-  {
-    float score = scores.getJSONObject(i).getInt("score");
-    float ID = scores.getJSONObject(i).getInt("ID");
-    String name = scores.getJSONObject(i).getString("name");
-    if(scores.getJSONObject(i).getFloat("encryption") != ((ID + 1) * ((float)name.length() + max((float)name.indexOf('e'), (float)name.indexOf('t'))) * 4360 * score)/14356)
-    {
-      print("HACKED SCORE : " + ID);
-      exit();
-    }
-  }
-  
   PVector[] scoreBord = new PVector[scores.size()];
   for(int i = 0; i < scores.size(); i++)
   {
