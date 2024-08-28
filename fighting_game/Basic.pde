@@ -7,11 +7,29 @@ class Basic extends Fighter
   
   void draw()
   {
-    rect(0, 0, 100, 100);
+    move();
+  }
+  
+  void move()
+  {
+    
   }
   
   void light()
   {
+    super.light();
+    
+  }
+  
+  void medium()
+  {
+    super.medium();
+    
+  }
+  
+  void heavy()
+  {
+    super.heavy();
     
   }
 }
