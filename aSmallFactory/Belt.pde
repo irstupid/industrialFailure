@@ -2,6 +2,7 @@ class Belt
 {
   int x;
   int y;
+  int type  = 7;
   PVector connect;
   PImage sheet;
   
@@ -11,48 +12,50 @@ class Belt
     this.x = x;
     this.y = y;
     this.connect = connect;
+
   }
   
   void draw()
   {
     
-    
-    switch((int) connect.y)
+    switch(type)
     {
-      case(0):
-        switch((int) connect.x)
-        {
-          case(1):
-            image(sheet, x * scale, y * scale, scale, scale, 80 * 5, 0, 80 * 4, 80);
-          break;
-          case(2):
-            image(sheet, x * scale, y * scale, scale, scale, 0, 0, 80, 80);
-          break;
-          case(3):
-            image(sheet, x * scale, y * scale, scale, scale, 80 * 6, 0, 80 * 5, 80);
-          break;
-        }
-      break;
-      case(1):
-        switch((int) connect.x)
-        {
-          case(0):
-            image(sheet, x * scale, y * scale, scale, scale, 80 * 3, 80, 80 * 2, 0);
-          break;
-          case(2):
-            image(sheet, x * scale, y * scale, scale, scale, 80 * 7, 0, 80 * 8, 80);
-          break;
-          case(3):
-            image(sheet, x * scale, y * scale, scale, scale, 80, 0, 80 * 2, 80);
-          break;
-        } 
-      break;
-      case(2):
-      
-      break;
-      case(3):
-      
-      break;
+      case 1:
+        image(sheet, x * scale, y * scale, scale, scale, 80 * 0, 0, 80 * 1, 80);
+        break;
+      case 2:
+        image(sheet, x * scale, y * scale, scale, scale, 80 * 1, 0, 80 * 2, 80);
+        break;
+      case 3:
+        image(sheet, x * scale, y * scale, scale, scale, 80 * 2, 0, 80 * 3, 80);
+        break;
+      case 4:
+        image(sheet, x * scale, y * scale, scale, scale, 80 * 3, 0, 80 * 4, 80);
+        break;
+      case 5:
+        image(sheet, x * scale, y * scale, scale, scale, 80 * 4, 0, 80 * 5, 80);
+        break;
+      case 6:
+        image(sheet, x * scale, y * scale, scale, scale, 80 * 5, 0, 80 * 6, 80);
+        break;
+      case 7:
+        image(sheet, x * scale, y * scale, scale, scale, 80 * 6, 0, 80 * 7, 80);
+        break;
+      case 8:
+        image(sheet, x * scale, y * scale, scale, scale, 80 * 7, 0, 80 * 8, 80);
+        break;
+      case 9:
+        image(sheet, x * scale, y * scale, scale, scale, 80 * 8, 0, 80 * 9, 80);
+        break;
+      case 10:
+        image(sheet, x * scale, y * scale, scale, scale, 80 * 9, 0, 80 * 10, 80);
+        break;
+      case 11:
+        image(sheet, x * scale, y * scale, scale, scale, 80 * 10, 0, 80 * 11, 80);
+        break;
+      case 12:
+        image(sheet, x * scale, y * scale, scale, scale, 80 * 11, 0, 80 * 12, 80);
+        break;
     }
   }
 }
