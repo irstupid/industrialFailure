@@ -8,11 +8,118 @@ class Belt
   
   Belt(int x, int y, PVector connect)
   {
-    sheet = loadImage("convayer.png");
+    sheet = beltSheet;
     this.x = x;
     this.y = y;
     this.connect = connect;
-
+    if(connect.x == 0 && connect.y == 1)
+    {
+      type = 7;
+    }
+    if(connect.x == 0 && connect.y == 2)
+    {
+      type = 3;
+    }
+    if(connect.x == 0 && connect.y == 2)
+    {
+      type = 12;
+    }
+    if(connect.x == 1 && connect.y == 0)
+    {
+      type = 6;
+    }
+    if(connect.x == 1 && connect.y == 2)
+    {
+      type = 9;
+    }
+    if(connect.x == 1 && connect.y == 3)
+    {
+      type = 4;
+    }
+    if(connect.x == 2 && connect.y == 0)
+    {
+      type = 1;
+    }
+    if(connect.x == 2 && connect.y == 1)
+    {
+      type = 8;
+    }
+    if(connect.x == 2 && connect.y == 3)
+    {
+      type = 11;
+    }
+    if(connect.x == 3 && connect.y == 0)
+    {
+      type = 5;
+    }
+    if(connect.x == 3 && connect.y == 1)
+    {
+      type = 2;
+    }
+    if(connect.x == 3 && connect.y == 2)
+    {
+      type = 10;
+    }
+  }
+  
+  Belt(int x, int y, int type)
+  {
+    sheet = beltSheet;
+    this.x = x;
+    this.y = y;
+    this.type = type;
+    connect = new PVector();
+    switch (type)
+    {
+      case 1:
+        connect.x = 2; 
+        connect.y = 0;
+        break;
+      case 2:
+        connect.x = 3; 
+        connect.y = 1;
+        break;
+      case 3:
+        connect.x = 0; 
+        connect.y = 2;
+        break;
+      case 4:
+        connect.x = 1; 
+        connect.y = 3;
+        break;
+      case 5:
+        connect.x = 3; 
+        connect.y = 0;
+        break;
+      case 6:
+        connect.x = 1; 
+        connect.y = 0;
+        break;
+      case 7:
+        connect.x = 0; 
+        connect.y = 1;
+        break;
+      case 8:
+        connect.x = 2; 
+        connect.y = 1;
+        break;
+      case 9:
+        connect.x = 1; 
+        connect.y = 2;
+        break;
+      case 10:
+        connect.x = 3; 
+        connect.y = 2;
+        break;
+      case 11:
+        connect.x = 2; 
+        connect.y = 3;
+        break;
+      case 12:
+        connect.x = 0; 
+        connect.y = 2;
+        break;
+    }
   }
   
   void draw()
