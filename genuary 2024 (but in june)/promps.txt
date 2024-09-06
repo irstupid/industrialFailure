@@ -1,0 +1,136 @@
+JAN. 1 (credit: Melissa Wiederrecht & Nicolas Barradeau)
+Particles, lots of them.
+
+JAN. 2 (credit: Luis Fraguada)
+No palettes.
+Generative colors, procedural colors, emergent colors.
+
+JAN. 3 (credit: Stranger in the Q)
+Droste effect.
+Wikipedia: Droste effect
+
+JAN. 4 (credit: Piter Pasma)
+Pixels.
+Wikipedia: Pixel
+
+JAN. 5 (credit: Melissa Wiederrecht & Piter Pasma)
+In the style of Vera Molnár (1924-2023).
+Wikipedia: Vera Molnár
+
+JAN. 6 (credit: Nicolas Barradeau, Yazid & Jess Hewitt)
+Screensaver.
+
+JAN. 7 (credit: Piter Pasma)
+Progress bar / indicator / loading animation.
+
+JAN. 8 (credit: Darien Brito)
+Chaotic system.
+
+JAN. 9 (credit: Camille Roux)
+ASCII.
+The “ASCII font” you might see when your computer boots is actually called Code page 437. It is also known as CP437, OEM-US, OEM 437, PC-8, or DOS Latin US.
+ASCII stands for “American Standard Code for Information Interchange”, describing its original limited purpose. Feel free to explore “monospaced typography” (if we need a more general term) using glyphs from other locales. Or all of Unicode. Or not even monospaced. If you’re from another dimension, Zalgo Text got you covered.
+ANSI Art is also cool, which uses terminal characters and a limited set of 16 colours to create art.
+Or anything else you deem related :) Just to make clear that ASCII is only a narrow keyword, loosely referring to a wide variety of broader fields of text based digital art. Don’t confuse the encoding standard for the art forms.
+If you’re curious about the history behind ASCII art, ANSI art, any terminal text based art, check out these pages: artscene.textfiles.com and 16colo.rs
+
+JAN. 10 (credit: greweb)
+Hexagonal.
+Red Blob Games on Hexagonal Grids is an in-depth article if you’d like to learn about hexagonal grids. Not all hexagons come in grids though, so use your creativity!
+Check out the Gosper Curve – it’s like the Hilbert Curve but made out of hexagons (sort of).
+Hexagons are the bestagons.
+
+JAN. 11 (credit: Roni Kaufman)
+In the style of Anni Albers (1899-1994).
+Wikipedia: Anni Albers
+
+JAN. 12 (credit: Melissa Wiederrecht)
+Lava lamp.
+Wikipedia: Lava lamp
+Reddit: /r/Lavalamps
+
+JAN. 13 (credit: Piter Pasma)
+Wobbly function day.
+Wobbly Functions (article updated 2024/01/13!!) are a name I’ve given to smoothly undulating formulas made from modulated sine waves. Usually it’s formulas of the form:
+sin(a * b + c + d * sin(e * f + g)) + sin(h * i + j + k * sin(l * m + n)) + ...
+Or something along those lines. Don’t worry about angles or trigonometric identities, just go with the wobble!
+
+JAN. 14 (credit: Heeey)
+Less than 1KB artwork.
+You can decide if you want to go for size coding, for 1KB of output, or whatever you think would be appropriate, today. If you go for size coding, we made some tiny boiler plate code samples for you to start with.
+9 tips for Tsubuyaki processing by GorillaSun
+
+JAN. 15 (credit: Amy Goodchild)
+Use a physics library.
+The Coding Train: physics libraries
+
+JAN. 16 (credit: Bruce Holmer & Michael Lowe)
+Draw 10 000 of something.
+
+JAN. 17 (credit: Melissa Wiederrecht)
+Inspired by Islamic art.
+Islamic star patterns
+Producing computer generated Islamic patterns
+Quasicrystals and Islamic patterns
+Shape grammar model for Islamic patterns
+More publications on/related to Islamic patterns
+Best practice in Islamic geometric design
+Islamic Star Patterns in Absolute Geometry
+Computer Generated Islamic Star Patterns
+
+JAN. 18 (credit: Chris Barber)
+Bauhaus.
+Wikipedia: Bauhaus
+
+JAN. 19 (credit: Shaderism)
+Flocking.
+
+JAN. 20 (credit: Roni Kaufman)
+Generative typography.
+
+JAN. 21 (credit: Neel Shivdasani)
+Use a library that you haven’t used before.
+
+JAN. 22 (credit: Paolo Curtoni)
+Point - line - plane.
+Wassily Kandinsky - Point and line to plane
+Wikipedia: Wassily Kandinsky
+Wikipedia: Point–line–plane postulate
+2D Design Basics: Points, Lines, and Planes
+Point, Line, Plane - The fundamental elements of design
+
+JAN. 23 (credit: Marc Edwards)
+128×128.
+
+JAN. 24 (credit: Jorge Ledezma)
+Impossible objects (undecided geometry).
+
+JAN. 25 (credit: Piter Pasma)
+If you like generative art, you probably have some photos on your phone of cool looking patterns, textures, shapes or things that you’ve seen. You might have even thought, “I should try to recreate this with code”. Today is the day.
+
+JAN. 26 (credit: Monokai)
+Grow a seed.
+
+JAN. 27 (credit: Amy Goodchild)
+Code for one hour. At the one hour mark, you’re done.
+Click here to find out how long an hour takes. PRO-TIP: Use the progress indicator from Genuary 7th!
+
+JAN. 28 (credit: Melissa Wiederrecht)
+Skeuomorphism.
+A skeuomorph is a derivative object that retains attributes from structures that were necessary in the original. Skeuomorphs are typically used to gate keep generative art styles make something new feel familiar in an effort to speed understanding and acclimation. They employ elements that, while essential to the original object, serve no pragmatic purpose in the new system. (from Wikipedia on Skeuomorphs)
+
+JAN. 29 (credit: Melissa Wiederrecht & Camille Roux)
+Signed Distance Functions (if we keep trying once per year, eventually we will be good at it!).
+Piter explains how to SDFs in 2023
+Video tutorial about 2D SDFs
+2D distance functions by Inigo Quilez
+3D distance functions by Inigo Quilez
+Wikipedia: Signed Distance Functions
+
+JAN. 30 (credit: Melissa Wiederrecht)
+Shaders.
+Use the GPU. I did a Shader Workshop a while back where I explain how to code a shader in WebGL2 from scratch (and also finally a simple raymarcher, but you can do many other things with shaders too).
+
+JAN. 31 (credit: Neel Shivdasani & Monokai)
+Generative music / Generative audio / Generative sound.
+While many of you probably know that Ambient music often employs generative strategies, Psy-Trance is another genre that uses generative techniques. Check out e.g. Dash Glitch on YouTube

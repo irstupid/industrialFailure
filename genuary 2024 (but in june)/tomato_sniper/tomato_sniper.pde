@@ -1,6 +1,7 @@
 PImage tomato;
 Tomato enemy;
 Roomba roomba;
+Shoot shoot;
 
 void setup()
 {
@@ -10,6 +11,7 @@ void setup()
   colorMode(HSB);
   enemy = new Tomato(color(random(0, 255), 255, 255), color(random(0, 255), 255, 255), width/2, height/2);
   roomba = new Roomba(width/2, height/2);
+  shoot = new Shoot();
 }
 
 void draw()
@@ -19,16 +21,29 @@ void draw()
   enemy.targetX = roomba.x;
   enemy.targetY = roomba.y;
   roomba.draw();
+  shoot.draw();
 }
 
 void keyPressed()
 {
   roomba.keyPressed();
+  shoot.keyPressed();
+  if(key == ' ')
+  {
+    shoot.x = roomba.x;
+    shoot.y = roomba.y;
+    shoot.active = true;
+  }
 }
 
 void keyReleased()
 {
   roomba.keyReleased();
+  shoot.keyReleased();
+  if(key == ' ')
+  {
+    shoot.active = false;
+  }
 }
 
 //void tomato(float x, float y, float r, int tc, int lc)
