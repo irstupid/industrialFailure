@@ -65,7 +65,48 @@ void mousePressed()
 {
   if(mouseButton == LEFT)
   {
+    for(int i = 0; i < belts.size(); i++)
+    {
+      if(belts.get(i).x == select.x && belts.get(i).y == select.y)
+      {
+        belts.remove(i);
+      }
+    }
     belts.add(new Belt((int) select.x, (int) select.y, beltType));
+  }
+  if(mouseButton == RIGHT)
+  {
+    for(int i = 0; i < belts.size(); i++)
+    {
+      if(belts.get(i).x == select.x && belts.get(i).y == select.y)
+      {
+        belts.remove(i);
+      }
+    }
+  }
+}
+void mouseDragged()
+{
+  if(mouseButton == LEFT)
+  {
+    for(int i = 0; i < belts.size(); i++)
+    {
+      if(belts.get(i).x == select.x && belts.get(i).y == select.y)
+      {
+        belts.remove(i);
+      }
+    }
+    belts.add(new Belt((int) select.x, (int) select.y, beltType));
+  }
+  if(mouseButton == RIGHT)
+  {
+    for(int i = 0; i < belts.size(); i++)
+    {
+      if(belts.get(i).x == select.x && belts.get(i).y == select.y)
+      {
+        belts.remove(i);
+      }
+    }
   }
 }
 
