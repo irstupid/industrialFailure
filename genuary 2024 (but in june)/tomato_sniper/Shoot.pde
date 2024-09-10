@@ -70,6 +70,18 @@ class Shoot
     y -= sin(radians(r)) * speed;
     if(active)
     {
+      for(int i = 0; i < tomatos.size(); i++)
+      {
+        if(dist(tomatos.get(i).x, tomatos.get(i).y + 10, x, y) < 75)
+        {
+          charge++;
+          if(charge > 100)
+          {
+            charge = 100;
+          }
+        }
+      }
+      //circle(x, y, 50);
       image(crosshair, x - crosshair.width/2 + 5.5, y - crosshair.height/2 - 6);
     }
   }

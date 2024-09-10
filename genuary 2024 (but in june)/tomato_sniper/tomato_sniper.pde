@@ -1,15 +1,17 @@
-PImage tomato;
-Tomato enemy;
+ArrayList<Tomato> tomatos;
 Roomba roomba;
 Shoot shoot;
 
 void setup()
 {
   size(800, 800, P2D);
-  tomato = loadImage("tomato.png");
   //tomato.resize(0, 100);
   colorMode(HSB);
-  enemy = new Tomato(color(random(0, 255), 255, 255), color(random(0, 255), 255, 255), width/2, height/2);
+  tomatos = new ArrayList<Tomato>();
+  for(int i = 0; i < 3; i++)
+  {
+    tomatos.add(new Tomato(color(random(0, 255), 255, 255), color(random(0, 255), 255, 255), random(0, width), random(0, height)));
+  }
   roomba = new Roomba(width/2, height/2);
   shoot = new Shoot();
 }
@@ -17,9 +19,12 @@ void setup()
 void draw()
 {
   background(150);
-  enemy.draw();
-  enemy.targetX = roomba.x;
-  enemy.targetY = roomba.y;
+  for(int i = 0; i < tomatos.size(); i++)
+  {
+    tomatos.get(i).draw();
+    tomatos.get(i).targetX = roomba.x;
+    tomatos.get(i).targetY = roomba.y;
+  }
   roomba.stop = shoot.active;
   roomba.draw();
   shoot.draw();

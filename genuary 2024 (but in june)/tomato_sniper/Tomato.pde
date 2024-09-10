@@ -21,7 +21,7 @@ class Tomato
   {
     this.c1 = hue(c1);
     this.c2 = hue(c2);
-    me = tomato;
+    me = loadImage("tomato.png");
     
     float cRatio = (this.c2 - this.c1)/85;
     for(int i = 0; i < me.pixels.length; i++)
@@ -50,6 +50,7 @@ class Tomato
     {
       rV = -rV;
     }
+    //circle(x, y + 10, 100);
     push();
       translate(x, y);
       rotate(radians(r));
