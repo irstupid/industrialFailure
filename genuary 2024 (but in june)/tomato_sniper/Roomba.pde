@@ -4,9 +4,10 @@ class Roomba
   float y;
   PImage me;
   PImage[] expresions;
-  int state = 2;
-  int yV = 0;
-  int xV = 0;
+  int state = 0;
+  float yV = 0;
+  float xV = 0;
+  boolean stop;
   
   int flicker = (int) random(10, 100);
   int toIdle = 30;
@@ -34,8 +35,11 @@ class Roomba
   
   void draw()
   {
-    x += xV;
-    y += yV;
+    if(!stop)
+    {
+      x += xV * 2;
+      y += yV * 2;
+    }
     
     if(toIdle <= 0)
     {
@@ -59,6 +63,10 @@ class Roomba
     else
     {
       toIdle--;
+    }
+    if(stop)
+    {
+      state = 0;
     }
     
     image(me, x - me.width/2, y - me.height/2);

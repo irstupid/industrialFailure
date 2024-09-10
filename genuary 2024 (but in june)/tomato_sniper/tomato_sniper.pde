@@ -20,6 +20,7 @@ void draw()
   enemy.draw();
   enemy.targetX = roomba.x;
   enemy.targetY = roomba.y;
+  roomba.stop = shoot.active;
   roomba.draw();
   shoot.draw();
 }

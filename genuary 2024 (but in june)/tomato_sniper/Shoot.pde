@@ -12,6 +12,12 @@ class Shoot
   boolean left;
   boolean right;
   
+  float speed;
+  int pressTime;
+  float SPEED = 10;
+  int ACLTIME;
+  float ACCELERATION = 0.1;
+  
   Shoot()
   {
     crosshair = loadImage("target.png");
@@ -47,8 +53,21 @@ class Shoot
         r = 225;
         break;
     }
-    x += cos(radians(r));
-    y += sin(radians(r));
+    if((up || down || left || right) && active)
+    {
+      pressTime++;
+      if(speed < SPEED && pressTime > ACLTIME)
+      {
+        speed += speed * ACCELERATION;
+      }
+    }
+    else
+    {
+      pressTime = 0;
+      speed = 1;
+    }
+    x += cos(radians(r)) * speed;
+    y -= sin(radians(r)) * speed;
     if(active)
     {
       image(crosshair, x - crosshair.width/2 + 5.5, y - crosshair.height/2 - 6);

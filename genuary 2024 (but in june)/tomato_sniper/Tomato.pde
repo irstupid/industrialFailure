@@ -11,7 +11,7 @@ class Tomato
   
   float r;
   float rV = 0.3;
-  float speed = 1;
+  float speed = 0.5;
   float s;
   
   float targetX;
