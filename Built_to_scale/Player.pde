@@ -15,6 +15,7 @@ class Player
   float kby;
   float direction;
   int strong;
+  int flowerInvincibility;
   
   PImage idle;
   PImage walk1;
@@ -45,8 +46,8 @@ class Player
       strong--;
       x += xV * speed + kbx;
       y += yV * speed + kby;
-      x = constrain(x, 25, width - 25);
-      y = constrain(y, 25, height - 25);
+      x = constrain(x, 25, 800 - 25);
+      y = constrain(y, 25, 800 - 25);
       kbx = kbx/1.3;
       kby = kby/1.3;
       coolDown--;

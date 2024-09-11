@@ -27,8 +27,8 @@ SoundFile music;
 
 void setup()
 {
-  size(800, 800, P2D);
-  rectMode(CENTER);
+  fullScreen(P2D);
+  //rectMode(CENTER);
   enemyTypes = new PImage[6];
   enemyTypes[0] = loadImage("red.png");
   enemyTypes[1] = loadImage("orange.png");
@@ -67,6 +67,9 @@ void setup()
 
 void draw()
 {
+  push();
+  translate((width - (800f * (height/800f)))/2f, 0);
+  scale(height/800f);
   if(!music.isPlaying())
   {
     music.play();
@@ -114,6 +117,10 @@ void draw()
   {
     image(instructions, 0, 0);
   }
+  pop();
+  fill(0);
+  rect(0, 0, (width - (800f * (height/800f)))/2f, height);
+  rect((width - (800f * (height/800f)))/2f + height, 0, (width - (800f * (height/800f)))/2f, height);
 }
 
 void enemySpawn()
@@ -122,22 +129,22 @@ void enemySpawn()
   {
     if(random(0, 2) > 1)
     {
-      enemys.add(new Enemy(-250, random(0, width), floor(random(0, 6))));
+      enemys.add(new Enemy(-250, random(0, 800), floor(random(0, 6))));
     }
     else
     {
-      enemys.add(new Enemy(width + 250, random(0, width), floor(random(0, 6))));
+      enemys.add(new Enemy(800 + 250, random(0, 800), floor(random(0, 6))));
     }
   }
   else
   {
     if(random(0, 2) > 1)
     {
-      enemys.add(new Enemy(random(0, width), -250, floor(random(0, 6))));
+      enemys.add(new Enemy(random(0, 800), -250, floor(random(0, 6))));
     }
     else
     {
-      enemys.add(new Enemy(random(0, width), width + 250, floor(random(0, 6))));
+      enemys.add(new Enemy(random(0, 800), 800 + 250, floor(random(0, 6))));
     }
   }
 }
@@ -152,7 +159,7 @@ void keyPressed()
   else if((gameState == 2 || gameState == 3) && key == 'z')
   {
     gameState = 0;
-    player = new Player(width/2, height/2);
+    player = new Player(400, 400);
     enemys = new ArrayList<Enemy>();
     //enemys.add(new Enemy(width, height, 4));
     carrots = new ArrayList<Carrot>();
