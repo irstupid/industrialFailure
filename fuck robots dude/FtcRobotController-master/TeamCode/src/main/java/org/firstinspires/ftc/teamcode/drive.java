@@ -28,13 +28,20 @@ public class drive extends LinearOpMode {
          LB = hardwareMap.get(DcMotor.class, "leftBack");
          RB = hardwareMap.get(DcMotor.class, "rightBack");
 
-//         shoot1 = hardwareMap.get(DcMotor.class, "shoot1");
-//         shoot2 = hardwareMap.get(DcMotor.class, "shoot2");
-//         shoot2.setDirection(DcMotorSimple.Direction.REVERSE);
-//         intake = hardwareMap.get(DcMotor.class, "intake");
-//         convayer = hardwareMap.get(Servo.class, "convayer");
-//         turn = hardwareMap.get(Servo.class, "turn");
-//         aim = hardwareMap.get(Servo.class, "aim");
+         LF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+         LB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+         RF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+         RB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+         RF.setDirection(DcMotorSimple.Direction.REVERSE);
+         RB.setDirection(DcMotorSimple.Direction.REVERSE);
+
+         shoot1 = hardwareMap.get(DcMotor.class, "shoot1");
+         shoot2 = hardwareMap.get(DcMotor.class, "shoot2");
+         shoot2.setDirection(DcMotorSimple.Direction.REVERSE);
+         intake = hardwareMap.get(DcMotor.class, "intake");
+         convayer = hardwareMap.get(Servo.class, "convayer");
+         turn = hardwareMap.get(Servo.class, "turn");
+         aim = hardwareMap.get(Servo.class, "aim");
 
 
 
@@ -42,9 +49,9 @@ public class drive extends LinearOpMode {
         while (opModeIsActive())
         {
             drive(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
-            //intake(gamepad1.left_trigger, gamepad1.left_trigger > 0.1);
-            //aim(gamepad1.dpad_up, gamepad1.dpad_down, gamepad1.dpad_left, gamepad1.dpad_right);
-            //shoot(gamepad1.left_bumper, gamepad1.right_bumper);
+            intake(gamepad1.left_trigger, gamepad1.left_trigger > 0.1);
+            aim(gamepad1.dpad_up, gamepad1.dpad_down, gamepad1.dpad_left, gamepad1.dpad_right);
+            shoot(gamepad1.left_bumper, gamepad1.right_bumper);
         }
     }
 
@@ -52,7 +59,6 @@ public class drive extends LinearOpMode {
     {
         if(!out){intake.setPower(in);}
         else {intake.setPower(-1);}
-
     }
 
     public void aim(boolean upUp, boolean upDown, boolean turnLeft, boolean turnRight)
@@ -91,10 +97,10 @@ public class drive extends LinearOpMode {
 
     public void drive(float x, float y, float turn)
     {
-        double LFP = turn + x + y;
-        double RFP = turn - x - y;
-        double LBP = turn - x + y;
-        double RBP = turn + x - y;
+        double LFP = x + y + turn;
+        double RFP = x - y - turn;
+        double LBP = x - y + turn;
+        double RBP = x + y - turn;
 
         LF.setPower(LFP);
         LB.setPower(LBP);
