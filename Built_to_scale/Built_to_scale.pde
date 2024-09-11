@@ -25,6 +25,8 @@ SoundFile ponk;
 SoundFile poof;
 SoundFile music;
 
+boolean ARCADE = false;
+
 void setup()
 {
   fullScreen(P2D);
@@ -168,7 +170,7 @@ void keyPressed()
     difficulty = 240;
     spawnTime = difficulty;
   }
-  else if(gameState == 2 && key == 'i')
+  else if(gameState == 2 && key == '1')
   {
     gameState = 3;
   }

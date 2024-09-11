@@ -38,7 +38,7 @@ class Flower
   
   void keyPressed()
   {
-    if(key == 'o')
+    if(key == 'o' || key == '3')
     {
       if(state == 1)
       {

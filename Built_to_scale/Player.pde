@@ -43,6 +43,7 @@ class Player
   {
     if(gameState == 0)
     {
+      flowerInvincibility--;
       strong--;
       x += xV * speed + kbx;
       y += yV * speed + kby;
@@ -158,6 +159,10 @@ class Player
   {
     switch(key)
     {
+      case 'o':
+      case '3':
+        flowerInvincibility = 2;
+        break;
       case 'w':
         yV += -1;
         break;
@@ -171,6 +176,7 @@ class Player
         xV += 1;
         break;
       case ' ':
+      case '1':
         if(coolDown <= 0)
         {
           dash.play();
@@ -180,6 +186,7 @@ class Player
         }
         break;
       case 'i':
+      case '2':
         if(state != 2)
         {
           pew.play();
@@ -231,7 +238,7 @@ class Player
     {
       for(int i = 0; i < explosions.size(); i++)
       {
-        if(dist(explosions.get(i).x, explosions.get(i).y, x, y) < 125)
+        if(dist(explosions.get(i).x, explosions.get(i).y, x, y) < 125 && flowerInvincibility > 0)
         {
           health--;
           iv = 60;
