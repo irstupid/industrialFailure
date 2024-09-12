@@ -97,10 +97,10 @@ public class drive extends LinearOpMode {
 
     public void drive(float x, float y, float turn)
     {
-        double LFP = x + y + turn;
-        double RFP = x - y - turn;
-        double LBP = x - y + turn;
-        double RBP = x + y - turn;
+        double LFP = -x + y - turn;
+        double RFP = -x - y + turn;
+        double LBP = -x - y - turn;
+        double RBP = -x + y + turn;
 
         LF.setPower(LFP);
         LB.setPower(LBP);
