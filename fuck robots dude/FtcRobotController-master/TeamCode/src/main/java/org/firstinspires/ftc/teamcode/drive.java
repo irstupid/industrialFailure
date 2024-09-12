@@ -67,8 +67,8 @@ public class drive extends LinearOpMode {
         else if(upDown){aim.setPosition(0);}
         else{aim.setPosition(0.5);}
 
-        if(turnLeft){turn.setPosition(1);}
-        else if(turnRight){turn.setPosition(0);}
+        if(turnLeft){turn.setPosition(0);}
+        else if(turnRight){turn.setPosition(1);}
         else{turn.setPosition(0.5);}
     }
 
