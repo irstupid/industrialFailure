@@ -67,7 +67,7 @@ void setup()
   
   player = new Player(width/2, height/2);
   enemys = new ArrayList<Enemy>();
-  //enemys.add(new Enemy(width, height, 4));
+  //enemys.add(new Enemy(400, 400, 4));
   carrots = new ArrayList<Carrot>();
   flower = new Flower();
   explosions = new ArrayList<Explosion>();
@@ -80,6 +80,7 @@ void draw()
   push();
   translate((width - (800f * (height/800f)))/2f, 0);
   scale(height/800f);
+
   if(!music.isPlaying())
   {
     music.play();
@@ -92,11 +93,12 @@ void draw()
     {
       enemySpawn();
       difficulty = round(difficulty/1.05);
+      difficulty = constrain(difficulty, 70, 1000);
       spawnTime = difficulty;
     }
   }
   push();
-    tint(#ffffff, 100);
+    //tint(#ffffff, 100);
     image(background, 0, 0);
   pop();
   if(gameState == 0 || gameState == 1)
