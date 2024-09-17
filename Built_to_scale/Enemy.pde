@@ -2,8 +2,6 @@ class Enemy
 {
   float x;
   float y;
-  float Rx;
-  float Ry;
   int type;
   float speed;
   float scale = 1;
@@ -16,8 +14,8 @@ class Enemy
   
   Enemy(float x, float y, int type)
   {
-    this.Rx = x;
-    this.Ry = y;
+    this.x = x;
+    this.y = y;
     this.type = type;
     
     me = enemyTypes[type];
@@ -27,8 +25,16 @@ class Enemy
   {
     if(gameState == 0)
     {
-      Rx += constrain(-cos(atan2(y - player.x, x - player.x)), -1, 1) * 0.8;
-      Ry += constrain(-sin(atan2(y - player.y, x - player.y)), -1, 1) * 0.8;
+      if(scale == 1)
+      {
+        x += constrain(-cos(atan2(y - player.x, x - player.x)), -1, 1) * 0.8;
+        y += constrain(-sin(atan2(y - player.y, x - player.y)), -1, 1) * 0.8;
+      }
+      else
+      {
+        x -= constrain(-cos(atan2(y - player.x, x - player.x)), -1, 1) * 0.2;
+        y -= constrain(-sin(atan2(y - player.y, x - player.y)), -1, 1) * 0.2;
+      }
       shrinkTime--;
       
       for(int i = 0; i < carrots.size(); i++)
@@ -59,11 +65,6 @@ class Enemy
       {
         scale += 0.05;
       }
-      
-      x = Rx;
-      y = Ry;
-      x += 800 * abs(1 - scale);
-      y += 800 * abs(1 - scale);
       if(health <= 0)
       {
         enemys.remove(this);
@@ -71,6 +72,8 @@ class Enemy
     }
     
     push();
+      imageMode(CENTER);
+      translate(x, y);
       scale(scale);
       switch(type)
       {
@@ -93,8 +96,14 @@ class Enemy
           translate(0, -30 * scale);
           break;
       }
-      image(me, x - me.width/2, y - me.height/2);
+      image(me, 0, 0);
     pop();
+    //push();
+    //  rectMode(CENTER);
+    //  rect(x, y, 300 * scale, 100 * scale);
+    //  rect(x + 110 * scale, y - 110 * scale, 100 * scale, 100 * scale);
+    //  ellipse(x, y, 10, 10);
+    //pop();
   }
   
   float distance(float pX, float pY)
@@ -102,19 +111,17 @@ class Enemy
     switch(type)
       {
         case 0:
-          return min(boxDistance(pX, pY, x * scale, y * scale - 65 * scale, 100 * scale, 230 * scale), boxDistance(pX, pY, x * scale - 110 * scale, y * scale - 65 * scale + 125 * scale, 100 * scale, 230 * scale));
+          return min(boxDistance(pX, pY, x, y - 65 * scale, 100 * scale, 230 * scale), boxDistance(pX, pY, x - 110 * scale, y + 60 * scale, 100 * scale, 230 * scale));
         case 1:
-          return boxDistance(pX, pY, x * scale, y * scale, 200 * scale, 200 * scale);
+          return boxDistance(pX, pY, x, y, 200 * scale, 200 * scale);
         case 2:
-          return min(boxDistance(pX, pY, x * scale, y * scale, 300 * scale, 100 * scale), boxDistance(pX, pY, x * scale + 110 * scale, y * scale - 110 * scale, 100 * scale, 100 * scale));
+          return min(boxDistance(pX, pY, x, y, 300 * scale, 100 * scale), boxDistance(pX, pY, x + 110 * scale, y - 110 * scale, 100 * scale, 100 * scale));
         case 3:
-          return min(boxDistance(pX, pY, x * scale - 5 * scale, y * scale, 300 * scale, 100 * scale), boxDistance(pX, pY, x * scale - 110 * scale, y * scale - 110 * scale, 100 * scale, 100 * scale));
+          return min(boxDistance(pX, pY, x - 5 * scale, y, 300 * scale, 100 * scale), boxDistance(pX, pY, x - 110 * scale, y - 110 * scale, 100 * scale, 100 * scale));
         case 4:
-          //rect(x * scale, y * scale - 65 * scale, 100 * scale, 230 * scale);
-          //rect(x * scale + 110 * scale, y * scale - 65 * scale + 110 * scale, 100 * scale, 200 * scale);
-          return min(boxDistance(pX, pY, x * scale, y * scale - 65 * scale, 100 * scale, 230 * scale), boxDistance(pX, pY, x * scale + 110 * scale, y * scale - 65 * scale + 110 * scale, 100 * scale, 200 * scale));
+          return min(boxDistance(pX, pY, x, y - 65 * scale, 100 * scale, 230 * scale), boxDistance(pX, pY, x + 110 * scale, y + 45 * scale, 100 * scale, 200 * scale));
         case 5:
-          return boxDistance(pX, pY, x * scale, y * scale, 420 * scale, 100 * scale);
+          return boxDistance(pX, pY, x, y, 420 * scale, 100 * scale);
         default:
           return 1000f;
       }
@@ -125,45 +132,45 @@ class Enemy
     switch(type)
       {
         case 0:
-          if(dist(x * scale, y * scale - 65 * scale, pX, pY) < dist(x * scale - 110 * scale, y * scale - 65 * scale + 125 * scale, pX, pY))
+          if(dist(x, y - 65 * scale, pX, pY) < dist(x - 110 * scale, y - 65 * scale + 125 * scale, pX, pY))
           {
-            return new PVector(x * scale, y * scale - 65 * scale);
+            return new PVector(x, y - 65 * scale);
           }
           else
           {
-            return new PVector(x * scale - 110 * scale, y * scale - 65 * scale + 125 * scale);
+            return new PVector(x - 110 * scale, y - 65 * scale + 125 * scale);
           }
         case 1:
-          return new PVector(x * scale, y * scale);
+          return new PVector(x, y);
         case 2:
-          if(dist(x * scale, y * scale, pX, pY) < dist(x * scale + 110 * scale, y * scale - 110 * scale, pX, pY))
+          if(dist(x, y, pX, pY) < dist(x + 110 * scale, y - 110 * scale, pX, pY))
           {
-            return new PVector(x * scale, y * scale);
+            return new PVector(x, y);
           }
           else
           {
-            return new PVector(x * scale + 110 * scale, y * scale - 110 * scale);
+            return new PVector(x + 110 * scale, y - 110 * scale);
           }
         case 3:
-          if(dist(x * scale - 5 * scale, y * scale, pX, pY) < dist(x * scale - 110 * scale, y * scale - 110 * scale, pX, pY))
+          if(dist(x - 5 * scale, y, pX, pY) < dist(x - 110 * scale, y - 110 * scale, pX, pY))
           {
-            return new PVector(x * scale - 5 * scale, y * scale);
+            return new PVector(x - 5 * scale, y);
           }
           else
           {
-            return new PVector(x * scale - 110 * scale, y * scale - 110 * scale);
+            return new PVector(x - 110 * scale, y - 110 * scale);
           }
         case 4:
-          if(dist(x * scale, y * scale - 65 * scale, pX, pY) < dist(x * scale + 110 * scale, y * scale - 65 * scale + 110 * scale, pX, pY))
+          if(dist(x, y - 65 * scale, pX, pY) < dist(x + 110 * scale, y - 65 * scale + 110 * scale, pX, pY))
           {
-            return new PVector(x * scale, y * scale - 65 * scale);
+            return new PVector(x, y - 65 * scale);
           }
           else
           {
-            return new PVector(x * scale + 110 * scale, y * scale - 65 * scale + 110 * scale);
+            return new PVector(x + 110 * scale, y - 65 * scale + 110 * scale);
           }
         case 5:
-        return new PVector(x * scale, y * scale);
+        return new PVector(x, y);
         default:
           return new PVector(0, 0);
       }
