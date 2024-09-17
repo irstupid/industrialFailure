@@ -25,7 +25,7 @@ SoundFile ponk;
 SoundFile poof;
 SoundFile music;
 
-boolean ARCADE = false;
+boolean ARCADE = true;
 
 void setup()
 {
@@ -44,8 +44,16 @@ void setup()
   carrot = loadImage("carrot.png");
   puff = loadImage("puff.png");
   puff.resize(200, 200);
-  instructions = loadImage("instructions.png");
-  title = loadImage("title.png");
+  if(!ARCADE)
+  {
+    instructions = loadImage("instructions.png");
+    title = loadImage("title.png");
+  }
+  else
+  {
+    instructions = loadImage("instructionsARCADE.png");
+    title = loadImage("titleARCADE.png");
+  }
   
   pew = new SoundFile(this, "pew");
   boom = new SoundFile(this, "boom");
