@@ -8,6 +8,7 @@ class Tomato
   float y;
   float xV;
   float yV;
+  float hp = 100;
   
   float r;
   float rV = 0.3;
@@ -59,5 +60,10 @@ class Tomato
       translate(0, me.height/2);
       image(me, -me.width/2, 0);
     pop();
+    
+    if(hp <= 0)
+    {
+      tomatos.remove(this);
+    }
   }
 }

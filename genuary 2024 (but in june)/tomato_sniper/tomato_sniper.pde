@@ -14,6 +14,7 @@ void setup()
   }
   roomba = new Roomba(width/2, height/2);
   shoot = new Shoot();
+  textFont(createFont("bubble.ttf", 128));
 }
 
 void draw()
@@ -21,13 +22,14 @@ void draw()
   background(150);
   for(int i = 0; i < tomatos.size(); i++)
   {
-    tomatos.get(i).draw();
     tomatos.get(i).targetX = roomba.x;
     tomatos.get(i).targetY = roomba.y;
+    tomatos.get(i).draw();
   }
   roomba.stop = shoot.active;
   roomba.draw();
   shoot.draw();
+  text("poopoo!", 0, 128);
 }
 
 void keyPressed()

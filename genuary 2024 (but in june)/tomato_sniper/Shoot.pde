@@ -74,15 +74,30 @@ class Shoot
       {
         if(dist(tomatos.get(i).x, tomatos.get(i).y + 10, x, y) < 75)
         {
-          charge++;
+          charge += 3;
+          
           if(charge > 100)
           {
             charge = 100;
           }
+          break;
+        }
+        if(i == tomatos.size() - 1)
+        {
+          charge -= 10;
+          charge = constrain(charge, 0, 100);
         }
       }
+      //println(charge);
       //circle(x, y, 50);
-      image(crosshair, x - crosshair.width/2 + 5.5, y - crosshair.height/2 - 6);
+      
+      push();
+        translate(x, y);
+        rotate(radians(charge * 1.35));
+        scale(charge/300f + 1);
+        translate(-crosshair.width/2 + 5.5, -crosshair.height/2 - 6);
+        image(crosshair, 0, 0);
+      pop();
     }
   }
   
@@ -120,6 +135,16 @@ class Shoot
         break;
       case('d'):
         right = false;
+        break;
+      case(' '):
+        for(int i = 0; i < tomatos.size(); i++)
+        {
+          if(dist(tomatos.get(i).x, tomatos.get(i).y + 10, x, y) < 75)
+          {
+            tomatos.get(i).hp -= charge;
+          }
+        }
+        charge = 0;
         break;
     }
   }
