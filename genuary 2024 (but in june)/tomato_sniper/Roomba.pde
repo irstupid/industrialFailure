@@ -17,13 +17,14 @@ class Roomba
     this.x = x;
     this.y = y;
     me = loadImage("roomba.png");
-    expresions = new PImage[6];
+    expresions = new PImage[7];
     expresions[0] = loadImage("idle.png");
     expresions[1] = loadImage("happy.png");
     expresions[2] = loadImage("hurt.png");
     expresions[3] = loadImage("left.png");
     expresions[4] = loadImage("right.png");
     expresions[5] = loadImage("center.png");
+    expresions[6] = loadImage("aim.png");
     me.resize(0, 150);
     expresions[0].resize(0, 150);
     expresions[1].resize(0, 150);
@@ -31,6 +32,7 @@ class Roomba
     expresions[3].resize(0, 150);
     expresions[4].resize(0, 125);
     expresions[5].resize(0, 150);
+    expresions[6].resize(0, 150);
   }
   
   void draw()
@@ -66,8 +68,11 @@ class Roomba
     }
     if(stop)
     {
-      state = 0;
+      state = 6;
     }
+    
+    x = constrain(x, 60, width - 43);
+    y = constrain(y, 50, height - 55);
     
     image(me, x - me.width/2, y - me.height/2);
     flicker--;
@@ -99,6 +104,9 @@ class Roomba
           break;
         case 5:
           image(expresions[5], x - expresions[5].width/2 - 17, y - expresions[5].height/2 + 10 * yV);
+          break;
+         case 6:
+          image(expresions[6], x - expresions[5].width/2 - 9, y - expresions[5].height/2 + 9);
           break;
       }
     }

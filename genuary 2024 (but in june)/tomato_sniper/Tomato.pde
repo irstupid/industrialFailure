@@ -22,7 +22,7 @@ class Tomato
   {
     this.c1 = hue(c1);
     this.c2 = hue(c2);
-    me = loadImage("tomato.png");
+    me = tomato.copy();
     
     float cRatio = (this.c2 - this.c1)/85;
     for(int i = 0; i < me.pixels.length; i++)
@@ -64,6 +64,7 @@ class Tomato
     if(hp <= 0)
     {
       tomatos.remove(this);
+      splats.add(new Splat(x, y, hue(me.pixels[10000])));
     }
   }
 }

@@ -1,11 +1,21 @@
 ArrayList<Tomato> tomatos;
 Roomba roomba;
 Shoot shoot;
+ArrayList<Splat> splats;
+
+PImage splat;
+PImage tomato;
+PImage background;
 
 void setup()
 {
+  splat = loadImage("splat.png");
+  tomato = loadImage("tomato.png");
+  background = loadImage("concrete.jpeg");
+  
   size(800, 800, P2D);
-  //tomato.resize(0, 100);
+  //fullScreen(P2D);
+  background.resize(width, height);
   colorMode(HSB);
   tomatos = new ArrayList<Tomato>();
   for(int i = 0; i < 3; i++)
@@ -15,11 +25,16 @@ void setup()
   roomba = new Roomba(width/2, height/2);
   shoot = new Shoot();
   textFont(createFont("bubble.ttf", 128));
+  splats = new ArrayList<Splat>();
 }
 
 void draw()
 {
-  background(150);
+  image(background, 0, 0);
+  for(int i = 0; i < splats.size(); i++)
+  {
+    splats.get(i).draw();
+  }
   for(int i = 0; i < tomatos.size(); i++)
   {
     tomatos.get(i).targetX = roomba.x;
@@ -29,7 +44,7 @@ void draw()
   roomba.stop = shoot.active;
   roomba.draw();
   shoot.draw();
-  text("poopoo!", 0, 128);
+  //text("poopoo!", 0, 128);
 }
 
 void keyPressed()
@@ -51,6 +66,7 @@ void keyReleased()
   if(key == ' ')
   {
     shoot.active = false;
+    ellipse(shoot.x, shoot.y, 5, 5);
   }
 }
 
