@@ -17,7 +17,7 @@ class Flower
     {
       for(int i = 0; i < carrots.size(); i++)
       {
-        if(dist(carrots.get(i).x, carrots.get(i).y, x, y) < 40)
+        if(carrots.get(i).unHit < 0 && dist(carrots.get(i).x, carrots.get(i).y, x, y) < 40)
         {
           state = 0;
         }
