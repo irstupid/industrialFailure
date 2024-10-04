@@ -37,6 +37,7 @@ class Roomba
   
   void draw()
   {
+    
     if(!stop)
     {
       x += xV * 2;

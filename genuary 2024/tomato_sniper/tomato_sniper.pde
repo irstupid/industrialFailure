@@ -5,6 +5,7 @@ ArrayList<Splat> splats;
 int spawnTime;
 int difficulty = 120;
 int score;
+int state = 0;
 
 PImage splat;
 PImage tomato;
@@ -21,10 +22,10 @@ void setup()
   background.resize(width, height);
   colorMode(HSB);
   tomatos = new ArrayList<Tomato>();
-  for(int i = 0; i < 3; i++)
-  {
-    tomatos.add(new Tomato(color(random(0, 255), 255, 255), color(random(0, 255), 255, 255), random(0, width), random(0, height)));
-  }
+  //for(int i = 0; i < 3; i++)
+  //{
+  //  tomatos.add(new Tomato(color(random(0, 255), 255, 255), color(random(0, 255), 255, 255), random(0, width), random(0, height)));
+  //}
   roomba = new Roomba(width/2, height/2);
   shoot = new Shoot();
   textFont(createFont("bubble.ttf", 128));
@@ -33,29 +34,48 @@ void setup()
 
 void draw()
 {
-  image(background, 0, 0);
-  for(int i = 0; i < splats.size(); i++)
+  if(state == 0)
   {
-    splats.get(i).draw();
+    image(background, 0, 0);
+    for(int i = 0; i < splats.size(); i++)
+    {
+      splats.get(i).draw();
+    }
+    for(int i = 0; i < tomatos.size(); i++)
+    {
+      tomatos.get(i).targetX = roomba.x;
+      tomatos.get(i).targetY = roomba.y;
+      tomatos.get(i).draw();
+    }
+    roomba.stop = shoot.active;
+    roomba.draw();
+    shoot.draw();
+    spawnTomato();
+    hit();
+    text(str(score).charAt(0), width/2 - str(score).length() * 45, 110);
+    if(str(score).length() >= 2)
+    {
+      text(str(score).charAt(1), width/2 - (str(score).length() - 1.5) * 45, 110);
+    }
+    if(str(score).length() >= 3)
+    {
+      text(str(score).charAt(2), width/2 - (str(score).length() - 3) * 45, 110);
+    }
   }
+  else if(state == 1)
+  {
+    
+  }
+}
+
+void hit()
+{
   for(int i = 0; i < tomatos.size(); i++)
   {
-    tomatos.get(i).targetX = roomba.x;
-    tomatos.get(i).targetY = roomba.y;
-    tomatos.get(i).draw();
-  }
-  roomba.stop = shoot.active;
-  roomba.draw();
-  shoot.draw();
-  spawnTomato();
-  text(str(score).charAt(0), width/2 - str(score).length() * 45, 110);
-  if(str(score).length() >= 2)
-  {
-    text(str(score).charAt(1), width/2 - (str(score).length() - 1.5) * 45, 110);
-  }
-  if(str(score).length() >= 3)
-  {
-    text(str(score).charAt(2), width/2 - (str(score).length() - 3) * 45, 110);
+    if(dist(tomatos.get(i).x, tomatos.get(i).y, roomba.x, roomba.y) <= 75)
+    {
+      state = 1;
+    }
   }
 }
 
@@ -96,24 +116,30 @@ void spawnTomato()
 
 void keyPressed()
 {
-  roomba.keyPressed();
-  shoot.keyPressed();
-  if(key == ' ')
+  if(state == 0)
   {
-    shoot.x = roomba.x;
-    shoot.y = roomba.y;
-    shoot.active = true;
+    roomba.keyPressed();
+    shoot.keyPressed();
+    if(key == ' ')
+    {
+      shoot.x = roomba.x;
+      shoot.y = roomba.y;
+      shoot.active = true;
+    }
   }
 }
 
 void keyReleased()
 {
-  roomba.keyReleased();
-  shoot.keyReleased();
-  if(key == ' ')
+  if(state == 0)
   {
-    shoot.active = false;
-    ellipse(shoot.x, shoot.y, 5, 5);
+    roomba.keyReleased();
+    shoot.keyReleased();
+    if(key == ' ')
+    {
+      shoot.active = false;
+      ellipse(shoot.x, shoot.y, 5, 5);
+    }
   }
 }
 
