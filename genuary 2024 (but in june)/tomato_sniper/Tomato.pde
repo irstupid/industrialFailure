@@ -65,6 +65,7 @@ class Tomato
     {
       tomatos.remove(this);
       splats.add(new Splat(x, y, hue(me.pixels[10000])));
+      score++;
     }
   }
 }

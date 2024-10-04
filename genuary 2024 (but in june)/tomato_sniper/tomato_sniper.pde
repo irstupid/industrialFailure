@@ -2,6 +2,9 @@ ArrayList<Tomato> tomatos;
 Roomba roomba;
 Shoot shoot;
 ArrayList<Splat> splats;
+int spawnTime;
+int difficulty = 120;
+int score;
 
 PImage splat;
 PImage tomato;
@@ -44,7 +47,51 @@ void draw()
   roomba.stop = shoot.active;
   roomba.draw();
   shoot.draw();
-  //text("poopoo!", 0, 128);
+  spawnTomato();
+  text(str(score).charAt(0), width/2 - str(score).length() * 45, 110);
+  if(str(score).length() >= 2)
+  {
+    text(str(score).charAt(1), width/2 - (str(score).length() - 1.5) * 45, 110);
+  }
+  if(str(score).length() >= 3)
+  {
+    text(str(score).charAt(2), width/2 - (str(score).length() - 3) * 45, 110);
+  }
+}
+
+void spawnTomato()
+{
+  spawnTime--;
+  if(spawnTime <= 0)
+  {
+    spawnTime = difficulty;
+    if(difficulty > 50)
+    {
+      difficulty -= (difficulty > 100 ? 5 : 1);
+    }
+    if(random(0, 1) > 0.5)
+    {
+      if(random(0, 1) > 0.5)
+      {
+        tomatos.add(new Tomato(color(random(0, 255), 255, 255), color(random(0, 255), 255, 255), random(0, width), height + 80));
+      }
+      else
+      {
+        tomatos.add(new Tomato(color(random(0, 255), 255, 255), color(random(0, 255), 255, 255), random(0, width), -80));
+      }
+    }
+    else
+    {
+      if(random(0, 1) > 0.5)
+      {
+        tomatos.add(new Tomato(color(random(0, 255), 255, 255), color(random(0, 255), 255, 255), width + 80, random(0, height)));
+      }
+      else
+      {
+        tomatos.add(new Tomato(color(random(0, 255), 255, 255), color(random(0, 255), 255, 255), -80, random(0, height)));
+      }
+    }
+  }
 }
 
 void keyPressed()
