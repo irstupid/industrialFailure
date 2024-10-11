@@ -66,6 +66,10 @@ class Tomato
       tomatos.remove(this);
       splats.add(new Splat(x, y, hue(me.pixels[10000])));
       score++;
+      for(int i = 0; i < scoreColors.length; i++)
+      {
+        scoreColors[i] = color(random(0, 255), 255, 255);
+      }
     }
   }
 }

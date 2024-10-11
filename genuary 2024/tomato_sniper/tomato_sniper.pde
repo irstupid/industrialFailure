@@ -6,6 +6,7 @@ int spawnTime;
 int difficulty = 120;
 int score;
 int state = 0;
+int[] scoreColors;
 
 PImage splat;
 PImage tomato;
@@ -16,20 +17,22 @@ void setup()
   splat = loadImage("splat.png");
   tomato = loadImage("tomato.png");
   background = loadImage("concrete.jpeg");
+  textFont(createFont("bubble.ttf", 128));
   
   size(800, 800, P2D);
   //fullScreen(P2D);
   background.resize(width, height);
   colorMode(HSB);
+  
   tomatos = new ArrayList<Tomato>();
-  //for(int i = 0; i < 3; i++)
-  //{
-  //  tomatos.add(new Tomato(color(random(0, 255), 255, 255), color(random(0, 255), 255, 255), random(0, width), random(0, height)));
-  //}
   roomba = new Roomba(width/2, height/2);
   shoot = new Shoot();
-  textFont(createFont("bubble.ttf", 128));
   splats = new ArrayList<Splat>();
+  scoreColors = new int[3];
+  for(int i = 0; i < scoreColors.length; i++)
+  {
+    scoreColors[i] = color(random(0, 255), 255, 255);
+  }
 }
 
 void draw()
@@ -52,19 +55,28 @@ void draw()
     shoot.draw();
     spawnTomato();
     hit();
+    fill(scoreColors[0]);
     text(str(score).charAt(0), width/2 - str(score).length() * 45, 110);
     if(str(score).length() >= 2)
     {
+      fill(scoreColors[1]);
       text(str(score).charAt(1), width/2 - (str(score).length() - 1.5) * 45, 110);
     }
     if(str(score).length() >= 3)
     {
+      fill(scoreColors[2]);
       text(str(score).charAt(2), width/2 - (str(score).length() - 3) * 45, 110);
     }
   }
   else if(state == 1)
   {
-    
+    image(background, 0, 0);
+    for(int i = 0; i < splats.size(); i++)
+    {
+      splats.get(i).draw();
+      splats.get(i).time = 0;
+    }
+    roomba.draw();
   }
 }
 
@@ -75,6 +87,12 @@ void hit()
     if(dist(tomatos.get(i).x, tomatos.get(i).y, roomba.x, roomba.y) <= 75)
     {
       state = 1;
+      splats = new ArrayList<Splat>();
+      for(int j = 0; j < 10; j++)
+      {
+        splats.add(new Splat(random(0, width), random(0, height), random(0, 255)));
+      }
+      roomba = new Roomba(width/2, height/2);
     }
   }
 }
