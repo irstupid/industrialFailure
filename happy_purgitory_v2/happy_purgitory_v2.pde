@@ -1,7 +1,5 @@
 Player player = null;
 
-Flower testFlower = null;
-
 float noiseX = random(0, 1000);
 float noiseY = random(0, 1000);
 float noiseYV = 0;
@@ -22,7 +20,6 @@ void setup()
 {
   size(800, 800, P2D);
   player = new Player(width/2, height/2, 5);
-  testFlower = new Flower(width/2, height/2, random(25, 110), random(0, 90), color(random(0, 255), random(0, 255), random(0, 255)), color(random(0, 255), random(0, 255), random(0, 255)));
 }
 
 void draw()

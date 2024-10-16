@@ -15,7 +15,7 @@ FloatList cookiesSP = new FloatList();
 float noiseX;
 float noiseY;
 
-boolean sezure = false;
+boolean sezure = true;
 
 void setup()
 {
