@@ -5,8 +5,9 @@ ArrayList<Splat> splats;
 int spawnTime;
 int difficulty = 120;
 int score;
-int state = 0;
+int state = 2;
 int[] scoreColors;
+KeyPad keyPad;
 
 PImage splat;
 PImage tomato;
@@ -15,6 +16,7 @@ PImage background;
 void setup()
 {
   splat = loadImage("splat.png");
+  splat.resize(0, 400);
   tomato = loadImage("tomato.png");
   background = loadImage("concrete.jpeg");
   textFont(createFont("bubble.ttf", 128));
@@ -29,6 +31,7 @@ void setup()
   shoot = new Shoot();
   splats = new ArrayList<Splat>();
   scoreColors = new int[3];
+  keyPad = new KeyPad();
   for(int i = 0; i < scoreColors.length; i++)
   {
     scoreColors[i] = color(random(0, 255), 255, 255);
@@ -37,13 +40,14 @@ void setup()
 
 void draw()
 {
+  image(background, 0, 0);
+  for(int i = 0; i < splats.size(); i++)
+  {
+    splats.get(i).draw();
+  }
+  
   if(state == 0)
   {
-    image(background, 0, 0);
-    for(int i = 0; i < splats.size(); i++)
-    {
-      splats.get(i).draw();
-    }
     for(int i = 0; i < tomatos.size(); i++)
     {
       tomatos.get(i).targetX = roomba.x;
@@ -68,13 +72,12 @@ void draw()
       text(str(score).charAt(2), width/2 - (str(score).length() - 3) * 45, 110);
     }
   }
+  else if(state == 2)
+  {
+    keyPad.draw();
+  }
   else if(state == 1)
   {
-    image(background, 0, 0);
-    for(int i = 0; i < splats.size(); i++)
-    {
-      splats.get(i).draw();
-    }
     roomba.draw();
   }
 }
@@ -85,13 +88,20 @@ void hit()
   {
     if(dist(tomatos.get(i).x, tomatos.get(i).y, roomba.x, roomba.y) <= 75)
     {
-      state = 1;
-      splats = new ArrayList<Splat>();
-      for(int j = 0; j < 10; j++)
+      if(state == 1)
       {
-        splats.add(new Splat(random(0, width), random(0, height), random(0, 255), 1));
+        state = 1;
+        for(int j = 0; j < 10; j++)
+        {
+          splats.add(new Splat(random(0, width), random(0, height), 1, false));
+        }
+        roomba = new Roomba(width/2, height/2);
       }
-      roomba = new Roomba(width/2, height/2);
+      else
+      {
+        state = 2;
+        keyPad = new KeyPad();
+      }
     }
   }
 }
