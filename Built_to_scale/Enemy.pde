@@ -32,8 +32,8 @@ class Enemy
       }
       else
       {
-        x -= constrain(-cos(atan2(y - player.x, x - player.x)), -1, 1) * 0.2;
-        y -= constrain(-sin(atan2(y - player.y, x - player.y)), -1, 1) * 0.2;
+        x += constrain(-cos(atan2(y - player.x, x - player.x)), -1, 1) * 0.1;
+        y += constrain(-sin(atan2(y - player.y, x - player.y)), -1, 1) * 0.1;
       }
       shrinkTime--;
       
