@@ -2,10 +2,13 @@ class Splat
 {
   float x;
   float y;
+  float s;
   float time;
   int type;
   PImage me;
   float c;
+  boolean die = true;
+  
   Splat(float x, float y, float c)
   {
     this.x = x;
@@ -23,15 +26,40 @@ class Splat
     }
   }
   
+  Splat(float x, float y, float c, float s)
+  {
+    this.x = x;
+    this.y = y;
+    this.c = c;
+    this.s = s;
+    die = false;
+    type = 0;//floor(random(0, 4));
+    me = splat.copy();
+    me.resize(0, 400);
+    for(int i = 0; i < me.pixels.length; i++)
+    {
+      if(me.pixels[i] != 0)
+      {
+        me.pixels[i] = color(c, saturation(me.pixels[i]), brightness(me.pixels[i]));
+      }
+    }
+  }
+  
   void draw()
   {
-    time++;
+    if(die)
+    {
+      time++;
+    }
+    s += 0.01;
     push();
     tint(#ffffff, 255 - max(time - 100, 0) * 2);
+    translate(x - me.width/4, y - me.width/4);
+    scale(s);
     switch(type)
     {
       case 0:
-          image(me, x - me.width/4, y - me.width/4, me.width/2, me.height/2, 0, 0, me.width/2, me.height/2);
+          image(me, 0, 0, me.width/2, me.height/2, 0, 0, me.width/2, me.height/2);
           break;
       case 1:
           image(me, x - me.width/4 - 20, y - me.width/4 + 20, me.width/2, me.height/2, me.width/2, 0, me.width, me.height/2);

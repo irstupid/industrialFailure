@@ -74,7 +74,6 @@ void draw()
     for(int i = 0; i < splats.size(); i++)
     {
       splats.get(i).draw();
-      splats.get(i).time = 0;
     }
     roomba.draw();
   }
@@ -90,7 +89,7 @@ void hit()
       splats = new ArrayList<Splat>();
       for(int j = 0; j < 10; j++)
       {
-        splats.add(new Splat(random(0, width), random(0, height), random(0, 255)));
+        splats.add(new Splat(random(0, width), random(0, height), random(0, 255), 1));
       }
       roomba = new Roomba(width/2, height/2);
     }
