@@ -5,7 +5,7 @@ ArrayList<Splat> splats;
 int spawnTime;
 int difficulty = 120;
 int score;
-int state = 2;
+int state = 0;
 int[] scoreColors;
 KeyPad keyPad;
 

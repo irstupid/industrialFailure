@@ -4,6 +4,7 @@ class KeyPad
   int score;
   Splat[] splats;
   int[] textColors; 
+  int select;
   
   KeyPad()
   {
@@ -19,9 +20,14 @@ class KeyPad
     splats[8] = new Splat(600, 600, 1, false);
     
     textColors = new int[27];
-    for(int i = 0; i < textColors.length - 1; i++)
+    for(int i = 0; i < textColors.length - 1;)//textColors.length - 1;)
     {
-      textColors[i] = color(random(0, 255), 255, 255);
+      int c = color(random(0, 255), 255, 255);
+      if(abs(splats[floor(i/3)].c - hue(c)) > 100)
+      {
+        textColors[i] = c;
+        i++;
+      }
     }
   }
   
@@ -39,6 +45,54 @@ class KeyPad
       text("b", 145, 203);
       fill(textColors[2]);
       text("c", 180, 251);
+      fill(textColors[3]);
+      text("d", 405, 195);
+      fill(textColors[4]);
+      text("e", 345, 203);
+      fill(textColors[5]);
+      text("f", 380, 251);
+      fill(textColors[0]);
+      text("g", 605, 195);
+      fill(textColors[1]);
+      text("h", 545, 203);
+      fill(textColors[2]);
+      text("i", 580, 251);
+      
+      text("j", 205, 395);
+      fill(textColors[1]);
+      text("k", 145, 403);
+      fill(textColors[2]);
+      text("l", 180, 451);
+      fill(textColors[3]);
+      text("m", 405, 395);
+      fill(textColors[4]);
+      text("n", 345, 403);
+      fill(textColors[5]);
+      text("o", 380, 451);
+      fill(textColors[0]);
+      text("p", 605, 395);
+      fill(textColors[1]);
+      text("q", 545, 403);
+      fill(textColors[2]);
+      text("r", 580, 451);
+      
+      text("s", 205, 595);
+      fill(textColors[1]);
+      text("t", 145, 603);
+      fill(textColors[2]);
+      text("u", 180, 651);
+      fill(textColors[3]);
+      text("v", 405, 595);
+      fill(textColors[4]);
+      text("w", 345, 603);
+      fill(textColors[5]);
+      text("x", 380, 651);
+      fill(textColors[0]);
+      text("y", 605, 595);
+      fill(textColors[1]);
+      text("z", 545, 603);
+      fill(textColors[2]);
+      text("dlt", 550, 671);
     pop();
   }
   
