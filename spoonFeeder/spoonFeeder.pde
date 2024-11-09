@@ -11,9 +11,34 @@ void setup()
 
 void draw()
 {
-  String in = net.getNext();
-  if(in != null)
+  parse();
+  serialize();
+}
+
+void serialize()
+{
+  String data = "";
+  data += players.size() + ":";
+  for(int i = 0; i < players.size(); i++)
   {
-    //parse data n stuff
+    data += players.get(i).name + ":";
+    data += players.get(i).x + ":";
+    data += players.get(i).y + ":";
+  }
+  net.broadcast(data);
+}
+
+void parse()
+{
+  String value = net.getNext();
+  if(value != null)
+  {
+    String[] values = value.split(":");
+    switch(values[0])
+    {
+      case("NEW"):
+      players.add(new Player(values[1]));
+      break;
+    }
   }
 }
