@@ -1,6 +1,8 @@
 Network net;
 
 ArrayList<Player> players;
+boolean[] deathNote = new boolean[0];
+int dDay = -1;
 
 void setup()
 {
@@ -23,6 +25,23 @@ void update()
   for(int i = 0; i < players.size(); i++)
   {
     players.get(i).draw();
+  }
+  
+  
+  if(dDay == 0)
+  {
+    for(int i = 0; i < deathNote.length; i++)
+    {
+      if(!deathNote[i])
+      {
+        players.remove(i);
+      }
+    }
+    dDay--;
+  }
+  else if(dDay > 0)
+  {
+    dDay--;
   }
 }
 
@@ -58,6 +77,15 @@ void parse()
       case("KEY_UP"):
       players.get(int(values[1])).keyReleased(values[2].charAt(0));
       break;
+      case("POLO"):
+      deathNote[int(values[1])] = true;
+      break;
     }
   }
+}
+
+void disconnectEvent(Client client) {
+  print("bye, bye!");
+  deathNote = new boolean[players.size()];
+  net.broadcast("MARCO");
 }

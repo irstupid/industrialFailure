@@ -1,6 +1,6 @@
 Network net;
 String feeder = "10.33.93.211";
-String name = "tim";
+String name = "bob";
 
 int id;
 
@@ -16,7 +16,7 @@ void setup()
   net.startClient(feeder);
   net.putString("NEW:" + name);
   
-  size(800, 800, P2D);
+  size(1000, 1000, P2D);
 }
 
 void draw()
@@ -43,7 +43,7 @@ void drawPlayers()
         noStroke();
       }
       
-      ellipse(playerXs[0], playerYs[0], 50, 50);
+      ellipse(playerXs[i], playerYs[i], 50, 50);
     pop();
   }
 }
@@ -60,7 +60,7 @@ void keyReleased()
 
 void parse()
 {
-  for(int count = 0; count < 2; count++)
+  for(int count = 0; count < 3; count++)
   {
     String value = net.getString();
     if(value != null)
@@ -69,6 +69,10 @@ void parse()
       if(values[0].equals("ID") && values[1].equals(name))
       {
         id = int(values[2]);
+      }
+      else if(values[0].equals("MARCO"))
+      {
+        id = int("POLO:" + id);
       }
       else
       {
