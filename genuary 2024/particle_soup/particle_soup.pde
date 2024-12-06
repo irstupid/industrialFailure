@@ -14,7 +14,8 @@ int particleAmount = 200;
 
 void setup()
 {
-  fullScreen(P2D);
+  //fullScreen(P2D);
+  size(800, 800, P2D);
   noStroke();
   
   particles = new ArrayList<Particle>();
@@ -38,6 +39,7 @@ void setup()
 
 void draw()
 {
+  println(density(mouseX, mouseY));
   background(#000022);
   for(int i = 0; i < rules.size(); i++)
   {
@@ -47,6 +49,17 @@ void draw()
   {
     particles.get(i).draw();
   }
+}
+
+float density(float x, float y)
+{
+  float density = 0;
+  for(int i = 0; i < particles.size(); i++)
+  {
+    density += dist(x, y, particles.get(i).x, particles.get(i).y);
+  }
+  density = density / particles.size();
+  return 1/density;
 }
 
 void keyPressed()
