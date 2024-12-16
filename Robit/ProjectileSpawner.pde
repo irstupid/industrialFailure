@@ -12,8 +12,10 @@ class ProjectileSpawner
     float direction;
 
     int coolDown;
-
-    ProjectileSpawner(Projectile projectile, float fierate, float damageMulti, float rangeMulti, boolean good, float x, float y, float direction)
+    
+    //public <T> T get(Class<? extends T> classOrInterface, String deviceName) {
+      
+    <T> ProjectileSpawner(Projectile projectile, float fierate, float damageMulti, float rangeMulti, boolean good, float x, float y, float direction)
     {
         this.projectile = projectile;
 

@@ -24,4 +24,5 @@ void keyPressed()
 void keyReleased()
 {
     player.keyReleased();
+  
 }

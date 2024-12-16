@@ -13,6 +13,8 @@ class Player
     boolean right = false;
     boolean up = false;
     boolean down = false;
+    
+    ArrayList<ProjectileSpawner> projectiles;
 
     Player(float x, float y)
     {
@@ -21,6 +23,9 @@ class Player
 
         hp = maxHp;
         xp = 0;
+        
+        projectiles = new ArrayList<ProjectileSpawner>();
+        projectiles.add(shot.class, )
     }
 
     void update()
