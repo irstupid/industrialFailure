@@ -154,6 +154,10 @@ void keyPressed()
       shoot.active = true;
     }
   }
+  else if(state == 2)
+  {
+    keyPad.keyPressed();
+  }
 }
 
 void keyReleased()

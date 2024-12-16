@@ -4,7 +4,7 @@ class KeyPad
   int score;
   Splat[] splats;
   int[] textColors; 
-  int select;
+  int select = 0;
   
   KeyPad()
   {
@@ -20,7 +20,7 @@ class KeyPad
     splats[8] = new Splat(600, 600, 1, false);
     
     textColors = new int[27];
-    for(int i = 0; i < textColors.length - 1;)//textColors.length - 1;)
+    for(int i = 0; i < textColors.length;)//textColors.length - 1;)
     {
       int c = color(random(0, 255), 255, 255);
       if(abs(splats[floor(i/3)].c - hue(c)) > 100)
@@ -29,10 +29,16 @@ class KeyPad
         i++;
       }
     }
+    
+    splats[select] = new Splat(splats[select].x, splats[select].y, hue(#D5FF58), 1.5 ,false);
+    textColors[select * 3] = 0;
+    textColors[select * 3 + 1] = 0;
+    textColors[select * 3 + 2] = 0;
   }
   
   void draw()
   {
+    
     for(int i = 0; i < splats.length - 1; i++)
     {
       splats[i].draw();
@@ -51,53 +57,85 @@ class KeyPad
       text("e", 345, 203);
       fill(textColors[5]);
       text("f", 380, 251);
-      fill(textColors[0]);
+      fill(textColors[6]);
       text("g", 605, 195);
-      fill(textColors[1]);
+      fill(textColors[7]);
       text("h", 545, 203);
-      fill(textColors[2]);
+      fill(textColors[8]);
       text("i", 580, 251);
       
+      fill(textColors[9]);
       text("j", 205, 395);
-      fill(textColors[1]);
+      fill(textColors[10]);
       text("k", 145, 403);
-      fill(textColors[2]);
+      fill(textColors[11]);
       text("l", 180, 451);
-      fill(textColors[3]);
+      fill(textColors[12]);
       text("m", 405, 395);
-      fill(textColors[4]);
+      fill(textColors[13]);
       text("n", 345, 403);
-      fill(textColors[5]);
+      fill(textColors[14]);
       text("o", 380, 451);
-      fill(textColors[0]);
+      fill(textColors[15]);
       text("p", 605, 395);
-      fill(textColors[1]);
+      fill(textColors[16]);
       text("q", 545, 403);
-      fill(textColors[2]);
+      fill(textColors[17]);
       text("r", 580, 451);
       
+      fill(textColors[18]);
       text("s", 205, 595);
-      fill(textColors[1]);
+      fill(textColors[19]);
       text("t", 145, 603);
-      fill(textColors[2]);
+      fill(textColors[20]);
       text("u", 180, 651);
-      fill(textColors[3]);
+      fill(textColors[21]);
       text("v", 405, 595);
-      fill(textColors[4]);
+      fill(textColors[22]);
       text("w", 345, 603);
-      fill(textColors[5]);
+      fill(textColors[23]);
       text("x", 380, 651);
-      fill(textColors[0]);
+      fill(textColors[24]);
       text("y", 605, 595);
-      fill(textColors[1]);
+      fill(textColors[25]);
       text("z", 545, 603);
-      fill(textColors[2]);
+      fill(textColors[26]);
       text("dlt", 550, 671);
     pop();
   }
   
   void keyPressed()
   {
+    splats[select] = new Splat(splats[select].x, splats[select].y, 1, false);
+    for(int i = select * 3; i < select * 3 + 3;)//textColors.length - 1;)
+    {
+      int c = color(random(0, 255), 255, 255);
+      if(abs(splats[floor(i/3)].c - hue(c)) > 100)
+      {
+        textColors[i] = c;
+        i++;
+      }
+    }
     
+    switch(key)
+    {
+      case 'w':
+        select -= 3;
+        break;
+      case 'a':
+        select -= 1;
+        break;
+      case 's':
+        select += 3;
+        break;
+      case 'd':
+        select += 1;
+        break;
+    }
+    
+    splats[select] = new Splat(splats[select].x, splats[select].y, hue(#D5FF58), 1.5 ,false);
+    textColors[select * 3] = 0;
+    textColors[select * 3 + 1] = 0;
+    textColors[select * 3 + 2] = 0;
   }
 }

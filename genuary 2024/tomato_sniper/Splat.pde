@@ -16,6 +16,7 @@ class Splat
     this.c = c;
     type = floor(random(0, 4));
     me = splat.copy();
+    //me.resize(0, 400);
     for(int i = 0; i < me.pixels.length; i++)
     {
       if(me.pixels[i] != 0)
@@ -34,7 +35,26 @@ class Splat
     this.die = die;
     type = floor(random(0, 4));
     me = splat.copy();
-    me.resize(0, 400);
+    //me.resize(0, 400);
+    for(int i = 0; i < me.pixels.length; i++)
+    {
+      if(me.pixels[i] != 0)
+      {
+        me.pixels[i] = color(c, saturation(me.pixels[i]), brightness(me.pixels[i]));
+      }
+    }
+  }
+  
+  Splat(float x, float y, float c, float s, boolean die)
+  {
+    this.x = x;
+    this.y = y;
+    this.c = random(0, 255);
+    this.s = s;
+    this.die = die;
+    type = floor(random(0, 4));
+    me = splat.copy();
+    //me.resize(0, 400);
     for(int i = 0; i < me.pixels.length; i++)
     {
       if(me.pixels[i] != 0)
