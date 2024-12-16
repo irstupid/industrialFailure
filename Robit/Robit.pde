@@ -1,10 +1,12 @@
 Player player;
+ArrayList<Projectile> projectiles;
 
 void setup()
 {
     fullscreen(P2D);
 
     player = new Player(width/2, height/2);
+    projectiles = new ArrayList<Projectile>();
 }
 
 void draw()

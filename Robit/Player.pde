@@ -1,18 +1,18 @@
 class Player
 {
-    private float x;
-    private float y;
-    private int hp;
-    private int xp;
+    float x;
+    float y;
+    int hp;
+    int xp;
 
-    private float maxHp;
-    private float speed;
-    private float xpGain;
+    float maxHp;
+    float speed;
+    float xpGain;
 
-    private boolean left = false;
-    private boolean right = false;
-    private boolean up = false;
-    private boolean down = false;
+    boolean left = false;
+    boolean right = false;
+    boolean up = false;
+    boolean down = false;
 
     Player(float x, float y)
     {
