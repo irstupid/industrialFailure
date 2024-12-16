@@ -27,7 +27,7 @@ class Projectile
     {
         x += Math.cos(Math.toRadians(direction)) * speed;
         y += Math.sin(Math.toRadians(direction)) * speed;
-        if(peirce <= 0)
+        if(pierce <= 0)
         {
             projectiles.remove(this);
         }
@@ -35,7 +35,7 @@ class Projectile
 
     void paint()
     {
-
+      
     }
 
     void Hit(float hX, float hY, float hR)

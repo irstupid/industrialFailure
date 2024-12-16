@@ -1,8 +1,8 @@
 class Shot extends Projectile
 {
-  Shot()
+  Shot(float x, float y, float direction, float rangeMulti, float damageMulti)
   {
-    super();
+    super(x, y, direction, rangeMulti, damageMulti);
   }
   
   void start()
@@ -11,7 +11,7 @@ class Shot extends Projectile
     speed = 5 * range;
     lifeTime = 30 + (range - 1) * 10;
     size = 1;
-    peirce = 1;
+    pierce = 1;
   }
 
   void paint()
@@ -21,9 +21,9 @@ class Shot extends Projectile
 
   boolean hit(float hX, float hY, float hR)
   {
-    if(dist(Hx, Hy, x, y) <= HR + 5 && peirce > 0)
+    if(dist(hX, hY, x, y) <= hR + 5 && pierce > 0)
     {
-      peirce--;
+      pierce--;
       return true;
     }
     else

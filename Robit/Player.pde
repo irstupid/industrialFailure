@@ -5,7 +5,7 @@ class Player
     int hp;
     int xp;
 
-    float maxHp;
+    int maxHp;
     float speed;
     float xpGain;
 
@@ -25,17 +25,24 @@ class Player
         xp = 0;
         
         projectiles = new ArrayList<ProjectileSpawner>();
-        projectiles.add(shot.class, )
+        projectiles.add(new ProjectileSpawner<Shot>(1, 1, 1, true, x, y, 0));
     }
 
     void update()
     {
-
+      
+      for(int i = 0; i < projectiles.size(); i++)
+      {
+        projectiles.get(i).setPosition(x, y);
+        projectiles.get(i).update();
+        projectiles.get(i).spawn();
+      }
     }
 
     void paint()
     {
-
+      rectMode(CENTER);
+      rect(x, y, 50, 50);
     }
 
     void keyPressed()
@@ -47,7 +54,7 @@ class Player
             break;
             case 'a':
             left = true;
-            break
+            break;
             case 's':
             down = true;
             break;
@@ -66,7 +73,7 @@ class Player
             break;
             case 'a':
             left = false;
-            break
+            break;
             case 's':
             down = false;
             break;

@@ -1,62 +1,57 @@
-class ProjectileSpawner
+class ProjectileSpawner <T>
 {
-    Projectile projectile;
+  T projectile;
+  
+  float fierate;
+  float damageMulti;
+  float rangeMulti;
+  boolean good;
 
-    float fierate;
-    float damageMulti;
-    float rangeMulti;
-    boolean good;
+  float x;
+  float y;
+  float direction;
 
-    float x;
-    float y;
-    float direction;
+  int coolDown;
+  ProjectileSpawner(float fierate, float damageMulti, float rangeMulti, boolean good, float x, float y, float direction)
+  {
+    this.fierate = fierate;
+    this.damageMulti = damageMulti;
+    this.rangeMulti = rangeMulti;
+    this.good = good;
 
-    int coolDown;
+    this.x = x;
+    this.y = y;
+    this.direction = direction;
+  }
+
+  void update()
+  {
+    if(coolDown > 0)
+    {
+      coolDown--;
+    }
+  }
+
+  void spawn()
+  {
+    if(coolDown > 0)
+    {
+      return;
+    }
     
-    //public <T> T get(Class<? extends T> classOrInterface, String deviceName) {
-      
-    <T> ProjectileSpawner(Projectile projectile, float fierate, float damageMulti, float rangeMulti, boolean good, float x, float y, float direction)
-    {
-        this.projectile = projectile;
+    coolDown = round(60 * fierate);
+    projectiles.add(projectile);
+    println("pew");
+  }
 
-        this.fierate = fierate;
-        this.damageMulti = damageMulti;
-        this.rangeMulti = rangeMulti;
-        this.good = good;
+  void setPosition(float x, float y)
+  {
+    this.x = x;
+    this.y = y;
+  }
 
-        this.x = x;
-        this.y = y;
-        this.direction = direction;
-    }
-
-    void update()
-    {
-        if(coolDown > 0)
-        {
-            coolDown--;
-        }
-    }
-
-    void spawn()
-    {
-        if(coolDown > 0)
-        {
-            return;
-        }
-
-        coolDown = 60 * fierate;
-        //spawnProjectile
-        println("pew");
-    }
-
-    void setPosition(float x, float y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    void setDirection(float direction)
-    {
-        this.direction = direction;
-    }
+  void setDirection(float direction)
+  {
+    this.direction = direction;
+  }
 }
