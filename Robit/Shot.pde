@@ -5,6 +5,11 @@ class Shot extends Projectile
     super(x, y, direction, rangeMulti, damageMulti);
   }
   
+  Shot factory(float x, float y, float direction, float rangeMulti, float damageMulti)
+  {
+    return new Shot(x, y, direction, rangeMulti, damageMulti);
+  }
+  
   void start()
   {
     damage = damage * 1;

@@ -1,7 +1,5 @@
-class ProjectileSpawner <T>
+class ProjectileSpawner <T extends Projectile>
 {
-  T projectile;
-  
   float fierate;
   float damageMulti;
   float rangeMulti;
@@ -32,15 +30,15 @@ class ProjectileSpawner <T>
     }
   }
 
-  void spawn()
+  T spawn()
   {
     if(coolDown > 0)
     {
-      return;
+      return null;
     }
     
     coolDown = round(60 * fierate);
-    projectiles.add(projectile);
+    return T.factory(1, 1, 1, 1, 1);
     println("pew");
   }
 

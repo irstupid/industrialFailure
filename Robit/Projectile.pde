@@ -20,6 +20,11 @@ class Projectile
         range = rangeMulti;
         start();
     }
+    
+    Projectile factory(float x, float y, float direction, float rangeMulti, float damageMulti)
+    {
+      return new Projectile(x, y, direction, rangeMulti, damageMulti);
+    }
 
     void start() { }
 
