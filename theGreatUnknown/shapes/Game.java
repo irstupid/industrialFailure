@@ -1,14 +1,14 @@
-package testo;
-
 public class Game
 {
+    Screen screen;
+
     public Game()
     {
-
+        screen = new Screen();
     }
 
     public void update()
     {
-        System.out.println("yippie?");
+        
     }
 }
