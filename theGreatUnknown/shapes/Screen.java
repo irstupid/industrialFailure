@@ -14,6 +14,6 @@ public class Screen {
 
     public void update()
     {
-
+        screen.setBackground(new Color(0, 0, 0));
     }
 }
