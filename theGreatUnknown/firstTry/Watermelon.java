@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
-import java.time.*;
 import javax.imageio.ImageIO;
 
 public class Watermelon {
@@ -33,7 +32,7 @@ public class Watermelon {
         }
     }
 
-    public void update(Duration deltaTime)
+    public void update()
     {
         int pX = x;
         int pY = y;

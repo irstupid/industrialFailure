@@ -1,12 +1,9 @@
-import java.time.*;
 import javax.swing.JFrame;
 
-class Main
+class Main extends JFrame
 {
     static JFrame window;
     static Screen game;
-    
-    public static Duration deltaTime = Duration.ZERO;
     public static void main(String[] args)
     {
         window = new JFrame("game");
@@ -16,13 +13,9 @@ class Main
         window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-
-        Instant beginTime = Instant.now();
-        while(true){
-
-            game.update(deltaTime);
-
-            deltaTime = Duration.between(beginTime, Instant.now());
+        while(true)
+        {
+            game.update();
         }
     }
 }

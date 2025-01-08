@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.time.*;
 import javax.swing.*;
 
 public class Screen extends JPanel
@@ -24,19 +23,17 @@ public class Screen extends JPanel
         }
     }
 
-    public void update(Duration deltaTime)
+    public void update( )
     {
         watermelon.give(window.getX(), window.getY());
-        watermelon.update(deltaTime);
+        watermelon.update();
         for(int i = 0; i < balls.length; i++)
         {
             balls[i].give(window.getWidth(), window.getHeight());
-            balls[i].update(deltaTime);
+            balls[i].update();
         }
 
         collide();
-
-        window.repaint();
     }
 
     private void collide()

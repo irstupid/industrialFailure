@@ -3,7 +3,6 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
-import java.time.*;
 import java.util.Random;
 import javax.imageio.ImageIO;
 
@@ -39,10 +38,10 @@ public class Ball {
         y = random.nextFloat() * 800;
     }
 
-    public void update(Duration deltaTime)
+    public void update()
     {
-        x += xV * deltaTime.getNano();
-        y += yV * deltaTime.getNano();
+        x += xV;
+        y += yV;
         //xV *= 1 - DRAG;
         //yV *= 1 - DRAG;
 
