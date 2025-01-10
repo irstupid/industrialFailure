@@ -1,9 +1,12 @@
 import javax.swing.JFrame;
 
-class Main extends JFrame
+class Main implements Runnable
 {
     static JFrame window;
     static Screen game;
+    private Thread thread;
+
+    final int FPS = 120;
     public static void main(String[] args)
     {
         window = new JFrame("game");
@@ -13,21 +16,29 @@ class Main extends JFrame
         window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-        long lastLoopTime = System.nanoTime();
-        final int TARGET_FPS = 60;
-        final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
-        
-        while (true) 
+    }
+
+    public void start()
+    {
+        thread = new Thread(this);
+        thread.start();
+    }
+
+    @Override
+    public void run()
+    {
+        int timePerFrame = 1000000000/FPS;
+        long lastFrame = 0;
+        long now;
+
+        while(true)
         {
-            long now = System.nanoTime();
-            long updateTime = now - lastLoopTime;
-            lastLoopTime = now;
-        
-            float delta = updateTime / OPTIMAL_TIME;
-        
-            game.update(delta);
-            window.repaint();
-            System.out.println(delta);
+            now = System.nanoTime();
+            if(now - lastFrame >= timePerFrame)
+            {
+                game.update();
+                lastFrame = now;
+            }
         }
     }
 }
