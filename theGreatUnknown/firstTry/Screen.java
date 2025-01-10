@@ -23,7 +23,7 @@ public class Screen extends JPanel
         }
     }
 
-    public void update( )
+    public void update()
     {
         watermelon.give(window.getX(), window.getY());
         watermelon.update();

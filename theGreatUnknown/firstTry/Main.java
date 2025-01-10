@@ -13,9 +13,21 @@ class Main extends JFrame
         window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-        while(true)
+        long lastLoopTime = System.nanoTime();
+        final int TARGET_FPS = 60;
+        final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
+        
+        while (true) 
         {
-            game.update();
+            long now = System.nanoTime();
+            long updateTime = now - lastLoopTime;
+            lastLoopTime = now;
+        
+            float delta = updateTime / OPTIMAL_TIME;
+        
+            game.update(delta);
+            window.repaint();
+            System.out.println(delta);
         }
     }
 }
