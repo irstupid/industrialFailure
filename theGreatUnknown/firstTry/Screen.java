@@ -8,7 +8,7 @@ public class Screen extends JPanel
     JFrame window;
     Ball[] balls; //haha
 
-    public Screen(JFrame window)
+    public Screen(JFrame window, Main main)
     {
         this.window = window;
         setPreferredSize(new Dimension(800, 800));
@@ -21,6 +21,8 @@ public class Screen extends JPanel
         {
             balls[i] = new Ball();
         }
+
+        main.start();
     }
 
     public void update()
