@@ -1,8 +1,15 @@
 class Test extends Fighter
 {
+  Test()
+  {
+    
+  }
   
   public void draw()
   {
-    rect(x, y, 100, 100);
+    push();
+      rectMode(CENTER);
+      rect(x, y, WIDTH, HEIGHT);
+    pop();
   }
 }

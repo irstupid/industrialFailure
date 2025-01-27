@@ -1,4 +1,5 @@
 Fighter test = new Test();
+Stage stage = new Simple();
 
 void setup()
 {
@@ -9,6 +10,7 @@ void draw()
 {
   background(90);
   test.update();
+  test.grounded = stage.onGround(test.x, test.y, test.WIDTH, test.HEIGHT);
   test.draw();
 }
 

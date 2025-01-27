@@ -1,37 +1,91 @@
 class Fighter
 {
-  final float ACCELERATION = 0.2;
-  final float AIR_ACCELERATION = 0.1;
-  final float MAX_SPEED = 5;
-  final float DECELERATION = 0.6;
-  final float MAX_HP = 100;
-  final float GRAVITY = -5;
+  float ACCELERATION = 0.2;
+  float AIR_ACCELERATION = 0.1;
+  float MAX_SPEED = 5;
+  float DECELERATION = 0.6;
+  float JUMP = 2;
+  float MAX_JUMP = 15;
+  float MAX_HP = 100;
+  float GRAVITY = 0.8;
+  float SLOW_FALL = 0.4;
+  float WIDTH = 100;
+  float HEIGHT = 100;
   
   int hp;
   float x;
   float y;
-  float xV = 0;
+  float xV;
   float yV;
   int xD;
   int yD;
-  boolean grounded = true;
+  boolean grounded;
+  boolean doubleJump;
+  boolean jumping;
   
   int frame;
   int animation;
   PImage[][] sprites;
   
-  private boolean[] keys = new boolean[8];
+  boolean[] keys = new boolean[8];
+  boolean[] pKeys = new boolean[8];
+  boolean[] instantKeys = new boolean[8];
   
-  private boolean red = true;
+  boolean red = true;
   
   public void update() 
   { 
+    fall();
+    jump();
     move();
+    updateKeys();
   }
   
   public void draw() { }
   
-  public void move()
+  private void jump()
+  {
+    if((grounded || doubleJump) && instantKeys[4])
+    {
+      jumping = true;
+      doubleJump = false;
+      yV = 0;
+    }
+    if(jumping && keys[4] && yV >= -MAX_JUMP)
+    {
+      yV -= JUMP;
+    }
+    else
+    {
+      jumping = false;
+    }
+    
+    if(grounded)
+    {
+      doubleJump = true;
+    }
+  }
+  
+  private void fall()
+  {
+    if(grounded)
+    {
+      yV = min(yV, 0);
+    }
+    else if(!jumping)
+    {
+      if(keys[4] && yV > 0)
+      {
+        yV += SLOW_FALL;
+      }
+      else
+      {
+        yV += GRAVITY;
+      }
+    }
+  }
+  
+  private void move()
   {
     yD = (keys[0] ? 1 : 0) + (keys[2] ? -1 : 0);
     xD = (keys[1] ? -1 : 0) + (keys[3] ? 1 : 0);
@@ -51,10 +105,41 @@ class Fighter
         xV += ACCELERATION * xD;
       }
     }
+    else
+    {
+      if(xD != 0)
+      {
+        if((xV != 0 && xD != xV/abs(xV)))
+        {
+          xV -= DECELERATION * xV/abs(xV);
+        }
+        else
+        {
+          xV += ACCELERATION * xD;
+        }
+      }
+    }
     xV = constrain(xV, -MAX_SPEED, MAX_SPEED);
     
-    println(xV);
     x += xV;
+    y += yV;
+  }
+  
+  private void updateKeys()
+  {
+    for(int i = 0; i < keys.length; i++)
+    {
+      if(keys[i] && !pKeys[i])
+      {
+        instantKeys[i] = true;
+      }
+      else
+      {
+        instantKeys[i] = false;
+      }
+      
+      pKeys[i] = keys[i];
+    }
   }
   
   public void keyPressed()
