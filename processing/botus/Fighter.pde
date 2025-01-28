@@ -1,13 +1,13 @@
 class Fighter
 {
-  float ACCELERATION = 0.4;
-  float AIR_ACCELERATION = 0.2;
-  float MAX_SPEED = 5;
-  float DECELERATION = 0.6;
+  float ACCELERATION = 1;
+  float AIR_ACCELERATION = 0.5;
+  float MAX_SPEED = 8;
+  float DECELERATION = 2;
   float JUMP = 2;
   float MAX_JUMP = 15;
   float MAX_HP = 100;
-  float GRAVITY = 0.6;
+  float GRAVITY = 0.8;
   float SLOW_FALL = 0.2;
   float WIDTH = 100;
   float HEIGHT = 100;
@@ -44,6 +44,8 @@ class Fighter
       move();
       atack();
     }
+    x += xV;
+    y += yV;
     updateKeys();
   }
   
@@ -244,9 +246,6 @@ class Fighter
       }
     }
     xV = constrain(xV, -MAX_SPEED, MAX_SPEED);
-    
-    x += xV;
-    y += yV;
   }
   
   private void updateKeys()
