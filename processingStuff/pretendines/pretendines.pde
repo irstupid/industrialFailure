@@ -4,9 +4,6 @@ void setup()
   size(800, 800);
   
   dna = new Dna();
-  dna.add(1);
-  dna.add(1);
-  dna.add(1);
 }
 
 void draw()
@@ -17,19 +14,19 @@ void draw()
 
 void keyPressed()
 {
-  if(key == '0')
+  if(key == '1')
   {
     dna.add(0);
   }
-  if(key == '1')
+  if(key == '2')
   {
     dna.add(1);
   }
-  if(key == '2')
+  if(key == '3')
   {
     dna.add(2);
   }
-  if(key == '3')
+  if(key == '4')
   {
     dna.add(3);
   }
