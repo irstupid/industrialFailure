@@ -1,33 +1,56 @@
-Dna dna;
+Acid[] chain;
+
 void setup()
 {
   size(800, 800);
   
-  dna = new Dna();
+  chain = new Acid[3];
+  chain[0] = new Acid(0);
+  chain[1] = new Acid(2);
+  chain[2] = new Acid(1);
 }
 
 void draw()
 {
+  for(int i = 0; i < chain.length; i++)
+  {
+    //for(int j = 0; j < chain.length; j++)
+    //{
+    //  if(abs(j - i) > 1)
+    //  {
+    //    chain[i].add(chain[j]);
+    //  }
+    //}
+    chain[i].move();
+    for(int j = i; j > 0;)
+    {
+      int d = i - j;
+      j += 1 + (d * 2);
+      
+      j -= 2 * (d + 1);
+    }
+  }
+  
   background(#000022);
-  dna.draw();
+  for(int i = 0; i < chain.length; i++)
+  {
+    chain[i].draw();
+  }
 }
 
 void keyPressed()
 {
-  if(key == '1')
-  {
-    dna.add(0);
-  }
-  if(key == '2')
-  {
-    dna.add(1);
-  }
-  if(key == '3')
-  {
-    dna.add(2);
-  }
-  if(key == '4')
-  {
-    dna.add(3);
-  }
+  
 }
+
+//for(int k = 0; k < chain.length; k++)
+//      {
+//        if(abs(j - k) > 1)
+//        {
+//          chain[]collide()
+//        }
+//        else
+//        {
+          
+//        }
+//      }
