@@ -1,6 +1,7 @@
 class Game implements Runnable
 {
     Thread thread;
+    Window window;
 
     Game()
     {
@@ -9,13 +10,15 @@ class Game implements Runnable
 
     private void start()
     {
+        window = new Window();
+
         thread = new Thread(this);
         thread.start();
     }
 
     private void update()
     {
-        System.out.println("poopoo");
+        
     }
 
     @Override
