@@ -2,15 +2,16 @@ class Game implements Runnable
 {
     Thread thread;
     Window window;
+    Screen screen;
+    Watermelon watermelon;
 
-    Game()
+    public void start()
     {
-        start();
-    }
+        screen = new Screen();
+        window = new Window(screen);
 
-    private void start()
-    {
-        window = new Window();
+        watermelon = new Watermelon();
+        watermelon.start();
 
         thread = new Thread(this);
         thread.start();
@@ -18,7 +19,8 @@ class Game implements Runnable
 
     private void update()
     {
-        
+        System.out.println("poopoo");
+        window.repaint();
     }
 
     @Override
