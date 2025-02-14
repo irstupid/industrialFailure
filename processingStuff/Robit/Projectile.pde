@@ -20,18 +20,13 @@ class Projectile
         range = rangeMulti;
         start();
     }
-    
-    Projectile factory(float x, float y, float direction, float rangeMulti, float damageMulti)
-    {
-      return new Projectile(x, y, direction, rangeMulti, damageMulti);
-    }
 
     void start() { }
 
     void update()
     {
-        x += Math.cos(Math.toRadians(direction)) * speed;
-        y += Math.sin(Math.toRadians(direction)) * speed;
+        x += Math.cos(direction) * speed;
+        y += Math.sin(direction) * speed;
         if(pierce <= 0)
         {
             projectiles.remove(this);
@@ -47,4 +42,12 @@ class Projectile
     {
 
     }
+}
+
+public enum Projectiles
+{
+  SHOT,
+  RAY,
+  ORB,
+  MINE
 }

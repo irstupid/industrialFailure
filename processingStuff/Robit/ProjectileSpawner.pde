@@ -1,5 +1,6 @@
-class ProjectileSpawner <T extends Projectile>
+class ProjectileSpawner
 {
+  Projectiles projectile;
   float fierate;
   float damageMulti;
   float rangeMulti;
@@ -10,8 +11,9 @@ class ProjectileSpawner <T extends Projectile>
   float direction;
 
   int coolDown;
-  ProjectileSpawner(float fierate, float damageMulti, float rangeMulti, boolean good, float x, float y, float direction)
+  ProjectileSpawner(Projectiles projectile, float fierate, float damageMulti, float rangeMulti, boolean good, float x, float y, float direction)
   {
+    this.projectile = projectile;
     this.fierate = fierate;
     this.damageMulti = damageMulti;
     this.rangeMulti = rangeMulti;
@@ -30,16 +32,28 @@ class ProjectileSpawner <T extends Projectile>
     }
   }
 
-  T spawn()
+  void spawn()
   {
     if(coolDown > 0)
     {
-      return null;
+      return;
     }
     
     coolDown = round(60 * fierate);
-    return T.factory(1, 1, 1, 1, 1);
-    println("pew");
+    switch(projectile)
+    {
+      case SHOT:
+      projectiles.add(new Shot(x, y, direction, rangeMulti, damageMulti));
+      return;
+      case RAY:
+      return;
+      case ORB:
+      return;
+      case MINE:
+      return;
+      default:
+      return;
+    }
   }
 
   void setPosition(float x, float y)

@@ -5,11 +5,6 @@ class Shot extends Projectile
     super(x, y, direction, rangeMulti, damageMulti);
   }
   
-  Shot factory(float x, float y, float direction, float rangeMulti, float damageMulti)
-  {
-    return new Shot(x, y, direction, rangeMulti, damageMulti);
-  }
-  
   void start()
   {
     damage = damage * 1;
@@ -18,10 +13,12 @@ class Shot extends Projectile
     size = 1;
     pierce = 1;
   }
-
+  
   void paint()
   {
-    circle(x, y, 10);
+    push();
+      circle(x, y, 10);
+    pop();
   }
 
   boolean hit(float hX, float hY, float hR)
