@@ -11,19 +11,19 @@ public class Screen extends JPanel
     public Screen()
     {
         setPreferredSize(new Dimension(800, 800));
-        setBackground(new Color(0, 0, 0));
+        setBackground(new Color(255, 0, 0));
         queue = new Drawable[10];
     }
 
     @Override
     protected void paintComponent(Graphics g) 
     {
-        super.paint(g);
-        g.drawRect(100, 100, 100, HEIGHT);
-        // for(; queueLength >= 0; queueLength--)
-        // {
-        //     queue[queueLength].draw(g, this);
-        // }
+        //super.paint(g);
+        g.drawRect(100, 100, 100, 100);
+        for(; queueLength >= 0; queueLength--)
+        {
+          queue[queueLength].draw(g, this);
+        }
     }
 
     public void add(Drawable thing)

@@ -19,8 +19,8 @@ class Game implements Runnable
 
     private void update()
     {
-        System.out.println("poopoo");
-        window.repaint();
+        screen.add(watermelon);
+        screen.repaint();
     }
 
     @Override
