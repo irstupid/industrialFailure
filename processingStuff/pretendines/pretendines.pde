@@ -22,12 +22,13 @@ void draw()
     //  }
     //}
     chain[i].move();
-    for(int j = i; j > 0;)
+    for(int j = i; true;)
     {
       int d = i - j;
       j += 1 + (d * 2);
-      
+      chain[j].clamp(chain[j - 1]);
       j -= 2 * (d + 1);
+      chain[j].clamp(chain[j + 1]);
     }
   }
   
