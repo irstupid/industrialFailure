@@ -21,8 +21,8 @@ void setup()
   background = loadImage("concrete.jpeg");
   textFont(createFont("bubble.ttf", 128));
   
-  size(800, 800, P2D);
-  //fullScreen(P2D);
+  //size(800, 800, P2D);
+  fullScreen(P2D);
   background.resize(width, height);
   colorMode(HSB);
   

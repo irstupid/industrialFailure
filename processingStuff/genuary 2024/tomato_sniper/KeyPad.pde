@@ -106,36 +106,150 @@ class KeyPad
   
   void keyPressed()
   {
-    splats[select] = new Splat(splats[select].x, splats[select].y, 1, false);
-    for(int i = select * 3; i < select * 3 + 3;)//textColors.length - 1;)
+    if(key == 'w' || key == 'a' || key == 's' || key == 'd')
     {
-      int c = color(random(0, 255), 255, 255);
-      if(abs(splats[floor(i/3)].c - hue(c)) > 100)
+      splats[select] = new Splat(splats[select].x, splats[select].y, 1, false);
+      for(int i = select * 3; i < select * 3 + 3;)//textColors.length - 1;)
       {
-        textColors[i] = c;
-        i++;
+        int c = color(random(0, 255), 255, 255);
+        if(abs(splats[floor(i/3)].c - hue(c)) > 100)
+        {
+          textColors[i] = c;
+          i++;
+        }
+      }
+      
+      switch(key)
+      {
+        case 'w':
+          select -= 3;
+          break;
+        case 'a':
+          select -= 1;
+          break;
+        case 's':
+          select += 3;
+          break;
+        case 'd':
+          select += 1;
+          break;
+      }
+      
+      if(select < 0)
+      {
+        select += 9;
+      }
+      if(select > 8)
+      {
+        select -= 9;
+      }
+      
+      splats[select] = new Splat(splats[select].x, splats[select].y, hue(#D5FF58), 1.5 ,false);
+      textColors[select * 3] = 0;
+      textColors[select * 3 + 1] = 0;
+      textColors[select * 3 + 2] = 0;
+    }
+    else
+    {
+      switch(key)
+      {
+        case '1':
+        switch(select)
+        {
+          case 0:
+            name += "a";
+          break;
+          case 1:
+            name += "d";
+          break;
+          case 2:
+            name += "g";
+          break;
+          case 3:
+            name += "j";
+          break;
+          case 4:
+            name += "m";
+          break;
+          case 5:
+            name += "p";
+          break;
+          case 6:
+            name += "s";
+          break;
+          case 7:
+            name += "v";
+          break;
+          case 8:
+            name += "y";
+          break;
+        }
+        break;
+        case '2':
+        switch(select)
+        {
+          case 0:
+            name += "b";
+          break;
+          case 1:
+            name += "e";
+          break;
+          case 2:
+            name += "h";
+          break;
+          case 3:
+            name += "k";
+          break;
+          case 4:
+            name += "n";
+          break;
+          case 5:
+            name += "q";
+          break;
+          case 6:
+            name += "t";
+          break;
+          case 7:
+            name += "w";
+          break;
+          case 8:
+            name += "z";
+          break;
+        }
+        break;
+        case '3':
+        switch(select)
+        {
+          case 0:
+            name += "c";
+          break;
+          case 1:
+            name += "f";
+          break;
+          case 2:
+            name += "i";
+          break;
+          case 3:
+            name += "l";
+          break;
+          case 4:
+            name += "o";
+          break;
+          case 5:
+            name += "r";
+          break;
+          case 6:
+            name += "u";
+          break;
+          case 7:
+            name += "x";
+          break;
+          case 8:
+            name.replaceFirst(String.valueOf(name.charAt(name.length() - 1)), "");
+          break;
+        }
+        break;
       }
     }
-    
-    switch(key)
-    {
-      case 'w':
-        select -= 3;
-        break;
-      case 'a':
-        select -= 1;
-        break;
-      case 's':
-        select += 3;
-        break;
-      case 'd':
-        select += 1;
-        break;
-    }
-    
-    splats[select] = new Splat(splats[select].x, splats[select].y, hue(#D5FF58), 1.5 ,false);
-    textColors[select * 3] = 0;
-    textColors[select * 3 + 1] = 0;
-    textColors[select * 3 + 2] = 0;
   }
 }
