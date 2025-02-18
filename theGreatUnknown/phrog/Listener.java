@@ -22,6 +22,7 @@ class Listener implements Runnable
             try
             {
                 Main.in = reader.readLine();
+                Main.enter = true;
             }
             catch(IOException e)
             {
