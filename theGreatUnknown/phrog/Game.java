@@ -8,15 +8,27 @@ class Game implements Runnable
     boolean enter;
     ArrayList<String> stack;
 
-    int room = 0;
-    int token = 10;
+    int state;
+    int room;
+    int token;
+    int firewall;
 
     Game()
     {
         thread = new Thread(this);
         thread.start();
 
+        start();
+    }
+
+    void start()
+    {
         stack = new ArrayList<>();
+
+        state = 1;
+        room = 0;
+        token = 10;
+        firewall = 60 * 10;
 
         System.out.print("\033[H\033[2J");
         System.out.print("> ");
@@ -26,6 +38,19 @@ class Game implements Runnable
     {
         enter = Main.enter;
         time++;
+        if(firewall > 0)
+        {
+            firewall--;
+            if(firewall <= 0)
+            {
+                stack.add("\033[2K\r");
+                stack.add("Die\n");
+                stack.add("\"start\" to play again\n");
+                stack.add("\n> ");
+                state = 0;
+            }
+        }
+
         if(enter)
         {
             command();
@@ -47,6 +72,19 @@ class Game implements Runnable
         String[] args = command.split(" ");
         command = args[0];
 
+        if(command.equals(""))
+        { 
+            stack.add("\n> ");
+            return; 
+        }
+
+        if(state == 0 && command.equals("start"))
+        {
+            Main.enter = false;
+            start();
+        }
+
+        if(state != 1) { return; }
         switch(command)
         {
             case "firewall":
@@ -58,9 +96,11 @@ class Game implements Runnable
                     }
                     else
                     {
+                        stack.add("ERROR: invalid arugument");
                         break;
                     }
                 }
+                stack.add(Integer.toString(Math.round(firewall/60)));
             break;
             case "token":
                 stack.add(Integer.toString(token));
@@ -85,14 +125,17 @@ class Game implements Runnable
                 switch(args[1])
                 {
                     case "disk/home":
-                        stack.add("active directory switched to disk/home");
+                        stack.add("active directory switched to ");
+                        stack.add("disk/home");
                         room = 0;
                     break;
                     case "disk/home/programs/phrog/utilities":
-                        stack.add("active directory switched to disk/home/programs/phrog/utilities");
+                        stack.add("active directory switched to ");
+                        stack.add("disk/home/programs/phrog/utilities");
                         room = 2;
                     break;
                     case "disk/home/main/temp/active":
+                        stack.add("active directory switched to ");
                         stack.add("disk/home/main/temp/active");
                         room = 1;
                     break;
