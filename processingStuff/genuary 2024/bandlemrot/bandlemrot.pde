@@ -1,5 +1,5 @@
 int depth = 50;
-float resolution = 10;
+float resolution = 50;
 int substeps;
 
 PVector c;
@@ -8,35 +8,37 @@ void setup()
 {
   size(800, 800);
   noStroke();
-  colorMode(HSB);
+  colorMode(HSB, depth);
   
-  c = new PVector(-1, -1);
+  c = new PVector(0, 0);
 }
 
 void draw()
 {
   translate(width/2, height/2);
   
-  c.x += 1/resolution;
+  c.x += 2/resolution;
   if(c.x > 1.0001) 
   { 
     c.x = -1;
-    c.y += 1/resolution;
+    c.y += 2/resolution;
   }
   if(c.y > 1)
   {
     c.y = -1;
   }
   
-  
+  println(c);
   PVector z = c;
   int n = 0;
   for(; n < depth; n++)
   {
     z = step(z, c);
-    if(abs(z.x) > 100 || abs(z.y) > 100) { break; }
+    if(abs(z.x) > 10000 || abs(z.y) > 10000) { break; }
+    println(z);
   }
-  fill((255/depth) * n);
+  println(n);
+  fill(n, depth, (n < depth ? depth : 0));
   rect(c.x * width/2, c.y * height/2, width/resolution, height/resolution);
 }
 
