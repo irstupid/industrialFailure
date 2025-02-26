@@ -1,6 +1,6 @@
 int depth = 50;
-float resolution = 200;
-int substeps = 1000;
+float resolution = 800;
+int substeps = 10000;
 float speed = 0.1;
 
 PVector c;
