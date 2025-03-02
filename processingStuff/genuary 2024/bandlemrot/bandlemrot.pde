@@ -7,6 +7,7 @@ PVector c;
 
 float x;
 float y;
+float scale = 1;
 
 void setup()
 {
@@ -37,6 +38,8 @@ void draw()
     PVector tC = c.copy();
     tC.x += x;
     tC.y += y;
+    tC.x = tC.x/scale;
+    tC.y = tC.y/scale;
     PVector z = tC;
     int n = 0;
     for(; n < depth; n++)
@@ -82,5 +85,16 @@ void keyPressed()
     case 'd':
       x += speed;
     break;
+    case 'q':
+      scale -= speed;
+    break;
+    case 'e':
+      scale += speed;
+    break;
+  }
+  
+  if(scale <= 0)
+  {
+    scale = 0.01;
   }
 }
