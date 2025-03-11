@@ -1,1 +1,4 @@
-i fucking hate apple
+Ok so I think I should start documenting stuff so I'm making this little log book so I remember what I do.
+
+Day 1:
+It usually starts at day 0 but I dident have a log that day and its all going to get replaced by my new idea. So basically I want to have a Map class that can take in a class, like tote really cool objectified ones where your like Map<T> { } and then Map<PImage> wowSoCool = new Map<PImage>(); this would solve al my previous issues with the map system because I can just have multiple layers its perfect. I also want a library so it just has to load once and that sounds super efficient, and collision detection is gonna be crazy fast because we can just get literally 4 things from an array. I still don't know exactly how collisions are gonna work but we will cross that bridge when we get there. Bye :)

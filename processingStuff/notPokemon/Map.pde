@@ -1,31 +1,25 @@
-class Map
+class Map<T>
 {
-  Tile[] map;
-  float boundsLeft, boundsRight, boundsUp, boundsDown;
-  int viewWidth, viewHeight;
+  T[] map;
+  T[] library;
   
-  Map(Tile[] map)//float boundsLeft, float boundsRight, float boundsUp, float boundsDown)
+  Map()
   {
-    this.boundsLeft = boundsLeft;
-    this.boundsRight = boundsRight;
-    this.boundsUp = boundsUp;
-    this.boundsDown = boundsDown;
-    this.map = map;
-    
-    viewWidth = ceil(width/50f);
-    viewHeight = ceil(height/50f);
+    library = (T[]) new Object[0];
   }
   
-  void draw(float xPosition, float yPosition)
+  Map add(T entry)
   {
-    push();
-      for(int y = 0; y < viewHeight; y++)
-      {
-        for(int x = 0; x < viewWidth; x++)
-        {
-          rect(x * 50, y * 50, 50, 50);
-        }
-      }
-    pop();
+    if(library != null)
+    {
+      library = (T[])append(library, entry);
+    }
+    
+    return this;
+  }
+  
+  T[] readLibrary()
+  {
+    return library;
   }
 }
