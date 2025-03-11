@@ -7,7 +7,7 @@ void setup()
   .add(true, "wall")
   .add(false, "open");
   
-  print(map.getLibrary("wall"));
+  print(map.getLibrary("open"));
 }
 
 void draw()
