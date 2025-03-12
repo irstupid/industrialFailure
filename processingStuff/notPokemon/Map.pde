@@ -7,6 +7,7 @@ class Map<T>
   {
     library = new HashMap<>();
   }
+  
   Map add(T entry, String tag)
   {
     library.put(tag, entry);
