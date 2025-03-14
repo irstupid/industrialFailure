@@ -12,6 +12,7 @@ void setup()
   .add(true, "wall")
   .add(false, "open")
   .build();
+  
   spriteMap = new Map<PImage>(testRoute)
   .add(loadImage("wall.png"), "wall")
   .add(loadImage("grass.png"), "open")
