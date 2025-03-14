@@ -1,4 +1,7 @@
-{"map":[
+{
+"width":3,
+"height":3,
+"map":[
     {"x":0, "y":0, "tile":"wall"},
     {"x":1, "y":0, "tile":"wall"},
     {"x":2, "y":0, "tile":"wall"},
