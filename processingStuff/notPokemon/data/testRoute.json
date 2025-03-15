@@ -1,0 +1,186 @@
+{
+  "width": 6,
+  "map": [
+    {
+      "x": 0,
+      "tile": "open",
+      "y": 0
+    },
+    {
+      "x": 0,
+      "tile": "open",
+      "y": 1
+    },
+    {
+      "x": 0,
+      "tile": "wall",
+      "y": 2
+    },
+    {
+      "x": 0,
+      "tile": "wall",
+      "y": 3
+    },
+    {
+      "x": 0,
+      "tile": "open",
+      "y": 4
+    },
+    {
+      "x": 0,
+      "tile": "open",
+      "y": 5
+    },
+    {
+      "x": 1,
+      "tile": "open",
+      "y": 0
+    },
+    {
+      "x": 1,
+      "tile": "open",
+      "y": 1
+    },
+    {
+      "x": 1,
+      "tile": "wall",
+      "y": 2
+    },
+    {
+      "x": 1,
+      "tile": "wall",
+      "y": 3
+    },
+    {
+      "x": 1,
+      "tile": "open",
+      "y": 4
+    },
+    {
+      "x": 1,
+      "tile": "open",
+      "y": 5
+    },
+    {
+      "x": 2,
+      "tile": "wall",
+      "y": 0
+    },
+    {
+      "x": 2,
+      "tile": "open",
+      "y": 1
+    },
+    {
+      "x": 2,
+      "tile": "wall",
+      "y": 2
+    },
+    {
+      "x": 2,
+      "tile": "wall",
+      "y": 3
+    },
+    {
+      "x": 2,
+      "tile": "open",
+      "y": 4
+    },
+    {
+      "x": 2,
+      "tile": "wall",
+      "y": 5
+    },
+    {
+      "x": 3,
+      "tile": "wall",
+      "y": 0
+    },
+    {
+      "x": 3,
+      "tile": "open",
+      "y": 1
+    },
+    {
+      "x": 3,
+      "tile": "open",
+      "y": 2
+    },
+    {
+      "x": 3,
+      "tile": "open",
+      "y": 3
+    },
+    {
+      "x": 3,
+      "tile": "open",
+      "y": 4
+    },
+    {
+      "x": 3,
+      "tile": "wall",
+      "y": 5
+    },
+    {
+      "x": 4,
+      "tile": "wall",
+      "y": 0
+    },
+    {
+      "x": 4,
+      "tile": "open",
+      "y": 1
+    },
+    {
+      "x": 4,
+      "tile": "open",
+      "y": 2
+    },
+    {
+      "x": 4,
+      "tile": "open",
+      "y": 3
+    },
+    {
+      "x": 4,
+      "tile": "open",
+      "y": 4
+    },
+    {
+      "x": 4,
+      "tile": "wall",
+      "y": 5
+    },
+    {
+      "x": 5,
+      "tile": "open",
+      "y": 0
+    },
+    {
+      "x": 5,
+      "tile": "open",
+      "y": 1
+    },
+    {
+      "x": 5,
+      "tile": "open",
+      "y": 2
+    },
+    {
+      "x": 5,
+      "tile": "open",
+      "y": 3
+    },
+    {
+      "x": 5,
+      "tile": "open",
+      "y": 4
+    },
+    {
+      "x": 5,
+      "tile": "wall",
+      "y": 5
+    }
+  ],
+  "height": 6
+}

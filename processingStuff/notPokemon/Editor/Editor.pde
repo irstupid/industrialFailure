@@ -113,16 +113,34 @@ void keyPressed()
         w--;
         resizeMap();
       break;
+      case 'x': case 'z':
+        JSONObject out = new JSONObject();
+        out.setInt("width", w);
+        out.setInt("height", h);
+        JSONArray outMap = new JSONArray();
+        int c = 0;
+        for(int i = 0; i < map.length; i++)
+        {
+          for(int j = 0; j < map[i].length; j++)
+          {
+            JSONObject entry = new JSONObject();
+            entry.setInt("x", i);
+            entry.setInt("y", j);
+            entry.setString("tile", map[i][j]);
+            outMap.setJSONObject(c, entry);
+            c++;
+          }
+        }
+        out.setJSONArray("map", outMap);
+        saveJSONObject(out, NAME);
+      break;
     }
   }
   else
   {
     if(key == BACKSPACE || key == DELETE)
     {
-      char[] ch = new char[map[x][y].length()];
-      map[x][y].getChars(0, ch.length, ch, 0);
-      ch[ map[x][y].] = c;
-       map[x][y] = String(ch);
+      map[x][y] = backspace(map[x][y]);
     }
     else
     {
@@ -159,4 +177,11 @@ void resizeMap()
     }
   }
   map = newMap;
+}
+
+public String backspace(String str) {
+    if (str != null && str.length() > 0) {
+        str = str.substring(0, str.length() - 1);
+    }
+    return str;
 }
