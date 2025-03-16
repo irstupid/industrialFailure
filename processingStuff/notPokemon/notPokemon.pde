@@ -1,7 +1,11 @@
 Map<Boolean> collisionMap;
 Map<PImage> spriteMap;
+Camera camera;
 
 JSONObject testRoute;
+
+float x;
+float y;
 
 void setup()
 {
@@ -17,29 +21,17 @@ void setup()
   .add(loadImage("wall.png"), "wall")
   .add(loadImage("grass.png"), "open")
   .build();
+  
+  camera = new Camera();
+  camera.setMap(spriteMap);
 }
 
 void draw()
 {
   background(90);
   
-  push();
-    for(int x = 0; x < spriteMap.getWidth(); x++)
-    {
-      int largestHeight = 0;
-      push();
-        for(int y = 0; y < spriteMap.getHeight(); y++)
-        {
-         PImage image = spriteMap.get(x, y);
-         image(image, 0, 0);
-         translate(image.width, 0);
-         if(image.height > largestHeight)
-         {
-           largestHeight = image.height;
-         }
-        }
-      pop();
-      translate(0, largestHeight);
-    }
-  pop();
+  camera.setPosition(x, y);
+  x += (mouseX - width/2)/100;
+  y += (mouseY - height/2)/100;
+  camera.draw();
 }

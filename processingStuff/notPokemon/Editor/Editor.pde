@@ -44,7 +44,7 @@ void draw()
       }
       else
       {
-        fill(#aaaaaa);
+        fill(map[i][j].length() * 50, alpabetize(map[i][j].charAt(0)) * 10, alpabetize(map[i][j].charAt(map[i][j].length() - 1)) * 10);
       }
       rect(i * 100 + cameraX * 100, j * 100 + cameraY * 100, 100, 100);
       fill(#000000);
@@ -71,7 +71,7 @@ void mousePressed()
       lastTile = map[x][y];
     }
   }
-  else
+  else if(!(clickX > map.length || clickY > map[0].length))
   {
     x = -1;
     y = -1;
@@ -86,16 +86,16 @@ void keyPressed()
     switch(key)
     {
       case 'w':
-        cameraY--;
-      break;
-      case 'a':
-        cameraX--;
-      break;
-      case 's':
         cameraY++;
       break;
-      case 'd':
+      case 'a':
         cameraX++;
+      break;
+      case 's':
+        cameraY--;
+      break;
+      case 'd':
+        cameraX--;
       break;
       case '+': case '=':
         h++;
@@ -146,11 +146,20 @@ void keyPressed()
     {
       map[x][y] = map[x][y] + key;
     }
+    lastTile = map[x][y];
   }
 }
 
 void resizeMap()
 {
+  if(w <= 0)
+  {
+    w = 0;
+  }
+  if(h <= 0)
+  {
+    h = 0;
+  }
   String[][] newMap = new String[w][h];
   for(int i = 0; i < w; i++)
   {
@@ -184,4 +193,65 @@ public String backspace(String str) {
         str = str.substring(0, str.length() - 1);
     }
     return str;
+}
+
+public int alpabetize(char c)
+{
+  switch(c)
+  {
+    case 'a':
+      return 0;
+    case 'b':
+      return 1;
+    case 'c':
+      return 2;
+    case 'd':
+      return 3;
+    case 'e':
+      return 4;
+    case 'f':
+      return 5;
+    case 'g':
+      return 6;
+    case 'h':
+      return 7;
+    case 'i':
+      return 8;
+    case 'j':
+      return 9;
+    case 'k':
+      return 10;
+    case 'l':
+      return 11;
+    case 'm':
+      return 12;
+    case 'n':
+      return 13;
+    case 'o':
+      return 14;
+    case 'p':
+      return 15;
+    case 'q':
+      return 16;
+    case 'r':
+      return 17;
+    case 's':
+      return 18;
+    case 't':
+      return 19;
+    case 'u':
+      return 20;
+    case 'v':
+      return 21;
+    case 'w':
+      return 22;
+    case 'x':
+      return 23;
+    case 'y':
+      return 24;
+    case 'z':
+      return 25;
+    default:
+      return 26;
+  }
 }
