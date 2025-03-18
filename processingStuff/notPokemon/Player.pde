@@ -23,26 +23,67 @@ class Player
   
   void collide(boolean[] tiles)
   {
-    float csX = ((x - tileWidth/2) - ((x - tileWidth/2) - (x - tileWidth/2) % (tileWidth * 2)));
-    float csY = ((y - tileHeight/2) - ((y - tileHeight/2) - (y - tileHeight/2) % (tileHeight * 2)));
+    float tileX = x - x % tileWidth;
+    float tileY = y - y % tileHeight;
+    x = x - tileX;
+    y = y - tileY;
+    
     int walls = 0;
     for(int i = 0; i < tiles.length; i++)
     {
       walls += (tiles[i] ? 1 : 0);
     }
-    //switch(walls)
-    //{
-    //  case 1:
-    //    boolean horizontal;
-    //    horizontal = abs(y) > abs(x);
-    //  break;
-    //  case 2:
+    
+    switch(walls)
+    {
+      case 1:
+        if(tiles[0])
+        {
+          if(x < y)
+          {
+            y = tileHeight;
+          }
+          else
+          {
+            x = tileWidth;
+          }
+        }
+        else if(tiles[1])
+        {
+          
+        }
+        else if(tiles[2])
+        {
+          if(x > y)
+          {
+            y = 0;
+          }
+          else
+          {
+            x = 0;
+          }
+        }
+        else
+        {
+          
+        }
+      break;
+      case 2:
+        if((tiles[0] && tiles[1]) || (tiles[2] && tiles[3]))
+        {
+          y = (tiles[0] ? tileHeight : 0);
+        }
+        else
+        {
+          x = (tiles[0] ? tileWidth : 0);
+        }
+      break;
+      case 3:
       
-    //  break;
-    //  case 3:
-      
-    //  break;
-    //}
+      break;
+    }
+    x = x + tileX;
+    y = y + tileY;
   }
   
   float getX() { return x; }

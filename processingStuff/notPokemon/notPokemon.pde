@@ -34,7 +34,7 @@ void setup()
 
 void draw()
 {
-  printArray(getCollisionTiles());
+  player.collide(getCollisionTiles());
   camera.setCenter(player.getX(), player.getY());
   
   camera.move();
@@ -55,8 +55,10 @@ void keyReleased()
 
 boolean[] getCollisionTiles()
 {
-  int tileX = floor(((x - tileWidth/2) - (x - tileWidth/2) % (tileWidth * 2))/tileWidth);
-  int tileY = floor(((y - tileHeight/2) - (y - tileHeight/2) % (tileHeight * 2))/tileHeight);
+  float x = player.getX();
+  float y = player.getY();
+  int tileX = floor((x - x % tileWidth)/tileWidth);
+  int tileY = floor((y - y % tileHeight)/tileHeight);
   return new boolean[] {
     collisionMap.get(tileX, tileY),
     collisionMap.get(tileX + 1, tileY),

@@ -17,3 +17,6 @@ Ok so I made the editor way more intuitive by coloring different tags different 
 
 Log 7:
 I had to program the player today. its started out really good. i made a good camera system that looks nice and things. its a little unelegant but proboly fine. then i had to program collision and that hurt me. i havent even got to the logic yet, just getting the tiles is a headach. apparently there is a differnce between a Boolean and a boolean, one is a primitave one is a wrapper class. i dont really understand the error it threw at me, so i had to settle for the inelegant solution of just writing half of the collision in the main class. this sucks. bye bye now.  
+
+Log 8:
+ok so im making procress on the collision. 2 walls works, 1 wall half works, and 3 walls should just be inverted 1 wall. im breaking it down and its slowly becoming more manageable, but its also super messya nd im sure there is a nice mathamatical way to express it but im just to dumb to figure it out. ill do that later, right now i just want to get collision working. bye again.
