@@ -40,12 +40,6 @@ class Camera
   
   void setPosition(float x, float y)
   {
-    this.x = x;
-    this.y = y;
-  }
-  
-  void draw()
-  {
     if(x < 0)
     {
       x = 0;
@@ -62,9 +56,23 @@ class Camera
     {
       y = mapHeight - height;
     }
-    
+    this.x = x;
+    this.y = y;
+  }
+  
+  void setCenter(float x, float y)
+  {
+    setPosition(x - width/2, y - height/2);
+  }
+  
+  void move()
+  {
+    translate(-x, -y);
+  }
+  
+  void draw()
+  {
     push();
-      translate(-x, -y);
       for(int x = 0; x < map.getWidth(); x++)
       {
         int largestWidth = 0;
@@ -84,4 +92,7 @@ class Camera
       }
     pop();
   }
+  
+  float getX() { return x; }
+  float getY() { return y; }
 }

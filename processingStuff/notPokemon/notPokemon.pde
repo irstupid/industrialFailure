@@ -1,6 +1,10 @@
+float tileWidth = 50;
+float tileHeight = 50;
+
 Map<Boolean> collisionMap;
 Map<PImage> spriteMap;
 Camera camera;
+Player player;
 
 JSONObject testRoute;
 
@@ -24,14 +28,39 @@ void setup()
   
   camera = new Camera();
   camera.setMap(spriteMap);
+  
+  player = new Player(50, 50);
 }
 
 void draw()
 {
-  background(90);
+  printArray(getCollisionTiles());
+  camera.setCenter(player.getX(), player.getY());
   
-  camera.setPosition(x, y);
-  x += (mouseX - width/2)/100;
-  y += (mouseY - height/2)/100;
+  camera.move();
+  background(90);
   camera.draw();
+  player.draw();
+}
+
+void keyPressed()
+{
+  player.keyPressed();
+}
+
+void keyReleased()
+{
+  player.keyReleased();
+}
+
+boolean[] getCollisionTiles()
+{
+  int tileX = floor(((x - tileWidth/2) - (x - tileWidth/2) % (tileWidth * 2))/tileWidth);
+  int tileY = floor(((y - tileHeight/2) - (y - tileHeight/2) % (tileHeight * 2))/tileHeight);
+  return new boolean[] {
+    collisionMap.get(tileX, tileY),
+    collisionMap.get(tileX + 1, tileY),
+    collisionMap.get(tileX + 1, tileY + 1),
+    collisionMap.get(tileX, tileY + 1),
+  };
 }

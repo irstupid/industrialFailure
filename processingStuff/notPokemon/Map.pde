@@ -43,6 +43,11 @@ class Map<T>
     return map[x][y];
   }
   
+  T[][] get()
+  {
+    return map;
+  }
+  
   int getWidth()
   {
     return map.length;
