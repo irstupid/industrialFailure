@@ -1,6 +1,7 @@
 class Player
 {
   float speed = 3;
+  float slowDown = 1;
   
   float x;
   float y;
@@ -15,10 +16,18 @@ class Player
   
   void draw()
   {
-    x += xV * speed;
-    y += yV * speed;
-    
     rect(x, y, tileWidth, tileHeight);
+  }
+  
+  void move()
+  {
+    x += xV * speed * slowDown;
+    y += yV * speed * slowDown;
+  }
+  
+  void setSlowDown(float slowDown)
+  {
+    this.slowDown = slowDown;
   }
   
   void collide(boolean[] tiles)
@@ -50,7 +59,14 @@ class Player
         }
         else if(tiles[1])
         {
-          
+          if(tileHeight - y < x)
+          {
+            y = tileHeight;
+          }
+          else
+          {
+            x = 0;
+          }
         }
         else if(tiles[2])
         {
@@ -65,7 +81,14 @@ class Player
         }
         else
         {
-          
+          if(tileHeight - y > x)
+          {
+            y = 0;
+          }
+          else
+          {
+            x = tileWidth;
+          }
         }
       break;
       case 2:
@@ -79,7 +102,26 @@ class Player
         }
       break;
       case 3:
-      
+        if(!tiles[0])
+        {
+          x = 0;
+          y = 0;
+        }
+        else if(!tiles[1])
+        {
+          x = tileWidth;
+          y = 0;
+        }
+        else if(!tiles[2])
+        {
+          x = tileWidth;
+          y = tileHeight; 
+        }
+        else
+        {
+          x = 0;
+          y = tileHeight;
+        }
       break;
     }
     x = x + tileX;
