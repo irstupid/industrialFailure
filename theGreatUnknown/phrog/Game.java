@@ -88,6 +88,10 @@ class Game implements Runnable
                     firewall = 0;
                 break;
                 case "firewall":
+                    if(room != 0)
+                    {
+                        stack.add("ERROR: program not found. are you disk/home?");
+                    }
                     if(args.length > 1)
                     {
                         if(args[1].equals("renew"))
