@@ -3,14 +3,17 @@ import java.util.ArrayList;
 
 class Game implements Runnable 
 {
+    public static String[] roomNames = {"home", "temp", "programs", "active", "utilities", "phrog", "downloads", "imports", "pcloud"};
+
     Thread thread;
     int time;
     boolean enter;
     ArrayList<String> stack;
 
+    Enemy enemy;
+
     int state;
     int room;
-    int token;
     int firewall;
 
     Game()
@@ -25,10 +28,11 @@ class Game implements Runnable
     {
         stack = new ArrayList<>();
 
+        enemy = new Enemy();
+
         time = 0;
         state = 1;
         room = 0;
-        token = 10;
         firewall = 60 * 60;
 
         System.out.print("\033[H\033[2J");
@@ -37,6 +41,8 @@ class Game implements Runnable
 
     void update() throws IOException
     {
+        enemy.update();
+
         enter = Main.enter;
         time++;
 
@@ -91,22 +97,14 @@ class Game implements Runnable
                     if(room != 0)
                     {
                         stack.add("ERROR: program not found. are you disk/home?");
+                        break;
                     }
                     if(args.length > 1)
                     {
                         if(args[1].equals("renew"))
                         {
-                            if(token >= 0)
-                            {
-                                stack.add("do you want to use 1 token to renew the firewall?");
-                                stack.add("\n");
-                                stack.add("enter yes or no");
-                                state = 2;
-                            }
-                            else
-                            {
-                                stack.add("you do not have enough tokens to complete this action");
-                            }
+                            stack.add("firewall renewed");
+                            firewall = 60 * 60;
                             break;
                         }
                         else
@@ -116,9 +114,6 @@ class Game implements Runnable
                         }
                     }
                     stack.add(Integer.toString(Math.round(firewall/60)));
-                break;
-                case "token":
-                    stack.add(Integer.toString(token));
                 break;
                 case "source":
                     if(args.length <= 1)
@@ -180,18 +175,6 @@ class Game implements Runnable
             Main.enter = false;
             start();
             return;
-        }
-
-        if(state == 2 && command.equals("yes"))
-        {
-            firewall = 60 * 60;
-            stack.add("firewall renewed");
-            state = 1;
-        }
-        if(state == 2 && command.equals("no"))
-        {
-            stack.add("action canceled");
-            state = 1;
         }
 
         stack.add("\n> ");
