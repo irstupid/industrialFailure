@@ -1173,7 +1173,7 @@
     },
     {
       "x": 11,
-      "tile": "flower",
+      "tile": "wall",
       "y": 14
     },
     {
@@ -1273,7 +1273,7 @@
     },
     {
       "x": 12,
-      "tile": "wall",
+      "tile": "door",
       "y": 14
     },
     {
@@ -2002,5 +2002,15 @@
       "y": 19
     }
   ],
-  "height": 20
+  "height": 20,
+  "warps":
+  [
+    {
+      "x": 12,
+      "y": 14,
+      "dX": 7,
+      "dY": 4,
+      "location": "testRoom.json"
+    }
+  ]
 }

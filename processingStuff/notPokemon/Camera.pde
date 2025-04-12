@@ -67,7 +67,23 @@ class Camera
   
   void move()
   {
-    translate(-x, -y);
+    if(width < mapWidth)
+    {
+      translate(-x, 0);
+    }
+    else
+    {
+      translate(width/2 - mapWidth/2, 0);
+    }
+    
+    if(height < mapHeight)
+    {
+      translate(0, -y);
+    }
+    else
+    {
+      translate(0, height/2 - mapHeight/2);
+    }
   }
   
   void draw()

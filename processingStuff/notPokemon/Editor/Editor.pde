@@ -132,6 +132,7 @@ void keyPressed()
           }
         }
         out.setJSONArray("map", outMap);
+        out.setJSONArray("warp", rawMap.getJSONArray("warp"));
         saveJSONObject(out, NAME);
       break;
     }

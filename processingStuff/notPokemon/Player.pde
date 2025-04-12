@@ -16,7 +16,7 @@ class Player
   
   void draw()
   {
-    rect(x, y, tileWidth, tileHeight);
+    rect(x, y, TILEWIDTH, TILEHEIGHT);
   }
   
   void move()
@@ -32,8 +32,8 @@ class Player
   
   void collide(boolean[] tiles)
   {
-    float tileX = x - x % tileWidth;
-    float tileY = y - y % tileHeight;
+    float tileX = x - x % TILEWIDTH;
+    float tileY = y - y % TILEHEIGHT;
     x = x - tileX;
     y = y - tileY;
     
@@ -50,18 +50,18 @@ class Player
         {
           if(x < y)
           {
-            y = tileHeight;
+            y = TILEHEIGHT;
           }
           else
           {
-            x = tileWidth;
+            x = TILEWIDTH;
           }
         }
         else if(tiles[1])
         {
-          if(tileHeight - y < x)
+          if(TILEHEIGHT - y < x)
           {
-            y = tileHeight;
+            y = TILEHEIGHT;
           }
           else
           {
@@ -81,24 +81,24 @@ class Player
         }
         else
         {
-          if(tileHeight - y > x)
+          if(TILEHEIGHT - y > x)
           {
             y = 0;
           }
           else
           {
-            x = tileWidth;
+            x = TILEWIDTH;
           }
         }
       break;
       case 2:
         if((tiles[0] && tiles[1]) || (tiles[2] && tiles[3]))
         {
-          y = (tiles[0] ? tileHeight : 0);
+          y = (tiles[0] ? TILEHEIGHT : 0);
         }
         else
         {
-          x = (tiles[0] ? tileWidth : 0);
+          x = (tiles[0] ? TILEWIDTH : 0);
         }
       break;
       case 3:
@@ -109,18 +109,18 @@ class Player
         }
         else if(!tiles[1])
         {
-          x = tileWidth;
+          x = TILEWIDTH;
           y = 0;
         }
         else if(!tiles[2])
         {
-          x = tileWidth;
-          y = tileHeight; 
+          x = TILEWIDTH;
+          y = TILEHEIGHT; 
         }
         else
         {
           x = 0;
-          y = tileHeight;
+          y = TILEHEIGHT;
         }
       break;
     }
