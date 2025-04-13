@@ -61,16 +61,21 @@ class World
   
   void draw()
   {
+    push();
+      camera.move();
+      background(90);
+      camera.draw();
+      player.draw();
+    pop();
+  }
+  
+  void update()
+  {
     //player.setSlowDown(getTileSlowdown());  //apply slow
     warp();
     player.move();
     player.collide(getCollisionTiles());
     camera.setCenter(player.getX(), player.getY());
-    
-    camera.move();
-    background(90);
-    camera.draw();
-    player.draw();
   }
   
   void keyPressed()
