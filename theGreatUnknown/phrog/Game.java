@@ -9,11 +9,13 @@ class Game implements Runnable
     int time;
     boolean enter;
     ArrayList<String> stack;
+    ArrayList<String> mail;
 
     Enemy enemy;
 
     int state;
     int room;
+
     int firewall;
 
     Game()
@@ -26,7 +28,10 @@ class Game implements Runnable
 
     void start()
     {
-        stack = new ArrayList<>();
+        stack = new ArrayList<String>();
+        mail = new ArrayList<String>();
+
+        mail.add("test");
 
         enemy = new Enemy();
 
@@ -90,6 +95,20 @@ class Game implements Runnable
         {
             switch(command)
             {
+                case "mail":
+                    stack.add("you have ");
+                    stack.add(Integer.toString(mail.size()));
+                    stack.add(" peices of mail");
+                    if(mail.size() > 0)
+                    {
+                        stack.add(":");
+                    }
+                    for(int i = 0; i < mail.size(); i++)
+                    {
+                        stack.add(mail.get(i));
+                    }
+                    mail.clear();
+                break;
                 case "die":
                     firewall = 0;
                 break;

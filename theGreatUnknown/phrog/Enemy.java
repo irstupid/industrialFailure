@@ -65,6 +65,6 @@ public class Enemy
         {
             return "";
         }
-        return ROOMNAMES[room];  
+        return Game.roomNames[room];  
     }
 }
