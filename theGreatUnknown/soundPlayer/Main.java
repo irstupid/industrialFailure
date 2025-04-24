@@ -1,3 +1,5 @@
+import javax.swing.JButton;
+
 class Main
 {
     static Frame frame;
@@ -6,7 +8,12 @@ class Main
     {
         frame = new Frame();
         panel = new Panel(frame);
-        frame.add(panel);
+        frame.setContentPane(panel);
+        //frame.pack();
+
+        JButton playButton = new JButton();
+        frame.add(playButton);
+
         frame.pack();
         frame.setVisible(true);
     }
