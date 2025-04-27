@@ -4,11 +4,14 @@ class Net
   Neuron[][] net;
   Neuron[] out;
   
+  int totalNeurons = 0;
+  
   ArrayList<Neuron[]> temp;
   int tempFunction;
   
   Net(int input, int output, int outFunction)
   {
+    totalNeurons += input + output;
     in = new int[input];
     out = new Neuron[output];
     temp = new ArrayList<Neuron[]>();
@@ -17,6 +20,7 @@ class Net
   
   Net addLayer(int amount, int function)
   {
+    totalNeurons += amount;
     Neuron[] newLayer = new Neuron[amount];
     for(int i = 0; i < newLayer.length; i++)
     {
@@ -61,35 +65,63 @@ class Net
     return this;
   }
   
+  void update()
+  {
+    
+  }
+  
   void draw()
   {
-    push();
-      push();
-        translate(0, -in.length * 30);
-        for(int i = 0; i < in.length; i++)
-        {
-          circle(0, i * 60, 50);
-        }
-      pop();
-      for(int i = 0; i < net.length; i++)
+    float localX = 0;
+    float localY = 0;
+    float[][] positions = new float[totalNeurons][2];
+    localY += -in.length * 30;
+    for(int i = 0; i < in.length; i++)
+    {
+      positions[i][0] = localX;
+      positions[i][1] = localY + i * 60;
+    }
+    localY = 0;
+    int offset = 0;
+    for(int i = 0; i < net.length; i++)
+    {
+      localX += 120;
+      localY += -net[i].length * 30;
+      for(int j = 0; j < net[i].length; j++)
       {
-        translate(120, 0);
-        push();
-          translate(0, -net[i].length * 30);
-          for(int j = 0; j < net[i].length; j++)
-          {
-            circle(0, j * 60, 50);
-          }
-        pop();
+        positions[in.length + offset][0] = localX;
+        positions[in.length + offset][1] = localY + j * 60;
+        offset++;
       }
-      translate(120, 0);
-      push();
-      translate(0, -out.length * 30);
-        for(int i = 0; i < out.length; i++)
+      localY = 0;
+    }
+    localX += 120;
+    localY += -out.length * 30;
+    for(int i = 0; i < out.length; i++)
+    {
+      positions[totalNeurons - out.length + i][0] = localX;
+      positions[totalNeurons - out.length + i][1] = localY + i * 60;
+    }
+    
+    push();
+      for(int i = 0; i < positions.length - out.length; i++)
+      {
+        for(int j = i; j < positions.length; j++) //very inefeicant
         {
-          circle(0, i * 60, 50);
+          if(positions[j][0] - positions[i][0] == 120)
+          {
+            line(positions[i][0], positions[i][1], positions[j][0], positions[j][1]);
+          }
         }
-     pop();
-   pop();
+      }
+      for(int i = 0; i < positions.length; i++)
+      {
+        //if(positions[i][0] == 0)
+        //{
+        //  fill(in[i] * 255);
+        //}
+        circle(positions[i][0], positions[i][1], 50);
+      }
+    pop();
   }
 }
