@@ -12,7 +12,9 @@ class Main
             server = HttpServer.create(new InetSocketAddress(3000), 0);
         }
         catch(IOException e){ }
-        server.createContext("/", new Site());
+        server.createContext("/", new Page());
+        server.createContext("/Stream", new Stream());
+        server.createContext("/Input", new Input());
         server.setExecutor(null);
         server.start();
         System.out.println("server running");

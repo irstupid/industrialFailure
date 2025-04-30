@@ -19,8 +19,11 @@ import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
 
-public class Site implements HttpHandler
+public class Stream implements HttpHandler
 {
+    final int REZX = Math.round(1920 * 0.7f), REZY = Math.round(1080 * 0.7f);
+    final float QUALITY = 0.6f;
+
     @Override
     public void handle(HttpExchange exchange)
     {
@@ -43,8 +46,8 @@ public class Site implements HttpHandler
         { 
             Rectangle capture = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()); 
             BufferedImage screen = robot.createScreenCapture(capture);
-            Image scaled = screen.getScaledInstance(960, 540, Image.SCALE_FAST);
-            BufferedImage resized = new BufferedImage(960, 540, BufferedImage.TYPE_INT_RGB);
+            Image scaled = screen.getScaledInstance(REZX, REZY, Image.SCALE_FAST);
+            BufferedImage resized = new BufferedImage(REZX, REZY, BufferedImage.TYPE_INT_RGB);
             Graphics2D g = resized.createGraphics();
             g.drawImage(scaled, 0, 0, null);
             g.dispose();
@@ -54,7 +57,7 @@ public class Site implements HttpHandler
 
             ImageWriteParam lowQuality = writer.getDefaultWriteParam();
             lowQuality.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-            lowQuality.setCompressionQuality(0.4f);
+            lowQuality.setCompressionQuality(QUALITY);
 
             byte[] bytes = null;
             try
