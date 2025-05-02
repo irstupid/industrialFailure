@@ -38,12 +38,13 @@ class KeyPad
   
   void draw()
   {
-    
-    for(int i = 0; i < splats.length - 1; i++)
-    {
-      splats[i].draw();
-    }
     push();
+      translate(width/2 - 400, height/2 - 400);
+      
+      for(int i = 0; i < splats.length - 1; i++)
+      {
+        splats[i].draw();
+      }
       textSize(128/2);
       fill(textColors[0]);
       text("a", 205, 195);
