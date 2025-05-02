@@ -28,7 +28,7 @@ public class Input implements HttpHandler
     @Override
     public void handle(HttpExchange exchange)
     {
-        System.err.println("work?");
+        System.out.println("Received request: " + exchange.getRequestMethod() + " " + exchange.getRequestURI());
         if (!"POST".equals(exchange.getRequestMethod())) 
         {
             return;

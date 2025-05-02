@@ -11,31 +11,38 @@
                 align-items: center;
                 height: 100vh; /* optional: center vertically */
             }
+
+            #stream {
+                pointer-events: none;
+            }
         </style>
     </head>
     <body>
-        <img src="/Stream" alt="oh no">
+        <div id="container">
+            <img id="stream" src="/Stream" alt="Stream">
+        </div>
         <script>
-            const img = document.querySelector("img");
-            
-            img.addEventListener("mousemove", (event) =>
-            {
-                const rect = img.getBoundingClientRect();
+        const container = document.getElementById("container");
+
+        function attachMouseListener() {
+            container.addEventListener("mousemove", (event) => {
+                const rect = container.getBoundingClientRect();
                 const x = event.clientX - rect.left;
                 const y = event.clientY - rect.top;
-            
-                fetch("/Input", 
-                {
+
+                fetch("/Input", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(
-                    {
+                    body: JSON.stringify({
                         x, y,
                         width: rect.width,
                         height: rect.height
                     })
-                });
+                }).catch(err => console.error("Failed to send mouse input", err));
             });
+        }
+
+        attachMouseListener();
         </script>
     </body>
 </html>
