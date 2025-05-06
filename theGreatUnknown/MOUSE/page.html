@@ -18,11 +18,17 @@
         </style>
     </head>
     <body>
-        <div id="container">
-            <img id="stream" src="/Stream" alt="Stream">
+        <div id="container" style="position: relative; display: inline-block;">
+            <img id="stream" src="/Stream" alt="Stream" style="display: block;">
+            <div id="overlay" style="
+                position: absolute;
+                top: 0; left: 0;
+                width: 100%; height: 100%;
+                z-index: 10;
+            "></div>
         </div>
         <script>
-        const container = document.getElementById("container");
+        const container = document.getElementById("overlay");
 
         function attachMouseListener() {
             container.addEventListener("mousemove", (event) => {
@@ -30,6 +36,7 @@
                 const x = event.clientX - rect.left;
                 const y = event.clientY - rect.top;
 
+                console.log(`Mouse at: ${x}, ${y}`);
                 fetch("/Input", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
