@@ -1,55 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-                background-color: black; /* optional */
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh; /* optional: center vertically */
-            }
-
-            #stream {
-                pointer-events: none;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="container" style="position: relative; display: inline-block;">
-            <img id="stream" src="/Stream" alt="Stream" style="display: block;">
-            <div id="overlay" style="
-                position: absolute;
-                top: 0; left: 0;
-                width: 100%; height: 100%;
-                z-index: 10;
-            "></div>
-        </div>
-        <script>
-        const container = document.getElementById("overlay");
-
-        function attachMouseListener() {
-            container.addEventListener("mousemove", (event) => {
-                const rect = container.getBoundingClientRect();
-                const x = event.clientX - rect.left;
-                const y = event.clientY - rect.top;
-
-                console.log(`Mouse at: ${x}, ${y}`);
-                fetch("/Input", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        x, y,
-                        width: rect.width,
-                        height: rect.height
-                    })
-                }).catch(err => console.error("Failed to send mouse input", err));
-            });
+<head>
+    <title>Remote Stream</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        attachMouseListener();
-        </script>
-    </body>
+        #container {
+            position: relative;
+            display: inline-block;
+        }
+
+        #stream {
+            display: block;
+        }
+
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img id="stream" src="/Stream" alt="Stream">
+        <div id="overlay"></div>
+    </div>
+
+    <script>
+        const overlay = document.getElementById("overlay");
+
+        overlay.addEventListener("mousemove", (event) => {
+            const rect = overlay.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            console.log(`Mouse: ${x}, ${y}`);
+
+            fetch("/Input", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    x, y,
+                    width: rect.width,
+                    height: rect.height
+                })
+            }).catch(err => console.error("Failed to send mouse input:", err));
+        });
+    </script>
+</body>
 </html>
