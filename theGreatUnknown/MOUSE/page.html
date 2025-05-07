@@ -40,13 +40,19 @@
 
     <script>
         const overlay = document.getElementById("overlay");
+        let lastSent = 0;
+        const sendInterval = 100;
 
         overlay.addEventListener("mousemove", (event) => {
+            const now = Date.now();
+            if (now - lastSent < sendInterval) return;
+            lastSent = now;
+
             const rect = overlay.getBoundingClientRect();
             const x = event.clientX - rect.left;
             const y = event.clientY - rect.top;
 
-            console.log(`Mouse: ${x}, ${y}`);
+            console.log(`Sending: ${x}, ${y}`);
 
             fetch("/Input", {
                 method: "POST",

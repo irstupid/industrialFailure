@@ -1,89 +1,82 @@
-import com.sun.net.httpserver.Headers;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import java.awt.AWTException;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.Robot;
-import java.awt.Toolkit;
+import com.sun.net.httpserver.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Iterator;
-import javax.imageio.IIOImage;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageWriteParam;
-import javax.imageio.ImageWriter;
+import javax.imageio.*;
 import javax.imageio.stream.ImageOutputStream;
 
-public class Stream implements HttpHandler
-{
-    final int REZX = Math.round(1920 * 0.7f), REZY = Math.round(1080 * 0.7f);
-    final float QUALITY = 0.6f;
+public class Stream implements HttpHandler {
+    private static final int REZX = (int)(1920 * 0.7);
+    private static final int REZY = (int)(1080 * 0.7);
+    private static final float QUALITY = 0.6f;
+    private static final int FRAME_DELAY_MS = 100; // ~10 FPS
 
     @Override
-    public void handle(HttpExchange exchange)
-    {
-        Robot robot = null;
-        try
-        {
+    public void handle(HttpExchange exchange) throws IOException {
+        Robot robot;
+        try {
             robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+            exchange.sendResponseHeaders(500, -1);
+            return;
         }
-        catch(AWTException e) { }
-        Headers headers = exchange.getResponseHeaders();
-        headers.set("Content-Type", "multipart/x-mixed-replace; boundary=--frame");
-        try
-        {
-            exchange.sendResponseHeaders(200, 0);
-        }
-        catch(IOException e) { }
+
+        Headers resp = exchange.getResponseHeaders();
+        resp.set("Content-Type", "multipart/x-mixed-replace; boundary=--frame");
+        resp.set("Cache-Control", "no-cache");
+        // no Connection: close here—keep the socket open for streaming
+
+        exchange.sendResponseHeaders(200, 0);
         OutputStream os = exchange.getResponseBody();
+        Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
 
-        while (true) 
-        { 
-            Rectangle capture = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()); 
-            BufferedImage screen = robot.createScreenCapture(capture);
-            Image scaled = screen.getScaledInstance(REZX, REZY, Image.SCALE_FAST);
-            BufferedImage resized = new BufferedImage(REZX, REZY, BufferedImage.TYPE_INT_RGB);
-            Graphics2D g = resized.createGraphics();
-            g.drawImage(scaled, 0, 0, null);
-            g.dispose();
+        try {
+            while (true) {
+                // 1. capture
+                BufferedImage cap = robot.createScreenCapture(screenRect);
 
-            Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName("jpeg");
-            ImageWriter writer = writers.next();
+                // 2. resize
+                Image tmp = cap.getScaledInstance(REZX, REZY, Image.SCALE_FAST);
+                BufferedImage resized = new BufferedImage(REZX, REZY, BufferedImage.TYPE_INT_RGB);
+                Graphics2D g = resized.createGraphics();
+                g.drawImage(tmp, 0, 0, null);
+                g.dispose();
 
-            ImageWriteParam lowQuality = writer.getDefaultWriteParam();
-            lowQuality.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-            lowQuality.setCompressionQuality(QUALITY);
-
-            byte[] bytes = null;
-            try
-            {
+                // 3. encode JPEG in memory
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                ImageOutputStream out = ImageIO.createImageOutputStream(baos);
-                writer.setOutput(out);
-                writer.write(null, new IIOImage(resized, null, null), lowQuality);
-                out.close();
+                ImageOutputStream ios = ImageIO.createImageOutputStream(baos);
+                Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName("jpeg");
+                ImageWriter writer = writers.next();
+                ImageWriteParam param = writer.getDefaultWriteParam();
+                param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+                param.setCompressionQuality(QUALITY);
+                writer.setOutput(ios);
+                writer.write(null, new IIOImage(resized, null, null), param);
+                ios.close();
                 writer.dispose();
-                bytes = baos.toByteArray();
-            }
-            catch(IOException e) { }
+                byte[] jpegData = baos.toByteArray();
 
-            try
-            {
+                // 4. send a frame
                 PrintWriter pw = new PrintWriter(os, false);
                 pw.println("--frame");
                 pw.println("Content-Type: image/jpeg");
-                pw.println("Content-Length: " + bytes.length);
+                pw.println("Content-Length: " + jpegData.length);
                 pw.println();
                 pw.flush();
-                os.write(bytes);
+
+                os.write(jpegData);
                 os.flush();
+
+                // 5. rate‑limit
+                Thread.sleep(FRAME_DELAY_MS);
             }
-            catch(IOException e) { }
+        } catch (IOException | InterruptedException e) {
+            // client likely disconnected or thread interrupted
+            System.out.println("Stream ended: " + e.getMessage());
+        } finally {
+            os.close();
         }
     }
 }

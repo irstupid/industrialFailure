@@ -1,21 +1,14 @@
-
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import java.awt.AWTException;
-import java.awt.Dimension;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.io.IOException;
+import com.sun.net.httpserver.*;
+import java.awt.*;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.*;
 
-public class Input implements HttpHandler
-{
-    Robot robot;
-    Dimension screenSize;
+public class Input implements HttpHandler {
+    private Robot robot = null;
+    private final Dimension screenSize;
 
-    Input()
+    public Input()
     {
         try
         {
@@ -26,37 +19,34 @@ public class Input implements HttpHandler
     }
 
     @Override
-    public void handle(HttpExchange exchange)
-    {
-        System.out.println("Received request: " + exchange.getRequestMethod() + " " + exchange.getRequestURI());
-        if (!"POST".equals(exchange.getRequestMethod())) 
-        {
+    public void handle(HttpExchange exchange) throws IOException {
+        System.out.println("Received " + exchange.getRequestMethod() + " " + exchange.getRequestURI());
+        if (!"POST".equalsIgnoreCase(exchange.getRequestMethod())) {
+            exchange.sendResponseHeaders(405, -1);
             return;
         }
 
-        String body = null;
-        try
-        {
-            body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
-        }
-        catch(IOException e) { }
-        int x = extractJsonInt(body, "x");
-        int y = extractJsonInt(body, "y");
-        int width = extractJsonInt(body, "width");
-        int height = extractJsonInt(body, "height");
-        int screenX = x * screenSize.width / width;
-        int screenY = y * screenSize.height / height;
-        robot.mouseMove(screenX, screenY);
+        // read JSON
+        String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
+        int x = parse(body, "x");
+        int y = parse(body, "y");
+        int w = parse(body, "width");
+        int h = parse(body, "height");
+
+        // scale to desktop
+        int dx = x * screenSize.width / w;
+        int dy = y * screenSize.height / h;
+        robot.mouseMove(dx, dy);
+
+        // send a quick OK
+        byte[] resp = "OK".getBytes();
+        exchange.sendResponseHeaders(200, resp.length);
+        exchange.getResponseBody().write(resp);
+        exchange.close();
     }
 
-    private int extractJsonInt(String json, String key) 
-    {
-        Pattern pattern = Pattern.compile("\"" + key + "\":\\s*(\\d+)");
-        Matcher matcher = pattern.matcher(json);
-        if (matcher.find()) 
-        {
-            return Integer.parseInt(matcher.group(1));
-        }
-        return 0;
+    private int parse(String json, String key) {
+        Matcher m = Pattern.compile("\"" + key + "\":\\s*(\\d+)").matcher(json);
+        return m.find() ? Integer.parseInt(m.group(1)) : 0;
     }
 }
