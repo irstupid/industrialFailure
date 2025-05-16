@@ -1,5 +1,6 @@
 class TextBox
 {
+  
   String text = "peepeepoopoo, peepeepoopoo, peepeepoopoo, peepeepoopoo, peepeepoopoo, peepeepoopoo, peepeepoopoo, peepeepoopoo, peepeepoopoo, peepeepoopoo, peepeepoopoo";
   int tick = 0;
   
@@ -10,7 +11,17 @@ class TextBox
   
   void setText(String value)
   {
-    text = value;
+    if(value != null && !value.equals(text))
+    {
+      text = value;
+      //println(value);
+      tick = 0;
+    }
+  }
+  
+  void setText()
+  {
+    text = "";
     tick = 0;
   }
   
@@ -32,5 +43,18 @@ class TextBox
         }
       pop();
     }
+  }
+  
+  void keyPressed()
+  {
+    if(key == '1' && tick >= text.length())
+    {
+      setText();
+    }
+  }
+  
+  String getText()
+  {
+    return text;
   }
 }

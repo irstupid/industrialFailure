@@ -2012,5 +2012,7 @@
       "dY": 4,
       "location": "testRoom.json"
     }
-  ]
+  ],
+  "descriptions":
+  []
 }

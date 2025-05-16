@@ -14,7 +14,9 @@ void setup()
 
 void draw()
 {
+  world.giveText(textBox.getText());
   world.update();
+  textBox.setText(world.describe());
   world.draw();
   textBox.draw();
 }
@@ -22,6 +24,7 @@ void draw()
 void keyPressed()
 {
   world.keyPressed();
+  textBox.keyPressed();
 }
 
 void keyReleased()

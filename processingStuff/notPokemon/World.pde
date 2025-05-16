@@ -4,8 +4,12 @@ class World
   Map<PImage> spriteMap;
   Map<Float> speedMap;
   HashMap<Integer, Warp> warpLookup;
+  HashMap<Integer, String> descriptionLookup;
   Camera camera;
   Player player;
+  
+  boolean interact;
+  String currentText;
   
   World()
   {
@@ -18,11 +22,18 @@ class World
     JSONObject route = loadJSONObject(name);
     
     warpLookup = new HashMap<>();
+    descriptionLookup = new HashMap<>();
     JSONArray warps = route.getJSONArray("warps");
     for(int i = 0; i < warps.size(); i++)
     {
       JSONObject warp = warps.getJSONObject(i);
       warpLookup.put(pair(warp.getInt("x"), warp.getInt("y")), new Warp(warp.getInt("dX"), warp.getInt("dY"), warp.getString("location")));
+    }
+    JSONArray descriptions = route.getJSONArray("descriptions");
+    for(int i = 0; i < descriptions.size(); i++)
+    {
+      JSONObject description = descriptions.getJSONObject(i);
+      descriptionLookup.put(pair(description.getInt("x"), description.getInt("y")), description.getString("description"));
     }
     
     collisionMap = new Map<Boolean>(route)
@@ -71,21 +82,33 @@ class World
   
   void update()
   {
-    //player.setSlowDown(getTileSlowdown());  //apply slow
+    //player.setSlowDown(getTileSlowdown());
     warp();
-    player.move();
+    if(currentText.equals(""))
+    {
+      player.move();
+    }
     player.collide(getCollisionTiles());
     camera.setCenter(player.getX(), player.getY());
+    describe();
   }
   
   void keyPressed()
   {
     player.keyPressed();
+    if(key == '1' && currentText.equals(""))
+    {
+      interact = true;
+    }
   }
   
   void keyReleased()
   {
     player.keyReleased();
+    if(key == '1')
+    {
+      interact = false;
+    }
   }
   
   void warp()
@@ -99,9 +122,45 @@ class World
     }
   }
   
+  String describe()
+  {
+    if(interact)
+    {
+      int x = round(player.getX()/TILEWIDTH);
+      int y = round(player.getY()/TILEHEIGHT);
+      if(player.getDirection() == 0)
+      {
+        x--;
+      }
+      else if(player.getDirection() == 1)
+      {
+        y--;
+      }
+      else if(player.getDirection() == 2)
+      {
+        x++;
+      }
+      else
+      {
+        y++;
+      }
+      String description = descriptionLookup.get(pair(x, y));
+      return description;
+    }
+    else
+    {
+      return null;
+    }
+  }
+  
+  void giveText(String text)
+  {
+    currentText = text;
+  }
+  
   int pair(int a, int b)
   {
-    return ((a + b) * (a + b + 1))/2 + b;
+    return a + b * 10000;
   }
   
   float getTileSlowdown()

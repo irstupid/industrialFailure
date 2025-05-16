@@ -8,6 +8,8 @@ class Player
   float xV;
   float yV;
   
+  int direction;
+  
   Player(float x, float y)
   {
     this.x = x;
@@ -16,7 +18,26 @@ class Player
   
   void draw()
   {
-    rect(x, y, TILEWIDTH, TILEHEIGHT);
+    push();
+      rect(x, y, TILEWIDTH, TILEHEIGHT);
+      fill(#00ff00);
+      if(direction == 0)
+      {
+        circle(x - 20 + TILEWIDTH/2, y + TILEHEIGHT/2, 10);
+      }
+      else if(direction == 1)
+      {
+        circle(x + TILEWIDTH/2, y - 20 + TILEHEIGHT/2, 10);
+      }
+      else if(direction == 2)
+      {
+        circle(x + 20 + TILEWIDTH/2, y + TILEHEIGHT/2, 10);
+      }
+      else
+      {
+        circle(x + TILEWIDTH/2, y + 20 + TILEHEIGHT/2, 10);
+      }
+    pop();
   }
   
   void move()
@@ -130,21 +151,26 @@ class Player
   
   float getX() { return x; }
   float getY() { return y; }
+  float getDirection() { return direction; }
   
   void keyPressed()
   {
     switch(key)
     {
       case 'w':
+        direction = 1;
         yV = -1;
       break;
       case 'a':
+        direction = 0;
         xV = -1;
       break;
       case 's':
+        direction = 3;
         yV = 1;
       break;
       case 'd':
+        direction = 2;
         xV = 1;
       break;
     }
