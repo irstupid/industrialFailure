@@ -87,6 +87,7 @@ class World
     if(currentText.equals(""))
     {
       player.move();
+      player.direct();
     }
     player.collide(getCollisionTiles());
     camera.setCenter(player.getX(), player.getY());

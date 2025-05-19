@@ -1,14 +1,19 @@
 class Player
 {
   float speed = 3;
+  float acceleration = 0.5;
   float slowDown = 1;
   
   float x;
   float y;
   float xV;
   float yV;
-  
   int direction;
+  
+  boolean up;
+  boolean down;
+  boolean left;
+  boolean right;
   
   Player(float x, float y)
   {
@@ -42,8 +47,66 @@ class Player
   
   void move()
   {
-    x += xV * speed * slowDown;
-    y += yV * speed * slowDown;
+    xV += (left ? -acceleration : 0) + (right ? acceleration : 0);
+    yV += (up ? -acceleration : 0) + (down ? acceleration : 0);
+    if(left == right)
+    {
+      if(abs(xV) > acceleration)
+      {
+        xV -= acceleration * (xV/abs(xV));
+      }
+      else
+      {
+        xV = 0;
+      }
+    }
+    if(up == down)
+    {
+      if(abs(yV) > acceleration)
+      {
+        yV -= acceleration * (yV/abs(yV));
+      }
+      else
+      {
+        yV = 0;
+      }
+    }
+    xV = constrain(xV, -speed * slowDown, speed * slowDown);
+    yV = constrain(yV, -speed * slowDown, speed * slowDown);
+    
+    x += xV;
+    y += yV;
+  }
+  
+  void direct()
+  {
+    if(!up && !down && !left && !right)
+    {
+      return;
+    }
+    
+    if(abs(xV) < abs(yV))
+    {
+      if(yV > 0)
+      {
+        direction = 3;
+      }
+      else
+      {
+        direction = 1;
+      }
+    }
+    else
+    {
+      if(xV > 0)
+      {
+        direction = 2;
+      }
+      else
+      {
+        direction = 0;
+      }
+    }
   }
   
   void setSlowDown(float slowDown)
@@ -158,20 +221,16 @@ class Player
     switch(key)
     {
       case 'w':
-        direction = 1;
-        yV = -1;
+        up = true;
       break;
       case 'a':
-        direction = 0;
-        xV = -1;
+        left = true;
       break;
       case 's':
-        direction = 3;
-        yV = 1;
+        down = true;
       break;
       case 'd':
-        direction = 2;
-        xV = 1;
+        right = true;
       break;
     }
   }
@@ -180,11 +239,17 @@ class Player
   {
     switch(key)
     {
-      case 'w': case 's':
-        yV = 0;
+      case 'w':
+        up = false;
       break;
-      case 'a': case 'd':
-        xV = 0;
+      case 'a':
+        left = false;
+      break;
+      case 's':
+        down = false;
+      break;
+      case 'd':
+        right = false;
       break;
     }
   }
