@@ -37,6 +37,14 @@ class World
       descriptionLookup.put(pair(description.getInt("x"), description.getInt("y")), description.getString("description"));
     }
     
+    JSONArray trainersRaw = route.getJSONArray("trainers");
+    trainers  = new Trainer[trainersRaw.size()];
+    for(int i = 0; i < trainers.length; i++)
+    {
+      JSONObject trainer = trainersRaw.getJSONObject(i);
+      trainers[i] = new Trainer(trainer.getInt("x"), trainer.getInt("y"), trainer.getInt("direction"), trainer.getInt("distance"), trainer.getInt("pattern"));
+    }
+    
     collisionMap = new Map<Boolean>(route)
     .add(true, "wall")
     .add(false, "open")
@@ -78,6 +86,10 @@ class World
       background(90);
       camera.draw();
       player.draw();
+      for(int i = 0; i < trainers.length; i++)
+      {
+        trainers[i].draw();
+      }
       fill(#00ff00, 100);
       rect(player.getTileX() * TILEWIDTH, player.getTileY() * TILEHEIGHT, TILEWIDTH, TILEHEIGHT);
     pop();
@@ -87,6 +99,11 @@ class World
   {
     //player.setSlowDown(getTileSlowdown());
     warp();
+    for(int i = 0; i < trainers.length; i++)
+    {
+      trainers[i].update();
+      trainers[i].watch(player.getX(), player.getY());
+    }
     if(currentText.equals(""))
     {
       player.move();

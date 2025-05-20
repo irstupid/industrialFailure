@@ -2014,5 +2014,15 @@
     }
   ],
   "descriptions":
-  []
+  [],
+  "trainers":
+  [
+    {
+      "x": 2,
+      "y": 2,
+      "direction": 2,
+      "distance": 3,
+      "pattern": 2,
+    }	
+  ]
 }

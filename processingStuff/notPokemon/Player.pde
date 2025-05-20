@@ -80,7 +80,7 @@ class Player
   
   void direct()
   {
-    if(!up && !down && !left && !right)
+    if((up == down) && (left == right))
     {
       return;
     }

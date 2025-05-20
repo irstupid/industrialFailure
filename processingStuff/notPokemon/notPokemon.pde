@@ -6,8 +6,8 @@ TextBox textBox;
 
 void setup()
 {
-  fullScreen();
-  //size(800, 800);
+  //fullScreen(P2D);
+  size(800, 800, P2D);
   
   world = new World();
   textBox = new TextBox();

@@ -1,19 +1,19 @@
 class Trainer
 {
-  int x;
-  int y;
+  float x;
+  float y;
   int direction;
-  int distance;
+  float distance;
   int pattern;
   
   int time;
   
   Trainer(int x, int y, int direction, int distance, int pattern)
   {
-    this.x = x;
-    this.y = y;
+    this.x = x * TILEWIDTH;
+    this.y = y * TILEHEIGHT;
     this.direction = direction;
-    this.distance = distance;
+    this.distance = distance * TILEWIDTH;
     this.pattern = pattern;
   }
 
@@ -44,6 +44,7 @@ class Trainer
   void draw()
   {
     push();
+      translate(TILEWIDTH/2, TILEHEIGHT/2);
       circle(x, y, TILEWIDTH);
       fill(#00ff00);
       if(direction == 0)
@@ -52,7 +53,7 @@ class Trainer
       }
       else if(direction == 1)
       {
-        circle(x, y - 20, 10);
+        circle(x, y + 20, 10);
       }
       else if(direction == 2)
       {
@@ -60,32 +61,35 @@ class Trainer
       }
       else
       {
-        circle(x, y + 20, 10);
+        circle(x, y - 20, 10);
       }
     pop();
   }
   
-  void see(int x, int y)
+  void watch(float x, float y)
   {  //im gonna comment this part cause its confusing
     x = this.x - x; //transform reletive to the trainer
     y = this.y - y;
-    x = abs(x);  //transform the resault to the positive quadrant
-    y = abs(y);
     if(direction == 1 || direction == 3) //if were facing (up/down), switch x/y. this basically rotatets the space reletive to the trainer, so that everything is the same
     {
-      int temp = x;
+      float temp = x;
       x = y;
       y = temp;
     }
+    if(x/abs(x) == (direction == 1 || direction == 2 ? 1 : -1)) //if we are behind the trainer, stop
+    {
+      return;
+    }
+    x = abs(x);  //transform the resault to the positive quadrant
+    y = abs(y);
       //transformations (the hard part) are now complete
     if(x > distance) //if we are to far away, stop now
     {
       return;
     }
-    y -= TILEHEIGHT/2; // account for the width of the player, it will always be subtraction because of the transformations
     if(y < TILEHEIGHT)  //final check, are we in the sight beam. once again the binary statement works because of transformations
     {
-      println("I SEE YOU");
+      print("I SEE YOU");
     }
     else
     {
