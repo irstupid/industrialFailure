@@ -215,6 +215,8 @@ class Player
   float getX() { return x; }
   float getY() { return y; }
   float getDirection() { return direction; }
+  int getTileX() { return round(x/TILEWIDTH); }
+  int getTileY() { return round(y/TILEHEIGHT); }
   
   void keyPressed()
   {

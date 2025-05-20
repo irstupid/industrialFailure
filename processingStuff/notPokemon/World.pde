@@ -5,6 +5,7 @@ class World
   Map<Float> speedMap;
   HashMap<Integer, Warp> warpLookup;
   HashMap<Integer, String> descriptionLookup;
+  Trainer[] trainers;
   Camera camera;
   Player player;
   
@@ -77,6 +78,8 @@ class World
       background(90);
       camera.draw();
       player.draw();
+      fill(#00ff00, 100);
+      rect(player.getTileX() * TILEWIDTH, player.getTileY() * TILEHEIGHT, TILEWIDTH, TILEHEIGHT);
     pop();
   }
   
