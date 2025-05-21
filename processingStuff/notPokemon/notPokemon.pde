@@ -3,6 +3,7 @@ final float TILEHEIGHT = 50;
 
 World world;
 TextBox textBox;
+Battle battle;
 
 void setup()
 {
@@ -11,24 +12,26 @@ void setup()
   
   world = new World();
   textBox = new TextBox();
+  battle = new Battle();
 }
 
 void draw()
 {
-  world.giveText(textBox.getText());
-  world.update();
-  textBox.setText(world.describe());
-  world.draw();
+  //world.giveText(textBox.getText());
+  //world.update();
+  //textBox.setText(world.describe());
+  //world.draw();
+  battle.draw();
   textBox.draw();
 }
 
 void keyPressed()
 {
-  world.keyPressed();
+  //world.keyPressed();
   textBox.keyPressed();
 }
 
 void keyReleased()
 {
-  world.keyReleased();
+  //world.keyReleased();
 }
