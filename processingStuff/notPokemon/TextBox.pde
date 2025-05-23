@@ -31,8 +31,9 @@ class TextBox
     {
       push();
         fill(#9999bb);
-        rect(0, height - 200, width, height);
+        rect(0, height - 200, width, 200);
         fill(#ffffff);
+        textSize(15);
         for(int i = 0; i < tick; i++)
         {
           text(text.charAt(i), 0 + 7 * (i%floor(width/7)),height - 190 + 10 * floor(i/floor(width/7)));

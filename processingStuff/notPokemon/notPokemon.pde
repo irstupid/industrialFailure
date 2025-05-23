@@ -28,6 +28,10 @@ void draw()
 void keyPressed()
 {
   //world.keyPressed();
+  if(textBox.getText().equals(""))
+  {
+    battle.keyPressed();
+  }
   textBox.keyPressed();
 }
 

@@ -41,3 +41,6 @@ I made the basis for the trainer system today. Like a class that stores the trai
 
 Log 15: 
 so the trainers like, work now. i though it would be a lot harder than it was. i had to add in one more check for wether or not the player is behind the trainer, cause uses abs(), but other than that pretty somooth sailing. also some weird alighnment stuff that might be annoying later. yeah now i guse i just make the battle system. thats scarry, but maybe it will be like the trainers and actually be pretty easy. i just need to remember not to over think things, its ok if its not totaly done and compleatly expandable the first time, i can expand it later. bye bye :) 
+
+Log 15:
+ok so i made the basic battle thing outline kinda its not finished yet, but yeah i have to go now, not much anything interesting bye.
