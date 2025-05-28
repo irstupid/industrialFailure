@@ -9,6 +9,8 @@ class Battle
   int select;
   
   int mainToSwitch;
+  int mainToBattle;
+  int mainToItem;
   
   Battle(Trainer trainer, Pokemon[] pokemon)
   {
@@ -38,55 +40,127 @@ class Battle
         translate(width/4, height/4 * 2.75);
         player[0].drawBack();
       pop();
-      switch(menu)
-      {
-        case 0: case 3:
-          if(menu == 0 && mainToSwitch > 0)
-          {
-            mainToSwitch -= 10;
-          }
-          else if(menu == 3 && mainToSwitch < 255)
-          {
-            mainToSwitch += 10;
-          }
+      push();
+        if(menu == 0 && mainToSwitch > 0)
+        {
+          mainToSwitch -= 10;
+        }
+        else if(menu == 3 && mainToSwitch < 255)
+        {
+          mainToSwitch += 10;
+        }
+        mainToSwitch = constrain(mainToSwitch, 0, 255);
+        if(select == 0) { fill(#00ff00); } else { fill(#ffffff); }
+        rect(0, height - 200, width/2, 100);
+        if(select == 2) { fill(#00ff00); } else { fill(#ffffff); }
+        rect(0, height - 100, width/2, 100);
+        if(select == 1) { fill(#00ff00); } else { fill(#ffffff); }
+        rect(width/2, height - 200, width/2, 100);
+        if(select == 3) { fill(#00ff00); } else { fill(#ffffff); }
+        rect(width/2, height - 100, width/2, 100);
+        textSize(100);
+        fill(#000000, 255 - mainToSwitch);
+        text("battle", 60, height - 110);
+        text("switch", 60, height - 10);
+        text("item", width/2 + 100, height - 110);
+        text("run", width/2 + 120, height - 10);
+        fill(#000000, mainToSwitch);
+        text("a", 60, height - 110);
+        text("b", 60, height - 10);
+        text("c", width/2 + 100, height - 110);
+        text("d", width/2 + 120, height - 10);
+        fill(#ffffff);
+        circle(width/2, height - 100, 100);
+        translate(width/2, height - 100);
+        rotate((mainToSwitch / 255f) * PI/2);
+        noStroke();
+        fill(#ff0000, mainToSwitch);
+        rectMode(CENTER);
+        rect(0, 0, 65, 65);  
+        fill(#ff0000, 255 - mainToSwitch);
+        rotate(-0.3);
+        star(0, 0, 20, 40, 5);
+      pop();
+      push();
+        if(menu == 1 && mainToBattle < 300)
+        {
+          mainToBattle += 10;
+        }
+        if(menu == 0 && mainToBattle > 0)
+        {
+          mainToBattle -= 10;
+        }
+        mainToBattle = constrain(mainToBattle, 0, 300);
+        textSize(50);
+        push();
+          translate(min(mainToBattle, 100) * width/200 - width/2, height - 200);
           if(select == 0) { fill(#00ff00); } else { fill(#ffffff); }
-          rect(0, height - 200, width/2, 100);
+          rect(0, 0, width/2, 200/3);
+          fill(#000000);
+          text("peepeepoopoo", 0, 50);
+        pop();
+        push();
+          translate(min(mainToBattle - 100, 100) * width/200 - width/2, height - 200 + 200/3);
           if(select == 2) { fill(#00ff00); } else { fill(#ffffff); }
-          rect(0, height - 100, width/2, 100);
+          rect(0, 0, width/2, 200/3);
+          fill(#000000);
+          text("peepeepoopoo", 0, 50);
+        pop();
+        push();
+          translate(min(mainToBattle - 200, 100) * width/200 - width/2, height - 200 + 200/3 + 200/3);
+          if(select == 4) { fill(#00ff00); } else { fill(#ffffff); }
+          rect(0, 0, width/2, 200/3);
+          fill(#000000);
+          text("peepeepoopoo", 0, 50);
+        pop();
+        push();
+          translate(width - (min(mainToBattle, 100) * width/200), height - 200);
           if(select == 1) { fill(#00ff00); } else { fill(#ffffff); }
-          rect(width/2, height - 200, width/2, 100);
+          rect(0, 0, width/2, 200/3);
+          fill(#000000);
+          text("peepeepoopoo", 0, 50);
+        pop();
+        push();
+          translate(width - (min(mainToBattle - 100, 100) * width/200), height - 200 + 200/3);
           if(select == 3) { fill(#00ff00); } else { fill(#ffffff); }
-          rect(width/2, height - 100, width/2, 100);
-          textSize(100);
-          fill(#000000, 255 - mainToSwitch);
-          text("battle", 60, height - 110);
-          text("switch", 60, height - 10);
-          text("item", width/2 + 100, height - 110);
-          text("run", width/2 + 120, height - 10);
-          fill(#000000, mainToSwitch);
-          text("a", 60, height - 110);
-          text("b", 60, height - 10);
-          text("c", width/2 + 100, height - 110);
-          text("d", width/2 + 120, height - 10);
-          fill(#ffffff);
-          circle(width/2, height - 100, 100);
-          translate(width/2, height - 100);
-          rotate((mainToSwitch / 255f) * PI/2);
-          noStroke();
-          fill(#ff0000, mainToSwitch);
-          rectMode(CENTER);
-          rect(0, 0, 65, 65);  
-          fill(#ff0000, 255 - mainToSwitch);
-          rotate(-0.3);
-          star(0, 0, 20, 40, 5);
-        break;
-        case 1:
+          rect(0, 0, width/2, 200/3);
+          fill(#000000);
+          text("instant fucking death beam", 0, 50);
+        pop();
+        push();
+          translate(width - (min(mainToBattle - 200, 100) * width/200), height - 200 + 200/3 + 200/3);
+          if(select == 5) { fill(#00ff00); } else { fill(#ffffff); }
+          rect(0, 0, width/2, 200/3);
+          fill(#000000);
+          text("peepeepoopoo", 0, 50);
+        pop();
+      pop();
+      push();
+        translate(0, 200 - mainToItem);
+        if(menu == 2 && mainToItem < 200)
+        {
+          mainToItem += 20;
+        }
+        if(menu == 0 && mainToItem > 0)
+        {
+          mainToItem -= 20;
+        }
         
-        break;
-        case 2:
+        rectMode(CENTER);
+        rect(width/2, height - 100, width/2, 70);
+        rect(width/2, height - 100 - 55, width/2, 40);
+        rect(width/2, height - 100 - 85, width/2, 20);
+        rect(width/2, height - 100 + 55, width/2, 40);
+        rect(width/2, height - 100 + 85, width/2, 20);
         
-        break;
-      }
+        rectMode(CORNER);
+        rect(width/4 * 3, height - 200, width/16, 200);
+        rect(width/4 - width/16, height - 200, width/16, 200);
+        quad(width/4 * 3 + width/16, height - 190, width/4 * 3 + width/16, height - 10, width/4 * 3 + width/8, height - 50, width/4 * 3 + width/8, height - 150);
+        quad(width/4 - width/16, height - 190, width/4 - width/16, height - 10, width/4 - width/8, height - 50, width/4 - width/8, height - 150);
+        rect(width/4 * 3 + width/8, height - 125, width - (width/4 * 3 + width/8), 50);
+        rect(0, height - 125, width - (width/4 * 3 + width/8), 50);
+      pop();
     pop();
   }
   
@@ -133,7 +207,37 @@ class Battle
         select = select % 4;
       break;
       case 1:
-        
+        switch(key)
+        {
+          case 'w':
+            select -= 2;
+          break;
+          case 'a':
+            select -= 1;
+          break;
+          case 's':
+            select += 2;
+          break;
+          case 'd':
+            select += 1;
+          break;
+          case '1':
+            if(select == 3)
+            {
+              return;
+            }
+            else
+            {
+              menu = select + 1;
+              select = 0;
+            }
+          break;
+        }
+        if(select < 1)
+        {
+          select += 6;
+        }
+        select = select % 6;
       break;
       case 2:
       
