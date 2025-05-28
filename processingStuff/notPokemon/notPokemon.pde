@@ -8,7 +8,7 @@ Battle battle;
 void setup()
 {
   //fullScreen(P2D);
-  size(800, 800, P2D);
+  size(960, 540, P2D);
   
   world = new World();
   textBox = new TextBox();
@@ -37,5 +37,5 @@ void keyPressed()
 
 void keyReleased()
 {
-  //world.keyReleased();
+  world.keyReleased();
 }

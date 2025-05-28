@@ -1,3 +1,5 @@
+import java.util.*;
+
 class Battle
 {
   Pokemon[] player = new Pokemon[4];
@@ -12,15 +14,29 @@ class Battle
   int mainToBattle;
   int mainToItem;
   
+  HashMap<Moves, String> moveNames;
+  
   Battle(Trainer trainer, Pokemon[] pokemon)
   {
     player = pokemon;
+    init();
   }
   
   Battle()
   {
     player[0] = new Pokemon();
+    player[1] = new Pokemon();
+    player[2] = new Pokemon();
+    player[3] = new Pokemon();
     opponent[0] = new Pokemon();
+    init();
+  }
+  
+  void init()
+  {
+    moveNames = new HashMap<Moves, String>();
+    moveNames.put(null, "  --");
+    moveNames.put(Moves.BONK, "bonk");
   }
   
   void draw()
@@ -65,10 +81,10 @@ class Battle
         text("item", width/2 + 100, height - 110);
         text("run", width/2 + 120, height - 10);
         fill(#000000, mainToSwitch);
-        text("a", 60, height - 110);
-        text("b", 60, height - 10);
-        text("c", width/2 + 100, height - 110);
-        text("d", width/2 + 120, height - 10);
+        text(player[0].getName(), 0, height - 110);
+        text(player[1].getName(), 0, height - 10);
+        text(player[2].getName(), width/2 + 20, height - 110);
+        text(player[3].getName(), width/2 + 20, height - 10);
         fill(#ffffff);
         circle(width/2, height - 100, 100);
         translate(width/2, height - 100);
@@ -97,42 +113,42 @@ class Battle
           if(select == 0) { fill(#00ff00); } else { fill(#ffffff); }
           rect(0, 0, width/2, 200/3);
           fill(#000000);
-          text("peepeepoopoo", 0, 50);
+          text(moveNames.get(player[0].getMove(0)), 0, 50);
         pop();
         push();
           translate(min(mainToBattle - 100, 100) * width/200 - width/2, height - 200 + 200/3);
           if(select == 2) { fill(#00ff00); } else { fill(#ffffff); }
           rect(0, 0, width/2, 200/3);
           fill(#000000);
-          text("peepeepoopoo", 0, 50);
+          text(moveNames.get(player[0].getMove(1)), 0, 50);
         pop();
         push();
           translate(min(mainToBattle - 200, 100) * width/200 - width/2, height - 200 + 200/3 + 200/3);
           if(select == 4) { fill(#00ff00); } else { fill(#ffffff); }
           rect(0, 0, width/2, 200/3);
           fill(#000000);
-          text("peepeepoopoo", 0, 50);
+          text(moveNames.get(player[0].getMove(2)), 0, 50);
         pop();
         push();
           translate(width - (min(mainToBattle, 100) * width/200), height - 200);
           if(select == 1) { fill(#00ff00); } else { fill(#ffffff); }
           rect(0, 0, width/2, 200/3);
           fill(#000000);
-          text("peepeepoopoo", 0, 50);
+          text(moveNames.get(player[0].getMove(3)), 0, 50);
         pop();
         push();
           translate(width - (min(mainToBattle - 100, 100) * width/200), height - 200 + 200/3);
           if(select == 3) { fill(#00ff00); } else { fill(#ffffff); }
           rect(0, 0, width/2, 200/3);
           fill(#000000);
-          text("instant fucking death beam", 0, 50);
+          text(moveNames.get(player[0].getMove(4)), 0, 50);
         pop();
         push();
           translate(width - (min(mainToBattle - 200, 100) * width/200), height - 200 + 200/3 + 200/3);
           if(select == 5) { fill(#00ff00); } else { fill(#ffffff); }
           rect(0, 0, width/2, 200/3);
           fill(#000000);
-          text("peepeepoopoo", 0, 50);
+          text(moveNames.get(player[0].getMove(5)), 0, 50);
         pop();
       pop();
       push();
@@ -222,16 +238,8 @@ class Battle
             select += 1;
           break;
           case '1':
-            if(select == 3)
-            {
-              return;
-            }
-            else
-            {
-              menu = select + 1;
-              select = 0;
-            }
-          break;
+            return;
+          //break;
         }
         if(select < 1)
         {
@@ -266,4 +274,9 @@ class Battle
     }
     endShape(CLOSE);
   }
+}
+
+public enum Moves
+{
+  BONK
 }

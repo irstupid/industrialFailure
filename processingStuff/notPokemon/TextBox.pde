@@ -36,7 +36,7 @@ class TextBox
         textSize(15);
         for(int i = 0; i < tick; i++)
         {
-          text(text.charAt(i), 0 + 7 * (i%floor(width/7)),height - 190 + 10 * floor(i/floor(width/7)));
+          text(text.charAt(i), 2 + 7 * (i%floor(width/7)), height - 185 + 15 * floor(i/floor(width/7)));
         }
         if(tick < text.length())
         {
