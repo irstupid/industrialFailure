@@ -1,11 +1,13 @@
 class Level
 {
   Box[] platforms;
+  ArrayList<Spell> spells;
   Player player;
   
   Level()
   {
     player = new Player();
+    spells = new ArrayList<Spell>();
     platforms = new Box[3];
     platforms[0] = new Box(100, height/2, 200, 100);
     platforms[1] = new Box(width/2, height/2 + 100, width, 100);
@@ -20,10 +22,24 @@ class Level
       platforms[i].draw();
     }
     player.draw();
+    for(int i = 0; i < spells.size(); i++)
+    {
+      spells.get(i).draw();
+    }
   }
   
   void update()
   {
+    for(int i = 0; i < spells.size(); i++)
+    {
+      Spell spell = spells.get(i);
+      spell.move();
+      spell.collide(distance(spell.getX(), spell.getY()));
+      if(spell.isDead())
+      {
+        spells.remove(spell);
+      }
+    }
     player.move();
     check();
     player.collide();

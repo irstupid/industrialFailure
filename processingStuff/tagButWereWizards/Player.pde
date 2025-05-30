@@ -1,8 +1,8 @@
 class Player
 {
   float ACCELERATION = 0.5;
-  float DECELERATION = 2;
-  float SPEED = 5;
+  float DECELERATION = 1;
+  float SPEED = 6;
   float GRAVITY = 0.419;
   float COYOTE_TIME = 8;
   float JUMP = 10;
@@ -23,7 +23,9 @@ class Player
   float[] checks = new float[8];
   float coyoteTime;
   
-  boolean left, right, jump;
+  boolean left, right, up, down;
+  boolean jump;
+  boolean lastLeft;
   
   Player()
   {
@@ -108,6 +110,18 @@ class Player
     y += yV;
   }
   
+  void cast()
+  {
+    if((left != right) || (up != down))
+    {
+      level.spells.add(new Blast(x + WIDTH/2, y + WIDTH/2, (left ? 0 : 1) + (right ? 0 : -1), (up ? 0 : 1) + (down ? 0 : -1)));
+    }
+    else
+    {
+      level.spells.add(new Blast(x + WIDTH/2, y + WIDTH/2, (lastLeft ? -1 : 1), 0));
+    }
+  }
+  
   float getX() { return x; }
   float getY() { return y; }
   
@@ -117,12 +131,23 @@ class Player
     {
       case 'a':
         left = true;
+        lastLeft = true;
       break;
       case 'd':
         right = true;
+        lastLeft = false;
       break;
       case 'w':
+        up = true;
+      break;
+      case 's':
+        down = true;
+      break;
+      case 'c':
         jump = true;
+      break;
+      case 'v':
+        cast();
       break;
     }
   }
@@ -137,6 +162,12 @@ class Player
       case 'd':
         right = false;
       case 'w':
+        up = false;
+      break;
+      case 's':
+        down = false;
+      break;
+      case 'c':
         jump = false;
       break;
     }
