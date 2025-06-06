@@ -15,7 +15,7 @@ public class Panel extends MotionPanel
         super(parent);
         try 
         {
-            image = ImageIO.read(new File("gaggle.png"));
+            image = ImageIO.read(new File("small.png"));
         } 
         catch (IOException e) 
         {
