@@ -9,6 +9,7 @@ class Battle
   
   int menu;
   int select;
+  int mainSelect;
   
   int mainToSwitch;
   int mainToBattle;
@@ -66,13 +67,17 @@ class Battle
           mainToSwitch += 10;
         }
         mainToSwitch = constrain(mainToSwitch, 0, 255);
-        if(select == 0) { fill(#00ff00); } else { fill(#ffffff); }
+        if(menu == 0)
+        {
+          mainSelect = select;
+        }
+        if((menu == 0 && mainSelect == 0) || (menu == 3 && select == 0)) { fill(#00ff00); } else { fill(#ffffff); }
         rect(0, height - 200, width/2, 100);
-        if(select == 2) { fill(#00ff00); } else { fill(#ffffff); }
+        if((menu == 0 && mainSelect == 2) || (menu == 3 && select == 2)) { fill(#00ff00); } else { fill(#ffffff); }
         rect(0, height - 100, width/2, 100);
-        if(select == 1) { fill(#00ff00); } else { fill(#ffffff); }
+        if((menu == 0 && mainSelect == 1) || (menu == 3 && select == 1)) { fill(#00ff00); } else { fill(#ffffff); }
         rect(width/2, height - 200, width/2, 100);
-        if(select == 3) { fill(#00ff00); } else { fill(#ffffff); }
+        if((menu == 0 && mainSelect == 3) || (menu == 3 && select == 3)) { fill(#00ff00); } else { fill(#ffffff); }
         rect(width/2, height - 100, width/2, 100);
         textSize(100);
         fill(#000000, 255 - mainToSwitch);
@@ -180,12 +185,17 @@ class Battle
     pop();
   }
   
+  void calculateOrder()
+  {
+    
+  }
+  
   void keyPressed()
   {
     if(key == '2')
     {
       menu = 0;
-      select = 0;
+      select = mainSelect;
     }
     switch(menu)
     {
