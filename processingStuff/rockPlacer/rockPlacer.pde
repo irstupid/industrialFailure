@@ -6,10 +6,11 @@ int row;
 boolean finisher = false;
 
 int delay;
+int endWait = 120;
 
 void setup()
 {
-  size(800, 800);
+  size(400, 500);
   batch = new Tile[4][5];
   
   for(int x = 0; x < batch.length; x++)
@@ -47,16 +48,32 @@ void draw()
   }
 }
 
-void keyPressed()
-{
-  //tick();
-}
-
 void tick()
 {
   if(column < batch[0].length && row < batch.length)
   {
     batch[row][column].add();
+  }
+  else
+  {
+    endWait--;
+    if(endWait <= 0)
+    {
+      row = 0;
+      column = 0;
+      round = 0;
+      finisher = false;
+      endWait = 120;
+      for(int x = 0; x < batch.length; x++)
+      {
+        for(int y = 0; y < batch[x].length; y++)
+        {
+          batch[x][y].add();
+        }
+      }
+    }
+    
+    return;
   }
   
   round++;

@@ -6,6 +6,7 @@ class Tile
   int sY;
   int n;
   int animation;
+  int shrink;
   
   Tile(int x, int y)
   {
@@ -18,10 +19,21 @@ class Tile
   
   void draw()
   {
-    if(n >= 5)
+    if(n == 5)
     {
       n = 5;
       animation++;
+    }
+    if(n > 5)
+    {
+      animation = 90;
+      shrink++;
+    }
+    if(shrink > 30)
+    {
+      n = 0;
+      animation = 0;
+      shrink = 0;
     }
     push();
       translate(sX, sY);
@@ -57,7 +69,7 @@ class Tile
       {
         push();
           translate(50, 50);
-          scale(0 + (constrain(animation, 50f, 70f) - 50f)/20);
+          scale(0 + (constrain(animation, 50f, 70f) - 50f)/20 - shrink/30f);
           rotate((constrain(animation, 25f, 87.5f) - 25f) * TWO_PI/50f);
           star();
         pop();
