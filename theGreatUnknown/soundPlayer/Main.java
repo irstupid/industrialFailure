@@ -5,6 +5,7 @@ class Main
 {
     static Frame frame;
     static Panel panel;
+    static Sound sound;
     public static void main(String[] args) 
     {
         ActionHandler handler = new ActionHandler();
@@ -12,6 +13,8 @@ class Main
         panel = new Panel(frame);
         frame.setContentPane(panel);
         //frame.pack();
+
+        sound = new Sound();
 
         JButton playButton = new JButton("do something");
         playButton.setMnemonic(KeyEvent.VK_SPACE);
@@ -21,5 +24,7 @@ class Main
 
         frame.pack();
         frame.setVisible(true);
+
+        sound.play();
     }
 }
