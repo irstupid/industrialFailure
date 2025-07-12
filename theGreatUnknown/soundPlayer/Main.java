@@ -6,15 +6,17 @@ class Main
     static Frame frame;
     static Panel panel;
     static Sound sound;
+
+    static boolean[] requests;
     public static void main(String[] args) 
     {
-        ActionHandler handler = new ActionHandler();
+        requests = new boolean[1];
+
         frame = new Frame();
         panel = new Panel(frame);
         frame.setContentPane(panel);
-        //frame.pack();
-
         sound = new Sound();
+        ActionHandler handler = new ActionHandler(requests);
 
         JButton playButton = new JButton("do something");
         playButton.setMnemonic(KeyEvent.VK_SPACE);
@@ -25,6 +27,12 @@ class Main
         frame.pack();
         frame.setVisible(true);
 
+        play();
+        System.out.println("gothrough");
+    }
+
+    public static void play()
+    {
         sound.play();
     }
 }
