@@ -6,17 +6,14 @@ class Main
     static Frame frame;
     static Panel panel;
     static Sound sound;
-
-    static boolean[] requests;
     public static void main(String[] args) 
     {
-        requests = new boolean[1];
-
         frame = new Frame();
         panel = new Panel(frame);
         frame.setContentPane(panel);
         sound = new Sound();
-        ActionHandler handler = new ActionHandler(requests);
+        sound.setSound("rickroll.mp3");
+        ActionHandler handler = new ActionHandler(sound);
 
         JButton playButton = new JButton("do something");
         playButton.setMnemonic(KeyEvent.VK_SPACE);
@@ -24,15 +21,15 @@ class Main
         playButton.addActionListener(handler);
         frame.add(playButton);
 
+        JButton endButton = new JButton("KYS");
+        endButton.setMnemonic(KeyEvent.VK_BACK_SPACE);
+        endButton.setActionCommand("end");
+        endButton.addActionListener(handler);
+        frame.add(endButton);
+
         frame.pack();
         frame.setVisible(true);
 
-        play();
-        System.out.println("gothrough");
-    }
-
-    public static void play()
-    {
-        sound.play();
+        sound.start();
     }
 }

@@ -4,10 +4,11 @@ import java.awt.event.ActionListener;
 
 public class ActionHandler implements ActionListener
 {
-    boolean[] requests;
-    ActionHandler(boolean[] requests)
+    Sound sound;
+
+    ActionHandler(Sound sound)
     {
-        this.requests = requests;
+        this.sound = sound;
     }
 
     @Override
@@ -16,7 +17,12 @@ public class ActionHandler implements ActionListener
         if("play".equals(e.getActionCommand()))
         {
             System.out.println("play?");
-            requests[0] = true;
+            sound.play();
+        }
+        if("end".equals(e.getActionCommand()))
+        {
+            System.out.println("end?");
+            sound.end();
         }
     }
 }

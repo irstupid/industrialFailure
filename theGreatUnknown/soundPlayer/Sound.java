@@ -1,32 +1,56 @@
 import java.io.FileInputStream;
 import javazoom.jl.player.Player;
 
-public class Sound
+public class Sound extends Thread
 {
     Player player;
+    boolean play;
 
     Sound()
     {
-        try
+
+    }
+
+    @Override
+    public void run() 
+    {
+        while(!isInterrupted())
         {
-            FileInputStream stream = new FileInputStream("rickRoll.mp3");
-            player = new Player(stream);
-        } 
-        catch(Exception e)
-        {
-            System.err.println("your sound path is prob wrong");
+            try
+            {
+                if(play)
+                {
+                    player.play();
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.println("it died");
+            }
         }
     }
 
     public void play()
     {
+        play = true;
+    }
+
+    public void end()
+    {
+        play = false;
+        player = null;
+    }
+    
+    public void setSound(String name)
+    {
         try
         {
-            player.play();
-        }
+            FileInputStream stream = new FileInputStream(name);
+            player = new Player(stream);
+        } 
         catch(Exception e)
         {
-            System.err.println("it no play");
+            System.err.println("your sound path is prob wrong");
         }
     }
 }
