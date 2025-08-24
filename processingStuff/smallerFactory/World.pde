@@ -3,11 +3,10 @@ class World
   Tile[][] map;
   int w = 50;
   int h = 50;
-  int weight = 2;
   
   World()
   {
-    map = new Tile[floor(width/w)][floor(height/h)];
+    map = new Tile[floor((width - 100)/w)][floor(height/h)];
     for(int i = 0; i < map.length; i++)
     {
       for(int j = 0; j < map[i].length; j++)
@@ -117,8 +116,6 @@ class World
         }
       }
     }
-    println(size);
-    println(patchX.size());
     for(int i = 0; i < patchX.size(); i++)
     {
       map[patchX.get(i)][patchY.get(i)] = type;
