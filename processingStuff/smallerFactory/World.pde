@@ -7,11 +7,17 @@ class World
   
   World()
   {
-    map = new Tile[2][2];
-    map[0][0] = Tile.SOLID;
-    map[0][1] = Tile.DOT;
-    map[1][0] = Tile.STRIPE;
-    map[1][1] = Tile.EMPTY;
+    map = new Tile[floor(width/w)][floor(height/h)];
+    for(int i = 0; i < map.length; i++)
+    {
+      for(int j = 0; j < map[i].length; j++)
+      {
+        map[i][j] = Tile.EMPTY;
+      }
+    }
+    generate(Tile.DOT);
+    generate(Tile.STRIPE);
+    generate(Tile.SOLID);
   }
   
   void draw()
@@ -46,7 +52,7 @@ class World
             rect(x * w + weight/2, y * h + weight/2, w - weight, h - weight);
           break;
           case SOLID:
-            fill(#0004a6);
+            fill(#0004a6, 255/2);
             rect(x * w + weight/2, y * h + weight/2, w - weight, h - weight);
           break;
         }
@@ -57,6 +63,66 @@ class World
   void tick()
   {
     
+  }
+  
+  void generate(Tile type)
+  {
+    IntList patchX = new IntList();
+    IntList patchY = new IntList();
+    int startX = floor(random(0, map.length));
+    int startY = floor(random(0, map[0].length));
+    while(!(map[startX][startY] == Tile.EMPTY))
+    {
+      startX = floor(random(0, map.length));
+      startY = floor(random(0, map[0].length));
+    }
+    patchX.append(startX);
+    patchY.append(startY);
+    int size = floor(random(3, 8));
+    for(int i = 0; i < size;)
+    {
+      int start = floor(random(0, patchX.size()));
+      int x = patchX.get(start);
+      int y = patchY.get(start);
+      switch(floor(random(0, 4)))
+      {
+        case 0:
+          x++;
+        break;
+        case 1:
+          x--;
+        break;
+        case 2:
+          y++;
+        break;
+        case 3:
+          y--;
+        break;
+      }
+      if(x < map.length && x >= 0 && y < map[0].length && y >= 0)
+      {
+        boolean intersection = false;
+        for(int j = 0; j < patchX.size(); j++)
+        {
+          if(patchX.get(j) == x && patchY.get(j) == y)
+          {
+            intersection = true;
+          }
+        }
+        if(!intersection)
+        {
+          patchX.append(x);
+          patchY.append(y);
+          i++;
+        }
+      }
+    }
+    println(size);
+    println(patchX.size());
+    for(int i = 0; i < patchX.size(); i++)
+    {
+      map[patchX.get(i)][patchY.get(i)] = type;
+    }
   }
 }
 

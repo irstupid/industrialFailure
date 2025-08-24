@@ -2,7 +2,7 @@ World world;
 
 void setup()
 {
-  size(800, 800);
+  size(500, 500);
   world = new World();
 }
 
