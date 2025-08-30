@@ -1,8 +1,8 @@
 class World
 {
   Tile[][] map;
-  int w = 50;
-  int h = 50;
+  
+  int convayerB;
   
   World()
   {
@@ -28,40 +28,31 @@ class World
         noFill();
         stroke(#0004a6);
         strokeWeight(weight);
-        switch(map[x][y])
-        {
-          case EMPTY:
-            rect(x * w + weight/2, y * h + weight/2, w - weight, h - weight);
-          break;
-          case DOT:
-            rect(x * w + weight/2, y * h + weight/2, w - weight, h - weight);
-            for(int i = 0; i < 3; i++)
-            {
-              for(int j = 0; j < 3; j++)
-              {
-                strokeWeight(weight * 2);
-                point(x * w + (w/3.5) * i + (w/4.5), y * w + (h/3.5) * j + (h/4.5));
-              }
-            }
-          break;
-          case STRIPE:
-            line(x * w + (w - weight/2)/2, y * h, x * w + (w - weight/2), y * h + (h - weight/2)/2);
-            line(x * w, y * h, x * w + (w - weight/2), y * h + (h - weight/2));
-            line(x * w + (w - weight/2)/2, y * h + (h - weight/2), x * w, y * h + (h - weight/2)/2);
-            rect(x * w + weight/2, y * h + weight/2, w - weight, h - weight);
-          break;
-          case SOLID:
-            fill(#0004a6, 255/2);
-            rect(x * w + weight/2, y * h + weight/2, w - weight, h - weight);
-          break;
-        }
+        drawTile(map[x][y], x, y);
       }
     }
   }
   
   void tick()
   {
-    
+    convayerB++;
+    if(convayerB > convayerASpeed)
+    {
+      convayerB = 0;
+      convayerA += weight * 2;
+      if(convayerA >= w/4)
+      {
+        convayerA = 0;
+      }
+    }
+  }
+  
+  void set(Tile tile, int x, int y)
+  {
+    if(tile != null &&map[x][y] != Tile.DOT && map[x][y] != Tile.STRIPE && map[x][y] != Tile.SOLID)
+    {
+      map[x][y] = tile;
+    }
   }
   
   void generate(Tile type)
@@ -121,12 +112,4 @@ class World
       map[patchX.get(i)][patchY.get(i)] = type;
     }
   }
-}
-
-enum Tile
-{
-  EMPTY,
-  DOT,
-  STRIPE,
-  SOLID
 }
