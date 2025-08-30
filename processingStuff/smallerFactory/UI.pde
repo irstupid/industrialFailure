@@ -31,6 +31,12 @@ class UI
         break;
       }
     pop();
+    stroke(#0004a6, 255/2);
+    int x = mouseX/w;
+    int y = mouseY/h;
+    x = min(x, (width  - 100)/w - 1);
+    y = min(y, height/h - 1);
+    drawTile(find(), x, y);
   }
   
   void keyPressed()
@@ -53,19 +59,24 @@ class UI
     }
     else
     {
-      if(select == 0)
+      return find();
+    }
+  }
+  
+  Tile find()
+  {
+    if(select == 0)
+    {
+      switch(direction)
       {
-        switch(direction)
-        {
-          case 0:
-            return Tile.UP_CONVAYER;
-          case 1:
-            return Tile.RIGHT_CONVAYER;
-          case 2:
-            return Tile.DOWN_CONVAYER;
-          case 3:
-            return Tile.LEFT_CONVAYER;
-        }
+        case 0:
+          return Tile.UP_CONVAYER;
+        case 1:
+          return Tile.RIGHT_CONVAYER;
+        case 2:
+          return Tile.DOWN_CONVAYER;
+        case 3:
+          return Tile.LEFT_CONVAYER;
       }
     }
     return null;
