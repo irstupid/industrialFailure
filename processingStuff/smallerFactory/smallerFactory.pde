@@ -70,7 +70,7 @@ void drawTile(Tile tile, int x, int y)
       push();
         translate(x * w + weight/2, y * h + weight/2);
         line(0, 0, 0, h);
-        line(w - weight/2, 0, w - weight/2, h);
+        line(w - weight, 0, w - weight, h);
         line(0, h/4 * 1 - convayerA, w, h/4 * 1 - convayerA);
         line(0, h/4 * 2 - convayerA, w, h/4 * 2 - convayerA);
         line(0, h/4 * 3 - convayerA, w, h/4 * 3 - convayerA);
@@ -81,7 +81,7 @@ void drawTile(Tile tile, int x, int y)
       push();
         translate(x * w + weight/2, y * h + weight/2);
         line(0, 0, 0, h);
-        line(w - weight/2, 0, w - weight/2, h);
+        line(w - weight, 0, w - weight, h);
         line(0, h/4 * 0 + convayerA, w, h/4 * 0 + convayerA);
         line(0, h/4 * 1 + convayerA, w, h/4 * 1 + convayerA);
         line(0, h/4 * 2 + convayerA, w, h/4 * 2 + convayerA);
@@ -103,11 +103,107 @@ void drawTile(Tile tile, int x, int y)
       push();
         translate(x * w + weight/2, y * h + weight/2);
         line(0, 0, w, 0);
-        line(0, h - weight/2, w, h - weight/2);
+        line(0, h - weight, w, h - weight);
         line(w/4 * 0 + convayerA, 0, w/4 * 0 + convayerA, h);
         line(w/4 * 1 + convayerA, 0, w/4 * 1 + convayerA, h);
         line(w/4 * 2 + convayerA, 0, w/4 * 2 + convayerA, h);
         line(w/4 * 3 + convayerA, 0, w/4 * 3 + convayerA, h);
+      pop();
+    break;
+    case UP_LEFT_CONVAYER:
+      push();
+        translate(x * w + weight/2, y * h + weight/2);
+        line(0, 0, w, 0);
+        line(w - weight, 0, w - weight, h);
+        arc(0, h, w * 2, h * 2, PI + HALF_PI, TWO_PI);
+        line(0, h, (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * w), h - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * h));
+        line(0, h, (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * w), h - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * h));
+        line(0, h, (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * w), h - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * h));
+        line(0, h, (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * w), h - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * h));
+      pop();
+    break;
+    case UP_RIGHT_CONVAYER:
+      push();
+        translate(x * w + weight/2, y * h + weight/2);
+        line(0, 0, w, 0);
+        line(0, 0, 0, h);
+        arc(w, h, w * 2, h * 2, PI, HALF_PI + PI);
+        line(w, h, w - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * w), h - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * h));
+        line(w, h, w - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * w), h - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * h));
+        line(w, h, w - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * w), h - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * h));
+        line(w, h, w - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * w), h - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * h));
+      pop();
+    break;
+    case RIGHT_LEFT_CONVAYER:
+      push();
+        translate(x * w + weight/2, y * h + weight/2);
+        line(0, h - weight, w, h - weight);
+        line(w - weight, 0, w - weight, h);
+        arc(0, 0, w * 2, h * 2, 0, HALF_PI);
+        line(0, 0, (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * w), (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * h));
+        line(0, 0, (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * w), (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * h));
+        line(0, 0, (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * w), (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * h));
+        line(0, 0, (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * w), (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * h));
+      pop();
+    break;
+    case RIGHT_RIGHT_CONVAYER:
+      push();
+        translate(x * w + weight/2, y * h + weight/2);
+        line(0, 0, w, 0);
+        line(w - weight, 0, w - weight, h);
+        arc(0, h, w * 2, h * 2, PI + HALF_PI, TWO_PI);
+        line(0, h, (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * w), h - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * h));
+        line(0, h, (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * w), h - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * h));
+        line(0, h, (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * w), h - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * h));
+        line(0, h, (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * w), h - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * h));
+      pop();
+    break;
+    case DOWN_LEFT_CONVAYER:
+      push();
+        translate(x * w + weight/2, y * h + weight/2);
+        line(0, h - weight, w, h - weight);
+        line(0, 0, 0, h);
+        arc(w, 0, w * 2, h * 2, HALF_PI, PI);
+        line(w, 0, w - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * w), (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * h));
+        line(w, 0, w - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * w), (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * h));
+        line(w, 0, w - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * w), (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * h));
+        line(w, 0, w - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * w), (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * h));
+      pop();
+    break;
+    case DOWN_RIGHT_CONVAYER:
+      push();
+        translate(x * w + weight/2, y * h + weight/2);
+        line(0, h - weight, w, h - weight);
+        line(w - weight, 0, w - weight, h);
+        arc(0, 0, w * 2, h * 2, 0, HALF_PI);
+        line(0, 0, (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * w), (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * h));
+        line(0, 0, (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * w), (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * h));
+        line(0, 0, (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * w), (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * h));
+        line(0, 0, (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * w), (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * h));
+      pop();
+    break;
+    case LEFT_LEFT_CONVAYER:
+      push();
+        translate(x * w + weight/2, y * h + weight/2);
+        line(0, 0, w, 0);
+        line(0, 0, 0, h);
+        arc(w, h, w * 2, h * 2, PI, HALF_PI + PI);
+        line(w, h, w - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * w), h - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * h));
+        line(w, h, w - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * w), h - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * h));
+        line(w, h, w - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * w), h - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * h));
+        line(w, h, w - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * w), h - (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * h));
+      pop();
+    break;
+    case LEFT_RIGHT_CONVAYER:
+      push();
+        translate(x * w + weight/2, y * h + weight/2);
+        line(0, h - weight, w, h - weight);
+        line(0, 0, 0, h);
+        arc(w, 0, w * 2, h * 2, HALF_PI, PI);
+        line(w, 0, w - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * w), (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 0) * h));
+        line(w, 0, w - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * w), (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 1) * h));
+        line(w, 0, w - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * w), (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 2) * h));
+        line(w, 0, w - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * w), (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * h));
       pop();
     break;
   }
@@ -125,4 +221,10 @@ enum Tile
   RIGHT_CONVAYER,
   UP_LEFT_CONVAYER,
   UP_RIGHT_CONVAYER,
+  RIGHT_LEFT_CONVAYER,
+  RIGHT_RIGHT_CONVAYER,
+  DOWN_LEFT_CONVAYER,
+  DOWN_RIGHT_CONVAYER,
+  LEFT_LEFT_CONVAYER,
+  LEFT_RIGHT_CONVAYER
 }
