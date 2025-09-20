@@ -10,6 +10,9 @@ class UI
   int select;
   int direction;
   
+  int px;
+  int py;
+  
   void draw()
   {
     noFill();
@@ -51,6 +54,51 @@ class UI
     }
   }
   
+  int[][] mouseDragged(int x, int y)
+  {
+    if(mouseButton == RIGHT)
+    {
+      return new int[][]{{Tile.EMPTY.index, x, y}};
+    }
+    if(px != x || py != y)
+    {
+      Tile pTile = world.map[x][y];
+      int direction;
+      Tile newTile;
+      if(px - x > 0) // >0 left >0 down
+      {
+        direction = 3;
+        newTile = Tile.LEFT_CONVAYER;
+      }
+      else if(px - x < 0)
+      {
+        direction = 1;
+        newTile = Tile.RIGHT_CONVAYER;
+      }
+      else if(py - y > 0)
+      {
+        direction = 2;
+        newTile = Tile.DOWN_CONVAYER;
+      }
+      else
+      {
+        direction = 0;
+        newTile = Tile.UP_CONVAYER;
+      }
+      int in = pTile.in;
+      Tile out = inOutTile(in, direction);
+      if(out != null)
+      {
+        return new int[][]
+        {{newTile.index, x, y},
+        {out.index, px, py}};
+      }
+    }
+    px = x;
+    py = y;
+    return null;
+  }
+  
   Tile mousePressed(int x, int y)
   {
     if(mouseButton == RIGHT)
@@ -60,6 +108,39 @@ class UI
     else
     {
       return find();
+    }
+  }
+  
+  Tile inOutTile(int in, int out)
+  {
+    switch(in + out * 10)
+    {
+      case 20:
+        return Tile.UP_CONVAYER;
+      case 02:
+        return Tile.DOWN_CONVAYER;
+      case 13:
+        return Tile.LEFT_CONVAYER;
+      case 31:
+        return Tile.RIGHT_CONVAYER;
+      case 23:
+        return Tile.UP_LEFT_CONVAYER;
+      case 21:
+        return Tile.UP_RIGHT_CONVAYER;
+      case 30:
+        return Tile.RIGHT_LEFT_CONVAYER;
+      case 32:
+        return Tile.RIGHT_RIGHT_CONVAYER;
+      case 1:
+        return Tile.DOWN_LEFT_CONVAYER;
+      case 3:
+        return Tile.DOWN_RIGHT_CONVAYER;
+      case 12:
+        return Tile.LEFT_LEFT_CONVAYER;
+      case 10:
+        return Tile.LEFT_RIGHT_CONVAYER;
+      default:
+        return null;
     }
   }
   

@@ -38,6 +38,22 @@ void mousePressed()
   world.set(ui.mousePressed(x, y), x, y);
 }
 
+void mouseDragged()
+{
+  int x = mouseX/w;
+  int y = mouseY/h;
+  x = min(x, (width  - 100)/w - 1);
+  y = min(y, height/h - 1);
+  int[][] tiles = ui.mouseDragged(x, y);
+  if(tiles != null)
+  {
+    for(int[] tile : tiles)
+    {
+      world.set(Tile.values()[tile[0]], tile[1], tile[2]);
+    }
+  }
+}
+
 void drawTile(Tile tile, int x, int y)
 {
   switch(tile)
@@ -211,20 +227,37 @@ void drawTile(Tile tile, int x, int y)
 
 enum Tile
 {
-  EMPTY,
-  DOT,
-  STRIPE,
-  SOLID,
-  UP_CONVAYER,
-  DOWN_CONVAYER,
-  LEFT_CONVAYER,
-  RIGHT_CONVAYER,
-  UP_LEFT_CONVAYER,
-  UP_RIGHT_CONVAYER,
-  RIGHT_LEFT_CONVAYER,
-  RIGHT_RIGHT_CONVAYER,
-  DOWN_LEFT_CONVAYER,
-  DOWN_RIGHT_CONVAYER,
-  LEFT_LEFT_CONVAYER,
-  LEFT_RIGHT_CONVAYER
+  EMPTY (0),
+  DOT (1),
+  STRIPE (2),
+  SOLID (3),
+  UP_CONVAYER (4, 2, 0),
+  DOWN_CONVAYER (5, 0, 2),
+  LEFT_CONVAYER (6, 1, 3),
+  RIGHT_CONVAYER (7, 3, 1),
+  UP_LEFT_CONVAYER (8, 2, 3),
+  UP_RIGHT_CONVAYER (9, 2, 1),
+  RIGHT_LEFT_CONVAYER (10, 3, 0),
+  RIGHT_RIGHT_CONVAYER (11, 3, 2),
+  DOWN_LEFT_CONVAYER (12, 0, 1),
+  DOWN_RIGHT_CONVAYER (13, 0, 3),
+  LEFT_LEFT_CONVAYER (14, 1, 2),
+  LEFT_RIGHT_CONVAYER (15, 1, 0);
+  
+  public final int index;
+  public final int in;
+  public final int out;
+  
+  Tile(int index)
+  {
+    this.index = index;
+    in = 4;
+    out = 4;
+  }
+  Tile(int index, int in, int out)
+  {
+    this.index = index;
+    this.in = in;
+    this.out = out;
+  }
 }
