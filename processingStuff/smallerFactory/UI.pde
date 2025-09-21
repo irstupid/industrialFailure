@@ -62,37 +62,46 @@ class UI
     }
     if(px != x || py != y)
     {
-      Tile pTile = world.map[x][y];
+      
+      Tile pTile = world.map[px][py];
       int direction;
       Tile newTile;
-      if(px - x > 0) // >0 left >0 down
-      {
-        direction = 3;
-        newTile = Tile.LEFT_CONVAYER;
-      }
-      else if(px - x < 0)
+      if(px - x < 0) // >0 left >0 down
       {
         direction = 1;
         newTile = Tile.RIGHT_CONVAYER;
       }
-      else if(py - y > 0)
+      else if(px - x > 0)
       {
-        direction = 2;
-        newTile = Tile.DOWN_CONVAYER;
+        direction = 3;
+        newTile = Tile.LEFT_CONVAYER;
       }
-      else
+      else if(py - y > 0)
       {
         direction = 0;
         newTile = Tile.UP_CONVAYER;
       }
-      int in = pTile.in;
-      Tile out = inOutTile(in, direction);
-      if(out != null)
+      else
       {
-        return new int[][]
-        {{newTile.index, x, y},
-        {out.index, px, py}};
+        direction = 2;
+        newTile = Tile.DOWN_CONVAYER;
       }
+      int in = pTile.in;
+      println(px, py);
+      println(pTile);
+      println(in + " " + direction);
+      Tile pNewTile = inOutTile(in, direction);
+      println(pNewTile);
+      if(pNewTile != null)
+      {
+        int[][] out = new int[][]
+        {{newTile.index, x, y},
+        {pNewTile.index, px, py}};
+        px = x;
+        py = y;
+        return out;
+      }
+      print("no, work");
     }
     px = x;
     py = y;
@@ -101,6 +110,8 @@ class UI
   
   Tile mousePressed(int x, int y)
   {
+    px = x;
+    py = y;
     if(mouseButton == RIGHT)
     {
       return Tile.EMPTY;
@@ -116,29 +127,29 @@ class UI
     switch(in + out * 10)
     {
       case 20:
-        return Tile.UP_CONVAYER;
+        return Tile.DOWN_CONVAYER; //fixed
       case 02:
-        return Tile.DOWN_CONVAYER;
+        return Tile.UP_CONVAYER;  //fixed
       case 13:
-        return Tile.LEFT_CONVAYER;
+        return Tile.RIGHT_CONVAYER;  //fixed
       case 31:
-        return Tile.RIGHT_CONVAYER;
+        return Tile.LEFT_CONVAYER;  //fixed
       case 23:
-        return Tile.UP_LEFT_CONVAYER;
+        return Tile.RIGHT_RIGHT_CONVAYER;  //fixed
       case 21:
-        return Tile.UP_RIGHT_CONVAYER;
+        return Tile.LEFT_LEFT_CONVAYER;  //fixed
       case 30:
-        return Tile.RIGHT_LEFT_CONVAYER;
+        return Tile.DOWN_RIGHT_CONVAYER;  //fixed
       case 32:
-        return Tile.RIGHT_RIGHT_CONVAYER;
+        return Tile.UP_LEFT_CONVAYER;  //fixed
       case 1:
-        return Tile.DOWN_LEFT_CONVAYER;
+        return Tile.LEFT_RIGHT_CONVAYER;  //fixed
       case 3:
-        return Tile.DOWN_RIGHT_CONVAYER;
+        return Tile.RIGHT_LEFT_CONVAYER;  //fixed
       case 12:
-        return Tile.LEFT_LEFT_CONVAYER;
+        return Tile.UP_RIGHT_CONVAYER;  //fixed
       case 10:
-        return Tile.LEFT_RIGHT_CONVAYER;
+        return Tile.DOWN_LEFT_CONVAYER;  //fixed
       default:
         return null;
     }

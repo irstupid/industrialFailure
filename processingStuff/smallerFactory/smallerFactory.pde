@@ -49,6 +49,7 @@ void mouseDragged()
   {
     for(int[] tile : tiles)
     {
+      println(tile);
       world.set(Tile.values()[tile[0]], tile[1], tile[2]);
     }
   }
