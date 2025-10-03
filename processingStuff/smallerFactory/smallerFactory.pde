@@ -4,6 +4,8 @@ UI ui;
 int weight = 2;
 int w = 50;
 int h = 50;
+int ink = #0004a6;
+int background = #eeeeee;
 
 int convayerA;
 int convayerASpeed = 10;
@@ -19,7 +21,7 @@ void draw()
 {
   world.tick();
   
-  background(#eeeeee);
+  background(background);
   world.draw();
   ui.draw();
 }
@@ -83,7 +85,7 @@ void drawTile(Tile tile, int x, int y)
       rect(x * w + weight/2, y * h + weight/2, w - weight, h - weight);
     break;
     case SOLID:
-      fill(#0004a6, 255/2);
+      fill(ink, 255/2);
       rect(x * w + weight/2, y * h + weight/2, w - weight, h - weight);
     break;
     case UP_CONVAYER:
@@ -227,16 +229,36 @@ void drawTile(Tile tile, int x, int y)
       pop();
     break;
     case ASSEMBLER_TOP_LEFT:
-    
+      push();
+        strokeWeight(weight * 2);
+        translate(x * w + weight, y * h + weight);
+        line(0, 0, w, 0);
+        line(0, 0, 0, h);
+      pop();
     break;
     case ASSEMBLER_TOP_RIGHT:
-    
+      push();
+        strokeWeight(weight * 2);
+        translate(x * w + weight, y * h + weight);
+        line(w, 0, w, h - 2 * weight);
+        line(w, 0, 0, 0);
+      pop();
     break;
     case ASSEMBLER_BOTTOM_LEFT:
-    
+      push();
+        strokeWeight(weight * 2);
+        translate(x * w + weight, y * h + weight);
+        line(0, h - 2 * weight, 0, 0);
+        line(0, h - 2 * weight, w - 2 * weight, h - 2 * weight);
+      pop();
     break;
     case ASSEMBLER_BOTTOM_RIGHT:
-    
+      push();
+        strokeWeight(weight * 2);
+        translate(x * w + weight, y * h + weight);
+        line(w - weight, h - 2 * weight, w, 0);
+        line(w - weight, h - 2 * weight, 0, h);
+      pop();
     break;
   }
 }

@@ -14,7 +14,7 @@ class UI
   void draw()
   {
     noFill();
-    stroke(#0004a6);
+    stroke(ink);
     strokeWeight(weight);
     push();
       translate(width - 100, 0);
@@ -38,12 +38,28 @@ class UI
       
       rect(20, l * select + space - 5, 60, 60);
     pop();
-    stroke(#0004a6, 255/2);
+    stroke(ink, 255/2);
     int x = mouseX/w;
     int y = mouseY/h;
-    x = min(x, (width  - 100)/w - 1);
-    y = min(y, height/h - 1);
-    drawTile(find(), x, y);
+    if(select == 0)
+    {
+      x = min(x, (width  - 100)/w - 1);
+      y = min(y, height/h - 1);
+      drawTile(find(), x, y);
+    }
+    else if(select == 1)
+    {
+      x = min(x, (width  - 100)/w - 2);
+      y = min(y, height/h - 2);
+      push();
+        fill(background);
+        rect(x * w, y * h, 2 * w, 2 * h);
+      pop();
+      drawTile(Tile.ASSEMBLER_TOP_LEFT, x, y);
+      drawTile(Tile.ASSEMBLER_TOP_RIGHT, x + 1, y);
+      drawTile(Tile.ASSEMBLER_BOTTOM_LEFT, x, y + 1);
+      drawTile(Tile.ASSEMBLER_BOTTOM_RIGHT, x + 1, y + 1);
+    }
   }
   
   void keyPressed()
@@ -191,6 +207,10 @@ class UI
         case 11:
           return Tile.LEFT_RIGHT_CONVAYER;
       }
+    }
+    else if(select == 1)
+    {
+      return Tile.ASSEMBLER_TOP_LEFT;
     }
     return Tile.EMPTY;
   }

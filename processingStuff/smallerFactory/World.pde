@@ -26,7 +26,7 @@ class World
       for(int y = 0; y < map[x].length; y++)
       {
         noFill();
-        stroke(#0004a6);
+        stroke(ink);
         strokeWeight(weight);
         drawTile(map[x][y], x, y);
       }
@@ -51,6 +51,8 @@ class World
   {
     if(tile != null &&map[x][y] != Tile.DOT && map[x][y] != Tile.STRIPE && map[x][y] != Tile.SOLID)
     {
+      x = constrain(x, 0, w - 1);
+      y = constrain(y, 0, h - 1);
       map[x][y] = tile;
     }
   }
