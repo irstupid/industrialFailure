@@ -35,7 +35,11 @@ void mousePressed()
   int y = mouseY/h;
   x = min(x, (width  - 100)/w - 1);
   y = min(y, height/h - 1);
-  world.set(ui.mousePressed(x, y), x, y);
+  Tile tile = ui.mousePressed(x, y);
+  if(tile != null)
+  {
+    world.set(tile, x, y);
+  }
 }
 
 void mouseDragged()
@@ -49,7 +53,6 @@ void mouseDragged()
   {
     for(int[] tile : tiles)
     {
-      println(tile);
       world.set(Tile.values()[tile[0]], tile[1], tile[2]);
     }
   }
@@ -223,6 +226,18 @@ void drawTile(Tile tile, int x, int y)
         line(w, 0, w - (sin(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * w), (cos(convayerA/(w/4f) * HALF_PI/4 + HALF_PI/4 * 3) * h));
       pop();
     break;
+    case ASSEMBLER_TOP_LEFT:
+    
+    break;
+    case ASSEMBLER_TOP_RIGHT:
+    
+    break;
+    case ASSEMBLER_BOTTOM_LEFT:
+    
+    break;
+    case ASSEMBLER_BOTTOM_RIGHT:
+    
+    break;
   }
 }
 
@@ -243,7 +258,11 @@ enum Tile
   DOWN_LEFT_CONVAYER (12, 0, 1),
   DOWN_RIGHT_CONVAYER (13, 0, 3),
   LEFT_LEFT_CONVAYER (14, 1, 2),
-  LEFT_RIGHT_CONVAYER (15, 1, 0);
+  LEFT_RIGHT_CONVAYER (15, 1, 0),
+  ASSEMBLER_TOP_LEFT (16),
+  ASSEMBLER_TOP_RIGHT (17),
+  ASSEMBLER_BOTTOM_LEFT (18),
+  ASSEMBLER_BOTTOM_RIGHT (19);
   
   public final int index;
   public final int in;

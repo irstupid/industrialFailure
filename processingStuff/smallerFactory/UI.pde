@@ -1,17 +1,15 @@
-import java.util.function.Consumer;
-
 class UI
-{
-  UI()
-  {
-    
-  }
-  
-  int select;
+{ 
+  int select = 0;
   int direction;
   
   int px;
   int py;
+  
+  UI()
+  {
+    
+  }
   
   void draw()
   {
@@ -22,17 +20,23 @@ class UI
       translate(width - 100, 0);
       rect(weight/2, weight/2, 100 - weight, height - weight);
       
-      rect(25, 25, 50, 50);
-      line(25, 25 + 12.5 * 1, 75, 25 + 12.5 * 1);
-      line(25, 25 + 12.5 * 2, 75, 25 + 12.5 * 2);
-      line(25, 25 + 12.5 * 3, 75, 25 + 12.5 * 3);
+      int l = height/5;
+      int space = (l - 50)/2;
       
-      switch(select)
-      {
-        case 0:
-          rect(20, 20, 60, 60);
-        break;
-      }
+      rect(25, space, 50, 50);
+      line(25, space + 12.5 * 1, 75, space + 12.5 * 1);
+      line(25, space + 12.5 * 2, 75, space + 12.5 * 2);
+      line(25, space + 12.5 * 3, 75, space + 12.5 * 3);
+      
+      rect(25 + 15/2, l + space + 15/2, 35, 35);
+      
+      rect(25, l * 2 + space + 15/2, 50, 35);
+      
+      rect(25, l * 3 + space, 50, 50);
+      
+      rect(25, l * 3 + space, 50, 50);
+      
+      rect(20, l * select + space - 5, 60, 60);
     pop();
     stroke(#0004a6, 255/2);
     int x = mouseX/w;
@@ -87,11 +91,7 @@ class UI
         newTile = Tile.DOWN_CONVAYER;
       }
       int in = pTile.in;
-      println(px, py);
-      println(pTile);
-      println(in + " " + direction);
       Tile pNewTile = inOutTile(in, direction);
-      println(pNewTile);
       if(pNewTile != null)
       {
         int[][] out = new int[][]
@@ -101,7 +101,6 @@ class UI
         py = y;
         return out;
       }
-      print("no, work");
     }
     px = x;
     py = y;
@@ -112,6 +111,12 @@ class UI
   {
     px = x;
     py = y;
+    if(width - mouseX <= 100)
+    {
+      select = mouseY/(height/5);
+      print(select);
+      return null;
+    }
     if(mouseButton == RIGHT)
     {
       return Tile.EMPTY;
@@ -187,6 +192,6 @@ class UI
           return Tile.LEFT_RIGHT_CONVAYER;
       }
     }
-    return null;
+    return Tile.EMPTY;
   }
 }
