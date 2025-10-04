@@ -52,13 +52,12 @@ class UI
       x = min(x, (width  - 100)/w - 2);
       y = min(y, height/h - 2);
       push();
-        fill(background);
+        fill(background, 255/2);
+        noStroke();
         rect(x * w, y * h, 2 * w, 2 * h);
       pop();
+      stroke(ink);
       drawTile(Tile.ASSEMBLER_TOP_LEFT, x, y);
-      drawTile(Tile.ASSEMBLER_TOP_RIGHT, x + 1, y);
-      drawTile(Tile.ASSEMBLER_BOTTOM_LEFT, x, y + 1);
-      drawTile(Tile.ASSEMBLER_BOTTOM_RIGHT, x + 1, y + 1);
     }
   }
   

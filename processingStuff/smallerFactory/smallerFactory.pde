@@ -38,7 +38,17 @@ void mousePressed()
   x = min(x, (width  - 100)/w - 1);
   y = min(y, height/h - 1);
   Tile tile = ui.mousePressed(x, y);
-  if(tile != null)
+  if(tile == Tile.ASSEMBLER_TOP_LEFT)
+  {
+    if(world.map[x][y].index < 13 && world.map[x + 1][y].index < 13 && world.map[x][y + 1].index < 13 && world.map[x + 1][y + 1].index < 13)
+    {
+      world.set(tile, x, y);
+      world.set(Tile.ASSEMBLER_TOP_RIGHT, x + 1, y);
+      world.set(Tile.ASSEMBLER_BOTTOM_LEFT, x, y + 1);
+      world.set(Tile.ASSEMBLER_BOTTOM_RIGHT, x + 1, y + 1);
+    }
+  }
+  else if(tile != null)
   {
     world.set(tile, x, y);
   }
@@ -232,33 +242,14 @@ void drawTile(Tile tile, int x, int y)
       push();
         strokeWeight(weight * 2);
         translate(x * w + weight, y * h + weight);
-        line(0, 0, w, 0);
-        line(0, 0, 0, h);
+        rect(0, 0, 2 * w - 2 * weight, 2 * h - 2 * weight);
       pop();
     break;
     case ASSEMBLER_TOP_RIGHT:
-      push();
-        strokeWeight(weight * 2);
-        translate(x * w + weight, y * h + weight);
-        line(w, 0, w, h - 2 * weight);
-        line(w, 0, 0, 0);
-      pop();
     break;
     case ASSEMBLER_BOTTOM_LEFT:
-      push();
-        strokeWeight(weight * 2);
-        translate(x * w + weight, y * h + weight);
-        line(0, h - 2 * weight, 0, 0);
-        line(0, h - 2 * weight, w - 2 * weight, h - 2 * weight);
-      pop();
     break;
     case ASSEMBLER_BOTTOM_RIGHT:
-      push();
-        strokeWeight(weight * 2);
-        translate(x * w + weight, y * h + weight);
-        line(w - weight, h - 2 * weight, w, 0);
-        line(w - weight, h - 2 * weight, 0, h);
-      pop();
     break;
   }
 }
@@ -266,25 +257,25 @@ void drawTile(Tile tile, int x, int y)
 enum Tile
 {
   EMPTY (0),
-  DOT (1),
-  STRIPE (2),
-  SOLID (3),
-  UP_CONVAYER (4, 2, 0),
-  DOWN_CONVAYER (5, 0, 2),
-  LEFT_CONVAYER (6, 1, 3),
-  RIGHT_CONVAYER (7, 3, 1),
-  UP_LEFT_CONVAYER (8, 2, 3),
-  UP_RIGHT_CONVAYER (9, 2, 1),
-  RIGHT_LEFT_CONVAYER (10, 3, 0),
-  RIGHT_RIGHT_CONVAYER (11, 3, 2),
-  DOWN_LEFT_CONVAYER (12, 0, 1),
-  DOWN_RIGHT_CONVAYER (13, 0, 3),
-  LEFT_LEFT_CONVAYER (14, 1, 2),
-  LEFT_RIGHT_CONVAYER (15, 1, 0),
-  ASSEMBLER_TOP_LEFT (16),
-  ASSEMBLER_TOP_RIGHT (17),
-  ASSEMBLER_BOTTOM_LEFT (18),
-  ASSEMBLER_BOTTOM_RIGHT (19);
+  UP_CONVAYER (1, 2, 0),
+  DOWN_CONVAYER (2, 0, 2),
+  LEFT_CONVAYER (3, 1, 3),
+  RIGHT_CONVAYER (4, 3, 1),
+  UP_LEFT_CONVAYER (5, 2, 3),
+  UP_RIGHT_CONVAYER (6, 2, 1),
+  RIGHT_LEFT_CONVAYER (7, 3, 0),
+  RIGHT_RIGHT_CONVAYER (8, 3, 2),
+  DOWN_LEFT_CONVAYER (9, 0, 1),
+  DOWN_RIGHT_CONVAYER (10, 0, 3),
+  LEFT_LEFT_CONVAYER (11, 1, 2),
+  LEFT_RIGHT_CONVAYER (12, 1, 0),
+  ASSEMBLER_TOP_LEFT (13),
+  ASSEMBLER_TOP_RIGHT (14),
+  ASSEMBLER_BOTTOM_LEFT (15),
+  ASSEMBLER_BOTTOM_RIGHT (16),
+  DOT (17),
+  STRIPE (18),
+  SOLID (19);
   
   public final int index;
   public final int in;

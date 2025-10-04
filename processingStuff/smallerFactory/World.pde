@@ -49,10 +49,40 @@ class World
   
   void set(Tile tile, int x, int y)
   {
-    if(tile != null &&map[x][y] != Tile.DOT && map[x][y] != Tile.STRIPE && map[x][y] != Tile.SOLID)
+    //uguly af
+    if(tile == Tile.EMPTY)
     {
-      x = constrain(x, 0, w - 1);
-      y = constrain(y, 0, h - 1);
+      if(map[x][y] == Tile.ASSEMBLER_TOP_LEFT)
+      {
+        map[x][y] = tile;
+        map[x + 1][y] = Tile.EMPTY;
+        map[x][y + 1] = Tile.EMPTY;
+        map[x + 1][y + 1] = Tile.EMPTY;
+      }
+      else if(map[x][y] == Tile.ASSEMBLER_TOP_RIGHT)
+      {
+        map[x][y] = tile;
+        map[x - 1][y] = Tile.EMPTY;
+        map[x][y + 1] = Tile.EMPTY;
+        map[x - 1][y + 1] = Tile.EMPTY;
+      }
+      else if(map[x][y] == Tile.ASSEMBLER_BOTTOM_LEFT)
+      {
+        map[x][y] = tile;
+        map[x + 1][y] = Tile.EMPTY;
+        map[x][y - 1] = Tile.EMPTY;
+        map[x + 1][y - 1] = Tile.EMPTY;
+      }
+      else if(map[x][y] == Tile.ASSEMBLER_BOTTOM_RIGHT)
+      {
+        map[x][y] = tile;
+        map[x - 1][y] = Tile.EMPTY;
+        map[x][y - 1] = Tile.EMPTY;
+        map[x - 1][y - 1] = Tile.EMPTY;
+      }
+    }
+    if(map[x][y].index < 13)
+    {
       map[x][y] = tile;
     }
   }
