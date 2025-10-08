@@ -273,9 +273,15 @@ enum Tile
   ASSEMBLER_TOP_RIGHT (14),
   ASSEMBLER_BOTTOM_LEFT (15),
   ASSEMBLER_BOTTOM_RIGHT (16),
-  DOT (17),
-  STRIPE (18),
-  SOLID (19);
+  MINER_TOP_LEFT (17),
+  MINER_TOP_MIDDLE (18),
+  MINER_TOP_RIGHT (19),
+  MINER_BOTTOM_LEFT (20),
+  MINER_BOTTOM_MIDDLE (21),
+  MINER_BOTTOM_RIGHT (22),
+  DOT (23),
+  STRIPE (24),
+  SOLID (25);
   
   public final int index;
   public final int in;
