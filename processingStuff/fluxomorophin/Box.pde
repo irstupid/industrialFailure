@@ -27,6 +27,26 @@ class Box
     this(x, y, w, h, 0);
   }
   
+  public void debugDraw()
+  {
+    push();
+      switch(style)
+      {
+        case CORNER_WIDTH:
+          rectMode(CORNER);
+        break;
+        case CORNER_CORNER:
+          rectMode(CORNERS);
+        break;
+        case CENTER_WIDTH:
+          rectMode(CENTER);
+        break;
+      }
+      fill(#ff0000);
+      rect(x, y, w, h);
+    pop();
+  }
+  
   public boolean colliding(Box box)
   {
     return distance(box) <= 0;
