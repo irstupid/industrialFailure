@@ -2,15 +2,13 @@ ScaleFrame scaleFrame;
 
 void setup()
 {
-  size(800, 800);
-  scaleFrame = new ScaleFrame(800, 800);
+  size(1920/2, 1080/2);
+  scaleFrame = new ScaleFrame(1920, 1080);
 }
 
 void draw()
 {
   scaleFrame.transform();
   background(#00ff00);
-  rect(0, 0, 800, 800);
-  ellipse(400, 400, 50, 50);
   scaleFrame.border();
 }
