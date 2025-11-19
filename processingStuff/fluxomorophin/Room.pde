@@ -1,5 +1,7 @@
 class Room
 {
+  Player player;
+  
   PImage background;
   PImage midground;
   PImage foreground;
@@ -8,17 +10,18 @@ class Room
   
   boolean debug = false;
   
-  Room(PImage background, PImage midground, PImage foreground, Box[] ground)
+  Room(Player player, PImage background, PImage midground, PImage foreground, Box[] ground)
   {
+    this.player = player;
     this.background = background;
     this.midground = midground;
     this.foreground = foreground;
     this.ground = ground;
   }
   
-  Room(PImage background, PImage midground, Box[] ground)
+  Room(Player player, PImage background, PImage midground, Box[] ground)
   {
-    this(background, midground, null, ground);
+    this(player, background, midground, null, ground);
   }
   
   void draw()
@@ -31,6 +34,9 @@ class Room
     {
       image(midground, 0, 0, 1920, 1080);
     }
+    
+    player.draw();
+    
     if(foreground != null)
     {
       image(foreground, 0, 0, 1920, 1080);
