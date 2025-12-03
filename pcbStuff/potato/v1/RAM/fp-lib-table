@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "PotatoComputerV1")(type "KiCad")(uri "C:/Users/irbrost/Documents/GitHub/industrialFailure/pcbStuff/potato/v1/PotatoComputerV1.pretty")(options "")(descr ""))
+)
