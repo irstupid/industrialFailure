@@ -1,0 +1,7 @@
+12-09 09:00:56 com_github_MitjaNemec_ReplicateLayout.action_replicate_layout 409:Plugin executed on: 'win32'
+12-09 09:00:56 com_github_MitjaNemec_ReplicateLayout.action_replicate_layout 410:Plugin executed with python version: '3.11.5 (main, Sep 17 2025, 01:04:48) [MSC v.1944 64 bit (AMD64)]'
+12-09 09:00:56 com_github_MitjaNemec_ReplicateLayout.action_replicate_layout 411:KiCad build version: 9.0.5
+12-09 09:00:56 com_github_MitjaNemec_ReplicateLayout.action_replicate_layout 412:Plugin version: 4.0.3
+12-09 09:00:56 com_github_MitjaNemec_ReplicateLayout.action_replicate_layout 413:Frame repr: <wx._core.Frame object at 0x000001F7358E0F70>
+12-09 09:00:56 com_github_MitjaNemec_ReplicateLayout.action_replicate_layout 437:Preparing replicator with U8 as a reference
+12-09 09:00:56 com_github_MitjaNemec_ReplicateLayout.replicate_layout 117:getting a list of all footprints on board
