@@ -61,7 +61,7 @@
 			(width 0.1)
 			(type solid)
 		)
-		(layer "Eco1.User")
+		(layer "Edge.Cuts")
 		(uuid "3f9c1df3-e6c9-4305-b53b-709c890f3b11")
 	)
 	(fp_line
@@ -71,18 +71,8 @@
 			(width 0.1)
 			(type default)
 		)
-		(layer "Eco1.User")
+		(layer "Edge.Cuts")
 		(uuid "bc8a14be-878d-4e93-8406-d9461d682317")
-	)
-	(fp_line
-		(start -6.5 1.5)
-		(end -7.5 1.5)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "Eco1.User")
-		(uuid "7a921bf7-fc46-47fe-a247-ce10ddc57343")
 	)
 	(fp_line
 		(start 25.5 -3.5)
@@ -91,7 +81,7 @@
 			(width 0.1)
 			(type default)
 		)
-		(layer "Eco1.User")
+		(layer "Edge.Cuts")
 		(uuid "b7de4234-701a-455a-b300-fb2e9553960a")
 	)
 	(fp_line
@@ -101,7 +91,7 @@
 			(width 0.1)
 			(type default)
 		)
-		(layer "Eco1.User")
+		(layer "Edge.Cuts")
 		(uuid "05ae380b-2960-4f83-8073-79663c901052")
 	)
 	(fp_line
@@ -111,7 +101,7 @@
 			(width 0.1)
 			(type default)
 		)
-		(layer "Eco1.User")
+		(layer "Edge.Cuts")
 		(uuid "8ab76b3a-1a18-43dc-b5a3-7eadb4657d5e")
 	)
 	(fp_line
@@ -121,7 +111,7 @@
 			(width 0.1)
 			(type default)
 		)
-		(layer "Eco1.User")
+		(layer "Edge.Cuts")
 		(uuid "9fe8666d-4681-485b-8607-09ffead82c90")
 	)
 	(fp_line
@@ -131,18 +121,8 @@
 			(width 0.1)
 			(type solid)
 		)
-		(layer "Eco1.User")
+		(layer "Edge.Cuts")
 		(uuid "4969cdce-bcf1-4bee-92bb-b94336687dfa")
-	)
-	(fp_line
-		(start 64.5 1.5)
-		(end 65.5 1.5)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "Eco1.User")
-		(uuid "7e5e238e-638a-4785-8482-0d2b39f1f778")
 	)
 	(fp_text user "${REFERENCE}"
 		(at 0 2.5 0)
