@@ -2,12 +2,12 @@
 	(version 20241209)
 	(generator "kicad_symbol_editor")
 	(generator_version "9.0")
-	(symbol "6-7Connector"
+	(symbol "6-9 Connector (nice)"
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(property "Reference" "6-7"
-			(at 4.572 13.208 90)
+		(property "Reference" "6-9(nice)"
+			(at 13.716 7.874 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -49,11 +49,47 @@
 				(hide yes)
 			)
 		)
-		(symbol "6-7Connector_0_0"
+		(symbol "6-9 Connector (nice)_1_0"
 			(pin unspecified line
-				(at 0 25.4 0)
+				(at 0 33.02 0)
 				(length 2.54)
-				(name ""
+				(name "Write_3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "13"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 0 30.48 0)
+				(length 2.54)
+				(name "Write_2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "12"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 0 27.94 0)
+				(length 2.54)
+				(name "Write_1"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -69,9 +105,9 @@
 				)
 			)
 			(pin unspecified line
-				(at 0 22.86 0)
+				(at 0 25.4 0)
 				(length 2.54)
-				(name ""
+				(name "Readable"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -87,9 +123,9 @@
 				)
 			)
 			(pin unspecified line
-				(at 0 20.32 0)
+				(at 0 22.86 0)
 				(length 2.54)
-				(name ""
+				(name "Read_3"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -105,9 +141,9 @@
 				)
 			)
 			(pin unspecified line
-				(at 0 17.78 0)
+				(at 0 20.32 0)
 				(length 2.54)
-				(name ""
+				(name "Read_2"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -123,9 +159,9 @@
 				)
 			)
 			(pin unspecified line
-				(at 0 15.24 0)
+				(at 0 17.78 0)
 				(length 2.54)
-				(name ""
+				(name "Read_1"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -143,7 +179,7 @@
 			(pin unspecified line
 				(at 0 12.7 0)
 				(length 2.54)
-				(name ""
+				(name "Bus_3"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -161,7 +197,7 @@
 			(pin unspecified line
 				(at 0 10.16 0)
 				(length 2.54)
-				(name ""
+				(name "Bus_2"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -179,7 +215,7 @@
 			(pin unspecified line
 				(at 0 7.62 0)
 				(length 2.54)
-				(name ""
+				(name "Bus_1"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -197,7 +233,7 @@
 			(pin unspecified line
 				(at 0 5.08 0)
 				(length 2.54)
-				(name ""
+				(name "Clk"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -215,7 +251,7 @@
 			(pin unspecified line
 				(at 0 2.54 0)
 				(length 2.54)
-				(name ""
+				(name "Vcc"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -230,48 +266,10 @@
 					)
 				)
 			)
-		)
-		(symbol "6-7Connector_1_0"
-			(pin unspecified line
-				(at 0 30.48 0)
-				(length 2.54)
-				(name ""
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "13"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at 0 27.94 0)
-				(length 2.54)
-				(name ""
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "12"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
 			(pin unspecified line
 				(at 0 0 0)
 				(length 2.54)
-				(name ""
+				(name "Gnd"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -287,16 +285,52 @@
 				)
 			)
 		)
-		(symbol "6-7Connector_1_1"
+		(symbol "6-9 Connector (nice)_1_1"
 			(rectangle
-				(start 2.54 31.75)
-				(end 6.35 -1.27)
+				(start 2.54 39.37)
+				(end 16.51 -1.27)
 				(stroke
 					(width 0)
 					(type solid)
 				)
 				(fill
 					(type background)
+				)
+			)
+			(pin unspecified line
+				(at 0 38.1 0)
+				(length 2.54)
+				(name "Msc"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "15"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 0 35.56 0)
+				(length 2.54)
+				(name "Writeable"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "14"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
 				)
 			)
 		)
