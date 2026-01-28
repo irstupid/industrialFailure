@@ -7330,10 +7330,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "435beb3e-33b8-4fb2-ae03-6dbb0fb83a6b")
 		(property "Reference" "U5"
-			(at 152.0033 113.03 0)
+			(at 148.336 122.682 0)
 			(effects
 				(font
 					(size 1.27 1.27)
