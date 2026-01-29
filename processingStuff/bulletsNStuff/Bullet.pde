@@ -1,5 +1,7 @@
 //fuck it im lazy lets make some quick, simple, dirty inheritance that im sure wont come back to bite me later :)
 class Bullet {
+  PImage[] sprite;
+  
   float x;
   float y;
   float w;
@@ -12,6 +14,12 @@ class Bullet {
     this.w = w;
     this.r = r;
     this.s = s;
+    loadSprite();
+  }
+  
+  void loadSprite() {
+    sprite = new PImage[1];
+    sprite[0] = loadImage("bullet.png");
   }
   
   void update() {
@@ -20,7 +28,11 @@ class Bullet {
   }
   
   void draw() {
-    ellipse(x, y, w, w);
+    push();
+      translate(x, y);
+      imageMode(CENTER);
+      image(sprite[0], x, y, w, w);
+    pop();
   }
   
   float distance(float pX, float pY) {

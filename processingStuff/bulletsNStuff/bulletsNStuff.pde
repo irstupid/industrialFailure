@@ -3,11 +3,13 @@ Player player;
 ArrayList<Bullet> bullets; //nStuff 
 
 void setup() {
+  noSmooth();
   size(800, 800);
   scaleFrame = new ScaleFrame(800, 800);
   
   player = new Player();
   bullets = new ArrayList<Bullet>();
+  bullets.add(new Bullet(0, 0, 45, 25, 5));
 }
 
 void draw() {
@@ -17,7 +19,7 @@ void draw() {
   }
   
   scaleFrame.transform();
-    background(#00ff00);
+    background(#00aa00);
     player.draw();
     for(Bullet bullet : bullets) {
       bullet.draw();

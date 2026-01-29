@@ -2,6 +2,17 @@ class Player {
   final float MAX_SPEED = 4;
   final float ACCELERATION = 1;
   final float DECELERATION = 1;
+  final float FORCE_DECAY = 2;
+  final float FORCE_CONTROLL = 0.2;
+  final float EXPLOSION_MAGNITUDE = 0.6;
+  final int ANIMATION_SPEED = 10;
+  final int FLOWER_ANIMATION_SPEED = 20;
+  
+  PImage[] sprite = new PImage[4];
+  int a;
+  
+  PImage[] flower = new PImage[4];
+  int fA;
   
   boolean up;
   boolean down;
@@ -12,10 +23,27 @@ class Player {
   float y;
   float xV;
   float yV;
+  float xF = 0;
+  float yF = 0;
+  
+  float fX;
+  float fY;
+  boolean flowered;
   
   Player() {
     x = 400;
     y = 400;
+    
+    PImage spriteSheet = loadImage("blueButterfly.png");
+    sprite[0] = spriteSheet.get(16, 0, 16, 16);
+    sprite[1] = spriteSheet.get(32, 0, 16, 16);
+    sprite[2] = spriteSheet.get(48, 0, 16, 16);
+    sprite[3] = spriteSheet.get(0, 0, 16, 16);
+    spriteSheet = loadImage("blueFlower.png");
+    flower[0] = spriteSheet.get(0, 0, 16, 16);
+    flower[1] = spriteSheet.get(16, 0, 16, 16);
+    flower[2] = spriteSheet.get(32, 0, 16, 16);
+    flower[3] = spriteSheet.get(48, 0, 16, 16);
   }
   
   void update() {
@@ -41,19 +69,38 @@ class Player {
       yV += ACCELERATION * vertical;
       yV = constrain(yV, -MAX_SPEED, MAX_SPEED);
     }
-    x += xV;
-    y += yV;
+    xF -= xF/(abs(xF) + 1) * (FORCE_DECAY + -horizontal * FORCE_DECAY * FORCE_CONTROLL);
+    yF -= yF/(abs(yF) + 1) * (FORCE_DECAY + -vertical * FORCE_DECAY * FORCE_CONTROLL);
+    x += xV + xF;
+    y += yV + yF;
   }
   
   void draw() {
     push();
-      translate(x, y);
-      ellipse(0, 0, 50, 50);
+      imageMode(CENTER);
+      if(flowered) {
+        push();
+          translate(fX, fY);
+          image(flower[fA/FLOWER_ANIMATION_SPEED], 0, 0, 50, 50);
+          fA++;
+          if(fA >= FLOWER_ANIMATION_SPEED * 4) {
+            fA = 0;
+          }
+        pop();
+      }
+      push();
+        translate(x, y);
+        image(sprite[max(a, 0)/ANIMATION_SPEED], 0, 0, 50, 50);
+        a++;
+        if(a >= ANIMATION_SPEED * 4) {
+          a = -ANIMATION_SPEED;
+        }
+      pop();
     pop();
   }
   
   void keyPressed() {
-   switch(key) {
+    switch(key) {
       case 'w': case 'W':
         up = true;
       break;
@@ -65,6 +112,21 @@ class Player {
       break;
       case 'd': case 'D':
         right = true;
+      break;
+      case ' ': case '1': case 'z':
+        if(flowered) {
+          if(dist(x, y, fX, fY) >= 50) {
+            x = fX;
+            y = fY;
+          } else {
+            xF = (x - fX) * EXPLOSION_MAGNITUDE;
+            yF = (y - fY) * EXPLOSION_MAGNITUDE;
+          }
+        } else {
+          fX = x;
+          fY = y;
+        }
+        flowered = !flowered;
       break;
     }
     if(key == CODED) {
