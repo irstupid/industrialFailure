@@ -11,6 +11,10 @@ class Player {
   PImage[] sprite = new PImage[4];
   int a;
   
+  PImage[] bright = new PImage[4];
+  float[][] trail = new float[5][2];
+  int trailTimer;
+  
   PImage[] flower = new PImage[4];
   int fA;
   
@@ -39,6 +43,11 @@ class Player {
     sprite[1] = spriteSheet.get(32, 0, 16, 16);
     sprite[2] = spriteSheet.get(48, 0, 16, 16);
     sprite[3] = spriteSheet.get(0, 0, 16, 16);
+    spriteSheet = loadImage("brightButterfly.png");
+    bright[0] = spriteSheet.get(16, 0, 16, 16);
+    bright[1] = spriteSheet.get(32, 0, 16, 16);
+    bright[2] = spriteSheet.get(48, 0, 16, 16);
+    bright[3] = spriteSheet.get(0, 0, 16, 16);
     spriteSheet = loadImage("blueFlower.png");
     flower[0] = spriteSheet.get(0, 0, 16, 16);
     flower[1] = spriteSheet.get(16, 0, 16, 16);
@@ -88,6 +97,27 @@ class Player {
           }
         pop();
       }
+      if(trailTimer > 1) {
+          push();
+            if(a % 2 == 0) {
+              if(abs(xF) > 1 || abs(yF) > 1) {
+                trailTimer = trail.length;
+              } else {
+                trailTimer--;
+              }
+              for(int i = 0; i < trailTimer - 1; i++) {
+                 trail[i][0] = trail[i + 1][0];
+                 trail[i][1] = trail[i + 1][1];
+              }
+              trail[trailTimer - 1][0] = x;
+              trail[trailTimer - 1][1] = y;
+            }
+            for(int i = trailTimer - 1; i >= 0; i--) {
+              tint(0, 255, 255, 255/2);
+              image(bright[max(a, 0)/ANIMATION_SPEED], trail[i][0], trail[i][1], 50, 50);
+            }
+          pop();
+        }
       push();
         translate(x, y);
         image(sprite[max(a, 0)/ANIMATION_SPEED], 0, 0, 50, 50);
@@ -119,6 +149,11 @@ class Player {
             x = fX;
             y = fY;
           } else {
+            for(float[] i : trail) {
+              i[0] = x;
+              i[1] = y;
+            }
+            trailTimer = trail.length;
             xF = (x - fX) * EXPLOSION_MAGNITUDE;
             yF = (y - fY) * EXPLOSION_MAGNITUDE;
           }
