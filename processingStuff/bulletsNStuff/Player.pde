@@ -7,6 +7,7 @@ class Player {
   final float EXPLOSION_MAGNITUDE = 0.6;
   final int ANIMATION_SPEED = 10;
   final int FLOWER_ANIMATION_SPEED = 20;
+  final int INVIBLE_FRAMES = 120;
   
   PImage[] sprite = new PImage[4];
   int a;
@@ -22,6 +23,9 @@ class Player {
   boolean down;
   boolean left;
   boolean right;
+  
+  int health;
+  int invincible;
   
   float x;
   float y;

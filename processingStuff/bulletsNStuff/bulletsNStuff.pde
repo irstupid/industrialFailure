@@ -1,6 +1,7 @@
 ScaleFrame scaleFrame;
 Player player;
 ArrayList<Bullet> bullets; //nStuff 
+Boss boss;
 
 void setup() {
   noSmooth();
@@ -10,10 +11,13 @@ void setup() {
   player = new Player();
   bullets = new ArrayList<Bullet>();
   bullets.add(new Bullet(0, 0, 45, 25, 5));
+  boss = new Boss();
 }
 
 void draw() {
   player.update();
+  boss.update();
+  boss.collide(player.pollen);
   for(Bullet bullet : bullets) {
     bullet.update();
   }
@@ -21,6 +25,7 @@ void draw() {
   scaleFrame.transform();
     background(#00aa00);
     player.draw();
+    boss.draw();
     for(Bullet bullet : bullets) {
       bullet.draw();
     }
