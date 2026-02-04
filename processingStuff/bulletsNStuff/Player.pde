@@ -34,9 +34,13 @@ class Player {
   float fY;
   boolean flowered;
   
+  ArrayList<Pollen> pollen;
+  
   Player() {
     x = 400;
     y = 400;
+    
+    pollen = new ArrayList<Pollen>();
     
     PImage spriteSheet = loadImage("blueButterfly.png");
     sprite[0] = spriteSheet.get(16, 0, 16, 16);
@@ -82,11 +86,24 @@ class Player {
     yF -= yF/(abs(yF) + 1) * (FORCE_DECAY + -vertical * FORCE_DECAY * FORCE_CONTROLL);
     x += xV + xF;
     y += yV + yF;
+    
+    ArrayList<Pollen> deathNote = new ArrayList<Pollen>();
+    for(int i = 0; i < pollen.size(); i++) { //i hate this so much
+      if(pollen.get(i).update()) {
+        deathNote.add(pollen.get(i));
+      }
+    }
+    for(int i = 0; i < deathNote.size(); i++) {
+       pollen.remove(deathNote.get(i)); 
+    }
   }
   
   void draw() {
     push();
       imageMode(CENTER);
+      for(Pollen p : pollen) {
+        p.draw();
+      }
       if(flowered) {
         push();
           translate(fX, fY);
@@ -129,6 +146,27 @@ class Player {
     pop();
   }
   
+  void spawnFlower() {
+    if(flowered) {
+      if(dist(x, y, fX, fY) >= 50) {
+        x = fX;
+        y = fY;
+      } else {
+        for(float[] i : trail) {
+          i[0] = x;
+          i[1] = y;
+        }
+        trailTimer = trail.length;
+        xF = (x - fX) * EXPLOSION_MAGNITUDE;
+        yF = (y - fY) * EXPLOSION_MAGNITUDE;
+      }
+    } else {
+      fX = x;
+      fY = y;
+    }
+    flowered = !flowered;
+  }
+  
   void keyPressed() {
     switch(key) {
       case 'w': case 'W':
@@ -143,25 +181,11 @@ class Player {
       case 'd': case 'D':
         right = true;
       break;
-      case ' ': case '1': case 'z':
-        if(flowered) {
-          if(dist(x, y, fX, fY) >= 50) {
-            x = fX;
-            y = fY;
-          } else {
-            for(float[] i : trail) {
-              i[0] = x;
-              i[1] = y;
-            }
-            trailTimer = trail.length;
-            xF = (x - fX) * EXPLOSION_MAGNITUDE;
-            yF = (y - fY) * EXPLOSION_MAGNITUDE;
-          }
-        } else {
-          fX = x;
-          fY = y;
-        }
-        flowered = !flowered;
+      case '1': case 'z': case'e': case'!': case'Z': case'E': case'Q': case'q':
+        spawnFlower();
+      break;
+      case '2': case 'x': case'@': case'X': case ' ': 
+         pollen.add(new Pollen(x, y));
       break;
     }
     if(key == CODED) {
@@ -177,6 +201,9 @@ class Player {
         break;
         case RIGHT:
           right = true;
+        break;
+        case SHIFT: case CONTROL:
+          spawnFlower();
         break;
       }
     }
