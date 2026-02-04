@@ -4,9 +4,9 @@ class Bullet {
   
   float x;
   float y;
-  float w;
+  float w; //size
   float r; //in degrees
-  float s;
+  float s; //speed
   
   Bullet(float x, float y, float r, float w, float s) {
     this.x = x;
@@ -36,6 +36,6 @@ class Bullet {
   }
   
   float distance(float pX, float pY) {
-    return dist(pX, pY, x, y);
+    return dist(pX, pY, x, y) + w/2;
   }
 }
