@@ -31,11 +31,11 @@ class Bullet {
     push();
       translate(x, y);
       imageMode(CENTER);
-      image(sprite[0], x, y, w, w);
+      image(sprite[0], 0, 0, w, w);
     pop();
   }
   
   float distance(float pX, float pY) {
-    return dist(pX, pY, x, y) + w/2;
+    return dist(pX, pY, x, y) - w/2;
   }
 }

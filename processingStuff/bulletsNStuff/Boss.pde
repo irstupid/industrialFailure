@@ -35,14 +35,14 @@ class Boss {
   
   void collide(ArrayList<Pollen> pollen) {
     ArrayList<Pollen> deathNote = new ArrayList<Pollen>();
-    for(int i = 0; i < pollen.size(); i++) { //i hate this so much
-      if(pollen.get(i).y + 12 <= y + h/2 && x - w/2 < pollen.get(i).x && pollen.get(i).x < x + w/2) {
-        deathNote.add(pollen.get(i));
+    for(Pollen p : pollen) { //i hate this so much
+      if(p.y + 12 <= y + h/2 && x - w/2 < p.x && p.x < x + w/2) {
+        deathNote.add(p);
         hp--;
       }
     }
-    for(int i = 0; i < deathNote.size(); i++) {
-       pollen.remove(deathNote.get(i)); 
+    for(Pollen p : deathNote) {
+       pollen.remove(p); 
     }
   }
   
@@ -51,6 +51,9 @@ class Boss {
   }
   
   void update() {
+    if(hp <= 0) {
+      dead = true;
+    }
     time++;
     if(!attacking) {
       move();
@@ -66,6 +69,5 @@ class Boss {
         time = 0;
       }
     }
-    println(hp);
   }
 }

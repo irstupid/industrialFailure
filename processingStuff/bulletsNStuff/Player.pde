@@ -1,5 +1,5 @@
 class Player {
-  final float MAX_SPEED = 4;
+  final float MAX_SPEED = 5;
   final float ACCELERATION = 1;
   final float DECELERATION = 1;
   final float FORCE_DECAY = 2;
@@ -7,7 +7,9 @@ class Player {
   final float EXPLOSION_MAGNITUDE = 0.6;
   final int ANIMATION_SPEED = 10;
   final int FLOWER_ANIMATION_SPEED = 20;
-  final int INVIBLE_FRAMES = 120;
+  final int INVINCIBLE_FRAMES = 180;
+  final int INVINCIBLE_FlASH = 10;
+  final int COOLDOWN = 5;
   
   PImage[] sprite = new PImage[4];
   int a;
@@ -24,7 +26,7 @@ class Player {
   boolean left;
   boolean right;
   
-  int health;
+  int health = 3;
   int invincible;
   
   float x;
@@ -39,6 +41,8 @@ class Player {
   boolean flowered;
   
   ArrayList<Pollen> pollen;
+  boolean buffered;
+  int cooldown;
   
   Player() {
     x = 400;
@@ -91,14 +95,15 @@ class Player {
     x += xV + xF;
     y += yV + yF;
     
+    cooldown--;
     ArrayList<Pollen> deathNote = new ArrayList<Pollen>();
-    for(int i = 0; i < pollen.size(); i++) { //i hate this so much
-      if(pollen.get(i).update()) {
-        deathNote.add(pollen.get(i));
+    for(Pollen p : pollen) { //i hate this so much
+      if(p.update()) {
+        deathNote.add(p);
       }
     }
-    for(int i = 0; i < deathNote.size(); i++) {
-       pollen.remove(deathNote.get(i)); 
+    for(Pollen p : deathNote) {
+       pollen.remove(p); 
     }
   }
   
@@ -141,13 +146,32 @@ class Player {
         }
       push();
         translate(x, y);
-        image(sprite[max(a, 0)/ANIMATION_SPEED], 0, 0, 50, 50);
+        if(invincible <= 0 || floor(invincible/INVINCIBLE_FlASH) % 2 == 0) {
+          image(sprite[max(a, 0)/ANIMATION_SPEED], 0, 0, 50, 50);
+        } else {
+          image(bright[max(a, 0)/ANIMATION_SPEED], 0, 0, 50, 50);
+        }
         a++;
         if(a >= ANIMATION_SPEED * 4) {
           a = -ANIMATION_SPEED;
         }
       pop();
     pop();
+  }
+  
+  void collide(ArrayList<Bullet> bullets) {
+    println(health);
+    if(invincible > 0) {
+      invincible--;
+      return;
+    }
+    for(Bullet bullet : bullets) {
+      if(bullet.distance(x, y) < 20) {
+        health--;
+        invincible = INVINCIBLE_FRAMES;
+        return;
+      }
+    }
   }
   
   void spawnFlower() {
@@ -189,7 +213,7 @@ class Player {
         spawnFlower();
       break;
       case '2': case 'x': case'@': case'X': case ' ': 
-         pollen.add(new Pollen(x, y));
+         pollen.add(new Pollen(x + random(-10, 10), y + random(-10, 10)));
       break;
     }
     if(key == CODED) {
