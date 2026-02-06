@@ -24,7 +24,7 @@ class Pollen {
   
   boolean update() {
     y -= SPEED;
-    if(y < -25/*temp*/) {
+    if(y < -24/*temp*/) {
       return true;
     } else {
       return false;
