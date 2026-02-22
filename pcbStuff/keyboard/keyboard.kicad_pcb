@@ -11165,7 +11165,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "382835b8-76b6-4481-b8b6-d92e0676919b")
-		(at 191.35 21.59)
+		(at 21.54 108.92)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "Tab1"
@@ -19939,7 +19939,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "61dc7c59-f255-4cac-a6ed-fd339a22bbba")
-		(at 172.3 21.59)
+		(at 116.54 89.92)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "%1"
@@ -21113,7 +21113,7 @@
 		(property "Reference" "Space1"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "00d7eab7-7942-4713-ae77-d1cdf6d71008")
+			(uuid "1f252d96-b6b6-4125-8ec7-9aed3e67d677")
 			(effects
 				(font
 					(size 1 1)
@@ -21124,7 +21124,7 @@
 		(property "Value" "button"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "3c264569-f806-4fa6-ab74-1b19c7cd0ed4")
+			(uuid "e8d29b2c-a10e-4bde-bb4b-d9977006aa99")
 			(effects
 				(font
 					(size 1 1)
@@ -21137,7 +21137,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "0c5b925c-dfa7-4e4b-bdf4-718c2c70fd88")
+			(uuid "884d47bf-fb24-4173-877b-0cd57c37be44")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21150,7 +21150,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e83209a1-ece7-4da6-b8e3-588dc19df2bb")
+			(uuid "26cea69e-779a-45a2-bb93-76ccf707fe2f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28151,7 +28151,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "8a344a13-a54e-44f1-bdb4-018b5c2d0894")
-		(at 171.6 19.05 180)
+		(at 115.84 87.38 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D22"
@@ -28450,7 +28450,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "8bd55654-21a3-4237-bdbf-41acf166ee34")
-		(at 171.6 38.1 180)
+		(at 44.59 163.38 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D77"
@@ -28749,13 +28749,13 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "8c5234a1-7dc1-4d67-8ce6-e7f4a759a484")
-		(at 229.45 -226.06)
+		(at 173.54 89.92)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "*1"
 			(at -2.54 -2.794 0)
 			(layer "F.SilkS")
-			(uuid "529b9f1a-126b-4aca-ba91-4b5007c286fa")
+			(uuid "14ef13bc-ae77-4809-8d2b-58bbc1038080")
 			(effects
 				(font
 					(size 1 1)
@@ -28766,7 +28766,7 @@
 		(property "Value" "button"
 			(at -2.54 12.954 0)
 			(layer "F.Fab")
-			(uuid "0fd6dd51-bd6f-429f-a2af-83674f30eb16")
+			(uuid "a7e4e913-2964-4b91-8293-03dc2330645d")
 			(effects
 				(font
 					(size 1 1)
@@ -28779,7 +28779,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "6ab005bc-4e0d-4840-ba4a-f4faed3316fc")
+			(uuid "cdd6d8ca-8aec-478c-a24f-e47590d99e1b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28792,7 +28792,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "599a531f-753e-48c5-bd01-a4451a912edb")
+			(uuid "ea2fd147-ff00-4db2-b52e-9fd9cc25853f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -31954,13 +31954,13 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "9b6c2284-b3e0-4741-a38a-0e43b40f103f")
-		(at 228.75 -228.6 180)
+		(at 172.84 87.38 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D25"
 			(at 0 -1.3 0)
 			(layer "F.SilkS")
-			(uuid "0383d4b7-1813-4afa-b4e7-32791d1ebfb6")
+			(uuid "cc930564-221f-4cc1-bd13-5ed7fc39bc6a")
 			(effects
 				(font
 					(size 1 1)
@@ -31971,7 +31971,7 @@
 		(property "Value" "1N4148WT"
 			(at 0 1.4 0)
 			(layer "F.Fab")
-			(uuid "226fc25d-67a8-4d03-914c-25357b2e6e38")
+			(uuid "b6fe3845-36cf-4eee-9622-a7f3aef19d39")
 			(effects
 				(font
 					(size 1 1)
@@ -31984,7 +31984,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b720bfd0-16e2-48f7-95b9-c21bfec162a3")
+			(uuid "82e13434-38ea-45ac-b5f1-255c125f95af")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -31997,7 +31997,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "76e834d1-d0ac-4c9a-84a0-7271eb76bffe")
+			(uuid "b406fef2-e67d-460d-bef7-0426d21fafe6")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -34543,7 +34543,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "a7d1f79c-8d9a-4377-9ff2-b4c8a891e9e1")
-		(at 172.3 40.64)
+		(at 45.29 165.92)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "LMeta1"
@@ -40911,7 +40911,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "c320d679-7e0a-466c-abb7-17c2753222cb")
-		(at 190.65 19.05 180)
+		(at 20.84 106.38 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D33"
@@ -46153,7 +46153,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "e30370c1-cc29-438e-8caf-cb0da9d9d83e")
-		(at 228.75 -247.65 180)
+		(at 77.84 144.38 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D57"
@@ -51561,8 +51561,8 @@
 		(uuid "8c69a50f-05b0-42c2-97b3-80bd2ff4afe5")
 	)
 	(segment
-		(start 172.3 19.05)
-		(end 172.3 21.59)
+		(start 116.54 87.38)
+		(end 116.54 89.92)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 48)
@@ -51585,8 +51585,8 @@
 		(uuid "fe7fb884-d5a1-4028-8ab7-98cd8b19bad9")
 	)
 	(segment
-		(start 229.45 -228.6)
-		(end 229.45 -226.06)
+		(start 173.54 87.38)
+		(end 173.54 89.92)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 51)
@@ -51649,8 +51649,8 @@
 		(uuid "d98dcee1-4537-4cf0-aa4a-18f48fd35afe")
 	)
 	(segment
-		(start 191.35 19.05)
-		(end 191.35 21.59)
+		(start 21.54 106.38)
+		(end 21.54 108.92)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 59)
@@ -51833,8 +51833,8 @@
 		(uuid "b206f87d-793d-402a-9ed4-24e06cedc503")
 	)
 	(segment
-		(start 229.45 -247.65)
-		(end 229.45 -245.11)
+		(start 78.54 144.38)
+		(end 78.54 146.92)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 83)
@@ -51993,8 +51993,8 @@
 		(uuid "943f35e3-302d-4880-aa74-e2c5b923f85e")
 	)
 	(segment
-		(start 172.3 38.1)
-		(end 172.3 40.64)
+		(start 45.29 163.38)
+		(end 45.29 165.92)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 103)
@@ -52105,9 +52105,33 @@
 		)
 	)
 	(group ""
+		(uuid "3c8dc554-560e-4070-a2d2-897354205202")
+		(members "48bb4a4c-0bea-4ed5-aeae-7048217b91f5" "608b6d8f-2b64-4461-a7fa-a307b05bd8ac"
+			"67563e59-e6c1-43d1-a0d4-228cea45caca"
+		)
+	)
+	(group ""
 		(uuid "41172636-0661-42af-a1ed-f8e79f782a18")
 		(members "32669e80-4b90-4b41-b4ac-4448258898fe" "54ec9b81-9f5a-4a24-8e51-679f728567a0"
 			"73aad6bf-bfc3-4382-97c6-829413dee514"
+		)
+	)
+	(group ""
+		(uuid "4be5ece7-5eb8-43a7-b116-7fd0ca437316")
+		(members "8c5234a1-7dc1-4d67-8ce6-e7f4a759a484" "9b6c2284-b3e0-4741-a38a-0e43b40f103f"
+			"eaf6944b-613b-430d-81d0-98c5adaa1fba"
+		)
+	)
+	(group ""
+		(uuid "56d00b6c-8bc5-4f9f-8779-d98d9abf0001")
+		(members "5901adf9-0458-4d36-acde-744c4ef6bfe7" "61dc7c59-f255-4cac-a6ed-fd339a22bbba"
+			"8a344a13-a54e-44f1-bdb4-018b5c2d0894"
+		)
+	)
+	(group ""
+		(uuid "6044367a-30d7-42fd-bfe1-8eaaec427e9c")
+		(members "4edee1b5-7b8f-47a3-b3f1-aabecc59e115" "8bd55654-21a3-4237-bdbf-41acf166ee34"
+			"a7d1f79c-8d9a-4377-9ff2-b4c8a891e9e1"
 		)
 	)
 	(group ""
@@ -52123,6 +52147,12 @@
 		)
 	)
 	(group ""
+		(uuid "760d2ae5-d433-44e1-badd-e465419193c2")
+		(members "53885a48-65d0-4a15-b7ff-728ba11ed7a0" "c7070312-3823-40b2-b9b9-fc0904505df6"
+			"e30370c1-cc29-438e-8caf-cb0da9d9d83e"
+		)
+	)
+	(group ""
 		(uuid "87ce08b8-50c4-41cc-833b-3ecf55ebc798")
 		(members "1f37b553-4b97-46be-9caa-e6053d4298d5" "7345d8db-e103-42ca-88a5-6f1bc5ebecae"
 			"ccb267eb-7af8-491e-9594-6ab1a0feb2d1"
@@ -52132,6 +52162,12 @@
 		(uuid "8c9bd259-4d22-4e19-bf9c-b1eaf3d6a148")
 		(members "5b0b91ff-4875-4b8a-bf3d-bd1905106dff" "d1ec7d89-09c5-4bf5-9f6f-1a9cef69e978"
 			"fe7fb884-d5a1-4028-8ab7-98cd8b19bad9"
+		)
+	)
+	(group ""
+		(uuid "919bc8d8-8827-4046-bb47-54a21810ba41")
+		(members "382835b8-76b6-4481-b8b6-d92e0676919b" "c320d679-7e0a-466c-abb7-17c2753222cb"
+			"d9147e82-615f-4af4-81d9-597c6b56793f"
 		)
 	)
 	(group ""
