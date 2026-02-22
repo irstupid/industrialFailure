@@ -1,5 +1,26 @@
-	BOSSES:
-cupcake (jaylen)
-ufo
-the sun
-yeehaw apple
+BOSSES:
+	cupcake (jaylen)
+	ufo
+	the sun
+	yeehaw apple
+
+	PLANS:
+	chaotic carrot:
+		just a carrot with a eye.
+		very very simple and basic boss
+	(some serial number):
+		generic robot
+		focus on fun and wacky projectiles (boomerang, spinning thing, lazers, bullet shooting bullet, ect.)
+	wormulis:
+		a eater of worlds style earth worm.
+		has a lot of "un dogeable" attacks that force you to use your flower to teleport out
+		more of a puzzle boss than a raw skill boss
+	electric eagle:
+		1781 mascot
+		fast, flashy, cool gutar rif
+		generaly fast skill based boss where flower dashes might be helpfull but not necessary
+	generic cat gitl:
+		self explanitary (tohou inspired)
+		lots and lots of projectiles everywhere 
+		focus on crazy percise movement (do you think its fair to force percise flower dashes?)
+		very very hard

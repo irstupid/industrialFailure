@@ -2,24 +2,29 @@ class Pollen {
   final int ANIMATION_SPEED = 2;
   final int SPEED = 10;
   
-  PImage[] sprites;
+  PImage[] sprite;
   int a;
   
   float x;
   float y;
   
-  Pollen(float x, float y) {
+  Pollen(float x, float y, PImage[] sprite) {
     this.x = x;
     this.y = y;
+    this.sprite = sprite;
   }
   
   void draw() {
     push();
       imageMode(CENTER);
       rectMode(CENTER);
-      rect(x, y, 12, 24);
-      //image(sprites[floor(a/ANIMATION_SPEED)], x, y, 12/*temp*/, 24/*temp*/);
+      //rect(x, y, 12, 24);
+      image(sprite[floor(a/ANIMATION_SPEED)], x, y, 12/*temp*/, 24/*temp*/);
     pop();
+    a++;
+    if(a >= ANIMATION_SPEED * 4) {
+      a = 0;
+    }
   }
   
   boolean update() {

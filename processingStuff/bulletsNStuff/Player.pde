@@ -21,6 +21,8 @@ class Player {
   PImage[] flower = new PImage[4];
   int fA;
   
+  PImage[] pollenSprite = new PImage[4];
+  
   boolean up;
   boolean down;
   boolean left;
@@ -65,6 +67,11 @@ class Player {
     flower[1] = spriteSheet.get(16, 0, 16, 16);
     flower[2] = spriteSheet.get(32, 0, 16, 16);
     flower[3] = spriteSheet.get(48, 0, 16, 16);
+    spriteSheet = loadImage("pollen.png");
+    pollenSprite[0] = spriteSheet.get(0, 0, 4, 8);
+    pollenSprite[1] = spriteSheet.get(4, 0, 4, 8);
+    pollenSprite[2] = spriteSheet.get(8, 0, 4, 8);
+    pollenSprite[3] = spriteSheet.get(12, 0, 4, 8);
   }
   
   void update() {
@@ -213,7 +220,7 @@ class Player {
         spawnFlower();
       break;
       case '2': case 'x': case'@': case'X': case ' ': 
-         pollen.add(new Pollen(x + random(-10, 10), y + random(-10, 10)));
+         pollen.add(new Pollen(x + random(-10, 10), y + random(-10, 10), pollenSprite));
       break;
     }
     if(key == CODED) {
