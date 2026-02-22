@@ -19,7 +19,7 @@ class Pollen {
       imageMode(CENTER);
       rectMode(CENTER);
       //rect(x, y, 12, 24);
-      image(sprite[floor(a/ANIMATION_SPEED)], x, y, 12/*temp*/, 24/*temp*/);
+      image(sprite[floor(a/ANIMATION_SPEED)], x, y, 18/*temp*/, 30/*temp*/);
     pop();
     a++;
     if(a >= ANIMATION_SPEED * 4) {

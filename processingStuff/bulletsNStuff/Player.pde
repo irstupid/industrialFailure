@@ -68,10 +68,10 @@ class Player {
     flower[2] = spriteSheet.get(32, 0, 16, 16);
     flower[3] = spriteSheet.get(48, 0, 16, 16);
     spriteSheet = loadImage("pollen.png");
-    pollenSprite[0] = spriteSheet.get(0, 0, 4, 8);
-    pollenSprite[1] = spriteSheet.get(4, 0, 4, 8);
-    pollenSprite[2] = spriteSheet.get(8, 0, 4, 8);
-    pollenSprite[3] = spriteSheet.get(12, 0, 4, 8);
+    pollenSprite[0] = spriteSheet.get(0, 0, 6, 10);
+    pollenSprite[1] = spriteSheet.get(6, 0, 6, 10);
+    pollenSprite[2] = spriteSheet.get(12, 0, 6, 10);
+    pollenSprite[3] = spriteSheet.get(18, 0, 6, 10);
   }
   
   void update() {
