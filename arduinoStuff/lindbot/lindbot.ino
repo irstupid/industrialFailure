@@ -14,16 +14,16 @@ enum Button {
   ZERO = 0xe916ff00,
   EQ = 0xe619ff00,
   ST = 0xf20dff00,
-  ONE = 12,
-  TWO = 13,
-  THREE = 14,
-  FOUR = 15,
-  FIVE = 16,
-  SIX = 17,
-  SEVEN = 18,
-  EIGHT = 19,
-  NINE = 20,
-  HELD = 0xFFFFFF
+  ONE = 0xf30cff00,
+  TWO = 0xe718ff00,
+  THREE = 0xa15eff00,
+  FOUR = 0xf708ff00,
+  FIVE = 0xe31cff00,
+  SIX = 0xa55aff00,
+  SEVEN = 0xbd42ff00,
+  EIGHT = 0xad52ff00,
+  NINE = 0xb54aff00,
+  HELD = 0
 };
 
 const int LEFT_DRIVE = 5;
@@ -147,5 +147,21 @@ void setup() {
 void loop() {
   //servoWrite(&leftDrive, photoRead(LEFT_PHOTO)/1000);
   //servoWrite(&rightDrive, photoRead(RIGHT_PHOTO)/1000);
-  IRread();
+  switch(IRread()) {
+    case VOL_P:
+      digitalWrite(RED_LED, 1);
+      digitalWrite(GREEN_LED, 0);
+      digitalWrite(BLUE_LED, 0);
+      break;
+    case PAUSE:
+      digitalWrite(RED_LED, 0);
+      digitalWrite(GREEN_LED, 1);
+      digitalWrite(BLUE_LED, 0);
+      break;
+    case VOL_M:
+      digitalWrite(RED_LED, 0);
+      digitalWrite(GREEN_LED, 0);
+      digitalWrite(BLUE_LED, 1);
+      break;
+  }
 }
