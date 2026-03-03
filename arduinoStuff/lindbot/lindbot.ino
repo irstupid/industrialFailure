@@ -1,5 +1,6 @@
 #include <Servo.h>
 #include <IRremote.h>
+#include <IRremote.h>
 
 enum Button {
   PWR = 0xba45ff00,
@@ -41,13 +42,23 @@ const int IR = 8;
 Servo leftDrive; //aw hell naw who put objects in my c
 Servo rightDrive;
 
+const double LEFT_MOD = 1;
+const double RIGHT_MOD = 0.5;
+const double TURN_SPEED = 0.5;
+
 decode_results irIn;
 
-void servoWrite(Servo *servo, int value) {
-  if(servo == &leftDrive) { //dont do this
-      value = value * -1;
+int direction = 0;
+
+void servoWrite(Servo *servo, double value) {
+  if(servo == &rightDrive) { //dont do this
+      value = value * -1 * RIGHT_MOD;
+      Serial.println(value);
+  } else {
+      value = value * LEFT_MOD;
   }
-  (*servo).writeMicroseconds(map(value, -1, 1, 500, 2500));
+  value = value * 100; //to account for implicit long casting
+  (*servo).writeMicroseconds(map(value, -1000, 1000, 500, 2500));
 }
 
 int photoRead(int photo) {
@@ -56,7 +67,7 @@ int photoRead(int photo) {
 
 Button IRread() {
   if(!IrReceiver.decode()) {
-      return NULL;
+    return NULL;
   }
   switch(IrReceiver.decodedIRData.decodedRawData) { //i hate this sytax SO MUCH but i cant think of a better way
     case PWR:
@@ -145,23 +156,46 @@ void setup() {
 }
 
 void loop() {
-  //servoWrite(&leftDrive, photoRead(LEFT_PHOTO)/1000);
-  //servoWrite(&rightDrive, photoRead(RIGHT_PHOTO)/1000);
+
   switch(IRread()) {
-    case VOL_P:
+    case PWR:
       digitalWrite(RED_LED, 1);
       digitalWrite(GREEN_LED, 0);
       digitalWrite(BLUE_LED, 0);
       break;
-    case PAUSE:
+    case VOL_P:
       digitalWrite(RED_LED, 0);
       digitalWrite(GREEN_LED, 1);
       digitalWrite(BLUE_LED, 0);
       break;
-    case VOL_M:
+    case FUNC:
       digitalWrite(RED_LED, 0);
       digitalWrite(GREEN_LED, 0);
       digitalWrite(BLUE_LED, 1);
+    case VOL_M:
+      digitalWrite(RED_LED, 0);
+      digitalWrite(GREEN_LED, 0);
+      digitalWrite(BLUE_LED, 0);
+      break;
+    case UP:
+      servoWrite(&leftDrive, 1);
+      servoWrite(&rightDrive, 1);
+      break;
+    case LEFT:
+      servoWrite(&leftDrive, TURN_SPEED);
+      servoWrite(&rightDrive, -TURN_SPEED);
+      break;
+    case DOWN:
+      servoWrite(&leftDrive, -1);
+      servoWrite(&rightDrive, -1);
+      break;
+    case RIGHT:
+      servoWrite(&leftDrive, -TURN_SPEED);
+      servoWrite(&rightDrive, TURN_SPEED);
+      break;
+    case PAUSE:
+      servoWrite(&leftDrive, 0);
+      servoWrite(&rightDrive, 0);
       break;
   }
 }
