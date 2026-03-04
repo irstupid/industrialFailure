@@ -182,16 +182,16 @@ void loop() {
       servoWrite(&rightDrive, 1);
       break;
     case LEFT:
-      servoWrite(&leftDrive, TURN_SPEED);
-      servoWrite(&rightDrive, -TURN_SPEED);
+      servoWrite(&leftDrive, -TURN_SPEED);
+      servoWrite(&rightDrive, TURN_SPEED);
       break;
     case DOWN:
       servoWrite(&leftDrive, -1);
       servoWrite(&rightDrive, -1);
       break;
     case RIGHT:
-      servoWrite(&leftDrive, -TURN_SPEED);
-      servoWrite(&rightDrive, TURN_SPEED);
+      servoWrite(&leftDrive, TURN_SPEED);
+      servoWrite(&rightDrive, -1);
       break;
     case PAUSE:
       servoWrite(&leftDrive, 0);
