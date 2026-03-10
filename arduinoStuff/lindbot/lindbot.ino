@@ -187,7 +187,7 @@ void loop() {
       break;
     case DOWN:
       servoWrite(&leftDrive, -1);
-      servoWrite(&rightDrive, -1);
+      servoWrite(&rightDrive, -1 * 1/RIGHT_MOD);
       break;
     case RIGHT:
       servoWrite(&leftDrive, TURN_SPEED);
