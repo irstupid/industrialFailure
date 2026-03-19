@@ -193,7 +193,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "033bbbd9-6039-4a26-911a-517a6c29f08b")
-		(at 289.05 63.96 180)
+		(at 533.51 50.04 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D12"
@@ -3426,7 +3426,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "132c07d4-2909-49a9-941b-19b67609450b")
-		(at 77.84 68.38 180)
+		(at 322.3 54.46 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D3"
@@ -5206,7 +5206,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "1e6d2124-5a31-49af-8460-39ab870d154f")
-		(at 58.84 68.38 180)
+		(at 303.3 54.46 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D2"
@@ -5505,7 +5505,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "1f37b553-4b97-46be-9caa-e6053d4298d5")
-		(at 154.54 108.92)
+		(at 399 95)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "w1"
@@ -6659,7 +6659,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "22509280-8e55-486b-a443-0ad65c05198e")
-		(at 191.84 125.38 180)
+		(at 436.3 111.46 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D78"
@@ -6958,7 +6958,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "22f203e1-8904-4f13-b190-93d7e0d077e9")
-		(at 251.05 120.96 180)
+		(at 495.51 107.04 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D14"
@@ -7905,7 +7905,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "2560780a-3258-49ad-bc40-5bb658775e39")
-		(at 153.84 63.63 180)
+		(at 398.3 49.71 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D56"
@@ -9684,7 +9684,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "31aaa695-3957-4e17-9aaa-11a2dcd0fa9a")
-		(at 251.05 139.96 180)
+		(at 495.51 126.04 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D46"
@@ -11165,7 +11165,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "382835b8-76b6-4481-b8b6-d92e0676919b")
-		(at 21.54 108.92)
+		(at 266 95)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "Tab1"
@@ -12590,7 +12590,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "40b41c3e-85c3-419e-9e33-29506f043c55")
-		(at 59.54 70.92)
+		(at 304 57)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "F1"
@@ -13459,7 +13459,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "46510174-0af8-4d52-a7af-02fa882a0bd8")
-		(at 251.75 123.5)
+		(at 496.21 109.58)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "PrintScreen1"
@@ -15225,7 +15225,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "4afe136c-58da-4925-a6e7-31655d122c6e")
-		(at 96.84 63.96 180)
+		(at 341.3 50.04 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D34"
@@ -16991,7 +16991,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "522b0d18-9780-41ca-8d0c-681821f3b9ca")
-		(at 115.84 63.96 180)
+		(at 360.3 50.04 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D45"
@@ -18472,7 +18472,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "5b0b91ff-4875-4b8a-bf3d-bd1905106dff")
-		(at 210.84 106.38 180)
+		(at 455.3 92.46 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D24"
@@ -19640,7 +19640,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "61d1f8b4-0898-4cd6-b922-ecced9ab835f")
-		(at 172.84 63.63 180)
+		(at 417.3 49.71 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D67"
@@ -19939,7 +19939,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "61dc7c59-f255-4cac-a6ed-fd339a22bbba")
-		(at 116.54 89.92)
+		(at 361 76)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "%1"
@@ -22574,7 +22574,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "73462528-a024-4e9c-ab87-f62af72db450")
-		(at 251.75 142.5)
+		(at 496.21 128.58)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "DEL1"
@@ -24312,7 +24312,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "7c8c0f06-f9b6-4704-a2d5-023f3745115f")
-		(at 78.54 70.92)
+		(at 323 57)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "F2"
@@ -26050,7 +26050,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "80c08b42-d381-45bf-95a8-8296820ab074")
-		(at 308.05 63.96 180)
+		(at 552.51 50.04 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D13"
@@ -26349,7 +26349,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "80c9c2a7-efdb-4019-bc7e-fa28db0ad0c1")
-		(at 134.84 87.38 180)
+		(at 379.3 73.46 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D23"
@@ -27296,7 +27296,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "82492841-a719-45d9-8750-c6cc55421a72")
-		(at 116.54 66.5)
+		(at 361 52.58)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "\\1"
@@ -27581,7 +27581,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "832177c7-bb1e-40ff-94e2-d677050bb98e")
-		(at 154.54 66.17)
+		(at 399 52.25)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "j1"
@@ -28151,7 +28151,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "8a344a13-a54e-44f1-bdb4-018b5c2d0894")
-		(at 115.84 87.38 180)
+		(at 360.3 73.46 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D22"
@@ -28450,7 +28450,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "8bd55654-21a3-4237-bdbf-41acf166ee34")
-		(at 44.59 163.38 180)
+		(at 289.05 149.46 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D77"
@@ -28749,7 +28749,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "8c5234a1-7dc1-4d67-8ce6-e7f4a759a484")
-		(at 173.54 89.92)
+		(at 418 76)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "*1"
@@ -31954,7 +31954,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "9b6c2284-b3e0-4741-a38a-0e43b40f103f")
-		(at 172.84 87.38 180)
+		(at 417.3 73.46 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D25"
@@ -34543,7 +34543,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "a7d1f79c-8d9a-4377-9ff2-b4c8a891e9e1")
-		(at 45.29 165.92)
+		(at 289.75 152)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "LMeta1"
@@ -39729,7 +39729,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "bc85ca3a-428b-486d-9607-2a0732c78f9d")
-		(at 135.54 89.92)
+		(at 380 76)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "^1"
@@ -40911,7 +40911,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "c320d679-7e0a-466c-abb7-17c2753222cb")
-		(at 20.84 106.38 180)
+		(at 265.3 92.46 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D33"
@@ -41210,7 +41210,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "c7070312-3823-40b2-b9b9-fc0904505df6")
-		(at 78.54 146.92)
+		(at 323 133)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "k1"
@@ -42649,7 +42649,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "ccb267eb-7af8-491e-9594-6ab1a0feb2d1")
-		(at 153.84 106.38 180)
+		(at 398.3 92.46 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D35"
@@ -43532,7 +43532,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "d1ec7d89-09c5-4bf5-9f6f-1a9cef69e978")
-		(at 211.54 108.92)
+		(at 456 95)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "&1"
@@ -45569,7 +45569,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "deccb192-cfaf-4980-9f9f-182c05c8d39e")
-		(at 192.54 127.92)
+		(at 437 114)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "LAlt1"
@@ -46153,7 +46153,7 @@
 	(footprint "Diode_SMD:D_SOD-523"
 		(layer "F.Cu")
 		(uuid "e30370c1-cc29-438e-8caf-cb0da9d9d83e")
-		(at 77.84 144.38 180)
+		(at 322.3 130.46 180)
 		(descr "http://www.diodes.com/datasheets/ap02001.pdf p.144")
 		(tags "Diode SOD523")
 		(property "Reference" "D57"
@@ -48788,7 +48788,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "f4c3f255-50d8-4df5-8744-ade6e27c6faa")
-		(at 289.75 66.5)
+		(at 534.21 52.58)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "F11"
@@ -49073,7 +49073,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "f8a1aec6-f383-477d-8757-4d1d833a817b")
-		(at 97.54 66.5)
+		(at 342 52.58)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "q1"
@@ -49643,7 +49643,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "fb18d6b6-f2da-49a8-bc3f-246912585a4d")
-		(at 173.54 66.17)
+		(at 418 52.25)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "b1"
@@ -49928,7 +49928,7 @@
 	(footprint "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
 		(layer "F.Cu")
 		(uuid "fba53584-cf84-4e6d-b5cd-72e72f2315c6")
-		(at 308.75 66.5)
+		(at 553.21 52.58)
 		(descr "Cherry MX keyswitch, 1.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
 		(tags "Cherry MX keyswitch 1.00u PCB")
 		(property "Reference" "F12"
@@ -51401,16 +51401,16 @@
 		(uuid "73aad6bf-bfc3-4382-97c6-829413dee514")
 	)
 	(segment
-		(start 59.54 68.38)
-		(end 59.54 70.92)
+		(start 304 54.46)
+		(end 304 57)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 28)
 		(uuid "e74d1d81-699a-44c5-b7d5-642f3aaba9c6")
 	)
 	(segment
-		(start 78.54 68.38)
-		(end 78.54 70.92)
+		(start 323 54.46)
+		(end 323 57)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 29)
@@ -51481,24 +51481,24 @@
 		(uuid "635e4740-4048-48d1-9617-93f50ee37a37")
 	)
 	(segment
-		(start 289.75 66.5)
-		(end 289.75 63.96)
+		(start 534.21 52.58)
+		(end 534.21 50.04)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 38)
 		(uuid "dd54b5e2-04d6-4920-9c3c-bd3b152d8d2f")
 	)
 	(segment
-		(start 308.75 63.96)
-		(end 308.75 66.5)
+		(start 553.21 50.04)
+		(end 553.21 52.58)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 39)
 		(uuid "124bc8e9-c50a-47b6-abdd-128ffee319cf")
 	)
 	(segment
-		(start 251.75 120.96)
-		(end 251.75 123.5)
+		(start 496.21 107.04)
+		(end 496.21 109.58)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 40)
@@ -51561,32 +51561,32 @@
 		(uuid "8c69a50f-05b0-42c2-97b3-80bd2ff4afe5")
 	)
 	(segment
-		(start 116.54 87.38)
-		(end 116.54 89.92)
+		(start 361 73.46)
+		(end 361 76)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 48)
 		(uuid "5901adf9-0458-4d36-acde-744c4ef6bfe7")
 	)
 	(segment
-		(start 135.54 89.92)
-		(end 135.54 87.38)
+		(start 380 76)
+		(end 380 73.46)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 49)
 		(uuid "97daf875-4db8-409b-bf6f-30c2f04afa6b")
 	)
 	(segment
-		(start 211.54 106.38)
-		(end 211.54 108.92)
+		(start 456 92.46)
+		(end 456 95)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 50)
 		(uuid "fe7fb884-d5a1-4028-8ab7-98cd8b19bad9")
 	)
 	(segment
-		(start 173.54 87.38)
-		(end 173.54 89.92)
+		(start 418 73.46)
+		(end 418 76)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 51)
@@ -51649,24 +51649,24 @@
 		(uuid "d98dcee1-4537-4cf0-aa4a-18f48fd35afe")
 	)
 	(segment
-		(start 21.54 106.38)
-		(end 21.54 108.92)
+		(start 266 92.46)
+		(end 266 95)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 59)
 		(uuid "d9147e82-615f-4af4-81d9-597c6b56793f")
 	)
 	(segment
-		(start 97.54 66.5)
-		(end 97.54 63.96)
+		(start 342 52.58)
+		(end 342 50.04)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 60)
 		(uuid "000eeff5-2858-4c03-8dd3-3b4a38b7754e")
 	)
 	(segment
-		(start 154.54 106.38)
-		(end 154.54 108.92)
+		(start 399 92.46)
+		(end 399 95)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 61)
@@ -51745,16 +51745,16 @@
 		(uuid "802e734a-3500-497d-a880-0ddefe6a8914")
 	)
 	(segment
-		(start 116.54 66.5)
-		(end 116.54 63.96)
+		(start 361 52.58)
+		(end 361 50.04)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 71)
 		(uuid "1157123e-b4da-4020-a8e4-aae6dc03dc86")
 	)
 	(segment
-		(start 251.75 139.96)
-		(end 251.75 142.5)
+		(start 496.21 126.04)
+		(end 496.21 128.58)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 72)
@@ -51833,8 +51833,8 @@
 		(uuid "b206f87d-793d-402a-9ed4-24e06cedc503")
 	)
 	(segment
-		(start 78.54 144.38)
-		(end 78.54 146.92)
+		(start 323 130.46)
+		(end 323 133)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 83)
@@ -51913,8 +51913,8 @@
 		(uuid "9370cbbb-b224-44e5-8de6-f97749ffd4d0")
 	)
 	(segment
-		(start 173.54 63.63)
-		(end 173.54 66.17)
+		(start 418 49.71)
+		(end 418 52.25)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 93)
@@ -51993,16 +51993,16 @@
 		(uuid "943f35e3-302d-4880-aa74-e2c5b923f85e")
 	)
 	(segment
-		(start 45.29 163.38)
-		(end 45.29 165.92)
+		(start 289.75 149.46)
+		(end 289.75 152)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 103)
 		(uuid "4edee1b5-7b8f-47a3-b3f1-aabecc59e115")
 	)
 	(segment
-		(start 192.54 125.38)
-		(end 192.54 127.92)
+		(start 437 111.46)
+		(end 437 114)
 		(width 0.2)
 		(layer "F.Cu")
 		(net 104)
