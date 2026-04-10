@@ -1,6 +1,5 @@
 #include <Servo.h>
 #include <IRremote.h>
-#include <IRremote.h>
 
 enum Button {
   PWR = 0xba45ff00,
@@ -24,11 +23,17 @@ enum Button {
   SEVEN = 0xbd42ff00,
   EIGHT = 0xad52ff00,
   NINE = 0xb54aff00,
-  HELD = 0
+  HELD = 0,
+};
+
+enum Mode {
+  NORMAL,
+  FOLLOW
 };
 
 const int LEFT_DRIVE = 5;
 const int RIGHT_DRIVE = 6;
+const int TRUE_STOP = 7;
 
 const int LEFT_PHOTO = A0;
 const int RIGHT_PHOTO = A1;
@@ -38,6 +43,7 @@ const int GREEN_LED = 3;
 const int BLUE_LED = 4;
 
 const int IR = 8;
+const int LED_BOARD = 9;
 
 Servo leftDrive; //aw hell naw who put objects in my c
 Servo rightDrive;
@@ -45,6 +51,8 @@ Servo rightDrive;
 const double LEFT_MOD = 1;
 const double RIGHT_MOD = 0.5;
 const double TURN_SPEED = 0.5;
+
+Mode mode;
 
 decode_results irIn;
 
@@ -69,79 +77,9 @@ Button IRread() {
   if(!IrReceiver.decode()) {
     return NULL;
   }
-  switch(IrReceiver.decodedIRData.decodedRawData) { //i hate this sytax SO MUCH but i cant think of a better way
-    case PWR:
-      IrReceiver.resume();
-      return PWR;
-    case VOL_P:
-      IrReceiver.resume();
-      return VOL_P;
-    case FUNC:
-      IrReceiver.resume();
-      return FUNC;
-    case LEFT:
-      IrReceiver.resume();
-      return LEFT;
-    case PAUSE:
-      IrReceiver.resume();
-      return PAUSE;
-    case RIGHT:
-      IrReceiver.resume();
-      return RIGHT;
-    case DOWN:
-      IrReceiver.resume();
-      return DOWN;
-    case VOL_M:
-      IrReceiver.resume();
-      return VOL_M;
-    case UP:
-      IrReceiver.resume();
-      return UP;
-    case ZERO:
-      IrReceiver.resume();
-      return ZERO;
-    case EQ:
-      IrReceiver.resume();
-      return EQ;
-    case ST:
-      IrReceiver.resume();
-      return ST;
-    case ONE:
-      IrReceiver.resume();
-      return ONE;
-    case TWO:
-      IrReceiver.resume();
-      return TWO;
-    case THREE:
-      IrReceiver.resume();
-      return THREE;
-    case FOUR:
-      IrReceiver.resume();
-      return FOUR;
-    case FIVE:
-      IrReceiver.resume();
-      return FIVE;
-    case SIX:
-      IrReceiver.resume();
-      return SIX;
-    case SEVEN:
-      IrReceiver.resume();
-      return SEVEN;
-    case EIGHT:
-      IrReceiver.resume();
-      return EIGHT;
-    case NINE:
-      IrReceiver.resume();
-      return NINE;
-    case HELD:
-      IrReceiver.resume();
-      return HELD;
-    default:
-      Serial.print("unrecognized button ");
-      Serial.println(IrReceiver.decodedIRData.decodedRawData, HEX);
-      IrReceiver.resume();
-      return NULL;
-  }
+  Button out = IrReceiver.decodedIRData.decodedRawData;
+  IrReceiver.resume(); 
+  return out;
 } 
 
 void setup() {
@@ -159,9 +97,13 @@ void loop() {
 
   switch(IRread()) {
     case PWR:
-      digitalWrite(RED_LED, 1);
-      digitalWrite(GREEN_LED, 0);
-      digitalWrite(BLUE_LED, 0);
+      switch(mode) {
+        case NORMAL:
+          digitalWrite(RED_LED, 1);
+          digitalWrite(GREEN_LED, 0);
+          digitalWrite(BLUE_LED, 0);
+        break;
+      }
       break;
     case VOL_P:
       digitalWrite(RED_LED, 0);
@@ -172,30 +114,36 @@ void loop() {
       digitalWrite(RED_LED, 0);
       digitalWrite(GREEN_LED, 0);
       digitalWrite(BLUE_LED, 1);
+      break;
     case VOL_M:
       digitalWrite(RED_LED, 0);
       digitalWrite(GREEN_LED, 0);
       digitalWrite(BLUE_LED, 0);
       break;
     case UP:
+      digitalWrite(TRUE_STOP, 1);
       servoWrite(&leftDrive, 1);
       servoWrite(&rightDrive, 1);
       break;
     case LEFT:
+      digitalWrite(TRUE_STOP, 1);
       servoWrite(&leftDrive, -TURN_SPEED);
       servoWrite(&rightDrive, TURN_SPEED);
       break;
     case DOWN:
+      digitalWrite(TRUE_STOP, 1);
       servoWrite(&leftDrive, -1);
-      servoWrite(&rightDrive, -1 * 1/RIGHT_MOD);
+      servoWrite(&rightDrive, -1);
       break;
     case RIGHT:
+      digitalWrite(TRUE_STOP, 1);
       servoWrite(&leftDrive, TURN_SPEED);
       servoWrite(&rightDrive, -1);
       break;
     case PAUSE:
       servoWrite(&leftDrive, 0);
       servoWrite(&rightDrive, 0);
+      digitalWrite(TRUE_STOP, 0);
       break;
   }
 }
