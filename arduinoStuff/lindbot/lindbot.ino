@@ -52,11 +52,13 @@ const double LEFT_MOD = 1;
 const double RIGHT_MOD = 0.5;
 const double TURN_SPEED = 0.5;
 
-Mode mode;
+Mode mode = NORMAL;
 
 decode_results irIn;
 
 int direction = 0;
+bool ledBoard = false;
+bool ftlDrive = true;
 
 void servoWrite(Servo *servo, double value) {
   if(servo == &rightDrive) { //dont do this
@@ -93,17 +95,28 @@ void setup() {
   IrReceiver.begin(IR);
 }
 
-void loop() {
+double ftlMap(double level) {
+  if(level < 0.1) {
+      return 0;
+  }
+  if(level < 0.3) {
+    return map(level, 0, 0.3, 0, -0.5);
+  }
+  if(level > 0.5){
+    return map(level, 0.5, 1, 0, 1);
+  }
+}
 
-  switch(IRread()) {
+void normalState(Button ir) {
+  digitalWrite(LED_BOARD, ledBoard);
+  switch(ir) {
+    case EQ:
+      ledBoard = !ledBoard;
+      break;
     case PWR:
-      switch(mode) {
-        case NORMAL:
-          digitalWrite(RED_LED, 1);
-          digitalWrite(GREEN_LED, 0);
-          digitalWrite(BLUE_LED, 0);
-        break;
-      }
+      digitalWrite(RED_LED, 1);
+      digitalWrite(GREEN_LED, 0);
+      digitalWrite(BLUE_LED, 0);
       break;
     case VOL_P:
       digitalWrite(RED_LED, 0);
@@ -145,5 +158,73 @@ void loop() {
       servoWrite(&rightDrive, 0);
       digitalWrite(TRUE_STOP, 0);
       break;
+  }
+}
+
+void FTLstate(Button ir) {
+  digitalWrite(LED_BOARD, ledBoard);
+  digitalWrite(RED_LED, ftlDrive);
+  digitalWrite(BLUE_LED, 0);
+  digitalWrite(GREEN_LED, 0);
+  switch(ir) {
+    case PWR:
+      ledBoard = !ledBoard;
+      break;
+    case FUNC:
+      ftlDrive = !ftlDrive;
+      break;
+  }
+  if(ftlDrive) {
+    switch(ir) {
+      case UP:
+        digitalWrite(TRUE_STOP, 1);
+        servoWrite(&leftDrive, 1);
+        servoWrite(&rightDrive, 1);
+        break;
+      case LEFT:
+        digitalWrite(TRUE_STOP, 1);
+        servoWrite(&leftDrive, 0);
+        servoWrite(&rightDrive, 1);
+        break;
+      case DOWN:
+        digitalWrite(TRUE_STOP, 1);
+        servoWrite(&leftDrive, -1);
+        servoWrite(&rightDrive, -1);
+        break;
+      case RIGHT:
+        digitalWrite(TRUE_STOP, 1);
+        servoWrite(&leftDrive, 1);
+        servoWrite(&rightDrive, 0);
+        break;
+      case PAUSE:
+        servoWrite(&leftDrive, 0);
+        servoWrite(&rightDrive, 0);
+        digitalWrite(TRUE_STOP, 0);
+        break;
+    }
+  } else {
+    servoWrite(&leftDrive, ftlMap(photoRead(LEFT_PHOTO)));
+    servoWrite(&rightDrive, ftlMap(photoRead(RIGHT_PHOTO)));
+  }
+}
+
+void loop() {
+  Button ir = IRread();
+  switch(mode) {
+    case NORMAL:
+      normalState(ir);
+    break;
+    case FOLLOW:
+      FTLstate(ir);
+    break;
+  }
+
+  switch(ir) {
+      case ZERO:
+        mode = NORMAL;
+        break;
+      case ONE:
+        mode = FOLLOW;
+        break;
   }
 }
