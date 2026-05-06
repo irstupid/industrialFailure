@@ -9,8 +9,7 @@ class World
   Camera camera;
   Player player;
   
-  boolean interact;
-  String currentText;
+  TextBox textBox = null;
   
   World()
   {
@@ -93,6 +92,9 @@ class World
       fill(#00ff00, 100);
       rect(player.getTileX() * TILEWIDTH, player.getTileY() * TILEHEIGHT, TILEWIDTH, TILEHEIGHT);
     pop();
+    if(textBox != null) {
+        textBox.draw();
+    }
   }
   
   void update()
@@ -104,32 +106,35 @@ class World
       trainers[i].update();
       trainers[i].watch(player.getX(), player.getY());
     }
-    if(currentText.equals(""))
+    if(textBox == null)
     {
       player.move();
       player.direct();
     }
     player.collide(getCollisionTiles());
     camera.setCenter(player.getX(), player.getY());
-    describe();
   }
   
   void keyPressed()
   {
     player.keyPressed();
-    if(key == '1' && currentText.equals(""))
+    if(key == '1')
     {
-      interact = true;
+      if(textBox == null) {
+        describe();
+      } else {
+        if(textBox.done) {
+          textBox = null;
+        } else {
+          textBox.skip();
+        }
+      }
     }
   }
   
   void keyReleased()
   {
     player.keyReleased();
-    if(key == '1')
-    {
-      interact = false;
-    }
   }
   
   void warp()
@@ -143,10 +148,8 @@ class World
     }
   }
   
-  String describe()
+  void describe()
   {
-    if(interact)
-    {
       int x = round(player.getX()/TILEWIDTH);
       int y = round(player.getY()/TILEHEIGHT);
       if(player.getDirection() == 0)
@@ -166,17 +169,9 @@ class World
         y++;
       }
       String description = descriptionLookup.get(pair(x, y));
-      return description;
-    }
-    else
-    {
-      return null;
-    }
-  }
-  
-  void giveText(String text)
-  {
-    currentText = text;
+      if(description != null) {
+        textBox = new TextBox(description);
+      }
   }
   
   int pair(int a, int b)

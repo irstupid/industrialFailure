@@ -2,7 +2,6 @@ final float TILEWIDTH = 50;
 final float TILEHEIGHT = 50;
 
 World world;
-TextBox textBox;
 Battle battle;
 
 void setup()
@@ -11,28 +10,20 @@ void setup()
   size(960, 540, P2D);
   
   world = new World();
-  textBox = new TextBox();
   battle = new Battle();
 }
 
 void draw()
 {
-  //world.giveText(textBox.getText());
-  //world.update();
-  //textBox.setText(world.describe());
-  //world.draw();
-  battle.draw();
-  textBox.draw();
+  world.update();
+  world.draw();
+  //battle.draw();
 }
 
 void keyPressed()
 {
-  //world.keyPressed();
-  if(textBox.getText().equals(""))
-  {
-    battle.keyPressed();
-  }
-  textBox.keyPressed();
+  world.keyPressed();
+  //battle.keyPressed();
 }
 
 void keyReleased()

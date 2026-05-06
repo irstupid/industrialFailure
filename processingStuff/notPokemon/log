@@ -50,3 +50,6 @@ so i finsihed a lot of the ui. im not putting too much effort into it because im
 
 Log 17:
 ok i made the names and things show up. pokemon also has data and stuff. i used a hasmap instead of a lookup function for the move name lookup, wich i think is more correct. actually what you should do is make a static final hasmap as a lookup table but i cant do that in processing so im just tanking the initilization lag. now i have to figure out how the whole battle round system thing is gonna work. oh boy. thats gonna be fun. well weel cross that bridge when we get there. bye.
+
+Log 18:
+IM BACK! i took a major brake of like six month and almost dropped the project but now im back and what in the actual fuck was past ian cooking. i am so utterly confused by how any of this was ment to work, butnow im better at programing and can make it actually work. today i re-did the text box system. why was it global? i basically just made it local and kill itself. bye
